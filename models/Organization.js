@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Organization.hasMany(models.Slider, {
+      Organization.hasMany(models.Slide, {
         foreignKey: 'organizationId'
       })
     }
@@ -21,10 +21,15 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
-    welcome_text: DataTypes.TEXT
+    welcomeText: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Organization',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt',
+    paranoid: true,
+    timestamps: true,
   });
   return Organization;
 };

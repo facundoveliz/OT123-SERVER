@@ -3,7 +3,7 @@ const user = require("../controllers/user.controller.js");
 var router = express.Router();
 
 
-/* GET users listing. */
+/* GET all users listing. */
 router.get("/", user.findAll);
 
 module.exports = router;

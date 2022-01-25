@@ -5,9 +5,9 @@ name: Node.js Test and Linting
 
 on:
   push:
-    branches: [ develop, release ]
+    branches: [ main, release ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build:

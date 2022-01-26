@@ -10,7 +10,7 @@ exports.getActivities = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Fetched activities successfully.',
-      result: activities,
+      result: { activities: [...activities] },
     })
   } catch (err) {
     res.status(400).json({
@@ -30,21 +30,22 @@ exports.createActivity = async (req, res) => {
     })
   }
   try {
-    const { name, content } = req.body
+    const { name, content, image } = req.body
 
     const activity = await Activities.create({
       name,
       content,
+      image,
     })
     res.status(201).json({
       ok: true,
       msg: 'Activity created successfully',
-      result: activity,
+      result: { activity: { ...activity } },
     })
   } catch (err) {
     res.status(400).json({
       ok: false,
-      msg: 'error to create Activity',
+      msg: err.message,
       error: err,
     })
   }

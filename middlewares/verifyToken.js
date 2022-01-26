@@ -19,7 +19,11 @@ async function verifyToken(req, res, next) {
     req.id = decoded.id
     next()
   } catch (error) {
-    res.send({ auth: false, error })
+    res.status(400).json({
+      ok: false,
+      msg: 'wrong token',
+      error,
+    })
   }
 }
 

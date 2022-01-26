@@ -48,7 +48,7 @@ exports.registerUser = async (req, res) => {
     .catch((err) => {
       res.status(400).json({
         ok: false,
-        msg: 'The email is already in use',
+        msg: 'This email adress is already in use',
         error: err,
       })
     })
@@ -76,24 +76,21 @@ exports.loginUser = async (req, res) => {
 
     // generates token
     jwt.sign(
-      { _id: user.id },
+      { id: user.id },
       process.env.JWT_PRIVATE_KEY,
       {
         expiresIn: '365d',
       },
       (err, token) => res.cookie('jwtToken', token).status(201).json({
-        ok: true,
-        msg: 'Login successful',
-        result: token,
+        ok: true, msg: 'Login successful', result: { user: { ...user }, token },
       }),
     )
   } catch (err) {
-    console.log(err)
-    // return res.status(400).json({
-    //   ok: false,
-    //   msg: 'Request error',
-    //   error: err,
-    // })
+    return res.status(400).json({
+      ok: false,
+      msg: 'Request error',
+      error: err,
+    })
   }
   // quick fix to 'consistent-return' eslint error
   return null

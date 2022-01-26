@@ -1,7 +1,4 @@
 node_modules
 .env
-<<<<<<< HEAD
 request.http
-=======
 docker-compose.yml
->>>>>>> dc697af39d364eaecaddd84801d16aa9a9b58b68

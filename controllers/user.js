@@ -75,25 +75,24 @@ exports.loginUser = async (req, res) => {
     }
 
     // generates token
-    jwt.sign(
+    const token = jwt.sign(
       { _id: user.id },
-      process.env.JWT_PRIVATE_KEY,
+      `${process.env.JWT_PRIVATE_KEY}`,
       {
         expiresIn: '365d',
       },
-      (err, token) => res.cookie('jwtToken', token).status(201).json({
-        ok: true,
-        msg: 'Login successful',
-        result: token,
-      }),
     )
+    res.json({
+      ok: true,
+      msg: 'Login successful',
+      result: token,
+    })
   } catch (err) {
-    console.log(err)
-    // return res.status(400).json({
-    //   ok: false,
-    //   msg: 'Request error',
-    //   error: err,
-    // })
+    return res.status(400).json({
+      ok: false,
+      msg: 'Request error',
+      error: err,
+    })
   }
   // quick fix to 'consistent-return' eslint error
   return null

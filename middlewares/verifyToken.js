@@ -1,16 +1,22 @@
+/* eslint-disable max-len */
 const jwt = require('jsonwebtoken')
 
 // eslint-disable-next-line consistent-return
 async function verifyToken(req, res, next) {
-  const token = req.headers['x-access-token']
+  const bearerToken = req.headers.authorization
+
+  // I separate the bearer from the token using split
+  const TokenArray = bearerToken.split(' ')
+  const token = TokenArray[1]
+
   if (!token) {
     return res.status(401).send({ auth: false, message: 'No token provided' })
   }
-  // Decode the Tokenreq.userId = decoded.id;
   try {
-    const decoded = await jwt.verify(token, process.env.SECRET)
+    const decoded = await jwt.verify(token, `${process.env.JWT_PRIVATE_KEY}`)
 
-    req.id = decoded.id
+    // eslint-disable-next-line no-underscore-dangle
+    req.id = decoded._id
   } catch (error) {
     res.send({ auth: false, error })
   }

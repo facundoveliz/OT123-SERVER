@@ -97,3 +97,29 @@ exports.loginUser = async (req, res) => {
   // quick fix to 'consistent-return' eslint error
   return null
 }
+
+exports.userData = async (req, res) => {
+  const { id } = req
+  try {
+    // The user extracted from the database gets data that is private,
+    // so it is filtered into a new object called "user"
+    const temporalUser = await User.findByPk(id)
+    const user = {}
+    user.firstName = temporalUser.dataValues.firstName
+    user.lastName = temporalUser.dataValues.lastName
+    user.email = temporalUser.dataValues.email
+    user.image = temporalUser.dataValues.image
+
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: user,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}

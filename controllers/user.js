@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const db = require('../models')
 
 const { User } = db
@@ -31,7 +32,7 @@ exports.registerUser = async (req, res) => {
   const salt = await bcrypt.genSalt(10)
   const password = await bcrypt.hash(req.body.password, salt)
 
-  return db.User.create({
+  return User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -51,4 +52,49 @@ exports.registerUser = async (req, res) => {
         error: err,
       })
     })
+}
+
+exports.loginUser = async (req, res) => {
+  try {
+    // checks if the email is valid
+    const user = await User.findOne({ where: { email: req.body.email } })
+    if (!user) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'Invalid email or password',
+      })
+    }
+
+    // compares hashed passwords
+    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    if (!validPassword) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'Invalid email or password',
+      })
+    }
+
+    // generates token
+    jwt.sign(
+      { _id: user.id },
+      process.env.JWT_PRIVATE_KEY,
+      {
+        expiresIn: '365d',
+      },
+      (err, token) => res.cookie('jwtToken', token).status(201).json({
+        ok: true,
+        msg: 'Login successful',
+        result: token,
+      }),
+    )
+  } catch (err) {
+    console.log(err)
+    // return res.status(400).json({
+    //   ok: false,
+    //   msg: 'Request error',
+    //   error: err,
+    // })
+  }
+  // quick fix to 'consistent-return' eslint error
+  return null
 }

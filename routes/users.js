@@ -35,4 +35,7 @@ router.post(
   user.registerUser,
 )
 
+// login user
+router.post('/login', user.loginUser)
+
 module.exports = router

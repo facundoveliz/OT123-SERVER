@@ -1,15 +1,20 @@
-const db = require('../models')
+const db = require("../models");
 
-const { Categorie } = db
+const { Categorie } = db;
 
-exports.findAll = (req, res) => {
-  Categorie.findAll({})
-    .then((data) => {
-      res.send(data)
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving Categories.',
-      })
-    })
-}
+exports.findAll = async (req, res) => {
+  try {
+    const categories = await Categorie.findAll({});
+    res.status(200).json({
+      ok: true,
+      msg: "Successful request",
+      result: [...categories],
+    });
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: "You are not authorized to view this information",
+      error,
+    });
+  }
+};

@@ -79,7 +79,7 @@ exports.loginUser = async (req, res) => {
       { id: user.id },
       process.env.JWT_PRIVATE_KEY,
       {
-        expiresIn: '365d',
+        expiresIn: '1h',
       },
       (err, token) => res.cookie('jwtToken', token).status(201).json({
         ok: true, msg: 'Login successful', result: { user: { ...user }, token },

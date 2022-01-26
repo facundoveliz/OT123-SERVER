@@ -4,7 +4,6 @@ const pingRouter = require('./ping')
 const usersRouter = require('./users')
 const organizationsRouter = require('./organizations')
 
-
 const router = new express.Router()
 
 router.use('/ping', pingRouter)

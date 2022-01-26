@@ -1,8 +1,8 @@
-const { Organization } = require("../models")
+const { Organization } = require('../models')
 
 exports.byOrganizationID = async (req, res) => {
   const orgID = req.params.id
-    
+
   try {
     const organization = await Organization.findOne({ where: { id: orgID } })
 
@@ -16,20 +16,21 @@ exports.byOrganizationID = async (req, res) => {
             image: organization.image,
             phone: organization.phone,
             address: organization.address,
-            welcomeText: organization.welcome_text 
-        }}
+            welcomeText: organization.welcome_text,
+          },
+        },
       })
     } else {
       res.status(404).json({
         ok: false,
-        msg: `THERE IS NO ORGANIZATION WITH THIS ID (${orgID}).`
+        msg: `THERE IS NO ORGANIZATION WITH THIS ID (${orgID}).`,
       })
     }
   } catch (err) {
     res.status(400).json({
       ok: false,
       msg: 'ERROR FETCHING DATA.',
-      error: {err}
+      error: { err },
     })
   }
 }

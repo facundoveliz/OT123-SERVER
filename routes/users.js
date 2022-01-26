@@ -41,7 +41,7 @@ router.post(
         res.status(201).json({
           ok: true,
           msg: 'User created',
-          result: newUser,
+          result: { user: { ...newUser } },
         })
       })
       .catch((err) => {

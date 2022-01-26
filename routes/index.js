@@ -1,8 +1,13 @@
-var express = require('express');
-var router = express.Router();
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const express = require('express')
 
-module.exports = router;
+const pingRouter = require('./ping')
+const usersRouter = require('./users')
+const organizationsRouter = require('./organizations')
+
+const router = new express.Router()
+
+router.use('/ping', pingRouter)
+router.use('/users', usersRouter)
+router.use('/organization', organizationsRouter)
+
+module.exports = router

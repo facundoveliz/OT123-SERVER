@@ -1,19 +1,12 @@
-var express = require("express");
+var express = require('express');
+const user = require('../controllers/user')
 var router = express.Router();
 const db = require("../models");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 
 // get all users.
-router.get("/", (req, res) => {
-  db.User.findAll().then((users) => {
-    if (users) {
-      res.status(201).json(users);
-    } else {
-      res.status(404).json({ error: "Users not found" });
-    }
-  });
-});
+router.get('/', user.findAll)
 
 // register a new user.
 router.post(

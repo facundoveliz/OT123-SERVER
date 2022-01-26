@@ -48,7 +48,7 @@ exports.registerUser = async (req, res) => {
     .catch((err) => {
       res.status(400).json({
         ok: false,
-        msg: 'The email is already in use',
+        msg: 'This email adress is already in use',
         error: err,
       })
     })
@@ -79,7 +79,7 @@ exports.loginUser = async (req, res) => {
       { id: user.id },
       `${process.env.JWT_PRIVATE_KEY}`,
       {
-        expiresIn: '365d',
+        expiresIn: '1h',
       },
     )
     res.json({

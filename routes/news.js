@@ -5,6 +5,7 @@ const router = express.Router()
 
 /* GET all news listing. */
 
-router.get('/news', news.getNews)
+router.get('/', news.getNews)
+router.get('/:id', news.getNewsById)
 
 module.exports = router

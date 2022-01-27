@@ -2,13 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 
-const { createActivity, getActivities, editActivities } = require('../controllers/activities')
-
-const validateActivities = require('../middlewares/validate-activities')
+const { getActivities, editActivities } = require('../controllers/activities')
 
 /* GET activities page. */
 router.get('/', getActivities)
 
-router.put('/edit/:id', validateActivities, editActivities)
+router.put('/edit/:id', editActivities)
 
 module.exports = router

@@ -8,7 +8,7 @@ exports.findAll = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Successful request',
-      result: [...categories],
+      result: { categories: [...categories] },
     })
   } catch (error) {
     res.status(403).json({

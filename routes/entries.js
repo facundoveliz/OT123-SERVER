@@ -1,10 +1,10 @@
 const express = require('express')
-const user = require('../controllers/entry')
+const news = require('../controllers/news')
 
 const router = express.Router()
 
-/* GET all users listing. */
+/* GET all news listing. */
 
-router.get('/news', entry.getNews)
+router.get('/news', news.getNews)
 
 module.exports = router

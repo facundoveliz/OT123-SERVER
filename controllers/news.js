@@ -13,7 +13,7 @@ exports.getNews = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Fetched news successfully.',
-      result: news,
+      result: { news: [...news] },
     })
   } catch (error) {
     res.status(403).json({
@@ -30,7 +30,7 @@ exports.getNewsById = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Fetched news successfully.',
-      result: news,
+      result: { news: [...news] },
     })
   } catch (error) {
     res.status(403).json({

@@ -3,7 +3,7 @@ const db = require('../models')
 
 const { Testimonial } = db
 
-exports.findAll = (req, res) => {
+exports.findTestimonial = (req, res) => {
   Testimonial.findAll({})
     .then((data) => {
       res.send(data)
@@ -45,4 +45,35 @@ exports.registerTestimonial = async (req, res) => {
         error: err,
       })
     })
+}
+
+exports.editTestimonial = async (req, res) => {
+  const testimonial = await Testimonial.findOne({ where: { id: req.params.id } })
+  if (!testimonial) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'The testimonial was not found.',
+    })
+  }
+
+  await testimonial.update(
+    {
+      name: req.body.name,
+      image: req.body.image,
+      content: req.body.content,
+    },
+  ).then((updatedTestimonial) => res.status(200).json({
+    ok: true,
+    msg: 'The testimonial was updated.',
+    result: { ...updatedTestimonial },
+  }))
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: 'The testimonial couldn\'t be updated',
+        error: err,
+      })
+    })
+
+  return null
 }

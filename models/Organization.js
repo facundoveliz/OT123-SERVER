@@ -21,10 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
-    welcome_text: DataTypes.TEXT,
-    facebook: DataTypes.STRING,
-    linkedin: DataTypes.STRING,
-    twitter: DataTypes.STRING,
+    welcomeText: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Organization',

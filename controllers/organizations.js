@@ -30,7 +30,7 @@ exports.byOrganizationID = async (req, res) => {
     res.status(400).json({
       ok: false,
       msg: 'ERROR FETCHING DATA.',
-      error: { err },
+      error: err,
     })
   }
 }

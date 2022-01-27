@@ -6,11 +6,17 @@ const { Testimonial } = db
 exports.findAll = (req, res) => {
   Testimonial.findAll({})
     .then((data) => {
-      res.send(data)
+      res.status(200).json({
+        ok: true,
+        msg: 'Testimonials retrieved successfully',
+        result: { testimonials: [...data] },
+      })
     })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving testimonials.',
+    .catch((error) => {
+      res.status(500).json({
+        ok: false,
+        msg: error.message,
+        error,
       })
     })
 }

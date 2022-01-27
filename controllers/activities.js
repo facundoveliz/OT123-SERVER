@@ -19,3 +19,35 @@ exports.getActivities = async (req, res) => {
     })
   }
 }
+
+exports.editActivities = async (req, res) => {
+  const { id } = req.params;
+  const { name, content, image } = req.body;
+
+    const activity = await Activities.findByPk(id)
+    if (!activity) {
+      return res.status(400).json({
+        ok: false,
+        msg: err.message,
+        error: err,
+      })
+    }
+    activity.name = name;
+    activity.content = content;
+    activity.image = image;
+    await activity
+      .save()
+      .then((updatedActivity) =>
+        res.status(201).json({
+          ok: true,
+          msg: 'Activity updated successfully',
+          result: { ...updatedActivity },
+      }))
+      .catch ((err) => {
+        res.status(400).json({
+          ok: false,
+          msg: err.message,
+          error: err,
+        })
+      })
+}

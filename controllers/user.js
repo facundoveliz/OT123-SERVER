@@ -75,16 +75,18 @@ exports.loginUser = async (req, res) => {
     }
 
     // generates token
-    jwt.sign(
+    const token = jwt.sign(
       { id: user.id },
-      process.env.JWT_PRIVATE_KEY,
+      `${process.env.JWT_PRIVATE_KEY}`,
       {
         expiresIn: '1h',
       },
-      (err, token) => res.cookie('jwtToken', token).status(201).json({
-        ok: true, msg: 'Login successful', result: { user: { ...user }, token },
-      }),
     )
+    res.json({
+      ok: true,
+      msg: 'Login successful',
+      result: token,
+    })
   } catch (err) {
     return res.status(400).json({
       ok: false,
@@ -94,4 +96,25 @@ exports.loginUser = async (req, res) => {
   }
   // quick fix to 'consistent-return' eslint error
   return null
+}
+
+exports.userData = async (req, res) => {
+  const { id } = req
+  try {
+    // The user extracted from the database gets data that is private,
+    // so it is filtered into a new object called "user"
+    const user = await User.findByPk(id)
+    delete user.dataValues.password
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: user,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
 }

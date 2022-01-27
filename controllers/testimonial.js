@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator')
 const db = require('../models')
 
 const { Testimonial } = db
@@ -14,22 +15,34 @@ exports.findAll = (req, res) => {
     })
 }
 
-exports.registerTestimonial = async (req, res) => Testimonial.create({
-  name: req.body.name,
-  image: req.body.image,
-  content: req.body.content,
-})
-  .then((newTestimonial) => {
-    res.status(201).json({
-      ok: true,
-      msg: 'Testimonial created',
-      result: { testimonial: { ...newTestimonial } },
-    })
-  })
-  .catch((err) => {
-    res.status(400).json({
+exports.registerTestimonial = async (req, res) => {
+  // validation with express-validator
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
       ok: false,
-      msg: 'This email adress is already in use',
-      error: err,
+      msg: 'Validation error',
+      error: errors.array(),
     })
+  }
+
+  return Testimonial.create({
+    name: req.body.name,
+    image: req.body.image,
+    content: req.body.content,
   })
+    .then((newTestimonial) => {
+      res.status(201).json({
+        ok: true,
+        msg: 'Testimonial created',
+        result: { testimonial: { ...newTestimonial } },
+      })
+    })
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: 'This email adress is already in use',
+        error: err,
+      })
+    })
+}

@@ -3,11 +3,7 @@ const jwt = require('jsonwebtoken')
 
 // eslint-disable-next-line consistent-return
 async function verifyToken(req, res, next) {
-  const bearerToken = req.headers.authorization
-
-  // I separate the bearer from the token using split
-  const TokenArray = bearerToken.split(' ')
-  const token = TokenArray[1]
+  const token = req.headers['x-access-token']
 
   if (!token) {
     return res.status(401).send({ auth: false, message: 'No token provided' })

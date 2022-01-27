@@ -1,10 +1,10 @@
 const db = require('../models')
 
-const { Categorie } = db
+const { Category } = db
 
 exports.findAll = async (req, res) => {
   try {
-    const categories = await Categorie.findAll({})
+    const categories = await Category.findAll({})
     res.status(200).json({
       ok: true,
       msg: 'Successful request',

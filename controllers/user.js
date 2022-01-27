@@ -95,3 +95,18 @@ exports.loginUser = async (req, res) => {
   // quick fix to 'consistent-return' eslint error
   return null
 }
+
+exports.deleteUser = async (req, res) => {
+  const user = await User.destroy({
+    where: {
+      id: req.body.id,
+    },
+  })
+  if (!user) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'User not founded',
+    })
+  }
+  return res.status(200).json({ ok: true, msg: 'User deleted' })
+}

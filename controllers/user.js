@@ -103,13 +103,8 @@ exports.userData = async (req, res) => {
   try {
     // The user extracted from the database gets data that is private,
     // so it is filtered into a new object called "user"
-    const temporalUser = await User.findByPk(id)
-    const user = {}
-    user.firstName = temporalUser.dataValues.firstName
-    user.lastName = temporalUser.dataValues.lastName
-    user.email = temporalUser.dataValues.email
-    user.image = temporalUser.dataValues.image
-
+    const user = await User.findByPk(id)
+    delete user.dataValues.password
     res.status(200).json({
       ok: true,
       msg: 'Successful request',

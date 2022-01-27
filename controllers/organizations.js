@@ -17,6 +17,9 @@ exports.byOrganizationID = async (req, res) => {
             phone: organization.phone,
             address: organization.address,
             welcomeText: organization.welcome_text,
+            facebook: organization.facebook,
+            linkedin: organization.linkedin,
+            instagram: organization.instagram
           },
         },
       })

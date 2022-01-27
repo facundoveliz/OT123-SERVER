@@ -9,7 +9,6 @@ require('dotenv').config()
 const indexRouter = require('./routes/index')
 
 const app = express()
-
 app.use(cors())
 
 // view engine setup

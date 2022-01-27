@@ -2,9 +2,9 @@ const express = require('express')
 
 const pingRouter = require('./ping')
 const usersRouter = require('./users')
+const activitiesRouter = require('./activities')
 const organizationsRouter = require('./organizations')
 const categoriesRouter = require('./categories')
-const activitiesRouter = require('./activities')
 
 const router = new express.Router()
 

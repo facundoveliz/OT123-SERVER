@@ -5,16 +5,23 @@ const db = require('../models')
 
 const { User } = db
 
-exports.findAll = (req, res) => {
-  User.findAll({})
-    .then((data) => {
-      res.send(data)
+exports.findAllUsers = async (req, res) => {
+  try {
+    // The user extracted from the database gets data that is private,
+    // so it is filtered into a new object called "user"
+    const user = await User.findAll({})
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: { user: { ...user } },
     })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving users.',
-      })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'Some error occurred while retrieving users.',
+      error,
     })
+  }
 }
 
 exports.registerUser = async (req, res) => {

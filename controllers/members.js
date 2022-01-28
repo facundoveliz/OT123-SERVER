@@ -57,3 +57,34 @@ exports.findAll = async (req, res) => {
     })
   }
 }
+
+exports.editMember = async (req, res) => {
+  const { id } = req.params
+  const { name } = req.body
+  const { image } = req.body
+
+  const member = await Members.findByPk(id)
+  if (!member) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'The member was not found.',
+    })
+  }
+  member.name = name
+  member.image = image
+  await member
+    .save()
+    .then((updatedMember) => res.status(201).json({
+      ok: true,
+      msg: 'Category updated successfully',
+      result: { member: { ...updatedMember } },
+    }))
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: err.message,
+        error: err,
+      })
+    })
+  return null
+}

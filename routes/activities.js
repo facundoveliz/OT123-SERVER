@@ -13,7 +13,7 @@ router.get('/', getActivities)
 
 router.post('/', validateActivities, createActivity)
 
-router.put('/edit/:id', validateActivities, editActivities)
+router.put('/:id', validateActivities, editActivities)
 
 router.delete('/:id', deleteActivities)
 

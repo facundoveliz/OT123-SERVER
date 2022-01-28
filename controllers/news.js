@@ -121,3 +121,18 @@ exports.updateNews = async (req, res) => {
 
   return null
 }
+
+exports.deleteNews = async (req, res) => {
+  const entry = await Entries.destroy({
+    where: {
+      id: req.body.id,
+    },
+  })
+  if (!entry) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'Entry not found',
+    })
+  }
+  return res.status(200).json({ ok: true, msg: 'Entry deleted' })
+}

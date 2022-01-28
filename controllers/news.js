@@ -76,3 +76,48 @@ exports.createNews = async (req, res) => {
       })
     })
 }
+
+exports.updateNews = async (req, res) => {
+  // validation with express-validator
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'Validation error',
+      error: errors.array(),
+    })
+  }
+
+  // checks that the entry exists
+  const entry = await Entries.findByPk(req.params.id)
+  if (!entry) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'The entry was not found.',
+    })
+  }
+
+  await entry.update(
+    {
+      name: req.body.name,
+      content: req.body.content,
+      image: req.body.image,
+      categoryId: req.body.categoryId,
+      type: req.body.type,
+      deletedAt: req.body.deletedAt,
+    },
+  ).then((updatedEntry) => res.status(200).json({
+    ok: true,
+    msg: 'The entry was updated.',
+    result: { ...updatedEntry },
+  }))
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: 'The entry couldn\'t be updated',
+        error: err,
+      })
+    })
+
+  return null
+}

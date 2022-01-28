@@ -125,3 +125,18 @@ exports.userData = async (req, res) => {
     })
   }
 }
+
+exports.deleteUser = async (req, res) => {
+  const user = await User.destroy({
+    where: {
+      id: req.body.id,
+    },
+  })
+  if (!user) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'User not founded',
+    })
+  }
+  return res.status(200).json({ ok: true, msg: 'User deleted' })
+}

@@ -79,7 +79,7 @@ exports.editCategories = async (req, res) => {
         error: err,
       })
     })
-    return null
+  return null
 }
 
 exports.deleteCategories = async (req, res) => {
@@ -105,4 +105,5 @@ exports.deleteCategories = async (req, res) => {
       error: err,
     })
   }
+  return null
 }

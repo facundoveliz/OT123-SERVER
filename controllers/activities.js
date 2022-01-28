@@ -82,3 +82,30 @@ exports.editActivities = async (req, res) => {
     })
   return null
 }
+
+exports.deleteActivities = async (req, res) => {
+  const activityId = req.params.id
+  try {
+    const activity = await Activities.findByPk(activityId)
+    if (!activity) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'No activity was found',
+      })
+    }
+    await activity
+      .destroy()
+      .then((activityDeleted) => res.status(200).json({
+        ok: true,
+        msg: 'Activity was deleted',
+        result: { ...activityDeleted },
+      }))
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: err.message,
+      error: err,
+    })
+  }
+  return null
+}

@@ -20,4 +20,8 @@ router.post(
 router.post('/login', user.loginUser)
 
 router.get('/auth/me', verifyToken, user.userData)
+
+// delete user
+router.delete('/delete', user.deleteUser)
+
 module.exports = router

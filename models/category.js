@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Category",
-      createdAt: "createAt",
-      updateAt: "updateAt",
-      deleteAt: "deleteAt",
+      createdAt: "createdAt",
+      updateAt: "updatedAt",
+      deleteAt: "deletedAt",
       paranoid: "true",
       timestamps: "true",
     }

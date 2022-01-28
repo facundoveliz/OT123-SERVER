@@ -31,11 +31,10 @@ exports.deleteCategories = async (req, res) => {
     }
     await category
       .destroy()
-      .then((categoryDeleted) => res.status(200).json({
-        ok: true,
-        msg: 'category was deleted',
-        result: { ...categoryDeleted },
-      }))
+    return res.status(200).json({
+      ok: true,
+      msg: 'category was deleted',
+    })
   } catch (err) {
     res.status(400).json({
       ok: false,

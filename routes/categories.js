@@ -10,6 +10,8 @@ router.get('/', categoriesController.findAll)
 
 router.post('/', validateCategories, categoriesController.add)
 
+router.put('/:id', categoriesController.editCategories)
+
 router.delete('/:id', categoriesController.deleteCategories)
 
 module.exports = router

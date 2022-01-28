@@ -39,7 +39,7 @@ exports.add = async (req, res) => {
       res.status(201).json({
         ok: true,
         msg: 'SUCCESS CREATING NEW CATEGORY.',
-        result: { category: { ...newCategory } } 
+        result: { category: { ...newCategory } },
       })
     } else {
       return

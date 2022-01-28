@@ -18,4 +18,7 @@ router.post('/add', checkSchema(entrySchema), news.createNews)
 // update news
 router.put('/update/:id', checkSchema(entrySchema), news.updateNews)
 
+// delete news
+router.delete('/delete', news.deleteNews)
+
 module.exports = router

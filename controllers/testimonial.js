@@ -19,6 +19,11 @@ exports.findTestimonial = (req, res) => {
         error,
       })
     })
+    .catch((err) => res.status(404).json({
+      ok: false,
+      msg: 'No testminials founded',
+      error: { ...err },
+    }))
 }
 
 exports.registerTestimonial = async (req, res) => {
@@ -82,4 +87,19 @@ exports.editTestimonial = async (req, res) => {
     })
 
   return null
+}
+
+exports.deleteTestimonial = async (req, res) => {
+  const testimonial = await Testimonial.destroy({
+    where: {
+      id: req.body.id,
+    },
+  })
+  if (!testimonial) {
+    return res.status(404).json({
+      ok: false,
+      msg: 'Testimonial not founded',
+    })
+  }
+  return res.status(200).json({ ok: true, msg: 'Testimonial deleted' })
 }

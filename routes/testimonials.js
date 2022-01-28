@@ -15,4 +15,7 @@ router.post('/new', checkSchema(testimonialSchema), testimonials.registerTestimo
 // edit a testimonial
 router.put('/edit/:id', testimonials.editTestimonial)
 
+// delete testimonial
+router.delete('/delete', testimonials.deleteTestimonial)
+
 module.exports = router

@@ -7,9 +7,12 @@ const testimonials = require('../controllers/testimonial')
 const router = express.Router()
 
 // get all testimonials
-router.get('/', testimonials.findAll)
+router.get('/', testimonials.findTestimonial)
 
-// post a new schema
+// post a new testimonial
 router.post('/new', checkSchema(testimonialSchema), testimonials.registerTestimonial)
+
+// edit a testimonial
+router.put('/edit/:id', testimonials.editTestimonial)
 
 module.exports = router

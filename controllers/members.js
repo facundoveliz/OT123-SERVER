@@ -15,14 +15,14 @@ exports.createMembers = async (req, res) => {
   try {
     const { name, image } = req.body
 
-    const members = await Members.create({
+    const member = await Members.create({
       name,
       image,
     })
     res.status(201).json({
       ok: true,
-      msg: 'Members created successfully',
-      result: { members: { ...members } },
+      msg: 'Member created successfully',
+      result: { member: { ...member } },
     })
   } catch (err) {
     res.status(400).json({

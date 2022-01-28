@@ -15,4 +15,7 @@ router.get('/:id', news.getNewsById)
 // add news
 router.post('/add', checkSchema(entrySchema), news.createNews)
 
+// update news
+router.put('/update/:id', checkSchema(entrySchema), news.updateNews)
+
 module.exports = router

@@ -1,9 +1,9 @@
 const express = require('express')
-const contact = require('../controllers/contacts')
+const contactsController = require('../controllers/contacts')
 
 const router = express.Router()
 
 /* GET all contacts listing. */
-router.get('/', contact.findAll)
+router.get('/', contactsController.findAll)
 
 module.exports = router

@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(
-      "Contacts",
+      'Contacts',
       [
         {
-          name: "Roberto Carlos",
-          phone: "123465",
-          email: "test@test.com",
-          message: "alguito",
-          deletedAt: "delete",
+          name: 'Roberto Carlos',
+          phone: '123465',
+          email: 'test@test.com',
+          message: 'alguito',
+          deletedAt: new Date(),
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -18,7 +18,6 @@ module.exports = {
       {}
     );
   },
-
   down: async (queryInterface, Sequelize) => {
     /**
      * Add commands to revert seed here.

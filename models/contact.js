@@ -17,16 +17,16 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       email: DataTypes.STRING,
       message: DataTypes.STRING,
-      deletedAt: DataTypes.STRING,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
-      modelName: 'Category',
-      createdAt: 'createAt',
-      updateAt: 'updateAt',
-      deleteAt: 'deleteAt',
-      paranoid: 'true',
-      timestamps: 'true',
+      modelName: 'Contact',
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+      deletedAt: 'deletedAt',
+      paranoid: true,
+      timestamps: true,
     }
   );
   return Contact;

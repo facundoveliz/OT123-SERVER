@@ -18,3 +18,30 @@ exports.findAll = async (req, res) => {
     })
   }
 }
+
+exports.deleteCategories = async (req, res) => {
+  const { id } = req.params
+  try {
+    const category = await Category.findByPk(id)
+    if (!category) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'No category was found',
+      })
+    }
+    await category
+      .destroy()
+      .then((categoryDeleted) => res.status(200).json({
+        ok: true,
+        msg: 'category was deleted',
+        result: { ...categoryDeleted },
+      }))
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: err.message,
+      error: err,
+    })
+  }
+  return null
+}

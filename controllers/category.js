@@ -36,7 +36,7 @@ exports.editCategories = async (req, res) => {
     .then((updatedCategory) => res.status(201).json({
       ok: true,
       msg: 'Category updated successfully',
-      result: { ...updatedCategory },
+      result: { category: { ...updatedCategory } },
     }))
     .catch((err) => {
       res.status(400).json({

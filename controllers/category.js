@@ -51,6 +51,7 @@ exports.add = async (req, res) => {
       error: err,
     })
   }
+}
 
 exports.editCategories = async (req, res) => {
   const { id } = req.params

@@ -8,8 +8,15 @@ exports.findTestimonial = (req, res) => {
     .then((data) => {
       res.status(200).json({
         ok: true,
-        msg: 'Testimonial founded',
-        result: data,
+        msg: 'Testimonials retrieved successfully',
+        result: { testimonials: [...data] },
+      })
+    })
+    .catch((error) => {
+      res.status(500).json({
+        ok: false,
+        msg: error.message,
+        error,
       })
     })
     .catch((err) => res.status(404).json({

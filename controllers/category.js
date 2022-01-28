@@ -52,3 +52,32 @@ exports.add = async (req, res) => {
     })
   }
 }
+
+exports.editCategories = async (req, res) => {
+  const { id } = req.params
+  const { name } = req.body
+
+  const category = await Category.findByPk(id)
+  if (!Category) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'The category was not found.',
+    })
+  }
+  category.name = name
+  await category
+    .save()
+    .then((updatedCategory) => res.status(201).json({
+      ok: true,
+      msg: 'Category updated successfully',
+      result: { category: { ...updatedCategory } },
+    }))
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: err.message,
+        error: err,
+      })
+    })
+  return null
+}

@@ -95,11 +95,10 @@ exports.deleteActivities = async (req, res) => {
     }
     await activity
       .destroy()
-      .then((activityDeleted) => res.status(200).json({
-        ok: true,
-        msg: 'Activity was deleted',
-        result: { ...activityDeleted },
-      }))
+    return res.status(200).json({
+      ok: true,
+      msg: 'Activity was deleted',
+    })
   } catch (err) {
     res.status(400).json({
       ok: false,

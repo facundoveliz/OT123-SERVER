@@ -18,7 +18,7 @@ exports.findAllUsers = async (req, res) => {
   } catch (error) {
     res.status(403).json({
       ok: false,
-      msg: 'Some error occurred while retrieving users.',
+      msg: error.message,
       error,
     })
   }

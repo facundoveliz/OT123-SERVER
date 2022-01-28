@@ -32,3 +32,28 @@ exports.createMembers = async (req, res) => {
     })
   }
 }
+
+exports.findAll = async (req, res) => {
+  try {
+    const allMembers = await Members.findAll({})
+
+    if (allMembers.length >= 1) {
+      res.status(200).json({
+        ok: true,
+        msg: 'SUCCESS FETCHING DATA.',
+        result: { members: [...allMembers] },
+      })
+    } else {
+      res.status(404).json({
+        ok: false,
+        msg: 'THERE ARE NO MEMBERS.',
+      })
+    }
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: 'ERROR FETCHING DATA.',
+      error: err,
+    })
+  }
+}

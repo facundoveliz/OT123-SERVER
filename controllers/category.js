@@ -52,7 +52,7 @@ exports.add = async (req, res) => {
     })
   }
 }
-  
+
 exports.deleteCategories = async (req, res) => {
   const { id } = req.params
   try {

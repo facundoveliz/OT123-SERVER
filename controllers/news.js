@@ -59,7 +59,6 @@ exports.createNews = async (req, res) => {
     image: req.body.image,
     categoryId: req.body.categoryId,
     type: req.body.type,
-    deletedAt: req.body.deletedAt,
   })
     .then((newEntry) => {
       res.status(201).json({

@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-const { createMembers, findAll } = require('../controllers/members')
+const { createMembers, findAll, editMember } = require('../controllers/members')
 
 const validateMembers = require('../middlewares/validate-members')
 
@@ -11,5 +11,7 @@ const validateMembers = require('../middlewares/validate-members')
 router.post('/', validateMembers, createMembers)
 
 router.get('/', validateMembers, findAll)
+
+router.put('/:id', editMember)
 
 module.exports = router

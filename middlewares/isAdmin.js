@@ -14,7 +14,7 @@ const isAdmin = (req, res, next) => {
       next(httpError)
     }
     // if (decoded.role === 'Admin') { // cant be 'role'. it's the table name
-    if (decoded.user.userRole === 'Admin') {
+    if (decoded.user.roleId === 1) {
       next()
     } else {
       const httpError = createHttpError(401, 'Forbidden access')

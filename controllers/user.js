@@ -80,10 +80,12 @@ exports.loginUser = async (req, res) => {
         msg: 'Invalid email or password',
       })
     }
-
+    delete user.dataValues.password
+    delete user.dataValues.deletedAt
+    delete user.dataValues.updatedAt
     // generates token
     const token = jwt.sign(
-      { id: user.id },
+      { user },
       `${process.env.JWT_PRIVATE_KEY}`,
       {
         expiresIn: '1h',

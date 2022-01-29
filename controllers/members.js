@@ -88,3 +88,29 @@ exports.editMember = async (req, res) => {
     })
   return null
 }
+
+exports.deleteMember = async (req, res) => {
+  const { id } = req.params
+  try {
+    const member = await Members.findByPk(id)
+    if (!member) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'No member was found',
+      })
+    }
+    await member
+      .destroy()
+    return res.status(200).json({
+      ok: true,
+      msg: 'member was deleted',
+    })
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: err.message,
+      error: err,
+    })
+  }
+  return null
+}

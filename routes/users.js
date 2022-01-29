@@ -7,7 +7,7 @@ const verifyToken = require('../middlewares/verifyToken')
 const userSchema = require('../schemas/userSchema')
 
 // get all users.
-router.get('/users', user.findAllUsers)
+router.get('/', user.findAllUsers)
 
 // register a new user.
 router.post(

@@ -7,6 +7,6 @@ const router = express.Router()
 /* GET all contacts listing. */
 router.get('/', contactsController.findAll)
 
-router.post('/add', validateContacts, contactsController.add)
+router.post('/', validateContacts, contactsController.add)
 
 module.exports = router

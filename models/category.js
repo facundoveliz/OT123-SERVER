@@ -17,14 +17,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
-      deleteAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
       modelName: "Category",
       createdAt: "createdAt",
-      updateAt: "updatedAt",
-      deleteAt: "deletedAt",
+      updatedAt: "updatedAt",
+      deletedAt: "deletedAt",
       paranoid: "true",
       timestamps: "true",
     }

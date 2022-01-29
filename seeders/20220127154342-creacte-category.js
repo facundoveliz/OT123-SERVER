@@ -7,7 +7,7 @@
          {
            name: "Usuario xy",
            description: "Description example",
-           deleteAt: new Date(),
+           deletedAt: new Date(),
            createdAt: new Date(),
            updatedAt: new Date(),
          },

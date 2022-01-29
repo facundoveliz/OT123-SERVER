@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       roleId: {
         type: DataTypes.INTEGER,
-        defaultValue: 2,
       },
       deletedAt: {
         type: DataTypes.DATE,

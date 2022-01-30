@@ -109,21 +109,23 @@ describe('GET /users/auth/me', () => {
     })
   })
 
-  // it('respond with json containing "user not found" when the user does not exists', done => {
-  //   const userData = {
-  //     id: "asd"
-  //   }
-  //   request(app)
-  //   .get('/users/auth/me')
-  //   .send(userData)
-  //   .expect(403)
-  //   .end((err, res) => {
-  //     if (err) return done(err);
-  //     res.body.should.be.a('object')
-  //     .that.includes({ ok: false, msg: 'You are not authorized to view this information' })
-  //     done();
-  //   })
-  // })
+  // test with invalid token
+  it('respond with json containing "user not found" when the user does not exists', done => {
+    const userData = {
+      id: "asd"
+    }
+    request(app)
+    .get('/users/auth/me')
+    .set({ "x-access-token": 'invalid token' })
+    .send(userData)
+    .expect(400)
+    .end((err, res) => {
+      if (err) return done(err);
+      res.body.should.be.a('object')
+      .that.includes({ ok: false, msg: 'wrong token' })
+      done();
+    })
+  })
 })
 
 describe('DELETE /users/delete', () => {

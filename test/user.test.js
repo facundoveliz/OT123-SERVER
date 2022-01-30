@@ -88,6 +88,24 @@ describe('POST /users/login', () => {
       done();
     })
   })
+
+  // wrong credentials test
+  it('respond with error if credentials are invalid', (done) => {
+    const data = {
+      email: "facundoveliz9@gmail.com",
+      password: "password132"
+    }
+    request(app)
+    .post('/users/login')
+    .send(data)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) return done(err);
+      res.body.should.be.a('object')
+      .that.includes({ ok: false, msg: 'Invalid email or password' })
+      done();
+    })
+  })
 })
 
 describe('GET /users/auth/me', () => {

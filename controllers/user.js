@@ -89,7 +89,7 @@ exports.loginUser = async (req, res) => {
         expiresIn: '1h',
       },
     )
-    res.json({
+    res.status(200).json({
       ok: true,
       msg: 'Login successful',
       result: token,

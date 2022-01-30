@@ -26,7 +26,7 @@ describe('GET /users', () => {
 
 describe("POST /users/register", () => {
   // testing user registration
-  it('respond with 201 created', done => {
+  it('respond with 201 created', (done) => {
     const data = {
       firstName: "Facundo",
       lastName: "Veliz",
@@ -48,7 +48,7 @@ describe("POST /users/register", () => {
   })
 
   // testing validation
-  it('respond with 400 bad request', done => {
+  it('respond with 400 bad request', (done) => {
     const data = {
       // data without name
       firstName: "",
@@ -71,7 +71,7 @@ describe("POST /users/register", () => {
 })
 
 describe('POST /users/login', () => {
-  it('respond with success if credentials are valid', done => {
+  it('respond with success if credentials are valid', (done) => {
     const data = {
       email: "facundoveliz9@gmail.com",
       password: "password123"
@@ -109,7 +109,7 @@ describe('POST /users/login', () => {
 })
 
 describe('GET /users/auth/me', () => {
-    it('respond with json containing a single user', done => {
+    it('respond with json containing a single user', (done) => {
     const userData = {
       id: id
     }
@@ -128,7 +128,7 @@ describe('GET /users/auth/me', () => {
   })
 
   // test with invalid token
-  it('respond with json containing "user not found" when the user does not exists', done => {
+  it('respond with json containing "user not found" when the user does not exists', (done) => {
     const userData = {
       id: "asd"
     }
@@ -147,7 +147,7 @@ describe('GET /users/auth/me', () => {
 })
 
 describe('DELETE /users/delete', () => {
-  it('respond with 200 if user is deleted', done => {
+  it('respond with 200 if user id is valid and is deleted', (done) => {
     request(app)
     .delete('/users/delete')
     .send({ id: id })
@@ -160,6 +160,7 @@ describe('DELETE /users/delete', () => {
       done();
     })
   })
+
   it('respond with 404 if user id is invalid', (done) => {
     request(app)
     .delete('/users/delete')

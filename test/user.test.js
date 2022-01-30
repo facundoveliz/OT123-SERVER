@@ -142,4 +142,17 @@ describe('DELETE /users/delete', () => {
       done();
     })
   })
+  it('respond with 404 if user id is invalid', (done) => {
+    request(app)
+    .delete('/users/delete')
+    .send({ id: 'invalid' })
+    .expect('Content-Type', /json/)
+    .expect(404)
+    .end((err, res) => {
+      if (err) return done(err);
+      res.body.should.be.a('object')
+      .that.includes({ ok: false, msg: 'User not founded' })
+      done();
+    })
+  })
 })

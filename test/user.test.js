@@ -80,6 +80,7 @@ describe('POST /users/login', () => {
     .post('/users/login')
     .send(data)
     .expect('Content-Type', /json/)
+    .expect(200)
     .end((err, res) => {
       if (err) return done(err);
       token = res.body.result;
@@ -99,10 +100,11 @@ describe('POST /users/login', () => {
     .post('/users/login')
     .send(data)
     .expect('Content-Type', /json/)
+    .expect(400)
     .end((err, res) => {
       if (err) return done(err);
       res.body.should.be.a('object')
-      .that.includes({ ok: false, msg: 'Invalid email or password' })
+      .that.includes({ ok: false })
       done();
     })
   })

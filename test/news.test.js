@@ -5,20 +5,23 @@ const app = require('../app')
 
 chai.should()
 
-let id;
+let id
 
 // testing get all news
 describe('GET /news', () => {
-  it('respond with json containing a list of all news', (done) => {
+  it('respond with a json containing a list of all news', (done) => {
     request(app)
-    .get('/news')
-    .expect('Content-Type', /json/)
-    .expect(200)
-    .end((err, res) => {
-      if (err) return done(err)
-      console.log(res.body.result.news)
-      res.body.should.be.a('object')
-      .that.includes({ ok: true, msg: 'Fetched news successfully.' })
+      .get('/news')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Fetched news successfully.' })
+        done()
+      })
+  })
+})
 
 // testing post news
 describe('POST /news/add', () => {
@@ -159,7 +162,38 @@ describe('PUT /news/update/:id', () => {
         res.body.should.be.a('object')
           .that.includes({ ok: false, msg: 'Validation error' })
         done()
-    })
+      })
   })
 })
 
+// testing delete news
+describe('DELETE /news/delete', () => {
+  it('respond with a json containing the deleted entry', (done) => {
+    request(app)
+      .delete('/news/delete')
+      .send({ id })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Entry deleted' })
+        done()
+      })
+  })
+
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .delete('/news/delete')
+      .send({ id: 'invalid' })
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'Entry not found' })
+        done()
+      })
+  })
+})

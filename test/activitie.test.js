@@ -112,4 +112,31 @@ describe('PUT /activities/:id', () => {
             })
     })
 })
+describe('DELETE /activities/:id', () => {
+    it('respond with a json containing the deleted entry', (done) => {
+        request(app)
+            .delete(`/activities/${id}`)
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end((err, res) => {
+                if (err) return done(err)
+                res.body.should.be.a('object')
+                    .that.includes({ ok: true, msg: 'Activity was deleted' })
+                done()
+            })
+    })
 
+    // test invalid id
+    it('respond with a json containing an error', (done) => {
+        request(app)
+            .delete(`/activities/${500}`)
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .end((err, res) => {
+                if (err) return done(err)
+                res.body.should.be.a('object')
+                    .that.includes({ ok: false, msg: 'No activity was found' })
+                done()
+            })
+    })
+})

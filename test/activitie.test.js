@@ -9,6 +9,7 @@ let id;
 let token;
 
 // testing get all activities endpoints
+
 describe('GET /activities', () => {
     it('respond with json containing a list of all activities', (done) => {
         request(app)
@@ -66,3 +67,49 @@ describe('POST /activities', () => {
     })
 
 })
+
+
+
+describe('PUT /activities/:id', () => {
+
+    it('respond with a json containing the updated activitie', (done) => {
+        const data = {
+            name: 'update activity',
+            image: '',
+            content: 'content activity',
+        }
+        request(app)
+            .put(`/activities/${id}`)
+            .send(data)
+            .expect('Content-Type', /json/)
+            .expect(201)
+            .end((err, res) => {
+                if (err) return done(err)
+                res.body.should.be.a('object')
+                    .that.includes({ ok: true, msg: 'Activity updated successfully' })
+                done()
+            })
+    })
+
+    // test validation
+    it('respond with a json containing an error', (done) => {
+        const data = {
+            name: 'a',
+            image: '',
+            content: 'a',
+        }
+        request(app)
+            .put(`/activities/${id}`)
+            .send(data)
+            .expect('Content-Type', /json/)
+            .expect(400)
+            .end((err, res) => {
+                if (err) return done(err)
+                console.log(res.body)
+                res.body.should.be.a('object')
+                    .that.includes({ ok: false, msg: 'The activity was not found.' })
+                done()
+            })
+    })
+})
+

@@ -6,7 +6,7 @@ const {
   createActivity, getActivities, editActivities, deleteActivities,
 } = require('../controllers/activities')
 
-const validateActivities = require('../middlewares/validate-activities')
+const validateActivities = require('../schemas/activitiesSchema')
 
 /* GET activities page. */
 router.get('/', getActivities)

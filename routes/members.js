@@ -6,7 +6,7 @@ const {
   createMembers, findAll, editMember, deleteMember,
 } = require('../controllers/members')
 
-const validateMembers = require('../middlewares/validate-members')
+const validateMembers = require('../schemas/membersSchema')
 
 /* GET activities page. */
 

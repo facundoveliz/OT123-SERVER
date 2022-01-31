@@ -1,6 +1,6 @@
 const express = require('express')
 const contactsController = require('../controllers/contacts')
-const validateContacts = require('../middlewares/validateContacts')
+const validateContacts = require('../schemas/contactsSchema')
 
 const router = express.Router()
 

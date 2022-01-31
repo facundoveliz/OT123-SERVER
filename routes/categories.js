@@ -1,6 +1,6 @@
 const express = require('express')
 const categoriesController = require('../controllers/category')
-const validateCategories = require('../middlewares/validateCategories')
+const validateCategories = require('../schemas/categoriesSchema')
 
 const router = express.Router()
 // const { Category } = require('../models')

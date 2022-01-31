@@ -2,7 +2,7 @@ const express = require('express')
 const { checkSchema } = require('express-validator')
 const news = require('../controllers/news')
 
-const entrySchema = require('../schemas/entrySchema')
+const entrySchema = require('../schemas/newsSchema')
 
 const router = express.Router()
 

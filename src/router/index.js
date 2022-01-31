@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 
 import App from '../App'
-import Home from '../screens/Home'
+import Home from '../pages/home/Home'
 
 export default () =>
   <BrowserRouter>

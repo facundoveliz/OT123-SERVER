@@ -83,7 +83,7 @@ describe('POST /users/login', () => {
     .expect(200)
     .end((err, res) => {
       if (err) return done(err);
-      token = res.body.result;
+      token = res.body.result.token;;
       res.body.should.be.a('object')
       .that.includes({ ok: true, msg: 'Login successful' })
       done();

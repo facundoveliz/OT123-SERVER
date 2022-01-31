@@ -11,6 +11,7 @@ exports.createMembers = async (req, res) => {
       msg: 'Validation failed, entered data is incorrect.',
       error: errors.array(),
     })
+    return
   }
   try {
     const { name, image } = req.body

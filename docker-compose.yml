@@ -1,0 +1,27 @@
+version: '3.8'
+
+services: 
+  mysqldb:
+    image: mysql
+    container_name: mysqldb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - $DB_LOCAL_PORT:$DB_PORT
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - db-config:/etc/mysql
+      - db-data:/var/lib/mysql
+      - ./db/backup/files/:/data_backup/data
+
+volumes: 
+  db-config:
+  db-data:
+
+# docker exec -it <instance_ID> bash
+# root@<instance_ID>:/# mysql -u root -p <PASSWORD>
+# docker-compose --env-file .env.dev up

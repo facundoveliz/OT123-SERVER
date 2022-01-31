@@ -64,6 +64,29 @@ describe('POST /news/add', () => {
       })
   })
 
+  // testing the validation
+  it('respond with a json containing an error', (done) => {
+    const data = {
+      name: '',
+      content: 'test',
+      image: 'test',
+      categoryId: 1,
+      type: 'test',
+    }
+    request(app)
+      .post('/news/add')
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'Validation error' })
+        done()
+      })
+  })
+})
+
     })
   })
 })

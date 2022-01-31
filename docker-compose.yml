@@ -11,7 +11,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - $DB_LOCAL_PORT:$DB_PORT
+      - ${DB_LOCAL_PORT}:${DB_PORT}
     volumes:
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
       - db-config:/etc/mysql

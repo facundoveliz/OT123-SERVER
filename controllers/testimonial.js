@@ -107,7 +107,7 @@ exports.deleteTestimonial = async (req, res) => {
   if (!testimonial) {
     return res.status(404).json({
       ok: false,
-      msg: 'Testimonial not founded',
+      msg: 'Testimonial not found',
     })
   }
   return res.status(200).json({ ok: true, msg: 'Testimonial deleted' })

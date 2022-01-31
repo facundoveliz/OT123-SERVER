@@ -34,7 +34,7 @@ describe('POST /members', () => {
       .expect(201)
       .end((err, res) => {
         if (err) return done(err)
-        res.body.should.be.a('object').that.includes({ ok: true, msg: 'Member created successfully' })
+        res.body.should.be.a('object').that.includes({ ok: true, msg: 'Member created successfully.' })
         done();
       })
   })
@@ -59,3 +59,42 @@ describe('POST /members', () => {
   })
 })
 
+describe('PUT /members', () => { 
+  it('SUCCESS UPDATING A NEW MEMBER.', done => {
+    const data = {
+      name: 'Major Tom', 
+      image: 'https://i.pinimg.com/736x/2b/11/3c/2b113ce1cf9b350ff98b787cc8d26223.jpg',
+    }
+
+    request(app)
+      .put('/members/1')
+      .send(data)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object').that.includes({ ok: true, msg: 'Member updated successfully.' })
+        done();
+      })
+  })
+
+  it('ERROR UPDATING A MEMBER.', done => {
+    const data = {
+      name: 'Major Tom', 
+      image: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9afcf453174037.592b32a81612b.gif',
+    }
+
+    request(app)
+      .put('/members/99') // This id (99) doesn't exist.
+      .send(data)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object').that.includes({ ok: false, msg: 'The member was not found.' })
+        done();
+      })
+  })
+})

@@ -22,7 +22,7 @@ exports.createMembers = async (req, res) => {
     })
     res.status(201).json({
       ok: true,
-      msg: 'Member created successfully',
+      msg: 'Member created successfully.',
       result: { member: { ...member } },
     })
   } catch (err) {
@@ -75,9 +75,9 @@ exports.editMember = async (req, res) => {
   member.image = image
   await member
     .save()
-    .then((updatedMember) => res.status(201).json({
+    .then((updatedMember) => res.status(200).json({
       ok: true,
-      msg: 'Category updated successfully',
+      msg: 'Member updated successfully.',
       result: { member: { ...updatedMember } },
     }))
     .catch((err) => {
@@ -97,14 +97,14 @@ exports.deleteMember = async (req, res) => {
     if (!member) {
       return res.status(404).json({
         ok: false,
-        msg: 'No member was found',
+        msg: 'No member was found.',
       })
     }
     await member
       .destroy()
     return res.status(200).json({
       ok: true,
-      msg: 'member was deleted',
+      msg: 'Member was deleted.',
     })
   } catch (err) {
     res.status(400).json({

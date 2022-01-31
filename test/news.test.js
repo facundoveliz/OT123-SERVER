@@ -117,6 +117,48 @@ describe('GET /news/:id', () => {
   })
 })
 
+// testing update news
+describe('PUT /news/update/:id', () => {
+  it('respond with a json containing the updated entry', (done) => {
+    const data = {
+      name: 'test',
+      content: 'test',
+      image: 'test',
+      categoryId: 1,
+      type: 'test',
+    }
+    request(app)
+      .put(`/news/update/${id}`)
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'The entry was updated.' })
+        done()
+      })
+  })
+
+  // test validation
+  it('respond with a json containing an error', (done) => {
+    const data = {
+      name: '',
+      content: 'test',
+      image: 'test',
+      categoryId: 1,
+      type: 'test',
+    }
+    request(app)
+      .put(`/news/update/${id}`)
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'Validation error' })
+        done()
     })
   })
 })

@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -51,6 +52,11 @@ function App() {
           </a>
         </span>
       </header>
+      <h1 className="text-3xl font-bold underline">
+        Hello TailWindCSS!
+      </h1>
+      {/* Asi se renderiza un children */}
+      <Outlet /> 
     </div>
   );
 }

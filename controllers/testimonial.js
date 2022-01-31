@@ -59,6 +59,15 @@ exports.registerTestimonial = async (req, res) => {
 }
 
 exports.editTestimonial = async (req, res) => {
+  // validation with express-validator
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'Validation error',
+      error: errors.array(),
+    })
+  }
   const testimonial = await Testimonial.findOne({ where: { id: req.params.id } })
   if (!testimonial) {
     return res.status(404).json({

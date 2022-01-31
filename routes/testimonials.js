@@ -13,7 +13,7 @@ router.get('/', testimonials.findTestimonial)
 router.post('/new', checkSchema(testimonialSchema), testimonials.registerTestimonial)
 
 // edit a testimonial
-router.put('/edit/:id', testimonials.editTestimonial)
+router.put('/edit/:id', checkSchema(testimonialSchema), testimonials.editTestimonial)
 
 // delete testimonial
 router.delete('/delete', testimonials.deleteTestimonial)

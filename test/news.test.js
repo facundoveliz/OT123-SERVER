@@ -186,7 +186,7 @@ describe('DELETE /news/delete', () => {
   it('respond with a json containing an error', (done) => {
     request(app)
       .delete('/news/delete')
-      .send({ id: 'invalid' })
+      .send({ id: ''})
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

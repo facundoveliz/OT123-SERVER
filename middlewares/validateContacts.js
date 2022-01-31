@@ -4,7 +4,9 @@ const validateName = checkSchema({
   name: {
     exists: true,
     isString: true,
-    isLength: { min: 3, max: 24 },
+    isLength: {
+      options: { min: 3, max: 24 },
+    },
     trim: true,
   },
 })
@@ -13,7 +15,9 @@ const validateEmail = checkSchema({
   email: {
     exists: true,
     isEmail: true,
-    isLength: { min: 6 },
+    isLength: {
+      options: { min: 3, max: 24 },
+    },
     trim: true,
   },
 })

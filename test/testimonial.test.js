@@ -57,7 +57,6 @@ describe('POST /testimonials/new', () => {
       .expect('Content-Type', /json/)
       .expect(400)
       .end((err, res) => {
-        console.log(res.body)
         if (err) return done(err)
         res.body.should.be.a('object')
           .that.includes({ ok: false, msg: 'Validation error' })
@@ -67,7 +66,7 @@ describe('POST /testimonials/new', () => {
 })
 
 describe('PUT /testimonials/edit/:id', () => {
-  it('respond with a json containing the updated entry', (done) => {
+  it('respond with a json containing the updated testimonial', (done) => {
     const data = {
       name: 'name test',
       image: '',
@@ -85,7 +84,6 @@ describe('PUT /testimonials/edit/:id', () => {
         done()
       })
   })
-
   // test validation
   it('respond with a json containing an error', (done) => {
     const data = {
@@ -103,6 +101,37 @@ describe('PUT /testimonials/edit/:id', () => {
         console.log(res.body)
         res.body.should.be.a('object')
           .that.includes({ ok: false, msg: 'Validation error' })
+        done()
+      })
+  })
+})
+
+describe('DELETE /testimonials/delete', () => {
+  it('respond with a json containing the deleted testimonial', (done) => {
+    request(app)
+      .delete('/testimonials/delete')
+      .send({ id })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Testimonial deleted' })
+        done()
+      })
+  })
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .delete('/testimonials/delete')
+      .send({ id: '' })
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err)
+        console.log(res.body)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'Testimonial not found' })
         done()
       })
   })

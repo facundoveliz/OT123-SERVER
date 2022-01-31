@@ -98,3 +98,31 @@ describe('PUT /members', () => {
       })
   })
 })
+
+describe('DELETE /members', () => { 
+  it('SUCCESS DELETING A MEMBER.', done => {
+    request(app)
+      .delete('/members/1')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object').that.includes({ ok: true, msg: 'Member was deleted.' })
+        done();
+      })
+  })
+
+  it('ERROR DELETING A MEMBER.', done => {
+    request(app)
+      .delete('/members/99') // This id (99) doesn't exist.
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object').that.includes({ ok: false, msg: 'No member was found.' })
+        done();
+      })
+  })
+})

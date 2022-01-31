@@ -99,7 +99,7 @@ describe('PUT /activities/:id', () => {
             content: 'a',
         }
         request(app)
-            .put(`/activities/${id}`)
+            .put(`/activities/${500}`)
             .send(data)
             .expect('Content-Type', /json/)
             .expect(400)

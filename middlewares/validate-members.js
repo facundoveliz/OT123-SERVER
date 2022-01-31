@@ -9,6 +9,6 @@ const validationName = checkSchema({
   },
 })
 
-const validateActivities = [validationName]
+const validateMembers = [validationName]
 
-module.exports = validateActivities
+module.exports = validateMembers

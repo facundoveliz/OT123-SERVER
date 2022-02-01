@@ -3,7 +3,25 @@ const db = require('../models')
 
 const { Members } = db
 
-exports.createMembers = async (req, res) => {
+exports.getAll = async (req, res) => {
+  const allMembers = await Members.findAll({})
+
+  try {
+    res.status(200).json({
+      ok: true,
+      msg: 'SUCCESS FETCHING DATA.',
+      result: { members: [...allMembers] },
+    })
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: 'ERROR FETCHING DATA.',
+      error: err,
+    })
+  }
+}
+
+exports.add = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     res.status(422).json({
@@ -34,34 +52,7 @@ exports.createMembers = async (req, res) => {
   }
 }
 
-exports.findAll = async (req, res) => {
-  const allMembers = await Members.findAll({})
-
-  try {
-    res.status(200).json({
-      ok: true,
-      msg: 'SUCCESS FETCHING DATA.',
-      result: { members: [...allMembers] },
-    })
-  } catch (err) {
-    res.status(400).json({
-      ok: false,
-      msg: 'ERROR FETCHING DATA.',
-      error: err,
-    })
-  }
-}
-
-exports.editMember = async (req, res) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    res.status(422).json({
-      ok: false,
-      msg: 'ERROR VALIDATING DATA.',
-      error: errors.array(),
-    })
-  }
-
+exports.update = async (req, res) => {
   const { id } = req.params
   const { name } = req.body
   const { image } = req.body

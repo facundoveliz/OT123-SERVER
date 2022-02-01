@@ -1,22 +1,24 @@
 const express = require('express')
 
 const router = express.Router()
-const user = require('../controllers/user')
+const {
+  getAll, userData, signup, signin, deleteUser,
+} = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const validate = require('../schemas/userSchema')
 
 // get all users.
-router.get('/', user.findAllUsers)
+router.get('/', getAll)
 
-// register a new user.
-router.post('/register', validate, user.registerUser)
+router.get('/auth/me', verifyToken, userData)
+
+// register a new
+router.post('/signup', validate, signup)
 
 // login user
-router.post('/login', user.loginUser)
-
-router.get('/auth/me', verifyToken, user.userData)
+router.post('/signin', signin)
 
 // delete user
-router.delete('/delete', user.deleteUser)
+router.delete('/:id', deleteUser)
 
 module.exports = router

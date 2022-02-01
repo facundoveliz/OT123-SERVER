@@ -3,7 +3,7 @@ const models = require('../models')
 
 const Activities = models.activities
 
-exports.getActivities = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     const activities = await Activities.findAll()
 
@@ -21,7 +21,7 @@ exports.getActivities = async (req, res) => {
   }
 }
 
-exports.createActivity = async (req, res) => {
+exports.add = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     res.status(422).json({
@@ -52,7 +52,7 @@ exports.createActivity = async (req, res) => {
   }
 }
 
-exports.editActivities = async (req, res) => {
+exports.update = async (req, res) => {
   const { id } = req.params
   const { name, content, image } = req.body
 
@@ -83,7 +83,7 @@ exports.editActivities = async (req, res) => {
   return null
 }
 
-exports.deleteActivities = async (req, res) => {
+exports.deleteActivity = async (req, res) => {
   const activityId = req.params.id
   try {
     const activity = await Activities.findByPk(activityId)

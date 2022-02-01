@@ -3,7 +3,7 @@ const db = require('../models')
 
 const { Testimonial } = db
 
-exports.findTestimonial = (req, res) => {
+exports.getAll = (req, res) => {
   Testimonial.findAll({})
     .then((data) => {
       res.status(200).json({
@@ -26,7 +26,7 @@ exports.findTestimonial = (req, res) => {
     }))
 }
 
-exports.registerTestimonial = async (req, res) => {
+exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -58,7 +58,7 @@ exports.registerTestimonial = async (req, res) => {
     })
 }
 
-exports.editTestimonial = async (req, res) => {
+exports.update = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -101,7 +101,7 @@ exports.editTestimonial = async (req, res) => {
 exports.deleteTestimonial = async (req, res) => {
   const testimonial = await Testimonial.destroy({
     where: {
-      id: req.body.id,
+      id: req.params.id,
     },
   })
   if (!testimonial) {

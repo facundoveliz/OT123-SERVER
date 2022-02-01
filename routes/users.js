@@ -2,26 +2,24 @@ const express = require('express')
 
 const router = express.Router()
 const { checkSchema } = require('express-validator')
-const user = require('../controllers/user')
+const {
+  getAll, userData, signup, signin, deleteUser,
+} = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const userSchema = require('../schemas/userSchema')
 
 // get all users.
-router.get('/', user.findAllUsers)
+router.get('/', getAll)
 
-// register a new user.
-router.post(
-  '/register',
-  checkSchema(userSchema),
-  user.registerUser,
-)
+router.get('/auth/me', verifyToken, userData)
+
+// register a new
+router.post('/signup', checkSchema(userSchema), signup)
 
 // login user
-router.post('/login', user.loginUser)
-
-router.get('/auth/me', verifyToken, user.userData)
+router.post('/signin', signin)
 
 // delete user
-router.delete('/delete', user.deleteUser)
+router.delete('/:id', deleteUser)
 
 module.exports = router

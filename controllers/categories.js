@@ -3,7 +3,7 @@ const db = require('../models')
 
 const { Category } = db
 
-exports.findAll = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     const categories = await Category.findAll({})
     res.status(200).json({
@@ -53,7 +53,7 @@ exports.add = async (req, res) => {
   }
 }
 
-exports.editCategories = async (req, res) => {
+exports.update = async (req, res) => {
   const { id } = req.params
   const { name } = req.body
 
@@ -82,7 +82,7 @@ exports.editCategories = async (req, res) => {
   return null
 }
 
-exports.deleteCategories = async (req, res) => {
+exports.deleteCategory = async (req, res) => {
   const { id } = req.params
   try {
     const category = await Category.findByPk(id)

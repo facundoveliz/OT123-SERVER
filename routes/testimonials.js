@@ -2,20 +2,22 @@ const { checkSchema } = require('express-validator')
 const express = require('express')
 const testimonialSchema = require('../schemas/testimonialSchema')
 
-const testimonials = require('../controllers/testimonial')
+const {
+  getAll, add, update, deleteTestimonial,
+} = require('../controllers/testimonials')
 
 const router = express.Router()
 
 // get all testimonials
-router.get('/', testimonials.findTestimonial)
+router.get('/', getAll)
 
 // post a new testimonial
-router.post('/new', checkSchema(testimonialSchema), testimonials.registerTestimonial)
+router.post('/', checkSchema(testimonialSchema), add)
 
 // edit a testimonial
-router.put('/edit/:id', checkSchema(testimonialSchema), testimonials.editTestimonial)
+router.put('/:id', checkSchema(testimonialSchema), update)
 
 // delete testimonial
-router.delete('/delete', testimonials.deleteTestimonial)
+router.delete('/:id', deleteTestimonial)
 
 module.exports = router

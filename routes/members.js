@@ -1,20 +1,18 @@
 const express = require('express')
 
-const router = express.Router()
-
 const {
-  createMembers, findAll, editMember, deleteMember,
+  getAll, add, update, deleteMember,
 } = require('../controllers/members')
-
 const validateMembers = require('../middlewares/validate-members')
 
+const router = express.Router()
 /* GET activities page. */
 
-router.post('/', validateMembers, createMembers)
+router.get('/', validateMembers, getAll)
 
-router.get('/', validateMembers, findAll)
+router.post('/', validateMembers, add)
 
-router.put('/:id', editMember)
+router.put('/:id', update)
 
 router.delete('/:id', deleteMember)
 

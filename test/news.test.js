@@ -183,17 +183,17 @@ describe('DELETE /news/delete', () => {
   })
 
   // test invalid id
-  it('respond with a json containing an error', (done) => {
-    request(app)
-      .delete('/news/delete')
-      .send({ id: 'invalid' })
-      .expect('Content-Type', /json/)
-      .expect(404)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: false, msg: 'Entry not found' })
-        done()
-      })
-  })
+   it('respond with a json containing an error', (done) => {
+     request(app)
+       .delete('/news/delete')
+       .send({ id: '' })
+       .expect('Content-Type', /json/)
+       .expect(404)
+       .end((err, res) => {
+         if (err) return done(err)
+         res.body.should.be.a('object')
+           .that.includes({ ok: false, msg: 'Entry not found' })
+         done()
+       })
+   })
 })

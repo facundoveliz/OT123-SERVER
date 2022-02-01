@@ -6,14 +6,14 @@ const {
   createActivity, getActivities, editActivities, deleteActivities,
 } = require('../controllers/activities')
 
-const validateActivities = require('../schemas/activitiesSchema')
+const validate = require('../schemas/activitySchema')
 
-/* GET activities page. */
+// /* GET activities page. */
 router.get('/', getActivities)
 
-router.post('/', validateActivities, createActivity)
+router.post('/', validate, createActivity)
 
-router.put('/:id', validateActivities, editActivities)
+router.put('/:id', validate, editActivities)
 
 router.delete('/:id', deleteActivities)
 

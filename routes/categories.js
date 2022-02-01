@@ -1,6 +1,6 @@
 const express = require('express')
 const categoriesController = require('../controllers/category')
-const validateCategories = require('../schemas/categoriesSchema')
+const validate = require('../schemas/categorySchema')
 
 const router = express.Router()
 // const { Category } = require('../models')
@@ -8,9 +8,9 @@ const router = express.Router()
 /* GET all categories listing. */
 router.get('/', categoriesController.findAll)
 
-router.post('/', validateCategories, categoriesController.add)
+router.post('/', validate, categoriesController.add)
 
-router.put('/:id', categoriesController.editCategories)
+router.put('/:id', validate, categoriesController.editCategories)
 
 router.delete('/:id', categoriesController.deleteCategories)
 

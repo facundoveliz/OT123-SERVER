@@ -22,7 +22,6 @@ exports.findAll = async (req, res) => {
 
 exports.add = async (req, res) => {
   const errors = validationResult(req)
-
   if (!errors.isEmpty()) {
     res.status(422).json({
       ok: false,
@@ -54,6 +53,15 @@ exports.add = async (req, res) => {
 }
 
 exports.editCategories = async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.status(422).json({
+      ok: false,
+      msg: 'ERROR VALIDATING DATA.',
+      error: errors.array(),
+    })
+  }
+
   const { id } = req.params
   const { name } = req.body
 

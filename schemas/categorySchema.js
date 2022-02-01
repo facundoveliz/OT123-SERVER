@@ -1,25 +1,20 @@
 const { checkSchema } = require('express-validator')
 
-const validateName = checkSchema({
+const validate = checkSchema({
   name: {
     exists: true,
     notEmpty: true,
     isString: true,
-    isLength: { min: 3, max: 24 },
     trim: true,
+    isLength: { options: { min: 3, max: 24 } },
   },
-})
-
-const validateDescription = checkSchema({
   description: {
     exists: true,
     notEmpty: true,
     isString: true,
-    isLength: { min: 6 },
     trim: true,
+    isLength: { options: { min: 6 } },
   },
 })
 
-const validateCategories = [validateName, validateDescription]
-
-module.exports = validateCategories
+module.exports = validate

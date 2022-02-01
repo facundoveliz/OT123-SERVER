@@ -1,33 +1,36 @@
 const { checkSchema } = require('express-validator')
 
 const validate = checkSchema({
-  firstName: {
+  name: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isLength: { options: { min: 3, max: 24 } },
+    isLength: { options: { min: 1 } },
   },
-  lastName: {
+  content: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isLength: { options: { min: 3, max: 24 } },
+    isLength: { options: { min: 1 } },
   },
-  email: {
+  image: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isEmail: true,
+    isLength: { options: { min: 1 } },
   },
-  password: {
+  categoryId: {
+    isLength: { options: { min: 1 } },
+  },
+  type: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isLength: { options: { min: 8, max: 24 } },
+    isLength: { options: { min: 1 } },
   },
 })
 

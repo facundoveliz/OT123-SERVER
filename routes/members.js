@@ -6,15 +6,14 @@ const {
   createMembers, findAll, editMember, deleteMember,
 } = require('../controllers/members')
 
-const validateMembers = require('../schemas/membersSchema')
+const validate = require('../schemas/memberSchema')
 
 /* GET activities page. */
+router.get('/', findAll)
 
-router.post('/', validateMembers, createMembers)
+router.post('/', validate, createMembers)
 
-router.get('/', validateMembers, findAll)
-
-router.put('/:id', editMember)
+router.put('/:id', validate, editMember)
 
 router.delete('/:id', deleteMember)
 

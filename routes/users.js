@@ -1,11 +1,12 @@
 const express = require('express')
 
-const router = express.Router()
 const {
   getAll, userData, signup, signin, deleteUser,
 } = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const validate = require('../schemas/userSchema')
+
+const router = express.Router()
 
 // get all users.
 router.get('/', getAll)

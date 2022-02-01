@@ -1,7 +1,7 @@
 const express = require('express')
 
-const validate = require('../schemas/contactSchema')
 const { getAll, add } = require('../controllers/contacts')
+const validate = require('../schemas/contactSchema')
 
 const router = express.Router()
 

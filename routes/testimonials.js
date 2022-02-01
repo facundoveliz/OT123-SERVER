@@ -1,9 +1,9 @@
 const express = require('express')
 
-const validate = require('../schemas/testimonialSchema')
 const {
   getAll, add, update, deleteTestimonial,
 } = require('../controllers/testimonials')
+const validate = require('../schemas/testimonialSchema')
 
 const router = express.Router()
 

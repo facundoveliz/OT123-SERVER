@@ -6,7 +6,6 @@ const app = require('../app')
 chai.should()
 
 let id;
-let token;
 
 // testing get all activities endpoints
 
@@ -113,7 +112,7 @@ describe('PUT /activities/:id', () => {
     })
 })
 describe('DELETE /activities/:id', () => {
-    it('respond with a json containing the deleted entry', (done) => {
+    it('respond with a json containing the deleted activity', (done) => {
         request(app)
             .delete(`/activities/${id}`)
             .expect('Content-Type', /json/)

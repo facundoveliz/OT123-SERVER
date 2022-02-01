@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Testimonial',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt',
     paranoid: true,
     timestamps: true,
   });

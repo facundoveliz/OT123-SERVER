@@ -116,7 +116,7 @@ exports.signin = async (req, res) => {
       result: { user: { ...user }, token },
     })
   } catch (err) {
-    return res.status(400).json({
+    return res.status(500).json({
       ok: false,
       msg: 'Request error',
       error: err,

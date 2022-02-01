@@ -1,0 +1,22 @@
+#!/bin/sh
+ssh ubuntu@localhost <<EOF
+    cd ~/alkemy/OT123-SERVER
+    git pull origin release
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    . ~/.nvm/nvm.sh
+    # Init pm2
+    # pm2 startup
+    # Stopping existing node servers
+    # echo "Stopping any existing node server"
+    # pm2 stop -s alkemy-api || :
+    # pm2 delete -s alkemy-api || :
+    echo "Installing dependencies"
+    npm ci
+    nvm use 16
+    echo "Decode env files"
+    base64 --decode env_encrypted.txt > .env
+    base64 --decode env_db_encrypted.txt > .env.db
+    echo "Running server"
+    npm run prod
+    exit
+EOF

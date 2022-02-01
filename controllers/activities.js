@@ -9,7 +9,7 @@ exports.getActivities = async (req, res) => {
 
     res.status(200).json({
       ok: true,
-      msg: 'Fetched activities successfully.',
+      msg: 'Fetched activities successfully',
       result: { activities: [...activities] },
     })
   } catch (err) {

@@ -52,9 +52,6 @@ function App() {
           </a>
         </span>
       </header>
-      <h1 className="text-3xl font-bold underline">
-        Hello TailWindCSS!
-      </h1>
       {/* Asi se renderiza un children */}
       <Outlet /> 
     </div>

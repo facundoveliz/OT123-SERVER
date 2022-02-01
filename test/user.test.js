@@ -166,7 +166,7 @@ describe('DELETE /users/delete', () => {
   it('respond with 404 if user id is invalid', (done) => {
     request(app)
       .delete('/users/delete')
-      .send({ id: 'invalid' })
+      .send({ id: '999' })
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

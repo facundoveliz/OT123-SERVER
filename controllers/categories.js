@@ -22,7 +22,6 @@ exports.getAll = async (req, res) => {
 
 exports.add = async (req, res) => {
   const errors = validationResult(req)
-
   if (!errors.isEmpty()) {
     res.status(422).json({
       ok: false,

@@ -1,13 +1,13 @@
 const express = require('express')
 
-const validateContacts = require('../middlewares/validateContacts')
 const { getAll, add } = require('../controllers/contacts')
+const validate = require('../schemas/contactSchema')
 
 const router = express.Router()
 
 /* GET all contacts listing. */
 router.get('/', getAll)
 
-router.post('/', validateContacts, add)
+router.post('/', validate, add)
 
 module.exports = router

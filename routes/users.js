@@ -1,12 +1,12 @@
 const express = require('express')
 
-const router = express.Router()
-const { checkSchema } = require('express-validator')
 const {
   getAll, userData, signup, signin, deleteUser,
 } = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
-const userSchema = require('../schemas/userSchema')
+const validate = require('../schemas/userSchema')
+
+const router = express.Router()
 
 // get all users.
 router.get('/', getAll)
@@ -14,7 +14,7 @@ router.get('/', getAll)
 router.get('/auth/me', verifyToken, userData)
 
 // register a new
-router.post('/signup', checkSchema(userSchema), signup)
+router.post('/signup', validate, signup)
 
 // login user
 router.post('/signin', signin)

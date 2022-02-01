@@ -1,10 +1,9 @@
 const express = require('express')
-const { checkSchema } = require('express-validator')
+
 const {
   getAll, getOne, add, update, deleteNews,
 } = require('../controllers/news')
-
-const entrySchema = require('../schemas/entrySchema')
+const validate = require('../schemas/entrySchema')
 
 const router = express.Router()
 
@@ -15,10 +14,10 @@ router.get('/', getAll)
 router.get('/:id', getOne)
 
 // add news
-router.post('/', checkSchema(entrySchema), add)
+router.post('/', validate, add)
 
 // update news
-router.put('/:id', checkSchema(entrySchema), update)
+router.put('/:id', validate, update)
 
 // delete news
 router.delete('/:id', deleteNews)

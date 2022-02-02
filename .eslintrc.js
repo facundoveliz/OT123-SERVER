@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:react-hooks/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -23,7 +24,11 @@ module.exports = {
     'react',
   ],
   rules: {
-    'react/prop-types': 'off',
-    'react/jsx-filename-extension': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'no-console': 'error',
+    semi: 'off',
+    'no-param-reassign': 'off',
+    'linebreak-style': 0,
+    'implicit-arrow-linebreak': 'off',
   },
 };

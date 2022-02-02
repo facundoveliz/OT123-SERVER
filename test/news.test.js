@@ -23,73 +23,6 @@ describe('GET /news', () => {
   })
 })
 
-// testing post news
-describe('POST /news/add', () => {
-  // post a new category so the entry can use its id
-  it('respond with a json containing the new categorie created', (done) => {
-    const data = {
-      name: 'Donations',
-      description: 'This is the category where all new donations go',
-    }
-    request(app)
-      .post('/categories/')
-      .send(data)
-      .expect('Content-Type', /json/)
-      .expect(201)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: true, msg: 'SUCCESS CREATING NEW CATEGORY.' })
-        done()
-      })
-  })
-
-  // now post the entry using the id of the category
-  it('respond with a json containing the new entry created', (done) => {
-    const data = {
-      name: 'test',
-      content: 'test',
-      image: 'test',
-      categoryId: 1,
-      type: 'test',
-    }
-    request(app)
-      .post('/news/add')
-      .send(data)
-      .expect('Content-Type', /json/)
-      .expect(201)
-      .end((err, res) => {
-        if (err) return done(err)
-        id = res.body.result.entry.dataValues.id
-        res.body.should.be.a('object')
-          .that.includes({ ok: true, msg: 'Entry created' })
-        done()
-      })
-  })
-
-  // testing the validation
-  it('respond with a json containing an error', (done) => {
-    const data = {
-      name: '',
-      content: 'test',
-      image: 'test',
-      categoryId: 1,
-      type: 'test',
-    }
-    request(app)
-      .post('/news/add')
-      .send(data)
-      .expect('Content-Type', /json/)
-      .expect(400)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: false, msg: 'Validation error' })
-        done()
-      })
-  })
-})
-
 // testing get news
 describe('GET /news/:id', () => {
   it('respond with a json containing the entry', (done) => {
@@ -120,8 +53,75 @@ describe('GET /news/:id', () => {
   })
 })
 
+// testing post news
+describe('POST /news', () => {
+  // post a new category so the entry can use its id
+  it('respond with a json containing the new categorie created', (done) => {
+    const data = {
+      name: 'Donations',
+      description: 'This is the category where all new donations go',
+    }
+    request(app)
+      .post('/categories')
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'SUCCESS CREATING NEW CATEGORY.' })
+        done()
+      })
+  })
+
+  // now post the entry using the id of the category
+  it('respond with a json containing the new entry created', (done) => {
+    const data = {
+      name: 'test',
+      content: 'test',
+      image: 'test',
+      categoryId: 1,
+      type: 'test',
+    }
+    request(app)
+      .post('/news')
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .end((err, res) => {
+        if (err) return done(err)
+        id = res.body.result.entry.dataValues.id
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Entry created' })
+        done()
+      })
+  })
+
+  // testing the validation
+  it('respond with a json containing an error', (done) => {
+    const data = {
+      name: '',
+      content: 'test',
+      image: 'test',
+      categoryId: 1,
+      type: 'test',
+    }
+    request(app)
+      .post('/news')
+      .send(data)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'Validation error' })
+        done()
+      })
+  })
+})
+
 // testing update news
-describe('PUT /news/update/:id', () => {
+describe('PUT /news/:id', () => {
   it('respond with a json containing the updated entry', (done) => {
     const data = {
       name: 'test',
@@ -131,7 +131,7 @@ describe('PUT /news/update/:id', () => {
       type: 'test',
     }
     request(app)
-      .put(`/news/update/${id}`)
+      .put(`/news/${id}`)
       .send(data)
       .expect('Content-Type', /json/)
       .expect(200)
@@ -153,7 +153,7 @@ describe('PUT /news/update/:id', () => {
       type: 'test',
     }
     request(app)
-      .put(`/news/update/${id}`)
+      .put(`/news/${id}`)
       .send(data)
       .expect('Content-Type', /json/)
       .expect(400)
@@ -167,11 +167,10 @@ describe('PUT /news/update/:id', () => {
 })
 
 // testing delete news
-describe('DELETE /news/delete', () => {
+describe('DELETE /news', () => {
   it('respond with a json containing the deleted entry', (done) => {
     request(app)
-      .delete('/news/delete')
-      .send({ id })
+      .delete(`/news/${id}`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -185,8 +184,7 @@ describe('DELETE /news/delete', () => {
   // test invalid id
   it('respond with a json containing an error', (done) => {
     request(app)
-      .delete('/news/delete')
-      .send({ id: ''})
+      .delete('/news/999')
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

@@ -16,12 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   Testimonial.init({
     name: DataTypes.STRING,
     image: DataTypes.STRING,
-    content: DataTypes.STRING
+    content: DataTypes.STRING,
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Testimonial',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    deletedAt: 'deletedAt',
     paranoid: true,
     timestamps: true,
   });

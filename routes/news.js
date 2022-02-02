@@ -1,24 +1,25 @@
 const express = require('express')
-const { checkSchema } = require('express-validator')
-const news = require('../controllers/news')
 
-const entrySchema = require('../schemas/entrySchema')
+const {
+  getAll, getOne, add, update, deleteNews,
+} = require('../controllers/news')
+const validate = require('../schemas/entrySchema')
 
 const router = express.Router()
 
 // get all news
-router.get('/', news.getNews)
+router.get('/', getAll)
 
 // get news by id
-router.get('/:id', news.getNewsById)
+router.get('/:id', getOne)
 
 // add news
-router.post('/add', checkSchema(entrySchema), news.createNews)
+router.post('/', validate, add)
 
 // update news
-router.put('/update/:id', checkSchema(entrySchema), news.updateNews)
+router.put('/:id', validate, update)
 
 // delete news
-router.delete('/delete', news.deleteNews)
+router.delete('/:id', deleteNews)
 
 module.exports = router

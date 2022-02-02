@@ -1,20 +1,18 @@
 const express = require('express')
 
-const router = express.Router()
-
 const {
-  createActivity, getActivities, editActivities, deleteActivities,
+  getAll, add, update, deleteActivity,
 } = require('../controllers/activities')
+const validate = require('../schemas/activitySchema')
 
-const validateActivities = require('../middlewares/validate-activities')
-
+const router = express.Router()
 /* GET activities page. */
-router.get('/', getActivities)
+router.get('/', getAll)
 
-router.post('/', validateActivities, createActivity)
+router.post('/', validate, add)
 
-router.put('/:id', validateActivities, editActivities)
+router.put('/:id', validate, update)
 
-router.delete('/:id', deleteActivities)
+router.delete('/:id', deleteActivity)
 
 module.exports = router

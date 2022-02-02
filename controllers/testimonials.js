@@ -3,7 +3,7 @@ const db = require('../models')
 
 const { Testimonial } = db
 
-exports.findTestimonial = (req, res) => {
+exports.getAll = (req, res) => {
   Testimonial.findAll({})
     .then((data) => {
       res.status(200).json({
@@ -26,7 +26,7 @@ exports.findTestimonial = (req, res) => {
     }))
 }
 
-exports.registerTestimonial = async (req, res) => {
+exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -58,7 +58,16 @@ exports.registerTestimonial = async (req, res) => {
     })
 }
 
-exports.editTestimonial = async (req, res) => {
+exports.update = async (req, res) => {
+  // validation with express-validator
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'Validation error',
+      error: errors.array(),
+    })
+  }
   const testimonial = await Testimonial.findOne({ where: { id: req.params.id } })
   if (!testimonial) {
     return res.status(404).json({
@@ -92,13 +101,13 @@ exports.editTestimonial = async (req, res) => {
 exports.deleteTestimonial = async (req, res) => {
   const testimonial = await Testimonial.destroy({
     where: {
-      id: req.body.id,
+      id: req.params.id,
     },
   })
   if (!testimonial) {
     return res.status(404).json({
       ok: false,
-      msg: 'Testimonial not founded',
+      msg: 'Testimonial not found',
     })
   }
   return res.status(200).json({ ok: true, msg: 'Testimonial deleted' })

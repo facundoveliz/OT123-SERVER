@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Router from './router';
 import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { ChakraProvider } from '@chakra-ui/react'
-import theme from './themes/theme'
+import theme from './themes'
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>

@@ -23,7 +23,7 @@ describe('GET /testimonials', () => {
   })
 })
 
-describe('POST /testimonials/new', () => {
+describe('POST /testimonials', () => {
   // Test: testimonial creation
   it('respond with 201 created', (done) => {
     const data = {
@@ -32,7 +32,7 @@ describe('POST /testimonials/new', () => {
       content: 'This is really nice.',
     }
     request(app)
-      .post('/testimonials/new')
+      .post('/testimonials')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(201)
@@ -52,7 +52,7 @@ describe('POST /testimonials/new', () => {
       content: 'Uh',
     }
     request(app)
-      .post('/testimonials/new')
+      .post('/testimonials')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(400)
@@ -65,7 +65,7 @@ describe('POST /testimonials/new', () => {
   })
 })
 
-describe('PUT /testimonials/edit/:id', () => {
+describe('PUT /testimonials/:id', () => {
   it('respond with a json containing the updated testimonial', (done) => {
     const data = {
       name: 'name test',
@@ -73,7 +73,7 @@ describe('PUT /testimonials/edit/:id', () => {
       content: 'content test',
     }
     request(app)
-      .put(`/testimonials/edit/${id}`)
+      .put(`/testimonials/${id}`)
       .send(data)
       .expect('Content-Type', /json/)
       .expect(200)
@@ -92,7 +92,7 @@ describe('PUT /testimonials/edit/:id', () => {
       content: 'a',
     }
     request(app)
-      .put(`/testimonials/edit/${id}`)
+      .put(`/testimonials/${id}`)
       .send(data)
       .expect('Content-Type', /json/)
       .expect(400)
@@ -106,11 +106,10 @@ describe('PUT /testimonials/edit/:id', () => {
   })
 })
 
-describe('DELETE /testimonials/delete', () => {
+describe('DELETE /testimonials', () => {
   it('respond with a json containing the deleted testimonial', (done) => {
     request(app)
-      .delete('/testimonials/delete')
-      .send({ id })
+      .delete(`/testimonials/${id}`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -123,8 +122,7 @@ describe('DELETE /testimonials/delete', () => {
   // test invalid id
   it('respond with a json containing an error', (done) => {
     request(app)
-      .delete('/testimonials/delete')
-      .send({ id: '' })
+      .delete(`/testimonials/${id}`)
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

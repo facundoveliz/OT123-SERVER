@@ -1,6 +1,6 @@
 const { Organization } = require('../models')
 
-exports.byOrganizationID = async (req, res) => {
+exports.getOne = async (req, res) => {
   const orgID = req.params.id
 
   try {

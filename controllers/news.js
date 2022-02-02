@@ -3,7 +3,7 @@ const models = require('../models')
 
 const Entries = models.Entry
 
-exports.getNews = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     const news = await Entries.findAll({
       attributes: ['name', 'image', 'createdAt'],
@@ -25,7 +25,7 @@ exports.getNews = async (req, res) => {
   }
 }
 
-exports.getNewsById = async (req, res) => {
+exports.getOne = async (req, res) => {
   try {
     const news = await Entries.findById(req.params.id)
     res.status(200).json({
@@ -42,7 +42,7 @@ exports.getNewsById = async (req, res) => {
   }
 }
 
-exports.createNews = async (req, res) => {
+exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -77,7 +77,7 @@ exports.createNews = async (req, res) => {
     })
 }
 
-exports.updateNews = async (req, res) => {
+exports.update = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -125,7 +125,7 @@ exports.updateNews = async (req, res) => {
 exports.deleteNews = async (req, res) => {
   const entry = await Entries.destroy({
     where: {
-      id: req.body.id,
+      id: req.params.id,
     },
   })
   if (!entry) {

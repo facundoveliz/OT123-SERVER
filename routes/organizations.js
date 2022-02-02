@@ -1,8 +1,8 @@
 const express = require('express')
 
 const router = express.Router()
-const controller = require('../controllers/organizations')
+const { getOne } = require('../controllers/organizations')
 
-router.get('/:id/public', controller.byOrganizationID)
+router.get('/:id/public', getOne)
 
 module.exports = router

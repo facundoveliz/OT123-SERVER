@@ -1,6 +1,6 @@
 const { Organization } = require('../models')
 
-exports.byOrganizationID = async (req, res) => {
+exports.getOne = async (req, res) => {
   const orgID = req.params.id
 
   try {
@@ -26,7 +26,7 @@ exports.byOrganizationID = async (req, res) => {
     } else {
       res.status(404).json({
         ok: false,
-        msg: `THERE IS NO ORGANIZATION WITH THIS ID (${orgID}).`,
+        msg: 'THERE IS NO ORGANIZATION WITH THIS ID.',
       })
     }
   } catch (err) {

@@ -1,29 +1,37 @@
-const entrySchema = {
+const { checkSchema } = require('express-validator')
+
+const validate = checkSchema({
   name: {
-    isLength: {
-      options: { min: 1 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 1 } },
   },
   content: {
-    isLength: {
-      options: { min: 1 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 1 } },
   },
   image: {
-    isLength: {
-      options: { min: 1 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 1 } },
   },
   categoryId: {
-    isLength: {
-      options: { min: 1 },
-    },
+    isLength: { options: { min: 1 } },
   },
   type: {
-    isLength: {
-      options: { min: 1 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 1 } },
   },
-}
+})
 
-module.exports = entrySchema
+module.exports = validate

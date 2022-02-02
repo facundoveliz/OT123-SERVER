@@ -5,7 +5,7 @@ const db = require('../models')
 
 const { User } = db
 
-exports.findAllUsers = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     // The user extracted from the database gets data that is private,
     // so it is filtered into a new object called "user"
@@ -24,7 +24,28 @@ exports.findAllUsers = async (req, res) => {
   }
 }
 
-exports.registerUser = async (req, res) => {
+exports.userData = async (req, res) => {
+  const { id } = req
+  try {
+    // The user extracted from the database gets data that is private,
+    // so it is filtered into a new object called "user"
+    const user = await User.findByPk(id)
+    delete user.dataValues.password
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: user,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
+exports.signup = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -61,7 +82,7 @@ exports.registerUser = async (req, res) => {
     })
 }
 
-exports.loginUser = async (req, res) => {
+exports.signin = async (req, res) => {
   try {
     // checks if the email is valid
     const user = await User.findOne({ where: { email: req.body.email } })
@@ -95,7 +116,7 @@ exports.loginUser = async (req, res) => {
       result: { user: { ...user }, token },
     })
   } catch (err) {
-    return res.status(400).json({
+    return res.status(500).json({
       ok: false,
       msg: 'Request error',
       error: err,
@@ -105,31 +126,10 @@ exports.loginUser = async (req, res) => {
   return null
 }
 
-exports.userData = async (req, res) => {
-  const { id } = req
-  try {
-    // The user extracted from the database gets data that is private,
-    // so it is filtered into a new object called "user"
-    const user = await User.findByPk(id)
-    delete user.dataValues.password
-    res.status(200).json({
-      ok: true,
-      msg: 'Successful request',
-      result: user,
-    })
-  } catch (error) {
-    res.status(403).json({
-      ok: false,
-      msg: 'You are not authorized to view this information',
-      error,
-    })
-  }
-}
-
 exports.deleteUser = async (req, res) => {
   const user = await User.destroy({
     where: {
-      id: req.body.id,
+      id: req.params.id,
     },
   })
   if (!user) {

@@ -8,23 +8,7 @@ chai.should()
 let id
 let token
 
-// testing get all user endpoints
-describe('GET /users', () => {
-  it('respond with json containing a list of all users', (done) => {
-    request(app)
-      .get('/users')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: true, msg: 'Successful request' })
-        done()
-      })
-  })
-})
-
-describe('POST /users/register', () => {
+describe('POST /users/signup', () => {
   // testing user registration
   it('respond with 201 created', (done) => {
     const data = {
@@ -34,7 +18,7 @@ describe('POST /users/register', () => {
       password: 'password123',
     }
     request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(201)
@@ -57,7 +41,7 @@ describe('POST /users/register', () => {
       password: 'password123',
     }
     request(app)
-      .post('/users/register')
+      .post('/users/signup')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(400)
@@ -70,14 +54,30 @@ describe('POST /users/register', () => {
   })
 })
 
-describe('POST /users/login', () => {
+// testing get all user endpoints
+describe('GET /users', () => {
+  it('respond with json containing a list of all users', (done) => {
+    request(app)
+      .get('/users')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Successful request' })
+        done()
+      })
+  })
+})
+
+describe('POST /users/signin', () => {
   it('respond with success if credentials are valid', (done) => {
     const data = {
       email: 'facundoveliz9@gmail.com',
       password: 'password123',
     }
     request(app)
-      .post('/users/login')
+      .post('/users/signin')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(200)
@@ -97,7 +97,7 @@ describe('POST /users/login', () => {
       password: 'password132',
     }
     request(app)
-      .post('/users/login')
+      .post('/users/signin')
       .send(data)
       .expect('Content-Type', /json/)
       .expect(400)
@@ -151,8 +151,7 @@ describe('GET /users/auth/me', () => {
 describe('DELETE /users/delete', () => {
   it('respond with 200 if user id is valid and is deleted', (done) => {
     request(app)
-      .delete('/users/delete')
-      .send({ id })
+      .delete(`/users/${id}`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -165,8 +164,7 @@ describe('DELETE /users/delete', () => {
 
   it('respond with 404 if user id is invalid', (done) => {
     request(app)
-      .delete('/users/delete')
-      .send({ id: 'invalid' })
+      .delete(`/users/${id}`)
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

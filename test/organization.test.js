@@ -7,8 +7,6 @@ chai.should()
 
 let id
 
-
-
 // testing get organizations by id
 describe('GET /organizations/:id/public', () => {
   it('respond with a json containing the organization', (done) => {
@@ -19,21 +17,21 @@ describe('GET /organizations/:id/public', () => {
       .end((err, res) => {
         if (err) return done(err)
         res.body.should.be.a('object')
-          .that.includes({ ok: true, msg: 'Fetched organization successfully.' })
-        done()
+          .that.includes({ ok: true, msg: 'SUCCESS FETCHING DATA.' })
+          done()
       })
   })
 
   // test invalid id
   it('respond with a json containing an error', (done) => {
     request(app)
-      .get('/organizations/a/public')
+      .get('/organizations/99/public') //this id doesn't exists
       .expect('Content-Type', /json/)
-      .expect(403)
+      .expect(404)
       .end((err, res) => {
         if (err) return done(err)
         res.body.should.be.a('object')
-          .that.includes({ ok: false, msg: 'error to fetch Organizations' })
+          .that.includes({ ok: false, msg: 'THERE IS NO ORGANIZATION WITH THIS ID.' })
         done()
       })
   })

@@ -25,6 +25,9 @@ module.exports = {
   ],
   rules: {
     'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': [2, {
+      namedComponents: 'arrow-function',
+    }],
     'no-console': 'error',
     semi: 'off',
     'no-param-reassign': 'off',

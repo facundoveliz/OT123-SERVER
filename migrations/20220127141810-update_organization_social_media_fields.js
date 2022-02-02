@@ -1,6 +1,9 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    await queryInterface.addColumn('Organizations', 'deletedAt', {
+      type: Sequelize.DATE
+    });
     await queryInterface.addColumn('Organizations', 'facebook', {
       type: Sequelize.STRING
     });

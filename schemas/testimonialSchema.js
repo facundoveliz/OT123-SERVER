@@ -1,14 +1,20 @@
-const testimonialSchema = {
+const { checkSchema } = require('express-validator')
+
+const validate = checkSchema({
   name: {
-    isLength: {
-      options: { min: 3, max: 64 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 3, max: 64 } },
   },
   content: {
-    isLength: {
-      options: { min: 3 },
-    },
+    exists: true,
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 3 } },
   },
-}
+})
 
-module.exports = testimonialSchema
+module.exports = validate

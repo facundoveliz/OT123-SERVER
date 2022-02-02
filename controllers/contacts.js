@@ -3,7 +3,7 @@ const db = require('../models')
 
 const { Contact } = db
 
-exports.findAll = async (req, res) => {
+exports.getAll = async (req, res) => {
   try {
     const contacts = await Contact.findAll({})
     res.status(200).json({

@@ -1,17 +1,19 @@
 const express = require('express')
-const categoriesController = require('../controllers/category')
-const validateCategories = require('../middlewares/validateCategories')
+
+const {
+  getAll, add, update, deleteCategory,
+} = require('../controllers/categories')
+const validate = require('../schemas/categorySchema')
 
 const router = express.Router()
-// const { Category } = require('../models')
 
 /* GET all categories listing. */
-router.get('/', categoriesController.findAll)
+router.get('/', getAll)
 
-router.post('/', validateCategories, categoriesController.add)
+router.post('/', validate, add)
 
-router.put('/:id', categoriesController.editCategories)
+router.put('/:id', update)
 
-router.delete('/:id', categoriesController.deleteCategories)
+router.delete('/:id', deleteCategory)
 
 module.exports = router

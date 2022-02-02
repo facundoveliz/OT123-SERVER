@@ -5,13 +5,11 @@ const app = require('../app')
 
 chai.should()
 
-let id
-
 // testing get organizations by id
 describe('GET /organizations/:id/public', () => {
   it('respond with a json containing the organization', (done) => {
     request(app)
-      .get(`/organizations/?id=${id}/public`)
+      .get(`/organizations/1/public`)
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {

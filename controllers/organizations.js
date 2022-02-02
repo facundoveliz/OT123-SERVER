@@ -26,7 +26,7 @@ exports.getOne = async (req, res) => {
     } else {
       res.status(404).json({
         ok: false,
-        msg: `THERE IS NO ORGANIZATION WITH THIS ID (${orgID}).`,
+        msg: 'THERE IS NO ORGANIZATION WITH THIS ID.',
       })
     }
   } catch (err) {

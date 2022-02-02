@@ -1,14 +1,9 @@
-import React from "react"
-import { MemberPage } from "./Member"
+import React from 'react'
 
-export default function Home() {
-  return (
-    <main className='flex justify-center items-center w-screen h-screen'>
-      <MemberPage
-        brand={'Brand Name'}
-        logoUrl='https://i.imgur.com/l1kG0LQ.png'
-      />
-      <h1>Test</h1>
-    </main>
-  )
-}
+const Home = () => (
+  <main className="flex justify-center items-center w-screen h-screen">
+    <h1>Test</h1>
+  </main>
+)
+
+export default Home

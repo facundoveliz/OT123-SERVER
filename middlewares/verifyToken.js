@@ -12,7 +12,7 @@ async function verifyToken(req, res, next) {
     const decoded = await jwt.verify(token, `${process.env.JWT_PRIVATE_KEY}`)
 
     // eslint-disable-next-line no-underscore-dangle
-    req.id = decoded.id
+    req.id = decoded.user.id
     next()
   } catch (error) {
     res.status(400).json({

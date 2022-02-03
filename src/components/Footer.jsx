@@ -9,17 +9,17 @@ const Footer = () => (
     <Divider borderColor="#000" borderWidth="1px" />
     <Flex
       py={4}
-      direction={{ base: 'column', md: 'row' }}
+      direction={{ base: 'column', sm: 'row' }}
       justify="space-around"
       align="center"
     >
-      <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', md: 'row' }}>
+      <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Noticias</Text>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Actividades</Text>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Novedades</Text>
       </Stack>
-      <Image src="../../logo.png" alt="logo" p={{ base: 8, md: 0 }} />
-      <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', md: 'row' }}>
+      <Image src="../../logo.png" alt="logo" p={8} px={{ base: 24, sm: 0 }} />
+      <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Testimonios</Text>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Nosotros</Text>
         <Text cursor="pointer" textAlign="center" fontSize="lg" whiteSpace="nowrap">Contacto</Text>

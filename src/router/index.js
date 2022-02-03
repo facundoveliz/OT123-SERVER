@@ -2,13 +2,13 @@ import React from 'react'
 import {
   BrowserRouter,
   Routes,
-  Route
-} from "react-router-dom"
+  Route,
+} from 'react-router-dom'
 
 import App from '../App'
-import Home from '../pages/home/Home'
+import Home from '../pages/Home'
 
-export default () =>
+export default () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
@@ -21,3 +21,4 @@ export default () =>
       </Route>
     </Routes>
   </BrowserRouter>
+)

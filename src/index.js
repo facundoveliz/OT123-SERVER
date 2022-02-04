@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ChakraProvider } from '@chakra-ui/react'
 import Router from './router';
 import store from './app/store';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import { ChakraProvider } from '@chakra-ui/react'
 import theme from './themes'
 
 ReactDOM.render(
@@ -15,7 +15,7 @@ ReactDOM.render(
       </Provider>
     </React.StrictMode>
   </ChakraProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

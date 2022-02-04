@@ -1,11 +1,11 @@
 import React from 'react'
 import { Formik } from "formik";
 import * as Yup from "yup";
-import TextField from "./TextField";
+import TextField from "../TextField";
 import { Heading, HStack, VStack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 
-export default function SignUpForm() {
+const SignUpForm = () => {
     return (
       <Formik
         initialValues={{ firstName: "", lastName: "", email: "", password: "" }}
@@ -17,7 +17,6 @@ export default function SignUpForm() {
         })}
         onSubmit={(values, actions) => {
           const user = { ...values }
-          console.log(user)
           alert(JSON.stringify(values, null, 2));
           actions.resetForm();
         }}
@@ -52,3 +51,5 @@ export default function SignUpForm() {
       </Formik>
     );
 }
+
+export default SignUpForm

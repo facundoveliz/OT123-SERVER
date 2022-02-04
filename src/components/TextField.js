@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import {
     FormControl,
@@ -18,5 +19,9 @@ import {
       </FormControl>
     );
   };
+
+  TextField.propTypes = {
+    label: PropTypes.string.isRequired
+  }
   
   export default TextField;

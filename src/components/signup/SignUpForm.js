@@ -1,8 +1,9 @@
 import React from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Heading, HStack, VStack } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
+import {
+  Heading, HStack, VStack, Button,
+} from '@chakra-ui/react';
 import TextField from '../TextField';
 
 const SignUpForm = () => (
@@ -17,7 +18,6 @@ const SignUpForm = () => (
       password: Yup.string().required('Contraseña requerida!').min(6, 'Contraseña muy corta!'),
     })}
     onSubmit={(values, actions) => {
-      alert(JSON.stringify(values, null, 2));
       actions.resetForm();
     }}
   >

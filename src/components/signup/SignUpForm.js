@@ -17,8 +17,6 @@ const SignUpForm = () => (
       password: Yup.string().required('¡Contraseña requerida!').min(6, '¡Contraseña muy corta!'),
     })}
     onSubmit={(values, actions) => {
-      // const user = { ...values }
-      window.alert(JSON.stringify(values, null, 2));
       actions.resetForm();
     }}
   >

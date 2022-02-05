@@ -15,8 +15,6 @@ const SignInForm = () => (
       password: Yup.string().required('¡Contraseña requerida!'),
     })}
     onSubmit={(values, actions) => {
-      // const user = { ...values }
-      window.alert(JSON.stringify(values, null, 2));
       actions.resetForm();
     }}
   >

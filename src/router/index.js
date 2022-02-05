@@ -8,7 +8,7 @@ import {
 import App from '../App'
 import Home from '../pages/Home'
 
-export default () => (
+const Index = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
@@ -22,3 +22,4 @@ export default () => (
     </Routes>
   </BrowserRouter>
 )
+export default Index

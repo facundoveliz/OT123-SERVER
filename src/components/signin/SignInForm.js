@@ -1,21 +1,18 @@
 import React from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {
-  Heading, HStack, VStack, Button,
-} from '@chakra-ui/react';
+import { Heading, HStack, VStack } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/button';
 import TextField from '../TextField';
 
-const SignUpForm = () => (
+const SignInForm = () => (
   <Formik
     initialValues={{
-      firstName: '', lastName: '', email: '', password: '',
+      email: '', password: '',
     }}
     validationSchema={Yup.object({
-      firstName: Yup.string().required('¡Nombre requerido!').min(3, '¡Nombre muy corto!'),
-      lastName: Yup.string().required('¡Apellido requerido!').min(3, '¡Apellido muy corto!'),
       email: Yup.string().email('¡E-mail inválido!').required('¡E-mail requerido!'),
-      password: Yup.string().required('¡Contraseña requerida!').min(6, '¡Contraseña muy corta!'),
+      password: Yup.string().required('¡Contraseña requerida!'),
     })}
     onSubmit={(values, actions) => {
       actions.resetForm();
@@ -26,7 +23,7 @@ const SignUpForm = () => (
         <VStack
           as="form"
           m="auto"
-          p="2"
+          p="4"
           w={{ base: '90%', md: 500 }}
           h="auto"
           justifyContent="center"
@@ -37,13 +34,13 @@ const SignUpForm = () => (
           onSubmit={formik.handleSubmit}
           display="block"
         >
-          <Heading align="center">Registro</Heading>
-          <TextField name="firstName" placeholder="Nombre" />
-          <TextField name="lastName" placeholder="Apellido" />
+          <Heading textAlign="center">
+            Entrar
+          </Heading>
           <TextField name="email" placeholder="E-mail" type="email" />
           <TextField name="password" placeholder="Contraseña" type="password" />
           <Button type="submit" w="100%">
-            Crear cuenta
+            Iniciar sesión
           </Button>
         </VStack>
       </HStack>
@@ -51,4 +48,4 @@ const SignUpForm = () => (
   </Formik>
 )
 
-export default SignUpForm
+export default SignInForm

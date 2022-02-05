@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types'
+
 import {
   VStack, Text, Icon, Button,
 } from '@chakra-ui/react';
@@ -11,5 +12,10 @@ const Card = ({ title, icon }) => (
     <Button colorScheme="green">Ir</Button>
   </VStack>
 );
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.func.isRequired,
+}
 
 export default Card;

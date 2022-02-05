@@ -44,7 +44,6 @@ const Alert = ({
           onCancel()
         }
       })
-
   useEffect(() => {
     if (show) {
       const result = showAlert()
@@ -54,8 +53,7 @@ const Alert = ({
       if (result.isDismissed) {
         onCancel()
       }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    } // eslint-disable-next-line
   }, [show, onConfirm, onCancel])
   return <div />
 }

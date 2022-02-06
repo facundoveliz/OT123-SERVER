@@ -1,0 +1,24 @@
+GET http://localhost:4000/testimonials HTTP/1.1
+
+###
+POST http://localhost:4000/testimonials HTTP/1.1
+Content-Type: application/json
+
+{   
+    "name": "AH POS, NO SÉ5.",
+    "content": "Lorem ipsum.",
+    "image": "imageURL"
+}
+
+###
+PUT http://localhost:4000/testimonials/5 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "AH POS, SI S33333É.",
+    "content": "Más Lorem Ipsum",
+    "image": "anotherImageURL"
+}
+
+###
+DELETE http://localhost:4000/testimonials/6 HTTP/1.1

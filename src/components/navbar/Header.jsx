@@ -8,7 +8,7 @@ import {
 import Sidebar from './Sidebar';
 
 const Header = () => (
-  <HStack justify="space-between" bg="gray.100" py={2} px={3}>
+  <HStack justify="space-between" py={2} px={3}>
     <Sidebar />
     <Image src="../../logo.png" alt="logo" h={{ base: '54.6px', xl: '78px' }} w={{ base: '140px', xl: '200px' }} cursor="pointer" />
     <HStack spacing={8} lineHeight="30px" justify="center" display={{ base: 'none', xl: 'unset' }} wrap="wrap" fontSize="lg">

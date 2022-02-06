@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, add, update, deleteTestimonial,
+  getAll, add, update, deleteTestimonial, getTestimonial,
 } = require('../controllers/testimonials')
 const validate = require('../schemas/testimonialSchema')
 
@@ -9,6 +9,8 @@ const router = express.Router()
 
 // get all testimonials
 router.get('/', getAll)
+
+router.get('/', getTestimonial)
 
 // post a new testimonial
 router.post('/', validate, add)

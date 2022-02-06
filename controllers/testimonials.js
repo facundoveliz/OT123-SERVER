@@ -26,6 +26,24 @@ exports.getAll = (req, res) => {
     }))
 }
 
+exports.getTestimonial = async (req, res) => {
+  const { id } = req.params
+  try {
+    const testimonial = await Testimonial.findByPk(id)
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: testimonial,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)

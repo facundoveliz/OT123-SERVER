@@ -24,6 +24,7 @@ describe('GET /activities', () => {
     })
 })
 
+
 // Test: Activities creation
 describe('POST /activities', () => {
     it('respond with 201 created', (done) => {
@@ -68,6 +69,34 @@ describe('POST /activities', () => {
 })
 
 
+describe('GET /activities/:id', () => {
+    it('respond with a json containing the entry', (done) => {
+      request(app)
+        .get(`/activities/?id=${id}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          if (err) return done(err)
+          res.body.should.be.a('object')
+            .that.includes({ ok: true, msg: 'Fetched activities successfully' })
+          done()
+        })
+    })
+  
+    // test invalid id
+    it('respond with a json containing an error', (done) => {
+      request(app)
+        .get('/activities/555555')
+        .expect('Content-Type', /json/)
+        .expect(400)
+        .end((err, res) => {
+            if (err) return done(err)
+            res.body.should.be.a('object')
+                .that.includes({ ok: false, msg: 'The activity was not found.' })
+            done()
+        })
+    })
+  })
 
 describe('PUT /activities/:id', () => {
 

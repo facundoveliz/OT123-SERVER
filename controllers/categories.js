@@ -20,10 +20,19 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
 exports.getCategory = async (req, res) => {
   const { id } = req.params
   try {
     const category = await Category.findByPk(id)
+
+    if (!category) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The category was not found.',
+      })
+    }
+
     res.status(200).json({
       ok: true,
       msg: 'Successful request',

@@ -20,10 +20,19 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
 exports.getContact = async (req, res) => {
   const { id } = req.params
   try {
     const contact = await Contact.findByPk(id)
+
+    if (!contact) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The contact was not found.',
+      })
+    }
+
     res.status(200).json({
       ok: true,
       msg: 'Successful request',

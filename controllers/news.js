@@ -25,13 +25,22 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
 exports.getOne = async (req, res) => {
   try {
-    const news = await Entries.findById(req.params.id)
+    const entry = await Entries.findById(req.params.id)
+
+    if (!entry) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The entry was not found.',
+      })
+    }
+
     res.status(200).json({
       ok: true,
-      msg: 'Fetched news successfully.',
-      result: { news: [...news] },
+      msg: 'Fetched entry successfully.',
+      result: { entry: [...entry] },
     })
   } catch (error) {
     res.status(403).json({

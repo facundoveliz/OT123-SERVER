@@ -3,7 +3,7 @@ const chai = require('chai')
 const app = require('../app')
 
 chai.should()
-
+let id;
 describe('GET /contacts', () => {
   it('RESPONDS WITH A JSON CONTAINING A LIST OF ALL CONTACTS.', done => {
     request(app)
@@ -59,4 +59,33 @@ describe('POST /contacts', () => {
             done();
           })
     })
+})
+
+describe('GET /contacts/:id', () => {
+  it('respond with a json containing the entry', (done) => {
+    request(app)
+      .get(`/contacts/?id=${1}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Successful request' })
+        done()
+      })
+  })
+
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .get('/contacts/555555')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+          if (err) return done(err)
+          res.body.should.be.a('object')
+              .that.includes({ ok: false, msg: 'The contact was not found.' })
+          done()
+      })
+  })
 })

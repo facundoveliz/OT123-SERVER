@@ -21,17 +21,26 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
 exports.getActivity = async (req, res) => {
   const { id } = req.params
   try {
     const activity = await Activities.findByPk(id)
+
+    if (!activity) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The activity was not found.',
+      })
+    }
+
     res.status(200).json({
       ok: true,
       msg: 'Successful request',
       result: activity,
     })
   } catch (error) {
-    res.status(403).json({
+    res.status(404).json({
       ok: false,
       msg: 'You are not authorized to view this information',
       error,
@@ -111,8 +120,7 @@ exports.deleteActivity = async (req, res) => {
         msg: 'No activity was found',
       })
     }
-    await activity
-      .destroy()
+    await activity.destroy()
     return res.status(200).json({
       ok: true,
       msg: 'Activity was deleted',

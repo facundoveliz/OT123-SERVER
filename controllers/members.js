@@ -21,10 +21,19 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
 exports.getMember = async (req, res) => {
   const { id } = req.params
   try {
     const member = await Members.findByPk(id)
+
+    if (!member) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The member was not found.',
+      })
+    }
+
     res.status(200).json({
       ok: true,
       msg: 'Successful request',

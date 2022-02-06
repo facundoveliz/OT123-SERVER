@@ -10,7 +10,7 @@ const router = express.Router()
 // get all testimonials
 router.get('/', getAll)
 
-router.get('/', getTestimonial)
+router.get('/:id', getTestimonial)
 
 // post a new testimonial
 router.post('/', validate, add)

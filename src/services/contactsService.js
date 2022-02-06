@@ -10,7 +10,7 @@ const contactsEndpoint = '/contacts'
 export function getAllContacts() {
   return httpService.get(contactsEndpoint)
 }
-  
+
 /**
  * ACCEPTS AN OBJECT TO CREATE A NEW CONTACT FROM CONTACTS ENDPOINT
  * @async

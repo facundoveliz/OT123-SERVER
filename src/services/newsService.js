@@ -40,7 +40,7 @@ export function createNew(entry) {
 /**
  * ACCEPTS AN ID & AND AN OBJECT TO UPDATE A NEW FROM NEWS ENDPOINT
  * @async
- * @param {int} id 
+ * @param {int} id
  * @param {object} entry
  * @param {string} entry.name
  * @param {string} entry.content
@@ -50,14 +50,14 @@ export function createNew(entry) {
  * @param {date} entry.deletedAt
  * @return PROMISE {OBJECT} THE CREATED NEW
  */
-export function updateNew(entry) {
+export function updateNew(id, entry) {
   return httpService.put(`${newsEndpoint}/${id}`, entry)
 }
 
 /**
  * ACCEPTS AN ID TO DELETE ONE CATEGORY FROM NEWS ENDPOINT
  * @async
- * @param {int} id 
+ * @param {int} id
  * @return PROMISE {OBJECT} THE DELETED NEW
  */
 export function deleteNew(id) {

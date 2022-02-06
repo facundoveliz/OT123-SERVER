@@ -27,21 +27,21 @@ export function createActivity(activity) {
 /**
  * ACCEPTS AN ID & AND AN OBJECT TO UPDATE AN ACTIVITY FROM ACTIVITIES ENDPOINT
  * @async
- * @param {int} id 
+ * @param {int} id
  * @param {object} activity
  * @param {string} activity.name
  * @param {string} activity.img
  * @param {string} activity.content
  * @return PROMISE {OBJECT} THE UPDATED ACTIVITY
  */
-export function updateActivity(activity) {
+export function updateActivity(id, activity) {
   return httpService.put(`${activitiesEndpoint}/${id}`, activity)
 }
 
 /**
  * ACCEPTS AN ID TO DELETE ONE ACTIVITY FROM ACTIVITIES ENDPOINT
  * @async
- * @param {int} id 
+ * @param {int} id
  * @return PROMISE {OBJECT} THE DELETED ACTIVITY
  */
 export function deleteActivity(id) {

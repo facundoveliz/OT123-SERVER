@@ -21,6 +21,24 @@ exports.getAll = async (req, res) => {
   }
 }
 
+exports.getMember = async (req, res) => {
+  const { id } = req.params
+  try {
+    const member = await Members.findByPk(id)
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: member,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.add = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {

@@ -1,7 +1,7 @@
 import React from 'react';
-import SignIn from './components/signin/SignInForm'
+import ListActivities from './pages/backoffice/activities/ListActivities'
 // import SignUp from './components/signup/SignUpForm'
 
-const App = () => <SignIn />
+const App = () => <ListActivities />
 
 export default App;

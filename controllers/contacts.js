@@ -20,6 +20,24 @@ exports.getAll = async (req, res) => {
   }
 }
 
+exports.getContact = async (req, res) => {
+  const { id } = req.params
+  try {
+    const contact = await Contact.findByPk(id)
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: contact,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.add = async (req, res) => {
   const errors = validationResult(req)
 

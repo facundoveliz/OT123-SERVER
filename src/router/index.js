@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import App from '../App'
+import ContactsList from '../pages/contact/ContactsList'
 import Home from '../pages/Home'
 
 const Index = () => (
@@ -19,6 +20,7 @@ const Index = () => (
           <Route index element={<LeagueStandings />} />
         </Route> */}
       </Route>
+      <Route path="/backoffice/contacts" element={<ContactsList />} />
     </Routes>
   </BrowserRouter>
 )

@@ -11,7 +11,7 @@ module.exports = {
           email: 'test@test.com',
           password: '$2a$10$4hVG5w2RMM.P0ST64W2qC.jlrIaq7W09oTOwEq.UqxQ1vDZmaoaja', // password: 123456789
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/1.jpg',
+          image: 'https://randomuser.me/api/portraits/women/1.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -21,7 +21,7 @@ module.exports = {
           email: 'mariaIrola@admin.com',
           password: '$2a$10$4hVG5w2RMM.P0ST64W2qC.jlrIaq7W09oTOwEq.UqxQ1vDZmaoaja', // password: 123456789
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/2.jpg',
+          image: 'https://randomuser.me/api/portraits/women/2.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -31,7 +31,7 @@ module.exports = {
           email: 'marita@admin.com',
           password: '$2a$10$4hVG5w2RMM.P0ST64W2qC.jlrIaq7W09oTOwEq.UqxQ1vDZmaoaja', // password: 123456789
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/3.jpg',
+          image: 'https://randomuser.me/api/portraits/women/3.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -41,7 +41,7 @@ module.exports = {
           email: 'miriam@admin.com',
           password: '$2a$10$4hVG5w2RMM.P0ST64W2qC.jlrIaq7W09oTOwEq.UqxQ1vDZmaoaja', // password: 123456789
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/4.jpg',
+          image: 'https://randomuser.me/api/portraits/women/4.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -51,7 +51,7 @@ module.exports = {
           email: 'Cecilia@admin.com',
           password: '$2a$10$mm6dh6W58JOXjA4cNDCVM.nvPo/LMZNLDxvKBU6b4CBrYIOnbhL0K', // password: MatiasPreiti1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/5.jpg',
+          image: 'https://randomuser.me/api/portraits/women/5.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -61,7 +61,7 @@ module.exports = {
           email: 'Mariofuentes@admin.com',
           password: '$2a$10$mm6dh6W58JOXjA4cNDCVM.nvPo/LMZNLDxvKBU6b4CBrYIOnbhL0K', // password: MatiasPreiti1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/men/6.jpg',
+          image: 'https://randomuser.me/api/portraits/men/6.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -71,7 +71,7 @@ module.exports = {
           email: 'rodrigofuente@admin.com',
           password: '$2a$10$ovls9PH5IndDgxX0ratSyuUGvAY2.n3yQU4GugRd86tH5wWdB6/ju', // password: IvanAchocalla1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/men/7.jpg',
+          image: 'https://randomuser.me/api/portraits/men/7.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -81,7 +81,7 @@ module.exports = {
           email: 'mariagarcia@admin.com',
           password: '$2a$10$ovls9PH5IndDgxX0ratSyuUGvAY2.n3yQU4GugRd86tH5wWdB6/ju', // password: IvanAchocalla1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/women/8.jpg',
+          image: 'https://randomuser.me/api/portraits/women/8.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -91,7 +91,7 @@ module.exports = {
           email: 'marcofernandez@admin.com',
           password: '$2a$10$0Nf0VkJuuUsiror1w.T3BenJEmN2qzCLpOVVraabU02i0HlqNsPHm', // password: AgustinAvila1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/men/9.jpg',
+          image: 'https://randomuser.me/api/portraits/men/9.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -101,7 +101,7 @@ module.exports = {
           email: 'agustinpalavecino@admin.com',
           password: '$2a$10$0Nf0VkJuuUsiror1w.T3BenJEmN2qzCLpOVVraabU02i0HlqNsPHm', // password: AgustinAvila1
           roleId: 1,
-          photo: 'https://randomuser.me/api/portraits/men/10.jpg',
+          image: 'https://randomuser.me/api/portraits/men/10.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -111,7 +111,7 @@ module.exports = {
           email: 'enzofernandez@standard.com',
           password: '$2a$10$BY6s00NCzEtlKTP0kQdDquyz9GnsPU1VPtWNNzDUZBTnGrAh61kjK', // password: AlexisZacre1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/11.jpg',
+          image: 'https://randomuser.me/api/portraits/men/11.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -121,7 +121,7 @@ module.exports = {
           email: 'enzoperez@standar.com',
           password: '$2a$10$BY6s00NCzEtlKTP0kQdDquyz9GnsPU1VPtWNNzDUZBTnGrAh61kjK', // password: AlexisZacre1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/12.jpg',
+          image: 'https://randomuser.me/api/portraits/men/12.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -131,7 +131,7 @@ module.exports = {
           email: 'santiagosimon@standard.com',
           password: '$2a$10$Kz.GH5rUTt99J9uoJQ5kP.zGPrMLz9fr6qoINCe2sKlSqrW25Gif6', // password: JuanAlmazan1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/13.jpg',
+          image: 'https://randomuser.me/api/portraits/men/13.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -141,7 +141,7 @@ module.exports = {
           email: 'francoarmani@standar.com',
           password: '$2a$10$Kz.GH5rUTt99J9uoJQ5kP.zGPrMLz9fr6qoINCe2sKlSqrW25Gif6', // password: JuanAlmazan1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/14.jpg',
+          image: 'https://randomuser.me/api/portraits/men/14.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -151,7 +151,7 @@ module.exports = {
           email: 'jorgecarrascal@standard.com',
           password: '$2a$10$vNWSVFPk8LVjGVAoaZZ4auFtzxyMCATQLaQ7hQjrJDorSlxZeazYW', // password: ManuelFrancisco1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/15.jpg',
+          image: 'https://randomuser.me/api/portraits/men/15.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -161,7 +161,7 @@ module.exports = {
           email: 'ignaciofernandez@standar.com',
           password: '$2a$10$vNWSVFPk8LVjGVAoaZZ4auFtzxyMCATQLaQ7hQjrJDorSlxZeazYW', // password: ManuelFrancisco1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/16.jpg',
+          image: 'https://randomuser.me/api/portraits/men/16.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -171,7 +171,7 @@ module.exports = {
           email: 'marcelogallardo@standard.com',
           password: '$2b$10$uEP32SA3zOTkI9Kdkz0HQeflVe0PELzmr4aq1uhfND8sxlUTXDqJy', // password: FranciscoOlivero1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/17.jpg',
+          image: 'https://randomuser.me/api/portraits/men/17.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -181,7 +181,7 @@ module.exports = {
           email: 'FranciscoOlivero@admin.com',
           password: '$2b$10$uEP32SA3zOTkI9Kdkz0HQeflVe0PELzmr4aq1uhfND8sxlUTXDqJy', // password: FranciscoOlivero1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/18.jpg',
+          image: 'https://randomuser.me/api/portraits/men/18.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -191,7 +191,7 @@ module.exports = {
           email: 'federicogirotti@admin.com',
           password: '$2b$10$uEP32SA3zOTkI9Kdkz0HQeflVe0PELzmr4aq1uhfND8sxlUTXDqJy', // password: FedericoPalmari1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/19.jpg',
+          image: 'https://randomuser.me/api/portraits/men/19.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -201,7 +201,7 @@ module.exports = {
           email: 'julianalvares@standard.com',
           password: '$2b$10$uEP32SA3zOTkI9Kdkz0HQeflVe0PELzmr4aq1uhfND8sxlUTXDqJy', // password: FedericoPalmari1
           roleId: 2,
-          photo: 'https://randomuser.me/api/portraits/men/20.jpg',
+          image: 'https://randomuser.me/api/portraits/men/20.jpg',
           createdAt: new Date(),
           updatedAt: new Date()
         }

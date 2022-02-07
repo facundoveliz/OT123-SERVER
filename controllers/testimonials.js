@@ -26,6 +26,35 @@ exports.getAll = (req, res) => {
     }))
 }
 
+// eslint-disable-next-line consistent-return
+exports.getTestimonial = async (req, res) => {
+  const { id } = req.params
+  try {
+    const testimonial = await Testimonial.findByPk(id)
+    // eslint-disable-next-line no-console
+    console.log(testimonial)
+
+    if (!testimonial) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The testimonial was not found.',
+      })
+    }
+
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: testimonial,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)
@@ -52,7 +81,7 @@ exports.add = async (req, res) => {
     .catch((err) => {
       res.status(400).json({
         ok: false,
-        msg: 'This email adress is already in use',
+        msg: 'Request error',
         error: err,
       })
     })

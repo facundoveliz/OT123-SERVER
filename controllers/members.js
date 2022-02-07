@@ -21,6 +21,33 @@ exports.getAll = async (req, res) => {
   }
 }
 
+// eslint-disable-next-line consistent-return
+exports.getMember = async (req, res) => {
+  const { id } = req.params
+  try {
+    const member = await Members.findByPk(id)
+
+    if (!member) {
+      return res.status(400).json({
+        ok: false,
+        msg: 'The member was not found.',
+      })
+    }
+
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: member,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.add = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {

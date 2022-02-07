@@ -1,16 +1,16 @@
 const express = require('express')
 
 const {
-  getAll, add, update, deleteMember,
+  getAll, add, update, deleteMember, getMember,
 } = require('../controllers/members')
 const validate = require('../schemas/memberSchema')
 
 const router = express.Router()
 
 /* GET activities page. */
-router.get('/', getAll)
-
 router.get('/', validate, getAll)
+
+router.get('/:id', validate, getMember)
 
 router.post('/', validate, add)
 

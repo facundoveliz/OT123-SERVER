@@ -65,6 +65,35 @@ describe('POST /testimonials', () => {
   })
 })
 
+describe('GET /testimonials/:id', () => {
+  it('respond with a json containing the entry', (done) => {
+    request(app)
+      .get(`/testimonials/?id=${id}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Testimonials retrieved successfully' })
+        done()
+      })
+  })
+
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .get(`/testimonials/aaa`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+          if (err) return done(err)
+          res.body.should.be.a('object')
+              .that.includes({ ok: false, msg: 'The testimonial was not found.' })
+          done()
+      })
+  })
+})
+
 describe('PUT /testimonials/:id', () => {
   it('respond with a json containing the updated testimonial', (done) => {
     const data = {

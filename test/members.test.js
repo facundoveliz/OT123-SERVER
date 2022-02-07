@@ -61,6 +61,36 @@ describe('POST /members', () => {
   })
 })
 
+
+describe('GET /members/:id', () => {
+  it('respond with a json containing the entry', (done) => {
+    request(app)
+      .get(`/members/?id=${id}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'SUCCESS FETCHING DATA.' })
+        done()
+      })
+  })
+
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .get('/members/555555')
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+          if (err) return done(err)
+          res.body.should.be.a('object')
+              .that.includes({ ok: false, msg: 'The member was not found.' })
+          done()
+      })
+  })
+})
+
 describe('PUT /members', () => {
   it('SUCCESS UPDATING A NEW MEMBER.', done => {
     const data = {

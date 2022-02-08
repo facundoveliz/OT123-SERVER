@@ -9,7 +9,7 @@ import App from '../App'
 import Home from '../pages/Home'
 import Categories from '../pages/Categories'
 
-export default () => (
+const Index = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
@@ -24,3 +24,4 @@ export default () => (
     </Routes>
   </BrowserRouter>
 )
+export default Index

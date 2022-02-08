@@ -47,7 +47,7 @@ const ActivitiesForm = () => {
           id: loadedactivity.data.result.id,
           name: loadedactivity.data.result.name,
           image:
-            'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
+            'https://www.wikihow.com/images/3/38/Form-a-Study-Group-Step-16.jpg',
           content: loadedactivity.data.result.content,
         })
         setReady(true)
@@ -144,7 +144,7 @@ const ActivitiesForm = () => {
                 as="form"
                 m="auto"
                 p="2"
-                w={{ base: '90%', md: 400, sm: 300 }}
+                w={{ base: '100%', md: '90%', sm: '90%' }}
                 h="auto"
                 justifyContent="center"
                 borderWidth="1px solid white"

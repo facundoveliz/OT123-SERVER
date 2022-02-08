@@ -12,7 +12,6 @@ import { Textarea } from '@chakra-ui/react'
 const TextField = ({ label, ...props }) => {
   const { type } = props
   const [field, meta] = useField(props)
-  console.log(label)
   return (
     <FormControl isInvalid={meta.error && meta.touched}>
       <FormLabel>{label}</FormLabel>

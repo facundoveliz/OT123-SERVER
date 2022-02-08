@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { IoTrashBin, IoPencil } from 'react-icons/io5'
 import {
   Box,
@@ -14,18 +14,21 @@ import {
 } from '@chakra-ui/react'
 import { getAllUsers } from '../../../services/usersService'
 
-const ListUsers = () => {
+const ListUsers = async () => {
   const [usersData, setUsersData] = useState([]);
   /* with this warning eslint wants you to make
   *  the async function inside the useEffect, but
   *  we don't want that because we have an entire
   *  folder for that
   */
-  /* eslint-disable react-hooks/exhaustive-deps */
-  useEffect(async () => {
+  const getUsers = useCallback(async () => {
     const res = await getAllUsers()
     setUsersData(res.data.result.user)
-  }, []);
+  }, [getAllUsers, setUsersData])
+
+  useEffect(() => {
+    getUsers()
+  }, [getUsers]);
 
   return (
     <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">

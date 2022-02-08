@@ -10,7 +10,7 @@ import {
   TableCaption,
 } from '@chakra-ui/react'
 
-import getAll from '../service/CategoriesService'
+import getAllCategories from '../service/categoriesService'
 import Loading from '../components/Loading'
 
 const Categories = () => {
@@ -19,7 +19,7 @@ const Categories = () => {
 
   useEffect(() => {
     try {
-      getAll()
+      getAllCategories()
         .then((res) => {
           // console.log('Hay algo', res.data)
           if (res.data) {

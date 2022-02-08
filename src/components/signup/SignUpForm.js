@@ -5,6 +5,19 @@ import {
   Heading, HStack, VStack, Button,
 } from '@chakra-ui/react';
 import TextField from '../TextField';
+import { signUp } from '../../services/usersService'
+
+const handleSubmit = async (data) => {
+  const userData = await signUp({
+    firstName: data.firstName,
+    lastName: data.lastName,
+    email: data.email,
+    password: data.password,
+  })
+  const user = userData.data.result.user.dataValues
+  const msg = `¡Te has registrado ${user.firstName} ${user.lastName}!`
+  alert(msg)
+}
 
 const SignUpForm = () => (
   <Formik
@@ -18,6 +31,7 @@ const SignUpForm = () => (
       password: Yup.string().required('¡Contraseña requerida!').min(6, '¡Contraseña muy corta!'),
     })}
     onSubmit={(values, actions) => {
+      handleSubmit(values)
       actions.resetForm();
     }}
   >

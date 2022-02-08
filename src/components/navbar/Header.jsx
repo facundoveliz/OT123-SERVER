@@ -20,7 +20,7 @@ const Header = () => (
       <Link href="#">Contacto</Link>
       <Link href="#">Contribuye</Link>
     </HStack>
-    <HStack spacing={4} display={{ base: 'none', md: 'unset' }}>
+    <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
       <Button colorScheme="blue" width="150px" variant="outline">Log in</Button>
       <Button colorScheme="blue" width="150px">Register</Button>
     </HStack>

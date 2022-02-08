@@ -1,9 +1,26 @@
 import React from 'react';
 import {
-  Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure, Icon,
+  Button,
+  Icon,
+  HStack,
+  VStack,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerFooter,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { FiAlignJustify } from 'react-icons/fi';
-import NavItem from './NavItem';
+import styled from '@emotion/styled'
+import { FiAlignJustify, FiHome } from 'react-icons/fi';
+
+const Text = styled.p`
+  color: gray.700;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+`
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = () => {
@@ -18,15 +35,45 @@ const Sidebar = () => {
         onClose={onClose}
       >
         <DrawerOverlay />
-        <DrawerContent spacing={8} flexDirection="column">
+        <DrawerContent spacing={8} justifyContent="space-between">
           <DrawerCloseButton />
-          <NavItem text="Inicio" />
-          <NavItem text="Nosotros" />
-          <NavItem text="Actividades" />
-          <NavItem text="Novedades" />
-          <NavItem text="Testimonios" />
-          <NavItem text="Contacto" />
-          <NavItem text="Contribuye" />
+
+          <VStack
+            spacing={8}
+            fontSize="2xl"
+            mt="48px"
+            mx="30px"
+            alignItems="flex-start"
+          >
+            <HStack>
+              <Icon as={FiHome} />
+              <Text>Inicio</Text>
+            </HStack>
+
+            <HStack>
+              <Text>Nosotros</Text>
+            </HStack>
+            <HStack>
+              <Text>Actividades</Text>
+            </HStack>
+            <HStack>
+              <Text>Testimonios</Text>
+            </HStack>
+            <HStack>
+              <Text>Novedades</Text>
+            </HStack>
+            <HStack>
+              <Text>Contacto</Text>
+            </HStack>
+            <HStack>
+              <Text>Contribuye</Text>
+            </HStack>
+          </VStack>
+
+          <DrawerFooter flexDirection="column">
+            <Button colorScheme="blue" width="100%" variant="outline" mb="8px">Log in</Button>
+            <Button colorScheme="blue" width="100%">Register</Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>

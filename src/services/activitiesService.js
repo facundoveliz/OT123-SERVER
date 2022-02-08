@@ -39,10 +39,10 @@ export function updateActivity(id, activity) {
 }
 
 /**
- * ACCEPTS AN ID TO DELETE ONE ACTIVITY FROM ACTIVITIES ENDPOINT
+ * ACCEPTS AN ID TO DELETE ONE TESTIMONIAL FROM TESTIMONIALS ENDPOINT
  * @async
  * @param {int} id
- * @return PROMISE {OBJECT} THE DELETED ACTIVITY
+ * @return PROMISE {OBJECT} THE DELETED TESTIMONIAL
  */
 export function deleteActivity(id) {
   return httpService.delete(`${activitiesEndpoint}/${id}`)

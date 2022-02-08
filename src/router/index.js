@@ -5,21 +5,22 @@ import {
   Route,
 } from 'react-router-dom'
 
+// eslint-disable-next-line import/no-cycle
 import App from '../App'
-import Home from '../pages/Home'
+// import Home from '../pages/Home'
+import SignIn from '../pages/signin/SignInForm'
+import SignUp from '../pages/signup/SignUpForm'
+import Welcome from '../pages/Welcome'
 
-const Index = () => (
+const AllRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
-        {/* <Route path="teams" element={<Teams />}>
-          <Route path=":teamId" element={<Team />} />
-          <Route path="new" element={<NewTeamForm />} />
-          <Route index element={<LeagueStandings />} />
-        </Route> */}
-      </Route>
+      <Route path="/" element={<App />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/welcome" element={<Welcome />} />
     </Routes>
   </BrowserRouter>
 )
-export default Index
+
+export default AllRoutes

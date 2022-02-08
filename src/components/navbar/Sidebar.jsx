@@ -1,8 +1,8 @@
 import React from 'react';
 import {
+  Text,
   Button,
   Icon,
-  HStack,
   VStack,
   Drawer,
   DrawerOverlay,
@@ -12,28 +12,35 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled'
-import { FiAlignJustify, FiHome } from 'react-icons/fi';
+import {
+  FiAlignJustify,
+} from 'react-icons/fi';
+import {
+  FaHome,
+  FaGlobeAmericas,
+  FaRegCalendarCheck,
+  FaRegComments,
+  FaNewspaper,
+  FaPhone,
+  FaRegMoneyBillAlt,
+} from 'react-icons/fa';
 
-const Text = styled.p`
-  color: gray.700;
+const NavItem = styled.div`
+  display: flex;
+  flex-direction: row;
   cursor: pointer;
-  &:hover {
+  &:hover{
     color: black;
   }
 `
 
-// eslint-disable-next-line react/prop-types
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <Icon as={FiAlignJustify} h={8} w={8} display={{ base: 'unset', xl: 'none' }} colorScheme="teal" onClick={onOpen} cursor="pointer" />
-      <Drawer
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-      >
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent spacing={8} justifyContent="space-between">
           <DrawerCloseButton />
@@ -44,30 +51,42 @@ const Sidebar = () => {
             mt="48px"
             mx="30px"
             alignItems="flex-start"
+            color="gray.600"
           >
-            <HStack>
-              <Icon as={FiHome} />
+            <NavItem>
+              <Icon as={FaHome} w={6} h={6} mr={4} mt={0.5} />
               <Text>Inicio</Text>
-            </HStack>
+            </NavItem>
 
-            <HStack>
+            <NavItem>
+              <Icon as={FaGlobeAmericas} w={6} h={6} mr={4} mt={0.5} />
               <Text>Nosotros</Text>
-            </HStack>
-            <HStack>
+            </NavItem>
+
+            <NavItem>
+              <Icon as={FaRegCalendarCheck} w={6} h={6} mr={4} mt={0.5} />
               <Text>Actividades</Text>
-            </HStack>
-            <HStack>
+            </NavItem>
+
+            <NavItem>
+              <Icon as={FaRegComments} w={6} h={6} mr={4} mt={0.5} />
               <Text>Testimonios</Text>
-            </HStack>
-            <HStack>
+            </NavItem>
+
+            <NavItem>
+              <Icon as={FaNewspaper} w={6} h={6} mr={4} mt={0.5} />
               <Text>Novedades</Text>
-            </HStack>
-            <HStack>
+            </NavItem>
+
+            <NavItem>
+              <Icon as={FaPhone} w={6} h={6} mr={4} mt={0.5} />
               <Text>Contacto</Text>
-            </HStack>
-            <HStack>
+            </NavItem>
+
+            <NavItem>
+              <Icon as={FaRegMoneyBillAlt} w={6} h={6} mr={4} mt={0.5} />
               <Text>Contribuye</Text>
-            </HStack>
+            </NavItem>
           </VStack>
 
           <DrawerFooter flexDirection="column">

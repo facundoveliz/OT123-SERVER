@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { getAllUsers } from '../../../services/usersService'
 
-const ListUsers = async () => {
+const ListUsers = () => {
   const [usersData, setUsersData] = useState([]);
   /* with this warning eslint wants you to make
   *  the async function inside the useEffect, but
@@ -24,7 +24,7 @@ const ListUsers = async () => {
   const getUsers = useCallback(async () => {
     const res = await getAllUsers()
     setUsersData(res.data.result.user)
-  }, [getAllUsers, setUsersData])
+  }, [setUsersData])
 
   useEffect(() => {
     getUsers()

@@ -9,7 +9,8 @@ import {
   Td,
   TableCaption,
 } from '@chakra-ui/react'
-import { getAll } from '../service/CategoriesService'
+
+import getAll from '../service/CategoriesService'
 import Loading from '../components/Loading'
 
 const Categories = () => {

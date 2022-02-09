@@ -10,7 +10,7 @@ import {
   TableCaption,
 } from '@chakra-ui/react'
 
-import getAllCategories from '../services/categoriesService'
+import { getAllCategories } from '../services/categoriesService'
 import Loading from '../components/Loading'
 
 const Categories = () => {

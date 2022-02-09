@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import {
@@ -17,17 +18,23 @@ import {
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Alert from '../alert/Alert'
-import { addActivity, getActivityById, updateActivity } from '../../service/activitiesService'
+import { addActivity, getActivityById, updateActivity } from '../../services/activitiesService'
+import imgUploadService from '../../services/imgUploadService'
+import './ActivitiesForm.css'
 
 const ActivitiesForm = () => {
-  let { id } = useParams()
-  id = 1
+  const { id } = useParams()
+
+  const [loadImage, setLoadImage] = useState(null)
+  const [comment, setComment] = useState('')
+  const [data, setData] = useState('')
   const [activity, setActivity] = useState({
     id: null,
     name: '',
-    image:
-      'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
+    image: null,
     content: '',
+    textButton: 'Crear',
+    inputText: 'Imagen',
   })
   const [ready, setReady] = useState(false)
   const [alerts, setAlerts] = useState({
@@ -46,8 +53,7 @@ const ActivitiesForm = () => {
         setActivity({
           id: loadedactivity.data.result.id,
           name: loadedactivity.data.result.name,
-          image:
-            'https://www.wikihow.com/images/3/38/Form-a-Study-Group-Step-16.jpg',
+          oldImage: loadedactivity.data.result.image,
           content: loadedactivity.data.result.content,
         })
         setReady(true)
@@ -68,15 +74,11 @@ const ActivitiesForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const ckChangeHandler = (event, editor) => {
-    const editedData = editor.getData()
-    setActivity((data) => ({ ...data, content: editedData }))
-  }
   const updateChangeHandler = async (values) => {
     const updatedActivity = await updateActivity(id, {
       name: values.name,
-      content: activity.content,
-      image: activity.image,
+      content: data.content,
+      image: values.image ? await imgUploadService(values.image) : activity.oldImage,
     })
     if (updatedActivity) {
       const successAlert = {
@@ -94,8 +96,8 @@ const ActivitiesForm = () => {
     try {
       const newActivity = await addActivity({
         name: values.name,
-        content: activity.content,
-        image: values.image,
+        content: data.content,
+        image: values.image ? await imgUploadService(values.image) : null,
       })
       if (newActivity) {
         const successAlert = {
@@ -106,6 +108,7 @@ const ActivitiesForm = () => {
           onConfirm: () => {},
         }
         setAlerts(successAlert)
+        Navigate('/')
       }
     } catch (error) {
       const errorAlert = {
@@ -129,11 +132,14 @@ const ActivitiesForm = () => {
             name: Yup.string()
               .required('Nombre requerido!')
               .min(3, 'Nombre muy corto!'),
+            content: Yup.string().min(1).max(150).required(),
           })}
           onSubmit={(values) =>
             (id ? updateChangeHandler(values) : AddSubmitHandler(values))}
         >
-          {({ values, handleSubmit, handleChange }) => (
+          {({
+            values, errors, touched, setFieldValue, handleChange, handleBlur, handleSubmit,
+          }) => (
             <HStack
               display="flex"
               height="100vh"
@@ -161,39 +167,51 @@ const ActivitiesForm = () => {
                     type="text"
                     id="name"
                     name="name"
+                    onBlur={handleBlur}
                     value={values.name}
                     onChange={handleChange}
                   />
+                  <small>{errors.name && touched.name && errors.name}</small>
+
                 </FormControl>
                 <Spacer />
-                <FormControl>
+                <FormControl id="content">
                   <FormLabel paddingLeft="2">Contenido</FormLabel>
                   <CKEditor
-                    name="content"
                     data={values.content}
                     editor={ClassicEditor}
-                    onChange={ckChangeHandler}
+                    onChange={(event, editor) => {
+                      const editedData = editor.getData()
+                      setComment(editedData)
+                      setFieldValue('content', editor.getData())
+                      console.log(editedData);
+                      setData({ ...activity, content: editedData })
+                    }}
                   />
+                  { comment === ''
+                  && <small>El comentario es obligatio</small>}
                 </FormControl>
-                <FormLabel paddingLeft="2">Imagen</FormLabel>
-                <FormControl
-                  display="flex"
-                  flexWrap="wrap"
-                  justifyContent="center"
-                >
-                  <Box paddingBottom="2" align="center">
-                    <Input
-                      width="230px"
-                      border-radius="5px"
-                      padding="4px 5px"
-                      cursor="pointer"
+                {id && (
+                <Box>
+                  <FormLabel>Imagen actual</FormLabel>
+                  <Image alt={activity.name} objectFit="cover" src={activity.oldImage} />
+                </Box>
+                )}
+                <Box>
+                  <FormControl>
+                    <FormLabel>{activity.inputText}</FormLabel>
+                    <input
                       type="file"
+                      onChange={(event) => {
+                        setFieldValue('image', event.currentTarget.files[0])
+                        setLoadImage(event.currentTarget.files[0])
+                      }}
+                      value={values.file}
                     />
-                  </Box>
-                  <Box paddingLeft="4" paddingRight="4">
-                    <Image objectFit="cover" src={activity.image} />
-                  </Box>
-                </FormControl>
+                  </FormControl>
+                  { loadImage === null
+                    && <small>La imagen es obligatoria</small>}
+                </Box>
                 <Button type="submit" w="100%">
                   Guardar
                 </Button>

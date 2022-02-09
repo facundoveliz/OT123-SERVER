@@ -20,7 +20,7 @@ const SignUpForm = () => {
     })
     const user = userData.data.result.user.dataValues
     const msg = `¡Te has registrado ${user.firstName} ${user.lastName}!`
-    window.alert(msg)
+    alert(msg)
     setTimeout(navigate('/signin'), 500)
   }
 

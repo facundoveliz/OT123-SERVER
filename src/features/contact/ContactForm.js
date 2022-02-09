@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';

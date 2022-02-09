@@ -16,11 +16,7 @@ import { getAllUsers } from '../../../services/usersService'
 
 const ListUsers = () => {
   const [usersData, setUsersData] = useState([]);
-  /* with this warning eslint wants you to make
-  *  the async function inside the useEffect, but
-  *  we don't want that because we have an entire
-  *  folder for that
-  */
+
   const getUsers = useCallback(async () => {
     const res = await getAllUsers()
     setUsersData(res.data.result.user)

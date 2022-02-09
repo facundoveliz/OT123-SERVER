@@ -15,8 +15,8 @@ const SignInForm = () => {
     const userData = await signIn({ email: data.email, password: data.password })
     const user = userData.data.result.user.dataValues
     const msg = `¡Bienvenido ${user.firstName} ${user.lastName}!`
-    alert(msg)
-    setTimeout(navigate('/'), 2000)
+    window.alert(msg)
+    setTimeout(navigate('/'), 500)
   }
 
   return (

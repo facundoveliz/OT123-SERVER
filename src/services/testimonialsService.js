@@ -3,56 +3,56 @@ import httpService from './httpService'
 const testimonialsEndpoint = '/testimonials'
 
 /**
- * RETRIEVES AN OBJECT WITH ALL THE TESTIMONIALS FROM TESTIMONIALS ENDPOINT
+ * Retrieves an array with all testimonials from testimonials endpoint
  * @async
- * @return PROMISE {OBJECT} ALL THE REQUESTED TESTIMONIALS
+ * @return Promise {object} all the requested testimonials
  */
 export function getAll() {
   return httpService.get(testimonialsEndpoint)
 }
 
 /**
- * ACCEPTS AN OBJECT TO CREATE A TESTIMONIAL FROM TESTIMONIALS ENDPOINT
+ * Accepts an id to retrieve one testimonial from testimonials endpoint
  * @async
  * @param {int} id
- * @return PROMISE {OBJECT} THE CREATED TESTIMONIAL
+ * @return Promise {object} the requested testimonial
  */
 export function getTestimonial(id) {
   return httpService.get(`${testimonialsEndpoint}/${id}`)
 }
 
 /**
- * ACCEPTS AN OBJECT TO CREATE A TESTIMONIAL FROM TESTIMONIALS ENDPOINT
+ * Accepts an object to send it to testimonials endpoint
  * @async
  * @param {object} testimonial
  * @param {string} testimonial.name
  * @param {string} testimonial.image
  * @param {string} testimonial.content
- * @return PROMISE {OBJECT} THE CREATED TESTIMONIAL
+ * @return Promise {object} the created testimonial
  */
 export function add(testimonial) {
   return httpService.post(testimonialsEndpoint, testimonial)
 }
 
 /**
- * ACCEPTS AN ID & AND AN OBJECT TO UPDATE A TESTIMONIAL FROM TESTIMONIALS ENDPOINT
+ * Accepts an object to send it to testimonials endpoint
  * @async
  * @param {int} id
  * @param {object} testimonial
  * @param {string} testimonial.name
  * @param {string} testimonial.image
  * @param {string} testimonial.content
- * @return PROMISE {OBJECT} THE UPDATED TESTIMONIAL
+ * @return Promise {object} the created testimonial
  */
 export function update(id, testimonial) {
   return httpService.put(`${testimonialsEndpoint}/${id}`, testimonial)
 }
 
 /**
- * ACCEPTS AN ID TO DELETE ONE TESTIMONIAL FROM TESTIMONIALS ENDPOINT
+ * Accepts an id to delete one testimonial from testimonials endpoint
  * @async
  * @param {int} id
- * @return PROMISE {OBJECT} THE DELETED TESTIMONIAL
+ * @return Promise {object} the deleted testimonial
  */
 export function deleteTestimonial(id) {
   return httpService.delete(`${testimonialsEndpoint}/${id}`)

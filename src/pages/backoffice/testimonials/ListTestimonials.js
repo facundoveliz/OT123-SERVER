@@ -13,13 +13,13 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
-import { getAllTestimonials } from '../../../services/testimonialsService'
+import { getAll } from '../../../services/TestimonialsService'
 
 const ListTestimonials = () => {
   const [allTestimonial, setAllTestimonial] = useState([{}])
 
   async function loadData() {
-    await getAllTestimonials().then((response) =>
+    await getAll().then((response) =>
       setAllTestimonial(response.data.result.testimonials))
   }
 

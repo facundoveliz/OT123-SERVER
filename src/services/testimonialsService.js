@@ -7,7 +7,7 @@ const testimonialsEndpoint = '/testimonials'
  * @async
  * @return Promise {object} all the requested testimonials
  */
-export function getAllTestimonials() {
+export function getAll() {
   return httpService.get(testimonialsEndpoint)
 }
 

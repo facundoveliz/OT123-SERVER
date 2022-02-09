@@ -21,14 +21,13 @@ const Categories = () => {
     try {
       getAllCategories()
         .then((res) => {
-          // console.log('Hay algo', res.data)
           if (res.data) {
             setData(res.data)
             setLoading(false)
           }
         });
     } catch (e) {
-      console.log('error', e)
+      // ..
     }
   }, [])
 

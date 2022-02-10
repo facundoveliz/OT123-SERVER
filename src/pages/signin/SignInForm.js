@@ -24,7 +24,6 @@ const SignInForm = () => {
     title: '¡Inicio de sesión fallido!',
     message: 'Usuario o contraseña incorrectos.',
     icon: 'error',
-    buttons: false,
     onConfirm: () => {},
   }
 

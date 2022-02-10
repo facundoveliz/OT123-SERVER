@@ -43,7 +43,6 @@ const SignUpForm = () => {
         title: '¡Registro exitoso!',
         message: msg,
         icon: 'success',
-        buttons: false,
         onConfirm: () => {},
       }
       setAlerts(successAlert)

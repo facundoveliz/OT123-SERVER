@@ -1,9 +1,18 @@
 import React from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Heading, HStack, VStack } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
+import {
+  Heading, HStack, VStack, Button,
+} from '@chakra-ui/react';
 import TextField from '../TextField';
+import { signIn } from '../../services/usersService'
+
+const handleSubmit = async (data) => {
+  const userData = await signIn({ email: data.email, password: data.password })
+  const user = userData.data.result.user.dataValues
+  const msg = `¡Bienvenido ${user.firstName} ${user.lastName}!`
+  alert(msg)
+}
 
 const SignInForm = () => (
   <Formik
@@ -15,6 +24,7 @@ const SignInForm = () => (
       password: Yup.string().required('¡Contraseña requerida!'),
     })}
     onSubmit={(values, actions) => {
+      handleSubmit(values)
       actions.resetForm();
     }}
   >

@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
+// eslint-disable-next-line import/no-cycle
+import AllRoutes from './router'
 
 const App = () => (
-  <div>APP</div>
+  <AllRoutes />
 )
 
-export default App;
+export default App

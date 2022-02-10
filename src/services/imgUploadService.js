@@ -11,6 +11,8 @@ const fileName = (file) => {
 
 function uploadFile(file, dirName) {
   const newFileName = fileName(file)
+  console.log(newFileName);
+
   const config = {
     bucketName: process.env.REACT_APP_AWS_S3_BUCKET,
     dirName, /* optional */

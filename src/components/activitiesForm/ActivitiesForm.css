@@ -4,7 +4,7 @@ small {
 }
 img,
 video {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 500px;
+  max-height: 500px;
   margin: auto;
 }

@@ -30,8 +30,8 @@ import uploadFile from '../../services/imgUploadService'
 import GridImages from './GridImages'
 
 const ActivitiesForm = () => {
-  let { id } = useParams()
-  id = 1
+  const { id } = useParams()
+
   const [blobImage, setBlobImage] = useState('')
   const [loadImage, setLoadImage] = useState(null)
   const [comment, setComment] = useState('')
@@ -40,6 +40,7 @@ const ActivitiesForm = () => {
     id: null,
     name: '',
     image: null,
+    oldImage: '',
     content: '',
     textButton: 'Crear',
     inputText: 'Imagen',
@@ -56,8 +57,6 @@ const ActivitiesForm = () => {
     if (id) {
       try {
         const loadedactivity = await getActivityById(id)
-        // eslint-disable-next-line no-console
-        console.log(loadedactivity)
         setActivity({
           id: loadedactivity.data.result.id,
           name: loadedactivity.data.result.name,
@@ -83,7 +82,9 @@ const ActivitiesForm = () => {
   }, [])
 
   const updateChangeHandler = async (values) => {
+    console.log('hola');
     console.log(values)
+    uploadFile(values.image)
     /* const updatedActivity = await updateActivity(id, {
       name: values.name,
       content: data.content,
@@ -102,7 +103,6 @@ const ActivitiesForm = () => {
   }
 
   const AddSubmitHandler = async (values) => {
-    console.log(values)
     uploadFile(values.image)
     /* try {
       const newActivity = await addActivity({

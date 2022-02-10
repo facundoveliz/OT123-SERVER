@@ -34,9 +34,16 @@ const GridImages = ({
   </Grid>
 )
 GridImages.propTypes = {
-  name: PropTypes.string.isRequired,
-  loadImage: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  oldImage: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  loadImage: PropTypes.string,
+  id: PropTypes.number,
+  oldImage: PropTypes.string,
+}
+
+GridImages.defaultProps = {
+  oldImage: '',
+  name: '',
+  loadImage: '',
+  id: null,
 }
 export default GridImages

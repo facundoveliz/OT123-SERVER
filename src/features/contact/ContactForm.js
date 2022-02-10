@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-curly-brace-presence */
 import React from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +6,6 @@ import { Button } from '@chakra-ui/button';
 import TextField from './TextField';
 
 const ContactForm = () => (
-  // eslint-disable-next-line react/jsx-indent
   <Formik
     initialValues={{ name: '', email: '', message: '' }}
     validationSchema={Yup.object({
@@ -17,14 +14,12 @@ const ContactForm = () => (
       message: Yup.string().required('El mensaje es requerido!').min(6, 'Mensaje muy corto'),
     })}
     onSubmit={(values, actions) => {
-      const user = { ...values };
-      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
       actions.resetForm();
     }}
   >
     {(formik) => (
-      <HStack display="flex" backgroundColor={'brand.lightBlue'}>
+      <HStack display="flex" backgroundColor="brand.lightBlue">
         <VStack
           as="form"
           m="auto"
@@ -34,9 +29,8 @@ const ContactForm = () => (
           justifyContent="center"
           borderWidth="1px solid white"
           borderRadius="lg"
-          // eslint-disable-next-line jsx-quotes
-          boxShadow='lg'
-          backgroundColor={'white'}
+          boxShadow="lg"
+          backgroundColor="white"
           onSubmit={formik.handleSubmit}
           display="block"
         >
@@ -44,11 +38,13 @@ const ContactForm = () => (
           <TextField name="name" placeholder="Nombre" label="Nombre" />
           <TextField name="email" placeholder="E-mail" type="email" label="Email" />
           <TextField name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
-          <Button type="submit" w="100%" backgroundColor={'brand.yellow'} color="gray.500">
+          <Button type="submit" w="100%" backgroundColor="brand.yellow" color="gray.500">
             Crear cuenta
           </Button>
         </VStack>
       </HStack>
     )}
   </Formik>
-);
+)
+
+export default ContactForm

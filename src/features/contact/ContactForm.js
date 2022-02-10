@@ -16,6 +16,7 @@ const ContactForm = () => {
       message: data.message,
     })
     const msg = '¡El contacto fue creado!'
+    // eslint-disable-next-line no-alert
     alert(msg)
   }
 

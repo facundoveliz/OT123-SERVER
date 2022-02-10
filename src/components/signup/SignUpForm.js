@@ -16,6 +16,7 @@ const handleSubmit = async (data) => {
   })
   const user = userData.data.result.user.dataValues
   const msg = `¡Te has registrado ${user.firstName} ${user.lastName}!`
+  // eslint-disable-next-line no-alert
   alert(msg)
 }
 

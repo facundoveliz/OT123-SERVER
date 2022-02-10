@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 const ContacstList = ({ contactsData }) => (
   <Center>
     <Box
-      bg="brand.lightBlue"
+      bg="brand.yellow"
       color="white"
       borderRadius="lg"
       padding={50}

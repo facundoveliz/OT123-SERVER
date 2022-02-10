@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const db = require('../models')
+const { generateToken } = require('../middlewares/jwt')
 
 const { User } = db
 
@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Successful request',
-      result: { user: { ...user } },
+      result: { user: [...user] },
     })
   } catch (error) {
     res.status(403).json({
@@ -67,10 +67,12 @@ exports.signup = async (req, res) => {
     password,
   })
     .then((newUser) => {
+      const token = generateToken(newUser)
+
       res.status(201).json({
         ok: true,
         msg: 'User created',
-        result: { user: { ...newUser } },
+        result: { user: { ...newUser }, token },
       })
     })
     .catch((err) => {
@@ -94,7 +96,10 @@ exports.signin = async (req, res) => {
     }
 
     // compares hashed passwords
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password,
+    )
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
@@ -102,16 +107,10 @@ exports.signin = async (req, res) => {
       })
     }
     delete user.dataValues.password
-    delete user.dataValues.deletedAt
-    delete user.dataValues.updatedAt
+
     // generates token
-    const token = jwt.sign(
-      { user },
-      `${process.env.JWT_PRIVATE_KEY}`,
-      {
-        expiresIn: '1h',
-      },
-    )
+    const token = generateToken(user)
+
     res.status(200).json({
       ok: true,
       msg: 'Login successful',

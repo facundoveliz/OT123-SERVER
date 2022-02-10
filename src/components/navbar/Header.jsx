@@ -26,11 +26,11 @@ const Header = () => {
     <NavLink to="/actividades">
       {({ isActive }) => getText(isActive, 'Actividades')}
     </NavLink>,
-    <NavLink to="/novedades">
-      {({ isActive }) => getText(isActive, 'Novedades')}
-    </NavLink>,
     <NavLink to="/testimonios">
       {({ isActive }) => getText(isActive, 'Testimonios')}
+    </NavLink>,
+    <NavLink to="/novedades">
+      {({ isActive }) => getText(isActive, 'Novedades')}
     </NavLink>,
     <NavLink exact to="/contacto">
       {({ isActive }) => getText(isActive, 'Contacto')}

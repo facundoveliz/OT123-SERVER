@@ -11,6 +11,8 @@ import {
   DrawerCloseButton,
   DrawerFooter,
   useDisclosure,
+  Link,
+  Box,
 } from '@chakra-ui/react'
 import {
   FiAlignJustify,
@@ -32,7 +34,7 @@ const Sidebar = () => {
     const textProperties = {}
     const iconProperties = {
       w: 6,
-      h: 6,
+      h: 9,
       mr: 4,
       mt: 0.5,
       as: icon,
@@ -42,10 +44,13 @@ const Sidebar = () => {
       iconProperties.color = 'blue'
     }
     return (
-      <>
-        <Icon iconProperties />
+      <Box
+        display="flex"
+        flex-direction="row"
+      >
+        <Icon {...iconProperties} />
         <Text {...textProperties}>{text}</Text>
-      </>
+      </Box>
     )
   }
 
@@ -63,30 +68,28 @@ const Sidebar = () => {
             mx="30px"
             alignItems="flex-start"
             color="gray.600"
-            display="flex"
-            flex-direction="row"
           >
-            <NavLink>
+            <Link as={NavLink} exact to="/">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} to="/nosotros">
               {({ isActive }) => getItem(isActive, 'Nosostros', FaGlobeAmericas)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} to="/actividades">
               {({ isActive }) => getItem(isActive, 'Actividades', FaRegCalendarCheck)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} to="/testimonios">
               {({ isActive }) => getItem(isActive, 'Testimonios', FaRegComments)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} to="/novedades">
               {({ isActive }) => getItem(isActive, 'Novedades', FaNewspaper)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} exact to="/contacto">
               {({ isActive }) => getItem(isActive, 'Contacto', FaPhone)}
-            </NavLink>
-            <NavLink>
+            </Link>
+            <Link as={NavLink} to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
-            </NavLink>
+            </Link>
           </VStack>
           <DrawerFooter flexDirection="column">
             <Button colorScheme="blue" width="100%" variant="outline" mb="8px">Log in</Button>

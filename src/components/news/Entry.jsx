@@ -18,7 +18,7 @@ const Entry = () => {
 
   return (
     <Center my={6}>
-      <Box w={{ base: '95%', md: '70%' }}>
+      <Box w={{ base: '90%', md: '60%', xl: '40%' }}>
         <Heading as="h1" size="2xl" textAlign="justify">{entryData.name}</Heading>
         <Image src={entryData.image} my={6} w="100%" h="400px" objectFit="cover" borderRadius="lg" boxShadow="lg" />
         <Text fontSize="xl" textAlign="justify">{entryData.content}</Text>

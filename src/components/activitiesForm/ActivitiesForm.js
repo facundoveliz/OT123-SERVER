@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
@@ -17,14 +18,16 @@ import {
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { Grid, GridItem } from '@chakra-ui/layout'
 import Alert from '../alert/Alert'
 import { addActivity, getActivityById, updateActivity } from '../../services/activitiesService'
-import imgUploadService from '../../services/imgUploadService'
 import './ActivitiesForm.css'
+import uploadFile from '../../services/imgUploadService'
 
 const ActivitiesForm = () => {
-  const { id } = useParams()
-
+  let { id } = useParams()
+  id = 1
+  const [blobImage, setBlobImage] = useState('')
   const [loadImage, setLoadImage] = useState(null)
   const [comment, setComment] = useState('')
   const [data, setData] = useState('')
@@ -75,7 +78,8 @@ const ActivitiesForm = () => {
   }, [])
 
   const updateChangeHandler = async (values) => {
-    const updatedActivity = await updateActivity(id, {
+    console.log(values);
+    /* const updatedActivity = await updateActivity(id, {
       name: values.name,
       content: data.content,
       image: values.image ? await imgUploadService(values.image) : activity.oldImage,
@@ -89,11 +93,13 @@ const ActivitiesForm = () => {
         onConfirm: () => {},
       }
       setAlerts(successAlert)
-    }
+    } */
   }
 
   const AddSubmitHandler = async (values) => {
-    try {
+    console.log(values);
+    uploadFile(values.image)
+    /* try {
       const newActivity = await addActivity({
         name: values.name,
         content: data.content,
@@ -119,7 +125,7 @@ const ActivitiesForm = () => {
         onConfirm: () => {},
       }
       setAlerts(errorAlert)
-    }
+    } */
   }
 
   return (
@@ -184,33 +190,58 @@ const ActivitiesForm = () => {
                       const editedData = editor.getData()
                       setComment(editedData)
                       setFieldValue('content', editor.getData())
-                      console.log(editedData);
                       setData({ ...activity, content: editedData })
                     }}
                   />
-                  { comment === ''
+                  { (comment === '' && !id)
                   && <small>El comentario es obligatio</small>}
                 </FormControl>
-                {id && (
-                <Box>
-                  <FormLabel>Imagen actual</FormLabel>
-                  <Image alt={activity.name} objectFit="cover" src={activity.oldImage} />
-                </Box>
-                )}
+                <VStack>
+                  <Box>
+                    <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+                      <GridItem w="100%" h="100%">
+
+                        { id
+                  && (
+                  <>
+                    <FormLabel textAlign="center">Imagen actual</FormLabel>
+                    <Image alt={activity.name} objectFit="cover" src={activity.oldImage} />
+                  </>
+                  )}
+
+                      </GridItem>
+                      <GridItem w="100%" h="100%">
+                        {
+                    loadImage !== null
+                    && (
+                    <>
+                      <FormLabel textAlign="center">Nueva imagen</FormLabel>
+                      <Image alt={activity.name} objectFit="cover" src={loadImage} />
+                    </>
+                    )
+                    }
+
+                      </GridItem>
+                    </Grid>
+                  </Box>
+                </VStack>
                 <Box>
                   <FormControl>
                     <FormLabel>{activity.inputText}</FormLabel>
                     <input
                       type="file"
                       onChange={(event) => {
-                        setFieldValue('image', event.currentTarget.files[0])
-                        setLoadImage(event.currentTarget.files[0])
+                        const file = event.currentTarget.files[0]
+                        setFieldValue('image', file)
+                        setLoadImage(URL.createObjectURL(file))
                       }}
                       value={values.file}
                     />
+
                   </FormControl>
-                  { loadImage === null
+                  { (loadImage === null && !id)
                     && <small>La imagen es obligatoria</small>}
+
                 </Box>
                 <Button type="submit" w="100%">
                   Guardar

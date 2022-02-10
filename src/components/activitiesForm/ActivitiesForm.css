@@ -2,3 +2,8 @@ small {
   color: red;
   font-weight: bold;
 }
+img,
+video {
+  max-width: 200px;
+  max-height: 200px;
+}

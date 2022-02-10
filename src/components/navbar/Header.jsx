@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react'
 import Sidebar from './Sidebar'
 
-const HeaderCopia = () => {
+const Header = () => {
   const getText = (isActive, text) => {
     const textProperties = {}
     if (isActive) {
@@ -71,4 +71,4 @@ const HeaderCopia = () => {
   )
 }
 
-export default HeaderCopia
+export default Header

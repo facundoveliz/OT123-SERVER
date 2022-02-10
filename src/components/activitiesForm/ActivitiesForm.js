@@ -20,9 +20,14 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { Grid, GridItem } from '@chakra-ui/layout'
 import Alert from '../alert/Alert'
-import { addActivity, getActivityById, updateActivity } from '../../services/activitiesService'
+import {
+  addActivity,
+  getActivityById,
+  updateActivity,
+} from '../../services/activitiesService'
 import './ActivitiesForm.css'
 import uploadFile from '../../services/imgUploadService'
+import GridImages from './GridImages'
 
 const ActivitiesForm = () => {
   let { id } = useParams()
@@ -52,7 +57,7 @@ const ActivitiesForm = () => {
       try {
         const loadedactivity = await getActivityById(id)
         // eslint-disable-next-line no-console
-        console.log(loadedactivity);
+        console.log(loadedactivity)
         setActivity({
           id: loadedactivity.data.result.id,
           name: loadedactivity.data.result.name,
@@ -78,7 +83,7 @@ const ActivitiesForm = () => {
   }, [])
 
   const updateChangeHandler = async (values) => {
-    console.log(values);
+    console.log(values)
     /* const updatedActivity = await updateActivity(id, {
       name: values.name,
       content: data.content,
@@ -97,7 +102,7 @@ const ActivitiesForm = () => {
   }
 
   const AddSubmitHandler = async (values) => {
-    console.log(values);
+    console.log(values)
     uploadFile(values.image)
     /* try {
       const newActivity = await addActivity({
@@ -144,7 +149,13 @@ const ActivitiesForm = () => {
             (id ? updateChangeHandler(values) : AddSubmitHandler(values))}
         >
           {({
-            values, errors, touched, setFieldValue, handleChange, handleBlur, handleSubmit,
+            values,
+            errors,
+            touched,
+            setFieldValue,
+            handleChange,
+            handleBlur,
+            handleSubmit,
           }) => (
             <HStack
               display="flex"
@@ -178,7 +189,6 @@ const ActivitiesForm = () => {
                     onChange={handleChange}
                   />
                   <small>{errors.name && touched.name && errors.name}</small>
-
                 </FormControl>
                 <Spacer />
                 <FormControl id="content">
@@ -193,38 +203,16 @@ const ActivitiesForm = () => {
                       setData({ ...activity, content: editedData })
                     }}
                   />
-                  { (comment === '' && !id)
-                  && <small>El comentario es obligatio</small>}
-                </FormControl>
-                <VStack>
-                  <Box>
-                    <Grid templateColumns="repeat(2, 1fr)" gap={5}>
-                      <GridItem w="100%" h="100%">
-
-                        { id
-                  && (
-                  <>
-                    <FormLabel textAlign="center">Imagen actual</FormLabel>
-                    <Image alt={activity.name} objectFit="cover" src={activity.oldImage} />
-                  </>
+                  {comment === '' && !id && (
+                    <small>El comentario es obligatio</small>
                   )}
-
-                      </GridItem>
-                      <GridItem w="100%" h="100%">
-                        {
-                    loadImage !== null
-                    && (
-                    <>
-                      <FormLabel textAlign="center">Nueva imagen</FormLabel>
-                      <Image alt={activity.name} objectFit="cover" src={loadImage} />
-                    </>
-                    )
-                    }
-
-                      </GridItem>
-                    </Grid>
-                  </Box>
-                </VStack>
+                </FormControl>
+                <GridImages
+                  id={id}
+                  name={values.name}
+                  oldImage={values.oldImage}
+                  loadImage={loadImage}
+                />
                 <Box>
                   <FormControl>
                     <FormLabel>{activity.inputText}</FormLabel>
@@ -237,11 +225,10 @@ const ActivitiesForm = () => {
                       }}
                       value={values.file}
                     />
-
                   </FormControl>
-                  { (loadImage === null && !id)
-                    && <small>La imagen es obligatoria</small>}
-
+                  {loadImage === null && !id && (
+                    <small>La imagen es obligatoria</small>
+                  )}
                 </Box>
                 <Button type="submit" w="100%">
                   Guardar

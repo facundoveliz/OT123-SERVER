@@ -18,8 +18,8 @@ const News = () => {
   return (
     <>
       <VStack my={12} display="flex" textAlign="center">
-        <Text fontSize="3xl">Novedades</Text>
-        <Text fontSize="xl" w={{ base: '80%', lg: '50%' }}>
+        <Text fontSize="5xl">Novedades</Text>
+        <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Enterate de las últimas novedades relacionadas con Somos Más.
         </Text>
       </VStack>

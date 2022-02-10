@@ -6,7 +6,7 @@ const Card = ({ entrys }) => (
   <>
     {entrys.map((item) => (
       <GridItem key={item.id} w="350px" borderRadius="lg" boxShadow="lg" borderWidth="1px" cursor="pointer" textAlign="justify">
-        <Text fontSize="xl" px={6} pt={3} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{item.name}</Text>
+        <Text fontSize="2xl" px={6} pt={3} pb={3} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{item.name}</Text>
         <Image src={item.image} />
       </GridItem>
     ))}

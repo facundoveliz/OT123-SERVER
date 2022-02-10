@@ -14,6 +14,7 @@ const ContactForm = () => (
       message: Yup.string().required('El mensaje es requerido!').min(6, 'Mensaje muy corto'),
     })}
     onSubmit={(values, actions) => {
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
       actions.resetForm();
     }}

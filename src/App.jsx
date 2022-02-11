@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
-import React from 'react';
-import ActivitiesForm from './components/activitiesForm/ActivitiesForm'
+import React from 'react'
+// eslint-disable-next-line import/no-cycle
+import AllRoutes from './router'
 
 const App = () => (
-  <ActivitiesForm />
+  <AllRoutes />
 )
 
-export default App;
+export default App

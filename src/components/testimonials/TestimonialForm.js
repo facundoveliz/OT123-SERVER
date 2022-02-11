@@ -16,7 +16,8 @@ import {
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { add, getTestimonial, update } from '../../services/testimonialsService'
+
+import { addTestimonial, getTestimonial, updateTestimonial } from '../../services/testimonialsService'
 import Alert from '../alert/Alert'
 
 const TestimonialForm = () => {
@@ -70,7 +71,7 @@ const TestimonialForm = () => {
     setTestimonialData((data) => ({ ...data, content: editedData }))
   }
   const updateChangeHandler = async (values) => {
-    const updatedTestimonial = await update(id, {
+    const updatedTestimonial = await updateTestimonial(id, {
       name: values.name,
       content: testimonialData.content,
       image: testimonialData.image,
@@ -89,7 +90,7 @@ const TestimonialForm = () => {
 
   const AddSubmitHandler = async (values) => {
     try {
-      const newTestimonial = await add({
+      const newTestimonial = await addTestimonial({
         name: values.name,
         content: testimonialData.content,
         image: values.image,

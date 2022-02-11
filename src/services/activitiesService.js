@@ -21,9 +21,6 @@ export function addActivity(activity) {
  * @param {int} id
  * @return Promise {object} of the deleted activity
  */
-export function delActivity(id) {
-  return httpService.delete(`${activitiesEndpoint}/${id}`)
-}
 
 /**
  * Accepts an id to retrieve one activity from activities endpoint
@@ -39,6 +36,7 @@ export function getActivityById(id) {
  * Retrieves an array with all the activities from activities endpoint
  * @async
  * @return Promise [{object}] of all the requested activities
+ * @return PROMISE {OBJECT} ALL THE REQUESTED ACTIVITIES
  */
 export function getAllActivities() {
   return httpService.get(activitiesEndpoint)
@@ -56,4 +54,14 @@ export function getAllActivities() {
  */
 export function updateActivity(id, activity) {
   return httpService.put(`${activitiesEndpoint}/${id}`, activity)
+}
+
+/**
+ * ACCEPTS AN ID TO DELETE ONE ACTIVITY FROM ACTIVITIES ENDPOINT
+ * @async
+ * @param {int} id
+ * @return PROMISE {OBJECT} THE DELETED ACTIVITY
+ */
+export function deleteActivity(id) {
+  return httpService.delete(`${activitiesEndpoint}/${id}`)
 }

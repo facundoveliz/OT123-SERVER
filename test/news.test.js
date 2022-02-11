@@ -23,36 +23,6 @@ describe('GET /news', () => {
   })
 })
 
-// testing get news
-describe('GET /news/:id', () => {
-  it('respond with a json containing the entry', (done) => {
-    request(app)
-      .get(`/news/?id=${id}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: true, msg: 'Fetched news successfully.' })
-        done()
-      })
-  })
-
-  // test invalid id
-  it('respond with a json containing an error', (done) => {
-    request(app)
-      .get('/news/a')
-      .expect('Content-Type', /json/)
-      .expect(403)
-      .end((err, res) => {
-        if (err) return done(err)
-        res.body.should.be.a('object')
-          .that.includes({ ok: false, msg: 'error to fetch Entries' })
-        done()
-      })
-  })
-})
-
 // testing post news
 describe('POST /news', () => {
   // post a new category so the entry can use its id
@@ -115,6 +85,36 @@ describe('POST /news', () => {
         if (err) return done(err)
         res.body.should.be.a('object')
           .that.includes({ ok: false, msg: 'Validation error' })
+        done()
+      })
+  })
+})
+
+// testing get news
+describe('GET /news/:id', () => {
+  it('respond with a json containing the entry', (done) => {
+    request(app)
+      .get(`/news/${id}`)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: true, msg: 'Fetched entry successfully.' })
+        done()
+      })
+  })
+
+  // test invalid id
+  it('respond with a json containing an error', (done) => {
+    request(app)
+      .get(`/news/a`)
+      .expect('Content-Type', /json/)
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err)
+        res.body.should.be.a('object')
+          .that.includes({ ok: false, msg: 'The entry was not found.' })
         done()
       })
   })

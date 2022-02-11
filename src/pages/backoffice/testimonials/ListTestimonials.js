@@ -13,22 +13,61 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
-import { getAll } from '../../../services/TestimonialsService'
+import { Link } from 'react-router-dom'
+import { deleteTestimonial, getAllTestimonials } from '../../../services/testimonialsService'
+import Alert from '../../../components/alert/Alert'
 
 const ListTestimonials = () => {
   const [allTestimonial, setAllTestimonial] = useState([{}])
+  const [deletedNew, setDeletedNew] = useState([])
+  const [alertProps, setAlertprops] = useState({
+    show: false,
+    title: '',
+    message: '',
+    icon: '',
+    onConfirm: () => {},
+  })
 
   async function loadData() {
-    await getAll().then((response) =>
-      setAllTestimonial(response.data.result.testimonials))
+    try {
+      const response = await getAllTestimonials()
+      setAllTestimonial(response.data.result.testimonials)
+    } catch (error) {
+      const errorAlertProps = {
+        show: true,
+        title: 'Ooops, algo ha fallado!',
+        message: error.message,
+        icon: 'error',
+        onConfirm: () => {},
+      }
+      setAlertprops(errorAlertProps)
+    }
+  }
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteTestimonial(id)
+      setDeletedNew(id)
+      window.location.reload();
+    } catch (error) {
+      const errorAlertProps = {
+        show: true,
+        title: 'Ooops, algo ha fallado!',
+        message: error.message,
+        icon: 'error',
+        onConfirm: () => {},
+      }
+      setAlertprops(errorAlertProps)
+    }
   }
 
   useEffect(() => {
     loadData()
-  }, [])
+  }, [deletedNew])
   console.log(allTestimonial);
   return (
     <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+      <Alert {...alertProps} />
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
@@ -41,7 +80,7 @@ const ListTestimonials = () => {
         justifyContent="center"
         overflow="hidden"
       >
-        <Heading align="center">Activities</Heading>
+        <Heading align="center">Testimonios</Heading>
         <Table>
           <Thead>
             <Tr>
@@ -61,16 +100,23 @@ const ListTestimonials = () => {
                     spacing="0"
                     width="fit-content"
                   >
+                    <Link to={`../testimonialform/${item.id}`}>
+                      <Button
+                        width="100px"
+                        leftIcon={<IoPencil />}
+                        marginRight="6"
+                        marginBottom="1"
+                        size="sm"
+                      >
+                        Editar
+                      </Button>
+                    </Link>
                     <Button
                       width="100px"
-                      leftIcon={<IoPencil />}
-                      marginRight="6"
-                      marginBottom="1"
+                      leftIcon={<IoTrashBin />}
                       size="sm"
+                      onClick={() => handleDelete(item.id)}
                     >
-                      Editar
-                    </Button>
-                    <Button width="100px" leftIcon={<IoTrashBin />} size="sm">
                       Eliminar
                     </Button>
                   </ButtonGroup>

@@ -47,3 +47,13 @@ export function updateActivity(id, activity) {
 export function deleteActivity(id) {
   return httpService.delete(`${activitiesEndpoint}/${id}`)
 }
+
+/**
+ * ACCEPTS AN ID TO RETRIEVE ONE NEW FROM NEWS ENDPOINT
+ * @async
+ * @param {int} id
+ * @return PROMISE {OBJECT} THE REQUESTED NEW
+ */
+export function getActivityById(id) {
+  return httpService.get(`${activitiesEndpoint}/${id}`)
+}

@@ -8,6 +8,7 @@ import {
 import App from '../App'
 import Home from '../pages/Home'
 import Categories from '../pages/Categories'
+import Activity from '../pages/backoffice/activities/Activity'
 
 const Index = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const Index = () => (
         </Route> */}
       </Route>
       <Route path="/backoffice/categories" element={<Categories />} />
+      <Route path="/backoffice/activities:id" element={<Activity />} />
     </Routes>
   </BrowserRouter>
 )

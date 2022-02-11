@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import {
   Text,
   Button,
@@ -10,11 +11,12 @@ import {
   DrawerCloseButton,
   DrawerFooter,
   useDisclosure,
-} from '@chakra-ui/react';
-import styled from '@emotion/styled'
+  Link,
+  Box,
+} from '@chakra-ui/react'
 import {
   FiAlignJustify,
-} from 'react-icons/fi';
+} from 'react-icons/fi'
 import {
   FaHome,
   FaGlobeAmericas,
@@ -25,17 +27,32 @@ import {
   FaRegMoneyBillAlt,
 } from 'react-icons/fa';
 
-const NavItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  &:hover{
-    color: black;
-  }
-`
-
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const getItem = (isActive, text, icon) => {
+    const textProperties = {}
+    const iconProperties = {
+      w: 6,
+      h: 9,
+      mr: 4,
+      mt: 0.5,
+      as: icon,
+    }
+    if (isActive) {
+      textProperties.color = 'blue'
+      iconProperties.color = 'blue'
+    }
+    return (
+      <Box
+        display="flex"
+        flex-direction="row"
+      >
+        <Icon {...iconProperties} />
+        <Text {...textProperties}>{text}</Text>
+      </Box>
+    )
+  }
 
   return (
     <>
@@ -44,7 +61,6 @@ const Sidebar = () => {
         <DrawerOverlay />
         <DrawerContent spacing={8} justifyContent="space-between">
           <DrawerCloseButton />
-
           <VStack
             spacing={8}
             fontSize="2xl"
@@ -53,42 +69,28 @@ const Sidebar = () => {
             alignItems="flex-start"
             color="gray.600"
           >
-            <NavItem>
-              <Icon as={FaHome} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Inicio</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaGlobeAmericas} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Nosotros</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaRegCalendarCheck} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Actividades</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaRegComments} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Testimonios</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaNewspaper} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Novedades</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaPhone} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Contacto</Text>
-            </NavItem>
-
-            <NavItem>
-              <Icon as={FaRegMoneyBillAlt} w={6} h={6} mr={4} mt={0.5} />
-              <Text>Contribuye</Text>
-            </NavItem>
+            <Link as={NavLink} exact to="/">
+              {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
+            </Link>
+            <Link as={NavLink} to="/nosotros">
+              {({ isActive }) => getItem(isActive, 'Nosostros', FaGlobeAmericas)}
+            </Link>
+            <Link as={NavLink} to="/actividades">
+              {({ isActive }) => getItem(isActive, 'Actividades', FaRegCalendarCheck)}
+            </Link>
+            <Link as={NavLink} to="/testimonios">
+              {({ isActive }) => getItem(isActive, 'Testimonios', FaRegComments)}
+            </Link>
+            <Link as={NavLink} to="/novedades">
+              {({ isActive }) => getItem(isActive, 'Novedades', FaNewspaper)}
+            </Link>
+            <Link as={NavLink} exact to="/contacto">
+              {({ isActive }) => getItem(isActive, 'Contacto', FaPhone)}
+            </Link>
+            <Link as={NavLink} to="/contribuye">
+              {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
+            </Link>
           </VStack>
-
           <DrawerFooter flexDirection="column">
             <Button colorScheme="blue" width="100%" variant="outline" mb="8px">Log in</Button>
             <Button colorScheme="blue" width="100%">Register</Button>

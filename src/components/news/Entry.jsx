@@ -13,7 +13,7 @@ const Entry = () => {
   const getEntry = useCallback(async () => {
     const res = await getNewById(id)
     setEntryData(res.data.result)
-  }, [setEntryData])
+  }, [id, setEntryData])
 
   useEffect(() => {
     getEntry()

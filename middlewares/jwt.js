@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken')
 
 const generateToken = (user) => {
   delete user.dataValues.password
-  const payload = { user }
 
+  const payload = { user }
   const token = jwt.sign(payload, `${process.env.JWT_PRIVATE_KEY}`, {
     expiresIn: '7d',
   })

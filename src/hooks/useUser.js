@@ -15,8 +15,8 @@ export default function useUser() {
   const isUserData = () => {
     if (!userData && jwt) {
       getUserById().then(({ data }) => {
-        const { body } = data
-        dispatch(setUserData(body))
+        const { result } = data
+        dispatch(setUserData(result))
       })
     }
   }
@@ -28,16 +28,16 @@ export default function useUser() {
 
   const registerUser = (user) =>
     signUp(user).then(({ data }) => {
-      const { body } = data
-      dispatch(setUserData(body.user))
-      window.localStorage.setItem('x-access-token', body.token)
+      const { result } = data
+      dispatch(setUserData(result.user))
+      window.localStorage.setItem('x-access-token', result.token)
     })
 
   const loginUser = (user) =>
     signIn(user).then(({ data }) => {
-      const { body } = data
-      dispatch(setUserData(body.user))
-      window.localStorage.setItem('x-access-token', body.token)
+      const { result } = data
+      dispatch(setUserData(result.user))
+      window.localStorage.setItem('x-access-token', result.token)
     })
   const logoutUser = () => {
     window.localStorage.removeItem('x-access-token')

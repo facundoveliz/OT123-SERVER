@@ -2,13 +2,16 @@ import React, { useEffect, useState, useCallback } from 'react'
 import {
   Center, Box, Heading, Text, Image,
 } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
 import { getNewById } from '../../services/newsService'
 
 const Entry = () => {
   const [entryData, setEntryData] = useState([]);
 
+  const { id } = useParams()
+
   const getEntry = useCallback(async () => {
-    const res = await getNewById(1)
+    const res = await getNewById(id)
     setEntryData(res.data.result)
   }, [setEntryData])
 

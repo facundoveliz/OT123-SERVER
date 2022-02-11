@@ -5,7 +5,7 @@ const activitiesEndpoint = '/activities'
 /**
  * RETRIEVES AN OBJECT WITH ALL THE ACTIVITIES FROM ACTIVITIES ENDPOINT
  * @async
- * @return PROMISE {OBJECT} ALL THE REQUESTED USERS
+ * @return PROMISE {OBJECT} ALL THE REQUESTED ACTIVITIES
  */
 export function getAllActivities() {
   return httpService.get(activitiesEndpoint)
@@ -39,10 +39,10 @@ export function updateActivity(id, activity) {
 }
 
 /**
- * ACCEPTS AN ID TO DELETE ONE TESTIMONIAL FROM TESTIMONIALS ENDPOINT
+ * ACCEPTS AN ID TO DELETE ONE ACTIVITY FROM ACTIVITIES ENDPOINT
  * @async
  * @param {int} id
- * @return PROMISE {OBJECT} THE DELETED TESTIMONIAL
+ * @return PROMISE {OBJECT} THE DELETED ACTIVITY
  */
 export function deleteActivity(id) {
   return httpService.delete(`${activitiesEndpoint}/${id}`)

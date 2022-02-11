@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
 import { IoTrashBin, IoPencil } from 'react-icons/io5'
 import {
@@ -64,7 +63,6 @@ const ListTestimonials = () => {
   useEffect(() => {
     loadData()
   }, [deletedNew])
-  console.log(allTestimonial);
   return (
     <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
       <Alert {...alertProps} />

@@ -16,7 +16,6 @@ import AP from '../components/AnimatedPage'
 
 const AllRoutes = () => {
   const location = useLocation()
-
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes key={location.pathname} location={location}>

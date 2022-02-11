@@ -11,6 +11,7 @@ const handleSubmit = async (data) => {
   const userData = await signIn({ email: data.email, password: data.password })
   const user = userData.data.result.user.dataValues
   const msg = `¡Bienvenido ${user.firstName} ${user.lastName}!`
+  // eslint-disable-next-line no-alert
   alert(msg)
 }
 

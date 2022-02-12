@@ -1,7 +1,8 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const db = require('../models')
+const { generateToken } = require('../middlewares/jwt')
+const { userRole } = require('./role')
 
 const { User } = db
 
@@ -13,7 +14,7 @@ exports.getAll = async (req, res) => {
     res.status(200).json({
       ok: true,
       msg: 'Successful request',
-      result: { user: { ...user } },
+      result: { user: [...user] },
     })
   } catch (error) {
     res.status(403).json({
@@ -59,27 +60,37 @@ exports.signup = async (req, res) => {
   // hash the password
   const salt = await bcrypt.genSalt(10)
   const password = await bcrypt.hash(req.body.password, salt)
-
-  return User.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password,
-  })
-    .then((newUser) => {
-      res.status(201).json({
-        ok: true,
-        msg: 'User created',
-        result: { user: { ...newUser } },
-      })
+  try {
+    const newUser = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password,
     })
-    .catch((err) => {
-      res.status(400).json({
-        ok: false,
-        msg: 'This email adress is already in use',
-        error: err,
-      })
+    delete newUser.dataValues.password
+    console.log(newUser)
+    if (newUser.dataValues.roleId === undefined) {
+      newUser.dataValues.roleId = 2
+      newUser.dataValues.userRole = 'Standard'
+    } else {
+      const roleName = await userRole(newUser)
+      newUser.dataValues.userRole = roleName
+    }
+    // generates token
+    const token = generateToken(newUser)
+    res.status(201).json({
+      ok: true,
+      msg: 'User created',
+      result: { user: { ...newUser }, token },
     })
+  } catch (err) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'This email adress is already in use',
+      error: err,
+    })
+  }
+  return null
 }
 
 exports.signin = async (req, res) => {
@@ -94,7 +105,10 @@ exports.signin = async (req, res) => {
     }
 
     // compares hashed passwords
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password,
+    )
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
@@ -102,16 +116,10 @@ exports.signin = async (req, res) => {
       })
     }
     delete user.dataValues.password
-    delete user.dataValues.deletedAt
-    delete user.dataValues.updatedAt
+    const roleName = await userRole(user)
+    user.dataValues.userRole = roleName
     // generates token
-    const token = jwt.sign(
-      { user },
-      `${process.env.JWT_PRIVATE_KEY}`,
-      {
-        expiresIn: '1h',
-      },
-    )
+    const token = generateToken(user)
     res.status(200).json({
       ok: true,
       msg: 'Login successful',

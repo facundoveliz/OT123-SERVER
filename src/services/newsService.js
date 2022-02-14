@@ -1,14 +1,14 @@
 import httpService from './httpService'
 
-const newsEndpoint = '/news'
+const entriesEndpoint = '/news'
 
 /**
- * RETRIEVES AN OBJECT WITH ALL THE NEWS FROM NEWS ENDPOINT
+ * Retrieves an array with all entries from entries endpoint
  * @async
- * @return PROMISE {OBJECT} ALL THE REQUESTED NEWS
+ * @return Promise {object} all the requested entries
  */
-export function getAllNews() {
-  return httpService.get(newsEndpoint)
+export function getAll() {
+  return httpService.get(entriesEndpoint)
 }
 
 /**
@@ -17,49 +17,60 @@ export function getAllNews() {
  * @param {int} id
  * @return PROMISE {OBJECT} THE REQUESTED NEW
  */
-export function getNewsById(id) {
-  return httpService.get(`${newsEndpoint}/${id}`)
+
+export function getNewById(id) {
+  return httpService.get(`${entriesEndpoint}/${id}`)
 }
 
 /**
- * ACCEPTS AN OBJECT TO CREATE A NEW FROM NEWS ENDPOINT
+ * Accepts an id to retrieve one entry from entries endpoint
+ * @async
+ * @param {int} id
+ * @return Promise {object} the requested entry
+ */
+export function getOne(id) {
+  return httpService.get(`${entriesEndpoint}/${id}`)
+}
+
+/**
+ * Accepts an object to send it to entries endpoint
  * @async
  * @param {object} entry
  * @param {string} entry.name
  * @param {string} entry.content
  * @param {string} entry.image
- * @param {int} entry.categoryId
  * @param {string} entry.type
- * @param {date} entry.deletedAt
- * @return PROMISE {OBJECT} THE CREATED NEW
+ * @param {int} entry.categoryId
+ * @return Promise {object} the created entrie
  */
-export function createNews(entry) {
-  return httpService.post(newsEndpoint, entry)
+
+export function add(entry) {
+  return httpService.post(entriesEndpoint, entry)
 }
 
 /**
- * ACCEPTS AN ID & AND AN OBJECT TO UPDATE A NEW FROM NEWS ENDPOINT
+ * Accepts an object to send it to entries endpoint
  * @async
  * @param {int} id
  * @param {object} entry
  * @param {string} entry.name
  * @param {string} entry.content
  * @param {string} entry.image
- * @param {int} entry.categoryId
  * @param {string} entry.type
- * @param {date} entry.deletedAt
- * @return PROMISE {OBJECT} THE CREATED NEW
+ * @param {int} entry.categoryId
+ * @return Promise {object} the created entry
  */
-export function updateNews(id, entry) {
-  return httpService.put(`${newsEndpoint}/${id}`, entry)
+
+export function update(id, entry) {
+  return httpService.put(`${entriesEndpoint}/${id}`, entry)
 }
 
 /**
- * ACCEPTS AN ID TO DELETE ONE CATEGORY FROM NEWS ENDPOINT
+ * Accepts an id to delete one entry from entries endpoint
  * @async
  * @param {int} id
- * @return PROMISE {OBJECT} THE DELETED NEW
+ * @return Promise {object} the deleted entry
  */
 export function deleteNews(id) {
-  return httpService.delete(`${newsEndpoint}/${id}`)
+  return httpService.delete(`${entriesEndpoint}/${id}`)
 }

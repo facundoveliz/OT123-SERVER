@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { Text, VStack, Grid } from '@chakra-ui/react'
 import Card from './Card'
-import { getAllNews } from '../../services/newsService'
+import { getAll } from '../../services/newsService'
 
 const News = () => {
   const [entrysData, setEntrysData] = useState([]);
 
   const getEntrys = useCallback(async () => {
-    const res = await getAllNews()
+    const res = await getAll()
     setEntrysData(res.data.result.news)
   }, [setEntrysData])
 

@@ -13,8 +13,8 @@ import ContactsList from '../pages/contact/ContactsList'
 import SignIn from '../pages/signin/SignInForm'
 import SignUp from '../pages/signup/SignUpForm'
 import Home from '../pages/Home'
-import TestimonialForm from '../components/testimonials/TestimonialForm'
 import AP from '../components/AnimatedPage'
+import TestimonialForm from '../components/testimonials/TestimonialForm'
 
 const AllRoutes = () => {
   const location = useLocation()

@@ -7,6 +7,8 @@ import {
 import { AnimatePresence } from 'framer-motion'
 // eslint-disable-next-line import/no-cycle
 import App from '../App'
+import News from '../components/news/News'
+import Entry from '../components/news/Entry'
 import ContactsList from '../pages/contact/ContactsList'
 import SignIn from '../pages/signin/SignInForm'
 import SignUp from '../pages/signup/SignUpForm'
@@ -24,6 +26,8 @@ const AllRoutes = () => {
         <Route path="/signup" element={<AP><SignUp /></AP>} />
         <Route path="/backoffice/contacts" element={<AP><ContactsList /></AP>} />
         <Route path="/testimonialform" element={<AP><TestimonialForm /></AP>} />
+        <Route path="novedades" element={<News />} />
+        <Route path="novedades/:id" element={<Entry />} />
         <Route path="/app" element={<App />} />
       </Routes>
     </AnimatePresence>

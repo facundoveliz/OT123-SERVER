@@ -24,7 +24,9 @@ const News = () => {
         </Text>
       </VStack>
       <Grid templateColumns="repeat(auto-fill, 350px)" gap={8} mb={12} justifyContent="center">
-        <Card entrys={entrysData} />
+        <Card
+          entrys={entrysData}
+        />
       </Grid>
     </>
   )

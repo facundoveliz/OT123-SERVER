@@ -12,7 +12,7 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
-import { getAllNews, deleteNews } from '../../../services/newsService'
+import { getAll, deleteNews } from '../../../services/newsService'
 import Alert from '../../../components/alert/Alert'
 
 const ListNews = () => {
@@ -28,7 +28,7 @@ const ListNews = () => {
 
   async function loadData() {
     try {
-      const response = await getAllNews()
+      const response = await getAll()
       setNewsData(response.data.result.news)
     } catch (error) {
       const errorAlertProps = {

@@ -46,8 +46,6 @@ const ListTestimonials = () => {
   const confirmDelete = async (id) => {
     try {
       const confirmedDelete = await deleteCategory(id)
-      setDeletedCategory(id)
-      window.location.reload();
       if (confirmedDelete) {
         setAlertProps({
           show: true,
@@ -55,7 +53,10 @@ const ListTestimonials = () => {
           message: 'Categoria eliminada de forma exitosa!',
           icon: 'success',
           cancelbtn: false,
-          onConfirm: () => {},
+          onConfirm: () => {
+            setDeletedCategory(id)
+            window.location.reload();
+          },
         })
       }
     } catch (error) {

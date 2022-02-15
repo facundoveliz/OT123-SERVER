@@ -15,6 +15,7 @@ import SignUp from '../pages/signup/SignUpForm'
 import Home from '../pages/Home'
 import AP from '../components/AnimatedPage'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
+import ListCategories from '../pages/backoffice/categories/ListCategories'
 
 const AllRoutes = () => {
   const location = useLocation()
@@ -25,6 +26,7 @@ const AllRoutes = () => {
         <Route path="/signin" element={<AP><SignIn /></AP>} />
         <Route path="/signup" element={<AP><SignUp /></AP>} />
         <Route path="/backoffice/contacts" element={<AP><ContactsList /></AP>} />
+        <Route path="/backoffice/categories" element={<AP><ListCategories /></AP>} />
         <Route path="/testimonialform" element={<AP><TestimonialForm /></AP>} />
         <Route path="novedades" element={<News />} />
         <Route path="novedades/:id" element={<Entry />} />

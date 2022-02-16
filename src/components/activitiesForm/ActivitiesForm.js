@@ -26,7 +26,7 @@ import {
   updateActivity,
 } from '../../services/activitiesService'
 import './ActivitiesForm.css'
-import uploadFile from '../../services/imgUploadService'
+import UploadFile from '../../services/imgUploadService'
 import GridImages from './GridImages'
 
 const ActivitiesForm = () => {
@@ -84,7 +84,7 @@ const ActivitiesForm = () => {
   const updateChangeHandler = async (values) => {
     console.log('hola');
     console.log(values)
-    uploadFile(values.image)
+    UploadFile(values.image)
     /* const updatedActivity = await updateActivity(id, {
       name: values.name,
       content: data.content,
@@ -103,7 +103,7 @@ const ActivitiesForm = () => {
   }
 
   const AddSubmitHandler = async (values) => {
-    uploadFile(values.image)
+    UploadFile(values.image)
     /* try {
       const newActivity = await addActivity({
         name: values.name,

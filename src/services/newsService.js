@@ -17,6 +17,7 @@ export function getAll() {
  * @param {int} id
  * @return PROMISE {OBJECT} THE REQUESTED NEW
  */
+
 export function getNewById(id) {
   return httpService.get(`${entriesEndpoint}/${id}`)
 }
@@ -42,6 +43,7 @@ export function getOne(id) {
  * @param {int} entry.categoryId
  * @return Promise {object} the created entrie
  */
+
 export function add(entry) {
   return httpService.post(entriesEndpoint, entry)
 }
@@ -58,6 +60,7 @@ export function add(entry) {
  * @param {int} entry.categoryId
  * @return Promise {object} the created entry
  */
+
 export function update(id, entry) {
   return httpService.put(`${entriesEndpoint}/${id}`, entry)
 }

@@ -73,7 +73,7 @@ const Sidebar = () => {
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
             </Link>
             <Link as={NavLink} to="/nosotros">
-              {({ isActive }) => getItem(isActive, 'Nosostros', FaGlobeAmericas)}
+              {({ isActive }) => getItem(isActive, 'Nosotros', FaGlobeAmericas)}
             </Link>
             <Link as={NavLink} to="/actividades">
               {({ isActive }) => getItem(isActive, 'Actividades', FaRegCalendarCheck)}

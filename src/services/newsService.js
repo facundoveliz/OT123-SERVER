@@ -17,7 +17,7 @@ export function getAllNews() {
  * @param {int} id
  * @return PROMISE {OBJECT} THE REQUESTED NEW
  */
-export function getNewById(id) {
+export function getOne(id) {
   return httpService.get(`${newsEndpoint}/${id}`)
 }
 
@@ -33,7 +33,7 @@ export function getNewById(id) {
  * @param {date} entry.deletedAt
  * @return PROMISE {OBJECT} THE CREATED NEW
  */
-export function createNew(entry) {
+export function add(entry) {
   return httpService.post(newsEndpoint, entry)
 }
 
@@ -50,7 +50,7 @@ export function createNew(entry) {
  * @param {date} entry.deletedAt
  * @return PROMISE {OBJECT} THE CREATED NEW
  */
-export function updateNew(id, entry) {
+export function update(id, entry) {
   return httpService.put(`${newsEndpoint}/${id}`, entry)
 }
 

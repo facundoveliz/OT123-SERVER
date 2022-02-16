@@ -5,19 +5,31 @@ import {
   Box, Image, Heading, HStack, VStack, Button,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom'
-import TextField from '../TextField';
-import { signUp } from '../../services/usersService'
+import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
+import useUser from '../../hooks/useUser'
 
 const SignUpForm = () => {
   const navigate = useNavigate()
+  const { registerUser } = useUser()
 
   const [alerts, setAlerts] = useState({
     show: false,
     title: '',
     message: '',
     icon: '',
+    buttons: false,
+    onConfirm: () => {},
   })
+
+  const successAlert = {
+    show: true,
+    title: '¡Registro exitoso!',
+    message: '¡Gracias por unirte a SOMOS MÁS!',
+    icon: 'success',
+    buttons: false,
+    onConfirm: () => {},
+  }
 
   const errorAlert = {
     show: true,
@@ -28,28 +40,16 @@ const SignUpForm = () => {
     onConfirm: () => {},
   }
 
-  const handleSubmit = async (data) => {
-    const userData = await signUp({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password,
-    })
-    if (userData) {
-      const user = userData.data.result.user.dataValues
-      const msg = `¡Gracias por unirte a SOMOS MÁS ${user.firstName} ${user.lastName}!`
-      const successAlert = {
-        show: true,
-        title: '¡Registro exitoso!',
-        message: msg,
-        icon: 'success',
-        onConfirm: () => {},
+  const handleSubmit = (userData) => {
+    const registerSuccess = registerUser(userData)
+    registerSuccess.then((success) => {
+      if (success === true) {
+        setAlerts(successAlert)
+        navigate('/')
+      } else {
+        setAlerts(errorAlert)
       }
-      setAlerts(successAlert)
-      setTimeout(navigate('/signin'), 500)
-    } else {
-      setAlerts(errorAlert)
-    }
+    })
   }
 
   return (
@@ -65,8 +65,9 @@ const SignUpForm = () => {
           email: Yup.string().email('¡E-mail inválido!').required('¡E-mail requerido!'),
           password: Yup.string().required('¡Contraseña requerida!').min(6, '¡Contraseña muy corta!'),
         })}
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           handleSubmit(values)
+          actions.resetForm()
         }}
       >
         {(formik) => (

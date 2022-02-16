@@ -11,6 +11,7 @@ import SignIn from '../pages/signin/SignInForm'
 import ContactPage from '../pages/contact/ContactPage'
 import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
+import ListNews from '../pages/backoffice/news/ListNews'
 
 const PublicRoutes = () => {
   const location = useLocation()
@@ -23,6 +24,7 @@ const PublicRoutes = () => {
         <Route path="contacto" element={<ContactPage />} />
         <Route path="testimonios" element={<TestimonialList />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
+        <Route path="novedades" element={<ListNews />} />
         <Route path="" element={<Home />} />
       </Routes>
     </AnimatedPage>

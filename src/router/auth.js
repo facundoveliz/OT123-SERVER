@@ -13,6 +13,7 @@ import SignIn from '../pages/signin/SignInForm'
 import ContactPage from '../pages/contact/ContactPage'
 import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
+import ListNews from '../pages/backoffice/news/ListNews'
 
 const AuthRoutes = () => {
   const location = useLocation()
@@ -26,6 +27,7 @@ const AuthRoutes = () => {
           <Route path="contactpage" element={<ContactPage />} />
           <Route path="testimonials" element={<TestimonialList />} />
           <Route path="testimonialForm" element={<TestimonialForm />} />
+          <Route path="novedades" element={<ListNews />} />
           <Route path="home" element={<Home />} />
         </Route>
       </Routes>

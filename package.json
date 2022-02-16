@@ -21,6 +21,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.25.0",
+    "buffer": "^6.0.3",
     "cross-env": "^7.0.3",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",

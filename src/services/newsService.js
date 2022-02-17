@@ -12,6 +12,17 @@ export function getAll() {
 }
 
 /**
+ * ACCEPTS AN ID TO RETRIEVE ONE NEW FROM NEWS ENDPOINT
+ * @async
+ * @param {int} id
+ * @return PROMISE {OBJECT} THE REQUESTED NEW
+ */
+
+export function getNewById(id) {
+  return httpService.get(`${entriesEndpoint}/${id}`)
+}
+
+/**
  * Accepts an id to retrieve one entry from entries endpoint
  * @async
  * @param {int} id
@@ -32,6 +43,7 @@ export function getOne(id) {
  * @param {int} entry.categoryId
  * @return Promise {object} the created entrie
  */
+
 export function add(entry) {
   return httpService.post(entriesEndpoint, entry)
 }
@@ -48,6 +60,7 @@ export function add(entry) {
  * @param {int} entry.categoryId
  * @return Promise {object} the created entry
  */
+
 export function update(id, entry) {
   return httpService.put(`${entriesEndpoint}/${id}`, entry)
 }

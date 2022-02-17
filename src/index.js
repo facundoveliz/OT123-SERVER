@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import { ChakraProvider } from '@chakra-ui/react'
 import App from './App'
-import store from './app/store';
+import { store, persistor } from './app/store';
 import * as serviceWorker from './serviceWorker';
 import theme from './themes'
 
@@ -11,7 +12,9 @@ ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   </ChakraProvider>,

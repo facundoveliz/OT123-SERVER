@@ -87,7 +87,7 @@ const Sidebar = () => {
             <Link as={NavLink} exact to="/contacto">
               {({ isActive }) => getItem(isActive, 'Contacto', FaPhone)}
             </Link>
-            <Link as={NavLink} to="/contribuye">
+            <Link as={NavLink} to="/perfil">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
             </Link>
           </VStack>

@@ -8,6 +8,7 @@ import AnimatedPage from '../components/transitions/AnimatedPage'
 import Home from '../pages/Home'
 import SignUp from '../pages/signup/SignUpForm'
 import SignIn from '../pages/signin/SignInForm'
+import Profile from '../pages/profile/Profile'
 import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
 import ListNews from '../pages/backoffice/news/ListNews'
@@ -23,6 +24,7 @@ const PublicRoutes = () => {
         <Route path="testimonios" element={<TestimonialList />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
         <Route path="novedades" element={<ListNews />} />
+        <Route path="perfil" element={<Profile />} />
         <Route path="" element={<Home />} />
       </Routes>
     </AnimatedPage>

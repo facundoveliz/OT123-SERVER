@@ -7,7 +7,7 @@ const testimonialsEndpoint = '/testimonials'
  * @async
  * @return Promise {object} all the requested testimonials
  */
-export function getAll() {
+export function getAllTestimonials() {
   return httpService.get(testimonialsEndpoint)
 }
 
@@ -30,7 +30,7 @@ export function getTestimonial(id) {
  * @param {string} testimonial.content
  * @return Promise {object} the created testimonial
  */
-export function add(testimonial) {
+export function addTestimonial(testimonial) {
   return httpService.post(testimonialsEndpoint, testimonial)
 }
 
@@ -44,7 +44,7 @@ export function add(testimonial) {
  * @param {string} testimonial.content
  * @return Promise {object} the created testimonial
  */
-export function update(id, testimonial) {
+export function updateTestimonial(id, testimonial) {
   return httpService.put(`${testimonialsEndpoint}/${id}`, testimonial)
 }
 

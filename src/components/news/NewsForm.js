@@ -16,18 +16,18 @@ import {
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-
-import { addTestimonial, getTestimonial, updateTestimonial } from '../../services/testimonialsService'
+import { add, getOne, update } from '../../services/newsService'
 import Alert from '../alert/Alert'
 
-const TestimonialForm = () => {
+const NewsForm = () => {
   const { id } = useParams()
-  const [testimonialData, setTestimonialData] = useState({
+  const [newsData, setNewsData] = useState({
     id: null,
     name: '',
     image:
       'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
     content: '',
+    categoryId: '',
   })
   const [ready, setReady] = useState(false)
   const [alerts, setAlerts] = useState({
@@ -37,22 +37,23 @@ const TestimonialForm = () => {
     icon: '',
     onConfirm: () => {},
   })
-  const loadTestimonialData = async () => {
+  const loadNewsData = async () => {
     if (id) {
       try {
-        const loadedTestimonialData = await getTestimonial(id)
-        setTestimonialData({
-          id: loadedTestimonialData.data.result.id,
-          name: loadedTestimonialData.data.result.name,
+        const loadedNewsData = await getOne(id)
+        setNewsData({
+          id: loadedNewsData.data.result.id,
+          name: loadedNewsData.data.result.name,
           image:
             'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
-          content: loadedTestimonialData.data.result.content,
+          content: loadedNewsData.data.result.content,
+          category: loadedNewsData.data.result.categoryId,
         })
         setReady(true)
       } catch (error) {
         const errorAlert = {
           show: true,
-          title: 'Ooops, algo ha fallado!',
+          title: 'Hubo un error!',
           message: error.message,
           icon: 'error',
           onConfirm: () => {},
@@ -62,25 +63,28 @@ const TestimonialForm = () => {
     }
   }
   useEffect(() => {
-    loadTestimonialData()
+    loadNewsData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const ckChangeHandler = (event, editor) => {
     const editedData = editor.getData()
-    setTestimonialData((data) => ({ ...data, content: editedData }))
+    setNewsData((data) => ({ ...data, content: editedData }))
   }
   const updateChangeHandler = async (values) => {
-    const updatedTestimonial = await updateTestimonial(id, {
+    const updatedEntry = await update(id, {
       name: values.name,
-      content: testimonialData.content,
-      image: testimonialData.image,
+      content: newsData.content,
+      image: newsData.image,
+      category: newsData.categoryId,
     })
-    if (updatedTestimonial) {
+    // eslint-disable-next-line no-console
+    console.log(updatedEntry)
+    if (updatedEntry) {
       const successAlert = {
         show: true,
-        title: 'Testimonio',
-        message: 'El testimonio se ha actualizado!',
+        title: 'Novedad',
+        message: 'El novedad se ha actualizado!',
         icon: 'success',
         onConfirm: () => {},
       }
@@ -90,16 +94,17 @@ const TestimonialForm = () => {
 
   const AddSubmitHandler = async (values) => {
     try {
-      const newTestimonial = await addTestimonial({
+      const newNews = await add({
         name: values.name,
-        content: testimonialData.content,
+        content: newsData.content,
         image: values.image,
+        category: values.categoryId,
       })
-      if (newTestimonial) {
+      if (newNews) {
         const successAlert = {
           show: true,
-          title: 'Testimonio',
-          message: 'Testimonio agregado!',
+          title: 'Novedad',
+          message: 'Novedad agregada!',
           icon: 'success',
           onConfirm: () => {},
         }
@@ -108,7 +113,7 @@ const TestimonialForm = () => {
     } catch (error) {
       const errorAlert = {
         show: true,
-        title: 'hubo un error!',
+        title: 'Hubo un error!',
         message: error.message,
         icon: 'error',
         onConfirm: () => {},
@@ -122,11 +127,11 @@ const TestimonialForm = () => {
       <Alert {...alerts} />
       {((id && ready) || !id) && (
         <Formik
-          initialValues={testimonialData}
+          initialValues={newsData}
           validationSchema={Yup.object({
             name: Yup.string()
-              .required('Nombre requerido!')
-              .min(3, 'Nombre muy corto!'),
+              .required('Título requerido!')
+              .min(3, 'Título muy corto!'),
           })}
           onSubmit={(values) =>
             (id ? updateChangeHandler(values) : AddSubmitHandler(values))}
@@ -152,9 +157,17 @@ const TestimonialForm = () => {
                 display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Testimonio</Heading>
-                <FormControl>
+                <Heading align="center">Novedad</Heading>
+                <FormControl display="flex" justifyContent="space-between">
                   <FormLabel paddingLeft="2">Titulo</FormLabel>
+                  {id && (
+                    <FormLabel width="200px">
+                      Categoria:
+                      {newsData.categoryId}
+                    </FormLabel>
+                  )}
+                </FormControl>
+                <FormControl>
                   <Input
                     type="text"
                     id="name"
@@ -189,7 +202,7 @@ const TestimonialForm = () => {
                     />
                   </Box>
                   <Box paddingLeft="4" paddingRight="4">
-                    <Image objectFit="cover" src={testimonialData.image} />
+                    <Image objectFit="cover" src={newsData.image} />
                   </Box>
                 </FormControl>
                 <Button type="submit" w="100%">
@@ -204,4 +217,4 @@ const TestimonialForm = () => {
   )
 }
 
-export default TestimonialForm
+export default NewsForm

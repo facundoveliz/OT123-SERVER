@@ -11,23 +11,19 @@ import {
   Input,
   Spacer,
   FormControl,
-  Image,
-  Box,
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
-import { addTestimonial, getTestimonial, updateTestimonial } from '../../services/testimonialsService'
+import { createCategory, getCategoryById, updateCategory } from '../../services/categoriesService'
 import Alert from '../alert/Alert'
 
-const TestimonialForm = () => {
+const CategoriesForm = () => {
   const { id } = useParams()
-  const [testimonialData, setTestimonialData] = useState({
+  const [categoriesData, setCategoriesData] = useState({
     id: null,
     name: '',
-    image:
-      'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
-    content: '',
+    description: '',
   })
   const [ready, setReady] = useState(false)
   const [alerts, setAlerts] = useState({
@@ -37,22 +33,20 @@ const TestimonialForm = () => {
     icon: '',
     onConfirm: () => {},
   })
-  const loadTestimonialData = async () => {
+  const loadCategoryData = async () => {
     if (id) {
       try {
-        const loadedTestimonialData = await getTestimonial(id)
-        setTestimonialData({
-          id: loadedTestimonialData.data.result.id,
-          name: loadedTestimonialData.data.result.name,
-          image:
-            'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
-          content: loadedTestimonialData.data.result.content,
+        const loadedCategoryData = await getCategoryById(id)
+        setCategoriesData({
+          id: loadedCategoryData.data.result.id,
+          name: loadedCategoryData.data.result.name,
+          description: loadedCategoryData.data.result.description,
         })
         setReady(true)
       } catch (error) {
         const errorAlert = {
           show: true,
-          title: 'Ooops, algo ha fallado!',
+          title: 'Hubo un error!',
           message: error.message,
           icon: 'error',
           onConfirm: () => {},
@@ -62,25 +56,24 @@ const TestimonialForm = () => {
     }
   }
   useEffect(() => {
-    loadTestimonialData()
+    loadCategoryData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const ckChangeHandler = (event, editor) => {
     const editedData = editor.getData()
-    setTestimonialData((data) => ({ ...data, content: editedData }))
+    setCategoriesData((data) => ({ ...data, description: editedData }))
   }
   const updateChangeHandler = async (values) => {
-    const updatedTestimonial = await updateTestimonial(id, {
+    const updatedCategory = await updateCategory(id, {
       name: values.name,
-      content: testimonialData.content,
-      image: testimonialData.image,
+      description: categoriesData.description,
     })
-    if (updatedTestimonial) {
+    if (updatedCategory) {
       const successAlert = {
         show: true,
-        title: 'Testimonio',
-        message: 'El testimonio se ha actualizado!',
+        title: 'Categoria',
+        message: 'La categoria se ha actualizado!',
         icon: 'success',
         onConfirm: () => {},
       }
@@ -88,18 +81,17 @@ const TestimonialForm = () => {
     }
   }
 
-  const AddSubmitHandler = async (values) => {
+  const addSubmitHandler = async (values) => {
     try {
-      const newTestimonial = await addTestimonial({
+      const newCategory = await createCategory({
         name: values.name,
-        content: testimonialData.content,
-        image: values.image,
+        description: categoriesData.description,
       })
-      if (newTestimonial) {
+      if (newCategory) {
         const successAlert = {
           show: true,
-          title: 'Testimonio',
-          message: 'Testimonio agregado!',
+          title: 'Categoria',
+          message: 'Categoria agregada!',
           icon: 'success',
           onConfirm: () => {},
         }
@@ -122,14 +114,14 @@ const TestimonialForm = () => {
       <Alert {...alerts} />
       {((id && ready) || !id) && (
         <Formik
-          initialValues={testimonialData}
+          initialValues={categoriesData}
           validationSchema={Yup.object({
             name: Yup.string()
               .required('Nombre requerido!')
               .min(3, 'Nombre muy corto!'),
           })}
           onSubmit={(values) =>
-            (id ? updateChangeHandler(values) : AddSubmitHandler(values))}
+            (id ? updateChangeHandler(values) : addSubmitHandler(values))}
         >
           {({ values, handleSubmit, handleChange }) => (
             <HStack
@@ -152,7 +144,7 @@ const TestimonialForm = () => {
                 display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Testimonio</Heading>
+                <Heading align="center">Categoria</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="2">Titulo</FormLabel>
                   <Input
@@ -167,30 +159,11 @@ const TestimonialForm = () => {
                 <FormControl>
                   <FormLabel paddingLeft="2">Contenido</FormLabel>
                   <CKEditor
-                    name="content"
-                    data={values.content}
+                    name="description"
+                    data={values.description}
                     editor={ClassicEditor}
                     onChange={ckChangeHandler}
                   />
-                </FormControl>
-                <FormLabel paddingLeft="2">Imagen</FormLabel>
-                <FormControl
-                  display="flex"
-                  flexWrap="wrap"
-                  justifyContent="center"
-                >
-                  <Box paddingBottom="2" align="center">
-                    <Input
-                      width="230px"
-                      border-radius="5px"
-                      padding="4px 5px"
-                      cursor="pointer"
-                      type="file"
-                    />
-                  </Box>
-                  <Box paddingLeft="4" paddingRight="4">
-                    <Image objectFit="cover" src={testimonialData.image} />
-                  </Box>
                 </FormControl>
                 <Button type="submit" w="100%">
                   Guardar
@@ -204,4 +177,4 @@ const TestimonialForm = () => {
   )
 }
 
-export default TestimonialForm
+export default CategoriesForm

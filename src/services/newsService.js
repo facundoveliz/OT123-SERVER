@@ -12,16 +12,6 @@ export function getAll() {
 }
 
 /**
- * ACCEPTS AN ID TO RETRIEVE ONE NEW FROM NEWS ENDPOINT
- * @async
- * @param {int} id
- * @return PROMISE {OBJECT} THE REQUESTED NEW
- */
-export function getNewById(id) {
-  return httpService.get(`${entriesEndpoint}/${id}`)
-}
-
-/**
  * Accepts an id to retrieve one entry from entries endpoint
  * @async
  * @param {int} id

@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// eslint-disable-next-line import/no-unresolved
 import { add, getOne, update } from '../../services/newsService'
 import Alert from '../alert/Alert'
 

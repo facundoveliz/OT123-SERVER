@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import {
@@ -13,12 +11,11 @@ import {
   Input,
   Spacer,
   FormControl,
-  Image,
   Box,
+  Spinner,
 } from '@chakra-ui/react'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { Grid, GridItem } from '@chakra-ui/layout'
 import Alert from '../alert/Alert'
 import {
   addActivity,
@@ -31,8 +28,8 @@ import GridImages from './GridImages'
 
 const ActivitiesForm = () => {
   const { id } = useParams()
-
-  const [blobImage, setBlobImage] = useState('')
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const [loadImage, setLoadImage] = useState(null)
   const [comment, setComment] = useState('')
   const [data, setData] = useState('')
@@ -82,13 +79,11 @@ const ActivitiesForm = () => {
   }, [])
 
   const updateChangeHandler = async (values) => {
-    console.log('hola');
-    console.log(values)
     UploadFile(values.image)
-    /* const updatedActivity = await updateActivity(id, {
+    const updatedActivity = await updateActivity(id, {
       name: values.name,
       content: data.content,
-      image: values.image ? await imgUploadService(values.image) : activity.oldImage,
+      image: values.image ? await UploadFile(values.image) : activity.oldImage,
     })
     if (updatedActivity) {
       const successAlert = {
@@ -99,28 +94,31 @@ const ActivitiesForm = () => {
         onConfirm: () => {},
       }
       setAlerts(successAlert)
-    } */
+      navigate('/')
+    }
   }
 
   const AddSubmitHandler = async (values) => {
-    UploadFile(values.image)
-    /* try {
-      const newActivity = await addActivity({
+    try {
+      setLoading(true)
+      await addActivity({
         name: values.name,
         content: data.content,
-        image: values.image ? await imgUploadService(values.image) : null,
-      })
-      if (newActivity) {
-        const successAlert = {
-          show: true,
-          title: 'Actividad',
-          message: 'Actividad agregada!',
-          icon: 'success',
-          onConfirm: () => {},
+        image: values.image ? await UploadFile(values.image) : null,
+      }).then((newActivity) => {
+        if (newActivity) {
+          const successAlert = {
+            show: true,
+            title: 'Actividad',
+            message: 'Actividad agregada!',
+            icon: 'success',
+            onConfirm: () => {},
+          }
+          setAlerts(successAlert)
+          navigate('/')
+          setLoading(false)
         }
-        setAlerts(successAlert)
-        Navigate('/')
-      }
+      })
     } catch (error) {
       const errorAlert = {
         show: true,
@@ -130,7 +128,7 @@ const ActivitiesForm = () => {
         onConfirm: () => {},
       }
       setAlerts(errorAlert)
-    } */
+    }
   }
 
   return (
@@ -231,7 +229,7 @@ const ActivitiesForm = () => {
                   )}
                 </Box>
                 <Button type="submit" w="100%">
-                  Guardar
+                  {loading ? <Spinner /> : 'Guardar'}
                 </Button>
               </VStack>
             </HStack>

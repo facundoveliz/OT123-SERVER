@@ -17,7 +17,7 @@ module.exports = {
         clases de lengua y matemática con una planificación propia que armamos 
         en Manos para nivelar a los niños y que vayan con más herramientas a la 
         escuela.  `,
-        image: '',
+        image: 'https://www.wikihow.com/images/3/38/Form-a-Study-Group-Step-16.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -31,7 +31,7 @@ module.exports = {
         voluntarios los recibe para ayudarlos a estudiar o hacer la tarea. Este 
         espacio también es utilizado por los jóvenes como un punto de encuentro y 
         relación entre ellos y la institución. `,
-        image: '',
+        image: 'https://www.wikihow.com/images_en/thumb/e/ed/Form-a-Study-Group-Step-10.jpg/v4-460px-Form-a-Study-Group-Step-10.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -46,7 +46,7 @@ module.exports = {
         intervenciones con las escuelas que los alojan, con las familias de los 
         alumnos y con las instancias municipales, provinciales y nacionales que 
         correspondan`,
-        image: '',
+        image: 'https://st.depositphotos.com/1010613/4321/i/950/depositphotos_43211085-stock-photo-university-students-doing-group-study.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },

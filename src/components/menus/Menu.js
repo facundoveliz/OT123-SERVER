@@ -5,8 +5,9 @@ import NormalMenu from './NormalMenu'
 
 const Menu = (props) => {
   const { roleId } = props
-
-  if (roleId === 1) {
+  // eslint-disable-next-line no-console
+  console.log(roleId);
+  if (roleId.roleId === 1) {
     return <AdminMenu />
   }
   return <NormalMenu />

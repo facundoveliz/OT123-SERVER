@@ -68,7 +68,6 @@ exports.signup = async (req, res) => {
       password,
     })
     delete newUser.dataValues.password
-    console.log(newUser)
     if (newUser.dataValues.roleId === undefined) {
       newUser.dataValues.roleId = 2
       newUser.dataValues.userRole = 'Standard'

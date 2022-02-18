@@ -3,9 +3,21 @@ import { NavLink } from 'react-router-dom'
 import {
   HStack, Image, Text, Button,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import useUser from '../../hooks/useUser'
+import { getUserData } from '../../app/slices/auth'
 import Sidebar from './Sidebar'
+import Menu from '../menus/Menu'
 
 const Header = () => {
+  const userData = useSelector(getUserData)
+  let roleId = 0
+  const { isLoggedIn } = useUser()
+
+  if (isLoggedIn) {
+    roleId = userData.payload.userData.dataValues
+  }
+
   const getText = (isActive, text) => {
     const textProperties = {}
     if (isActive) {
@@ -39,6 +51,7 @@ const Header = () => {
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
   ]
+
   return (
     <HStack justify="space-between" py={2} px={3}>
       <Sidebar />
@@ -60,12 +73,12 @@ const Header = () => {
         {navItems}
       </HStack>
       <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
-        <Button colorScheme="blue" width="150px" variant="outline">
-          Log in
-        </Button>
-        <Button colorScheme="blue" width="150px">
-          Register
-        </Button>
+        {isLoggedIn === true
+          && <Menu roleId={roleId} />}
+        {isLoggedIn === false
+          && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Sign in</Button>}
+        {isLoggedIn === false
+          && <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Sign up</Button>}
       </HStack>
     </HStack>
   )

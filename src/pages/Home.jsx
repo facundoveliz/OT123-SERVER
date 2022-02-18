@@ -1,5 +1,8 @@
 import React from 'react'
-import { Img, Text } from '@chakra-ui/react'
+import {
+  Img,
+  Text,
+} from '@chakra-ui/react'
 import Header from '../components/navbar/Header'
 import Footer from '../components/Footer'
 

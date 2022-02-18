@@ -2,13 +2,14 @@
 import React from 'react'
 import { GridItem, Text, Image } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-const Card = ({ entrys }) => {
+const Card = ({ array, direction }) => {
   const navigate = useNavigate()
 
   return (
     <>
-      {entrys.map((item) => (
+      {array.map((item) => (
         <GridItem
           key={item.id}
           w="350px"
@@ -18,7 +19,7 @@ const Card = ({ entrys }) => {
           cursor="pointer"
           textAlign="justify"
           onClick={() => {
-            navigate(`/novedades/${item.id}`)
+            navigate(`/${direction}/${item.id}`)
           }}
         >
           <Text
@@ -61,5 +62,15 @@ const Card = ({ entrys }) => {
     </>
   )
 }
+Card.propTypes = {
+  direction: PropTypes.string.isRequired,
+  array: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      image: PropTypes.string,
+      content: PropTypes.string,
+    }),
+  ).isRequired,
 
+}
 export default Card

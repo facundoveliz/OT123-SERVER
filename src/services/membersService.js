@@ -11,6 +11,10 @@ export function getAllmembers() {
   return httpService.get(membersEndpoint)
 }
 
+export function getMember(id) {
+  return httpService.get(`${membersEndpoint}/${id}`)
+}
+
 /**
  * ACCEPTS AN OBJECT TO CREATE A MEMBER FROM MEMBERS ENDPOINT
  * @async

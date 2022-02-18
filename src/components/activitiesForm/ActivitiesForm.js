@@ -28,6 +28,7 @@ import GridImages from './GridImages'
 
 const ActivitiesForm = () => {
   const { id } = useParams()
+
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [loadImage, setLoadImage] = useState(null)
@@ -101,24 +102,25 @@ const ActivitiesForm = () => {
   const AddSubmitHandler = async (values) => {
     try {
       setLoading(true)
-      await addActivity({
+      const newActivity = await addActivity({
         name: values.name,
         content: data.content,
         image: values.image ? await UploadFile(values.image) : null,
-      }).then((newActivity) => {
-        if (newActivity) {
-          const successAlert = {
-            show: true,
-            title: 'Actividad',
-            message: 'Actividad agregada!',
-            icon: 'success',
-            onConfirm: () => {},
-          }
-          setAlerts(successAlert)
-          navigate('/')
-          setLoading(false)
-        }
       })
+      if (newActivity) {
+        // eslint-disable-next-line no-console
+        console.log(newActivity);
+        const successAlert = {
+          show: true,
+          title: 'Actividad',
+          message: 'Actividad agregada!',
+          icon: 'success',
+          onConfirm: () => {},
+        }
+        setAlerts(successAlert)
+        navigate('/')
+        setLoading(false)
+      }
     } catch (error) {
       const errorAlert = {
         show: true,

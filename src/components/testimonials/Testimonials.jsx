@@ -3,36 +3,36 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { Text, VStack, Grid } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
-import { getAll } from '../../services/newsService'
+import { getAllTestimonials } from '../../services/testimonialsService'
 
-const News = () => {
-  const [entrysData, setEntrysData] = useState([]);
+const Testimonials = () => {
+  const [loadData, setLoadData] = useState([]);
   const direction = useLocation().pathname.split('/')[1]
-  const getEntrys = useCallback(async () => {
-    const res = await getAll()
-    setEntrysData(res.data.result.news)
-  }, [setEntrysData])
+  const getData = useCallback(async () => {
+    const res = await getAllTestimonials()
+    setLoadData(res.data.result.testimonials)
+  }, [setLoadData])
 
   useEffect(() => {
-    getEntrys()
-  }, [getEntrys]);
+    getData()
+  }, [getData]);
 
   return (
     <>
       <VStack my={12} display="flex" textAlign="center">
-        <Text fontSize="5xl">Novedades</Text>
+        <Text fontSize="5xl">Testimonios</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
-          Enterate de las últimas novedades relacionadas con Somos Más.
+          Estos son los últimos testimonios en Somos Más.
         </Text>
       </VStack>
       <Grid templateColumns="repeat(auto-fill, 350px)" gap={8} mb={12} justifyContent="center">
         <Card
           direction={direction}
-          array={entrysData}
+          array={loadData}
         />
       </Grid>
     </>
   )
 }
 
-export default News
+export default Testimonials

@@ -30,7 +30,7 @@ const AdminRoutes = () => (
       <Route path="actividades">
         <Route index element={<ListActivities />} />
         <Route path=":id" element={<ActivitiesForm />} />
-        <Route path="new" element={<ActivitiesForm />} />
+        <Route path="nuevo" element={<ActivitiesForm />} />
       </Route>
       <Route path="categorias" element={<ListCategories />} />
       <Route path="contactos" element={<ContactsList />} />

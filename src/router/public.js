@@ -11,12 +11,13 @@ import SignIn from '../pages/signin/SignInForm'
 import Profile from '../pages/profile/Profile'
 import ContactsList from '../pages/contact/ContactsList'
 import ListCategories from '../pages/backoffice/categories/ListCategories'
-import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
 import Entry from '../components/news/Entry'
-import Redux from '../components/redux'
-import ActivitiesForm from '../components/activitiesForm/ActivitiesForm'
 import News from '../components/news/News'
+import Detail from '../components/pageUtils/Detail'
+import Testimonials from '../components/testimonials/Testimonials'
+import Activities from '../components/activitiesForm/Activities'
+import Members from '../components/members/Members'
 
 const PublicRoutes = () => {
   const location = useLocation()
@@ -26,18 +27,27 @@ const PublicRoutes = () => {
       <Routes key={location.pathname} location={location}>
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
-        <Route path="testimonios" element={<TestimonialList />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
         <Route path="backoffice/contactos" element={<ContactsList />} />
         <Route path="backoffice/categorias" element={<ListCategories />} />
         <Route path="novedades">
           <Route index element={<News />} />
-          <Route path=":id" element={<Entry />} />
+          <Route path=":id" element={<Detail />} />
+        </Route>
+        <Route path="testimonios">
+          <Route index element={<Testimonials />} />
+          <Route path=":id" element={<Detail />} />
+        </Route>
+        <Route path="actividades">
+          <Route index element={<Activities />} />
+          <Route path=":id" element={<Detail />} />
+        </Route>
+        <Route path="nosotros">
+          <Route index element={<Members />} />
+          <Route path=":id" element={<Detail />} />
         </Route>
         <Route path="novedades:id" element={<Entry />} />
         <Route path="perfil" element={<Profile />} />
-        <Route path="redux" element={<Redux />} />
-        <Route path="actividadform" element={<ActivitiesForm />} />
 
         <Route path="" element={<Home />} />
       </Routes>

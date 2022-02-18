@@ -78,7 +78,7 @@ const Header = () => {
         {isLoggedIn === false
           && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Sign in</Button>}
         {isLoggedIn === false
-          && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signup">Sign up</Button>}
+          && <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Sign up</Button>}
       </HStack>
     </HStack>
   )

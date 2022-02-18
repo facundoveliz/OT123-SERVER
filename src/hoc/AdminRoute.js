@@ -1,15 +1,16 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import useUser from '../hooks/useUser'
-
-// A wrapper for <Route> that redirects to the home
-// screen if you're not admin.
+import { useSelector } from 'react-redux'
+import { getUserData } from '../app/slices/auth'
 
 const AdminRoute = () => {
-  const { userData } = useUser()
+  const userData = useSelector(getUserData)
+  const { roleId } = userData.payload.userData.dataValues
 
-  if (!userData) return <Navigate to="/" />
-  return userData.payload.userData.userRole === 'Admin' ? <Outlet /> : <h2>No tienes permiso para ver esta seccion </h2>
+  if (roleId !== 1) {
+    return <Navigate replace to="/" />
+  }
+  return <Outlet />
 }
 
 export default AdminRoute

@@ -5,8 +5,8 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import AnimatedPage from '../components/transitions/AnimatedPage'
 import PublicRoutes from './public'
+import AnimatedPage from '../components/transitions/AnimatedPage'
 import AuthRoutes from './auth'
 import AdminRoutes from './admin'
 import Layout from '../pages/layout/Layout'
@@ -23,6 +23,7 @@ const AllRoutes = () => {
             <Route path="/auth/*" element={<AuthRoutes />} />
             <Route path="/admin/*" element={<AdminRoutes />} />
           </Route>
+
         </Routes>
       </AnimatedPage>
     </AnimatePresence>

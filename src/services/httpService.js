@@ -3,7 +3,7 @@ import axios from 'axios'
 const httpService = axios.create({
   baseURL:
     process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000/'
+      ? process.env.REACT_APP_BASE_URL_LOCAL
       : process.env.REACT_APP_BASE_URL_PRODUCTION,
   timeout: 10000,
   // headers: { 'x-access-token': token },

@@ -4,15 +4,17 @@ import {
   HStack, Image, Text, Button,
 } from '@chakra-ui/react'
 import Sidebar from './Sidebar'
+import useUser from '../../hooks/useUser'
 
 const Header = () => {
+  const { userData } = useUser()
   const getText = (isActive, text) => {
     const textProperties = {}
     if (isActive) {
       textProperties.color = 'red'
     }
     return (
-      <Text {...textProperties}>{text}</Text>
+      <Text cursor="pointer" {...textProperties}>{text}</Text>
     )
   }
 
@@ -60,12 +62,29 @@ const Header = () => {
         {navItems}
       </HStack>
       <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
-        <Button colorScheme="blue" width="150px" variant="outline">
-          Log in
-        </Button>
-        <Button colorScheme="blue" width="150px">
-          Register
-        </Button>
+        {
+        !userData.payload.userData
+          ? (
+            <>
+              <NavLink to="/signin">
+                <Button colorScheme="blue" width="150px" variant="outline">
+                  Iniciar sesión
+
+                </Button>
+              </NavLink>
+              <NavLink to="/signup">
+                <Button colorScheme="blue" width="150px">
+                  Registrarse
+                </Button>
+              </NavLink>
+            </>
+          ) : (
+            <Button colorScheme="blue" width="150px">
+              Salir
+            </Button>
+
+          )
+}
       </HStack>
     </HStack>
   )

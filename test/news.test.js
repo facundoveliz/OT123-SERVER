@@ -43,11 +43,11 @@ describe('GET /news/:id', () => {
     request(app)
       .get('/news/a')
       .expect('Content-Type', /json/)
-      .expect(403)
+      .expect(400)
       .end((err, res) => {
         if (err) return done(err)
         res.body.should.be.a('object')
-          .that.includes({ ok: false, msg: 'error to fetch Entries' })
+          .that.includes({ ok: false, msg: 'The entry was not found.' })
         done()
       })
   })

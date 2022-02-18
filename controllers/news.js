@@ -6,6 +6,7 @@ const Entries = models.Entry
 exports.getAll = async (req, res) => {
   try {
     const news = await Entries.findAll()
+
     res.status(200).json({
       ok: true,
       msg: 'Fetched news successfully.',
@@ -25,6 +26,7 @@ exports.getOne = async (req, res) => {
   const { id } = req.params
   try {
     const entry = await Entries.findByPk(id)
+
     if (!entry) {
       return res.status(400).json({
         ok: false,
@@ -44,6 +46,7 @@ exports.getOne = async (req, res) => {
       error,
     })
   }
+  return null
 }
 
 exports.add = async (req, res) => {

@@ -3,8 +3,9 @@
 /* eslint-disable global-require */
 import S3 from 'react-aws-s3'
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
 const fileName = (file) => {
-  window.Buffer = window.Buffer || require("buffer").Buffer;
   const uuid = crypto.randomUUID() // Generate a Universally Unique Identifier.
   const fileNameArr = file.name.split('.') // Split the file name into arrays when it finds '.'
   const fileExtension = fileNameArr[fileNameArr.length - 1] // Extract just the file extension.

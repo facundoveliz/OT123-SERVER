@@ -8,6 +8,8 @@ import { AnimatePresence } from 'framer-motion'
 import AnimatedPage from '../components/transitions/AnimatedPage'
 import PublicRoutes from './public'
 import AuthRoutes from './auth'
+import AdminRoutes from './admin'
+import Layout from '../pages/layout/Layout'
 
 const AllRoutes = () => {
   const location = useLocation()
@@ -16,8 +18,11 @@ const AllRoutes = () => {
     <AnimatePresence exitBeforeEnter>
       <AnimatedPage>
         <Routes key={location.pathname} location={location}>
-          <Route path="/*" element={<PublicRoutes />} />
-          <Route path="/auth/*" element={<AuthRoutes />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="*" element={<PublicRoutes />} />
+            <Route path="/auth/*" element={<AuthRoutes />} />
+            <Route path="/admin/*" element={<AdminRoutes />} />
+          </Route>
         </Routes>
       </AnimatedPage>
     </AnimatePresence>

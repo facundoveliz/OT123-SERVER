@@ -5,12 +5,8 @@ const Entries = models.Entry
 
 exports.getAll = async (req, res) => {
   try {
-    const news = await Entries.findAll({
-      attributes: ['id', 'name', 'image', 'createdAt'],
-      where: {
-        type: 'news',
-      },
-    })
+    const news = await Entries.findAll()
+
     res.status(200).json({
       ok: true,
       msg: 'Fetched news successfully.',
@@ -25,9 +21,11 @@ exports.getAll = async (req, res) => {
   }
 }
 
-exports.getEntry = async (req, res) => {
+// eslint-disable-next-line consistent-return
+exports.getOne = async (req, res) => {
+  const { id } = req.params
   try {
-    const entry = await Entries.findByPk(req.params.id)
+    const entry = await Entries.findByPk(id)
 
     if (!entry) {
       return res.status(400).json({
@@ -36,7 +34,7 @@ exports.getEntry = async (req, res) => {
       })
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       ok: true,
       msg: 'Fetched entry successfully.',
       result: entry,

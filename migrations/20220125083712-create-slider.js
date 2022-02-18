@@ -17,7 +17,7 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      image_url: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       order: {

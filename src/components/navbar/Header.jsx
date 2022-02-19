@@ -13,9 +13,8 @@ const Header = () => {
   const userData = useSelector(getUserData)
   let roleId = 0
   const { isLoggedIn } = useUser()
-
   if (isLoggedIn) {
-    roleId = userData.payload.userData.dataValues
+    roleId = userData.payload.persistedReducer.userData.dataValues.roleId
   }
 
   const getText = (isActive, text) => {
@@ -29,7 +28,7 @@ const Header = () => {
   }
 
   const navItems = [
-    <NavLink exact to="/">
+    <NavLink exact to="/home">
       {({ isActive }) => getText(isActive, 'Inicio')}
     </NavLink>,
     <NavLink to="/nosotros">
@@ -55,13 +54,15 @@ const Header = () => {
   return (
     <HStack justify="space-between" py={2} px={3}>
       <Sidebar />
-      <Image
-        src="../../logo.png"
-        alt="logo"
-        h={{ base: '54.6px', xl: '78px' }}
-        w={{ base: '140px', xl: '200px' }}
-        cursor="pointer"
-      />
+      <NavLink exact to="/home">
+        <Image
+          src="../../logo.png"
+          alt="logo"
+          h={{ base: '54.6px', xl: '78px' }}
+          w={{ base: '140px', xl: '200px' }}
+          cursor="pointer"
+        />
+      </NavLink>
       <HStack
         spacing={8}
         lineHeight="30px"

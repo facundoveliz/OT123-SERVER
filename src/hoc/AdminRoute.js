@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getUserData } from '../app/slices/auth'
 import useUser from '../hooks/useUser'
+import NotFound from '../pages/notFound/NotFound'
 
 const AdminRoute = () => {
   const userData = useSelector(getUserData)
@@ -13,7 +14,7 @@ const AdminRoute = () => {
   if (!isLoggedIn) {
     role = userData.payload.persistedReducer.userData?.dataValues.roleId
   }
-  
+
   return (
 
     role === 1 ? <Outlet /> : <NotFound />

@@ -25,6 +25,8 @@ const PublicRoutes = () => {
   return (
     <AnimatedPage>
       <Routes key={location.pathname} location={location}>
+        <Route index element={<Home />} />
+        <Route path="home" element={<Home />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
@@ -53,7 +55,7 @@ const PublicRoutes = () => {
           <Route index element={<News />} />
           <Route path=":id" element={<Entry />} />
         </Route>
-        <Route path="" element={<Home />} />
+
       </Routes>
     </AnimatedPage>
   )

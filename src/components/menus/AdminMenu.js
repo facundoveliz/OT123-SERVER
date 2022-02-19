@@ -9,8 +9,10 @@ import {
   MenuGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+import LogoutButton from '../LogoutButton'
 
 const AdminMenu = () => (
+
   <Menu>
     <MenuButton as={Button} colorScheme="blue">
       Cuenta
@@ -31,7 +33,10 @@ const AdminMenu = () => (
         <MenuItem as={NavLink} to="/admin/testimonios/nuevo">Testimonios (add)</MenuItem>
       </MenuGroup>
       <MenuDivider />
-      <MenuItem>Cerrar sesión</MenuItem>
+      <MenuItem>
+        <LogoutButton />
+
+      </MenuItem>
     </MenuList>
   </Menu>
 )

@@ -1,0 +1,14 @@
+.not-found {
+  text-align: center;
+  font-weight: bold;
+  height: 300px;
+  margin-top: 15vh;
+}
+.title {
+  font-size: 30px;
+  color: red;
+}
+span {
+  cursor: pointer;
+  color: blue;
+}

@@ -1,16 +1,26 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { getUserData } from '../app/slices/auth'
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import NotFound from '../pages/notFound/NotFound'
+import useUser from '../hooks/useUser'
 
 const AdminRoute = () => {
-  const userData = useSelector(getUserData)
-  const { roleId } = userData.payload.userData.dataValues
+  const navigate = useNavigate()
+  const reduxData = useUser()
+  const [role, setRole] = useState(3)
 
-  if (roleId !== 1) {
-    return <Navigate replace to="/" />
-  }
-  return <Outlet />
+  useEffect(() => {
+    if (reduxData.userData.payload.userData) {
+      setRole(reduxData.userData.payload.userData.dataValues.roleId)
+      if (reduxData.userData.payload.userData.dataValues.roleId !== 1) navigate('/')
+    }
+  }, [])
+  return (
+
+    role === 1 ? <Outlet /> : <NotFound />
+
+  )
 }
 
 export default AdminRoute

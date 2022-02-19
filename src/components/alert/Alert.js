@@ -3,6 +3,8 @@ import swal from 'sweetalert2'
 import PropTypes from 'prop-types'
 
 import './Alert.css'
+import { useDispatch } from 'react-redux'
+import { resetAlertData } from '../../app/slices/alert'
 
 /* props:
 show: boolean,
@@ -21,6 +23,7 @@ const Alert = ({
   onConfirm,
   onCancel,
 }) => {
+  const dispatch = useDispatch()
   const showAlert = async () =>
     swal
       .fire({
@@ -43,6 +46,7 @@ const Alert = ({
         } else if (result.isDismissed) {
           onCancel()
         }
+        dispatch(resetAlertData())
       })
   useEffect(() => {
     if (show) {

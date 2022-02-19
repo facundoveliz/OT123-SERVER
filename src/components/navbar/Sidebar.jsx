@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import {
@@ -9,7 +10,6 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  DrawerFooter,
   useDisclosure,
   Link,
   Box,
@@ -26,10 +26,14 @@ import {
   FaPhone,
   FaRegMoneyBillAlt,
 } from 'react-icons/fa';
+import useUser from '../../hooks/useUser';
+import LogoutButton from '../LogoutButton';
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isLoggedIn } = useUser()
 
+  console.log(isLoggedIn);
   const getItem = (isActive, text, icon) => {
     const textProperties = {}
     const iconProperties = {
@@ -90,11 +94,16 @@ const Sidebar = () => {
             <Link as={NavLink} to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
             </Link>
+            {isLoggedIn === true
+              ? (<LogoutButton />)
+              : (
+                <>
+                  <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Iniciar sesión</Button>
+                  <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Registrarse</Button>
+                </>
+              )}
           </VStack>
-          <DrawerFooter flexDirection="column">
-            <Button colorScheme="blue" width="100%" variant="outline" mb="8px">Log in</Button>
-            <Button colorScheme="blue" width="100%">Register</Button>
-          </DrawerFooter>
+
         </DrawerContent>
       </Drawer>
     </>

@@ -13,10 +13,12 @@ const AdminRoute = () => {
   if (!isLoggedIn) {
     role = userData.payload.persistedReducer.userData?.dataValues.roleId
   }
-  if (role !== 1) {
-    return <h2>No tienes permiso</h2>
-  }
-  return <Outlet />
+  
+  return (
+
+    role === 1 ? <Outlet /> : <NotFound />
+
+  )
 }
 
 export default AdminRoute

@@ -76,9 +76,9 @@ const Header = () => {
         {isLoggedIn === true
           && <Menu roleId={roleId} />}
         {isLoggedIn === false
-          && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Sign in</Button>}
+          && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Iniciar sesión</Button>}
         {isLoggedIn === false
-          && <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Sign up</Button>}
+          && <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Registrarse</Button>}
       </HStack>
     </HStack>
   )

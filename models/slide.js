@@ -34,13 +34,11 @@ module.exports = (sequelize, DataTypes) => {
     organizationId: {
       type: DataTypes.INTEGER,
     },
-    deletedAt: {
-      type: DataTypes.DATE,
-    },
+    deletedAt: DataTypes.DATE
   },
   {
     sequelize,
-    modelName: 'Slide',
+    modelName: 'Slider',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt',

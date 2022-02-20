@@ -29,7 +29,7 @@ const Footer = () => {
   }, [])
 
   return (
-    <Box position="relative" mt="20px">
+    <Box position="relative">
       <Divider borderColor="black" borderWidth="1px" />
       <Flex
         py={4}

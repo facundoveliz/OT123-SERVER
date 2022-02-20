@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, getEntry, add, update, deleteNews,
+  getAll, getOne, add, update, deleteNews,
 } = require('../controllers/news')
 const validate = require('../schemas/entrySchema')
 
@@ -11,7 +11,7 @@ const router = express.Router()
 router.get('/', getAll)
 
 // get news by id
-router.get('/:id', getEntry)
+router.get('/:id', getOne)
 
 // add news
 router.post('/', validate, add)

@@ -27,15 +27,16 @@ describe('GET /activities', () => {
 
 // Test: Activities creation
 describe('POST /activities', () => {
-    it('respond with 201 created', (done) => {
+    it('respond with 201 created', done => {
         const data = {
-            name: 'activitie',
-            image: '',
-            content: 'content',
+            name: 'Activity #999',
+            image: 'urlImage',
+            content: 'abcabcabcabc',
         }
         request(app)
             .post('/activities')
             .send(data)
+            .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(201)
             .end((err, res) => {
@@ -72,13 +73,13 @@ describe('POST /activities', () => {
 describe('GET /activities/:id', () => {
     it('respond with a json containing the entry', (done) => {
       request(app)
-        .get(`/activities/?id=${id}`)
+        .get(`/activities/${id}`)
         .expect('Content-Type', /json/)
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
           res.body.should.be.a('object')
-            .that.includes({ ok: true, msg: 'Fetched activities successfully' })
+            .that.includes({ ok: true, msg: 'Successful request' })
           done()
         })
     })
@@ -100,7 +101,7 @@ describe('GET /activities/:id', () => {
 
 describe('PUT /activities/:id', () => {
 
-    it('respond with a json containing the updated activitie', (done) => {
+    it('respond with a json containing the updated activity', (done) => {
         const data = {
             name: 'update activity',
             image: '',

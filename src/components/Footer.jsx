@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import styled from '@emotion/styled'
-import getOrganizationById from '../services/organizationsService'
+import { getOrganizationById } from '../services/organizationsService'
 
 const Text = styled.p`
   cursor: pointer;

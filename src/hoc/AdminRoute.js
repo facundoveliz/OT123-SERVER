@@ -1,21 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import NotFound from '../pages/notFound/NotFound'
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getUserData } from '../app/slices/auth'
 import useUser from '../hooks/useUser'
+import NotFound from '../pages/notFound/NotFound'
 
 const AdminRoute = () => {
-  const navigate = useNavigate()
-  const reduxData = useUser()
-  const [role, setRole] = useState(3)
-
-  useEffect(() => {
-    if (reduxData.userData.payload.userData) {
-      setRole(reduxData.userData.payload.userData.dataValues.roleId)
-      if (reduxData.userData.payload.userData.dataValues.roleId !== 1) navigate('/')
-    }
-  }, [])
+  const userData = useSelector(getUserData)
+  const { isLoggedIn } = useUser()
+  let role = 0
+  if (isLoggedIn) {
+    role = userData.payload.persistedReducer.userData?.dataValues.roleId
+  }
   return (
 
     role === 1 ? <Outlet /> : <NotFound />

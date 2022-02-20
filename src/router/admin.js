@@ -7,6 +7,9 @@ import ListCategories from '../pages/backoffice/categories/ListCategories'
 import ContactsList from '../pages/contact/ContactsList'
 import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
+import EditHomePage from '../components/home/EditHomePage'
+import EditWelcomeText from '../components/home/editWelcomeText'
+import EditSlideForm from '../components/home/EditSlideForm'
 
 /*
 import Categories from '../pages/Categories'
@@ -37,6 +40,11 @@ const AdminRoutes = () => (
       <Route path="testimonios">
         <Route index element={<TestimonialList />} />
         <Route path=":new" element={<TestimonialForm />} />
+      </Route>
+      <Route path="home">
+        <Route index element={<EditHomePage />} />
+        <Route path="editwelcometext" element={<EditWelcomeText />} />
+        <Route path="editslider/:id" element={<EditSlideForm />} />
       </Route>
     </Route>
   </Routes>

@@ -1,7 +1,15 @@
 const { validationResult } = require('express-validator')
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
 const db = require('../models')
 
 const { Contact } = db
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth: {
+    api_key: process.env.SENDGRIND_API_KEY,
+  },
+}))
 
 exports.getAll = async (req, res) => {
   try {
@@ -48,6 +56,7 @@ exports.getContact = async (req, res) => {
 }
 
 exports.add = async (req, res) => {
+  const { email } = req.body
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -61,7 +70,12 @@ exports.add = async (req, res) => {
   try {
     const newContactData = req.body
     const newContact = await Contact.create(newContactData)
-
+    transporter.sendMail({
+      to: email,
+      from: process.env.SENDGRID_EMAIL,
+      subject: 'Su contacto ha sido recibido',
+      html: '<h1>Gracias por interesarse en nuestra ONG! </h1>',
+    })
     if (newContact !== null) {
       res.status(201).json({
         ok: true,

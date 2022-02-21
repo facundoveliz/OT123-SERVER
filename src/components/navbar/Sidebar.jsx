@@ -33,7 +33,6 @@ const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isLoggedIn } = useUser()
 
-  console.log(isLoggedIn);
   const getItem = (isActive, text, icon) => {
     const textProperties = {}
     const iconProperties = {

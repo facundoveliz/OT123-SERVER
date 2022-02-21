@@ -4,14 +4,17 @@ import AdminMenu from './AdminMenu'
 import NormalMenu from './NormalMenu'
 
 const Menu = (props) => {
+  const { id } = props
   const { roleId } = props
-  if (roleId.roleId === 1) {
-    return <AdminMenu />
+
+  if (roleId === 1) {
+    return <AdminMenu id={id} />
   }
-  return <NormalMenu />
+  return <NormalMenu id={id} />
 }
 
 Menu.propTypes = {
+  id: PropTypes.number.isRequired,
   roleId: PropTypes.number.isRequired,
 }
 

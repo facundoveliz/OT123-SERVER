@@ -19,8 +19,6 @@ const Footer = () => {
 
   const loadOrganizations = async (id) => {
     const loadedOrganizations = await getOrganizationById(id)
-    // eslint-disable-next-line no-console
-    console.log(loadedOrganizations)
     setSocials(loadedOrganizations.data.result.publicData)
   }
 

@@ -11,11 +11,13 @@ import Menu from '../menus/Menu'
 
 const Header = () => {
   const userData = useSelector(getUserData)
+  let id = 0
   let roleId = 0
   const { isLoggedIn } = useUser()
 
   if (isLoggedIn) {
-    roleId = userData.payload.userData.dataValues
+    id = userData.payload.userData.dataValues.id
+    roleId = userData.payload.userData.dataValues.roleId
   }
 
   const getText = (isActive, text) => {
@@ -74,7 +76,7 @@ const Header = () => {
       </HStack>
       <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
         {isLoggedIn === true
-          && <Menu roleId={roleId} />}
+          && <Menu id={id} roleId={roleId} />}
         {isLoggedIn === false
           && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Iniciar sesión</Button>}
         {isLoggedIn === false

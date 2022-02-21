@@ -5,7 +5,12 @@ import {
   setUserData,
   deleteUserData,
 } from '../app/slices/auth'
-import { getUserById, signIn, signUp } from '../services/usersService'
+import {
+  getUserById,
+  signIn,
+  signUp,
+  edit,
+} from '../services/usersService'
 
 export default function useUser() {
   const userData = useSelector(getUserData)
@@ -74,10 +79,34 @@ export default function useUser() {
     dispatch(deleteUserData())
   }
 
+  const editUser = async (id, user) => {
+    let editSuccess = false
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+      await edit(id, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        roleId: user.roleId,
+      }).then(({ data }) => {
+        editSuccess = true
+        const { result } = data
+        dispatch(setUserData(result.updatedUser))
+        window.localStorage.setItem('x-access-token', result.token)
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    }
+
+    return editSuccess
+  }
+
   return {
     registerUser,
     loginUser,
     isLoggedIn: Boolean(jwt),
+    editUser,
     logoutUser,
     userData,
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
   Flex,
@@ -11,8 +12,10 @@ import { useSelector } from 'react-redux'
 import { getUserData } from '../../app/slices/auth'
 
 const Profile = () => {
+  const navigate = useNavigate()
   let user = useSelector(getUserData)
   user = user.payload.userData.dataValues
+  const { id } = user
 
   return (
     <Stack minH="100vh">
@@ -55,7 +58,7 @@ const Profile = () => {
             >
               Editar perfil
             </Button>
-            <Button rounded="xl">
+            <Button rounded="xl" onClick={() => { navigate(`/auth/editarperfil/${id}`) }}>
               Eliminar cuenta
             </Button>
           </Stack>

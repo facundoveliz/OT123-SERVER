@@ -2,7 +2,9 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AdminRoute from '../hoc/AdminRoute'
 import ListActivities from '../pages/backoffice/activities/ListActivities'
+import ListNews from '../pages/backoffice/news/ListNews'
 import ActivitiesForm from '../components/activitiesForm/ActivitiesForm'
+import NewsForm from '../components/news/NewsForm'
 import ListCategories from '../pages/backoffice/categories/ListCategories'
 import ContactsList from '../pages/contact/ContactsList'
 import TestimonialList from '../pages/backoffice/testimonials/ListTestimonials'
@@ -10,7 +12,7 @@ import TestimonialForm from '../components/testimonials/TestimonialForm'
 import EditHomePage from '../components/home/EditHomePage'
 import EditWelcomeText from '../components/home/editWelcomeText'
 import EditSlideForm from '../components/home/EditSlideForm'
-
+import CategoryForm from '../components/categories/CategoriesForm'
 /*
 import Categories from '../pages/Categories'
 import News from '../pages/backoffice/news/ListNews'
@@ -21,7 +23,6 @@ import EditSlideForm from '../components/forms/home/EditSlideForm'
 import EditUserForm from '../components/forms/EditUserForm'
 import EditNewsForm from '../components/forms/EditNewsForm'
 import EditActivityForm from '../components/forms/EditActivityForm'
-import EditCategoryForm from '../components/forms/EditCategoryForm'
 import EditTestimonialsForm from '../components/forms/EditTestimonialsForm'
 import EditHomePage from '../pages/backoffice/home/EditHomePage'
 import ListTestimonials from '../pages/backoffice/ListTestimonials'
@@ -35,17 +36,28 @@ const AdminRoutes = () => (
         <Route path=":id" element={<ActivitiesForm />} />
         <Route path="nuevo" element={<ActivitiesForm />} />
       </Route>
-      <Route path="categorias" element={<ListCategories />} />
+      <Route path="novedades">
+        <Route index element={<ListNews />} />
+        <Route path=":id" element={<NewsForm />} />
+        <Route path="nuevo" element={<NewsForm />} />
+      </Route>
+      <Route path="categorias">
+        <Route index element={<ListCategories />} />
+        <Route path=":id" element={<CategoryForm />} />
+        <Route path="nuevo" element={<CategoryForm />} />
+      </Route>
       <Route path="contactos" element={<ContactsList />} />
       <Route path="testimonios">
         <Route index element={<TestimonialList />} />
-        <Route path=":new" element={<TestimonialForm />} />
+        <Route path=":id" element={<TestimonialForm />} />
+        <Route path=":nuevo" element={<TestimonialForm />} />
       </Route>
       <Route path="home">
         <Route index element={<EditHomePage />} />
         <Route path="editwelcometext" element={<EditWelcomeText />} />
         <Route path="editslider/:id" element={<EditSlideForm />} />
       </Route>
+
     </Route>
   </Routes>
 )

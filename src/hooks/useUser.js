@@ -26,19 +26,49 @@ export default function useUser() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const registerUser = (user) =>
-    signUp(user).then(({ data }) => {
-      const { result } = data
-      dispatch(setUserData(result.user))
-      window.localStorage.setItem('x-access-token', result.token)
-    })
+  const registerUser = async (user) => {
+    let registerSuccess = false
 
-  const loginUser = (user) =>
-    signIn(user).then(({ data }) => {
-      const { result } = data
-      dispatch(setUserData(result.user))
-      window.localStorage.setItem('x-access-token', result.token)
-    })
+    // eslint-disable-next-line no-useless-catch
+    try {
+      await signUp({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+      }).then(({ data }) => {
+        registerSuccess = true
+        const { result } = data
+        dispatch(setUserData(result.user))
+        window.localStorage.setItem('x-access-token', result.token)
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    }
+
+    return registerSuccess
+  }
+
+  const loginUser = async (user) => {
+    let loginSuccess = false
+
+    // eslint-disable-next-line no-useless-catch
+    try {
+      await signIn({ email: user.email, password: user.password }).then(({ data }) => {
+        loginSuccess = true
+        const { result } = data
+        dispatch(setUserData(result.user))
+        window.localStorage.setItem('x-access-token', result.token)
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error)
+    }
+
+    return loginSuccess
+  }
+
   const logoutUser = () => {
     window.localStorage.removeItem('x-access-token')
     dispatch(deleteUserData())

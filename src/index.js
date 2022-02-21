@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 import { ChakraProvider } from '@chakra-ui/react'
-import Router from './router';
-import store from './app/store';
+import App from './App'
+import { store, persistor } from './app/store';
 import * as serviceWorker from './serviceWorker';
 import theme from './themes'
 
@@ -12,9 +12,9 @@ ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   </ChakraProvider>,

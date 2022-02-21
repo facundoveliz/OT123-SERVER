@@ -1,9 +1,11 @@
 import React from 'react'
-// eslint-disable-next-line import/no-cycle
+import { BrowserRouter } from 'react-router-dom'
 import AllRoutes from './router'
 
 const App = () => (
-  <AllRoutes />
+  <BrowserRouter>
+    <AllRoutes />
+  </BrowserRouter>
 )
 
 export default App

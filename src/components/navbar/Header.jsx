@@ -3,9 +3,20 @@ import { NavLink } from 'react-router-dom'
 import {
   HStack, Image, Text, Button,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import useUser from '../../hooks/useUser'
+import { getUserData } from '../../app/slices/auth'
 import Sidebar from './Sidebar'
+import Menu from '../menus/Menu'
 
 const Header = () => {
+  const userData = useSelector(getUserData)
+  let roleId = 0
+  const { isLoggedIn } = useUser()
+  if (isLoggedIn) {
+    roleId = userData.payload.persistedReducer.userData.dataValues.roleId
+  }
+
   const getText = (isActive, text) => {
     const textProperties = {}
     if (isActive) {
@@ -17,7 +28,7 @@ const Header = () => {
   }
 
   const navItems = [
-    <NavLink exact to="/">
+    <NavLink exact to="/home">
       {({ isActive }) => getText(isActive, 'Inicio')}
     </NavLink>,
     <NavLink to="/nosotros">
@@ -39,16 +50,19 @@ const Header = () => {
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
   ]
+
   return (
     <HStack justify="space-between" py={2} px={3}>
       <Sidebar />
-      <Image
-        src="../../logo.png"
-        alt="logo"
-        h={{ base: '54.6px', xl: '78px' }}
-        w={{ base: '140px', xl: '200px' }}
-        cursor="pointer"
-      />
+      <NavLink exact to="/home">
+        <Image
+          src="../../logo.png"
+          alt="logo"
+          h={{ base: '54.6px', xl: '78px' }}
+          w={{ base: '140px', xl: '200px' }}
+          cursor="pointer"
+        />
+      </NavLink>
       <HStack
         spacing={8}
         lineHeight="30px"
@@ -60,12 +74,12 @@ const Header = () => {
         {navItems}
       </HStack>
       <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
-        <Button colorScheme="blue" width="150px" variant="outline">
-          Log in
-        </Button>
-        <Button colorScheme="blue" width="150px">
-          Register
-        </Button>
+        {isLoggedIn === true
+          && <Menu roleId={roleId} />}
+        {isLoggedIn === false
+          && <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Iniciar sesión</Button>}
+        {isLoggedIn === false
+          && <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Registrarse</Button>}
       </HStack>
     </HStack>
   )

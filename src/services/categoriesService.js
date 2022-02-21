@@ -3,6 +3,16 @@ import httpService from './httpService'
 const categoriesEndpoint = '/categories'
 
 /**
+ * Accepts an id to retrieve one activity from activities endpoint
+ * @async
+ * @param {int} id
+ * @return Promise {object} of the requested activity
+ */
+export function getCategoryById(id) {
+  return httpService.get(`${categoriesEndpoint}/${id}`)
+}
+
+/**
  * RETRIEVES AN OBJECT WITH ALL THE CATEGORIES FROM CATEGORIES ENDPOINT
  * @async
  * @return PROMISE {OBJECT} ALL THE REQUESTED CATEGORIES

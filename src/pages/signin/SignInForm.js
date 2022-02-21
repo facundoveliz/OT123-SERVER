@@ -5,19 +5,30 @@ import {
   Box, Image, Heading, HStack, VStack, Button,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom'
-import TextField from '../TextField';
-import { signIn } from '../../services/usersService'
+import useUser from '../../hooks/useUser'
+import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
 
 const SignInForm = () => {
   const navigate = useNavigate()
+  const { loginUser } = useUser()
 
   const [alerts, setAlerts] = useState({
     show: false,
     title: '',
     message: '',
     icon: '',
+    buttons: false,
+    onConfirm: () => {},
   })
+
+  const successAlert = {
+    show: true,
+    title: '¡Inicio de sesión exitoso!',
+    message: 'Bienvenido.',
+    icon: 'success',
+    onConfirm: () => {},
+  }
 
   const errorAlert = {
     show: true,
@@ -27,24 +38,16 @@ const SignInForm = () => {
     onConfirm: () => {},
   }
 
-  const handleSubmit = async (data) => {
-    const userData = await signIn({ email: data.email, password: data.password })
-    if (userData) {
-      const user = userData.data.result.user.dataValues
-      const msg = `¡Bienvenido ${user.firstName} ${user.lastName}!`
-      const successAlert = {
-        show: true,
-        title: 'Inicio de sesión exitoso.',
-        message: msg,
-        icon: 'success',
-        buttons: false,
-        onConfirm: () => {},
+  const handleSubmit = (userEmailPwd) => {
+    const loginSuccess = loginUser(userEmailPwd)
+    loginSuccess.then((success) => {
+      if (success === true) {
+        setAlerts(successAlert)
+        navigate('/')
+      } else {
+        setAlerts(errorAlert)
       }
-      setAlerts(successAlert)
-      setTimeout(navigate('/'), 500)
-    } else {
-      setAlerts(errorAlert)
-    }
+    })
   }
 
   return (
@@ -60,7 +63,7 @@ const SignInForm = () => {
         })}
         onSubmit={(values, actions) => {
           handleSubmit(values)
-          actions.resetForm();
+          actions.resetForm()
         }}
       >
         {(formik) => (

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const ContacstList = ({ contactsData }) => (
+const ContactsList = ({ contactsData }) => (
   <Center>
     <Box
       bg="brand.yellow"
@@ -54,7 +54,7 @@ const ContacstList = ({ contactsData }) => (
   </Center>
 )
 
-ContacstList.propTypes = {
+ContactsList.propTypes = {
   contactsData: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
@@ -65,4 +65,4 @@ ContacstList.propTypes = {
   ).isRequired,
 }
 
-export default ContacstList;
+export default ContactsList;

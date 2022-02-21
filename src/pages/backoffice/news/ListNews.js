@@ -18,7 +18,7 @@ import Alert from '../../../components/alert/Alert'
 const ListNews = () => {
   const [newsData, setNewsData] = useState([])
   const [deletedNews, setDeletedNews] = useState([])
-  const [alertProps, setAlertprops] = useState({
+  const [alertProps, setAlertProps] = useState({
     show: false,
     title: '',
     message: '',
@@ -38,25 +38,49 @@ const ListNews = () => {
         icon: 'error',
         onConfirm: () => {},
       }
-      setAlertprops(errorAlertProps)
+      setAlertProps(errorAlertProps)
     }
   }
 
-  const handleDelete = async (id) => {
+  const confirmDelete = async (id) => {
     try {
-      await deleteNews(id)
-      setDeletedNews(id)
-      window.location.reload();
-    } catch (error) {
-      const errorAlertProps = {
-        show: true,
-        title: 'Novedades:',
-        message: 'Hubo un error al eliminar!',
-        icon: 'error',
-        onConfirm: () => {},
+      const confirmedDelete = await deleteNews(id)
+      if (confirmedDelete) {
+        setAlertProps({
+          show: true,
+          title: 'Novedad Eliminada!',
+          message: 'Novedad eliminada de forma exitosa!',
+          icon: 'success',
+          cancelbtn: false,
+          onConfirm: () => {
+            setDeletedNews(id)
+            window.location.reload();
+          },
+        })
       }
-      setAlertprops(errorAlertProps)
+    } catch (error) {
+      setAlertProps({
+        show: true,
+        title: 'Hubo un error!',
+        message: error.message,
+        icon: 'error',
+        cancelbtn: true,
+        onConfirm: () => {},
+        onCancel: () => {},
+      })
     }
+  }
+
+  const handleDelete = (id) => {
+    setAlertProps({
+      show: true,
+      title: 'Estas Seguro?',
+      message: 'Esta acción es permanente. ¿Eliminar novedad?',
+      icon: 'warning',
+      cancelbtn: true,
+      onConfirm: () => confirmDelete(id),
+      onCancel: () => {},
+    })
   }
 
   useEffect(() => {

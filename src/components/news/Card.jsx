@@ -21,7 +21,40 @@ const Card = ({ entrys }) => {
             navigate(`/novedades/${item.id}`)
           }}
         >
-          <Text fontSize="2xl" px={6} pt={3} pb={3} whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">{item.name}</Text>
+          <Text
+            fontSize="2xl"
+            px={6}
+            pt={3}
+            pb={3}
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {item.name}
+
+          </Text>
+          <Text
+            px={6}
+            pt={3}
+            pb={3}
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {item.content}
+
+          </Text>
+          <Text
+            px={6}
+            pt={3}
+            pb={3}
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {item.description}
+
+          </Text>
           <Image src={item.image} />
         </GridItem>
       ))}

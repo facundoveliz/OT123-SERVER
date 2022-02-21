@@ -12,10 +12,9 @@ export const authSlice = createSlice({
     deleteUserData: (state) => {
       state.userData = null
     },
+    getUserData: (state) => state.auth.userData,
   },
 })
-export const { setUserData, deleteUserData } = authSlice.actions
-
-export const getUserData = (state) => state.auth.userData
+export const { setUserData, deleteUserData, getUserData } = authSlice.actions
 
 export default authSlice.reducer

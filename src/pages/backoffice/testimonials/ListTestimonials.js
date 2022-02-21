@@ -18,8 +18,8 @@ import Alert from '../../../components/alert/Alert'
 
 const ListTestimonials = () => {
   const [allTestimonial, setAllTestimonial] = useState([{}])
-  const [deletedNew, setDeletedNew] = useState([])
-  const [alertProps, setAlertprops] = useState({
+  const [deletedTestimonial, setDeletedTestimonial] = useState([])
+  const [alertProps, setAlertProps] = useState({
     show: false,
     title: '',
     message: '',
@@ -34,52 +34,74 @@ const ListTestimonials = () => {
     } catch (error) {
       const errorAlertProps = {
         show: true,
-        title: 'Ooops, algo ha fallado!',
+        title: 'Hubo un error!',
         message: error.message,
         icon: 'error',
         onConfirm: () => {},
       }
-      setAlertprops(errorAlertProps)
+      setAlertProps(errorAlertProps)
     }
   }
 
-  const handleDelete = async (id) => {
+  const confirmDelete = async (id) => {
     try {
-      await deleteTestimonial(id)
-      setDeletedNew(id)
-      window.location.reload();
+      const confirmedDelete = await deleteTestimonial(id)
+      if (confirmedDelete) {
+        setAlertProps({
+          show: true,
+          title: 'Testimonio Eliminada!',
+          message: 'Testimonio eliminado de forma exitosa!',
+          icon: 'success',
+          cancelbtn: false,
+          onConfirm: () => {
+            setDeletedTestimonial(id)
+            window.location.reload();
+          },
+        })
+      }
     } catch (error) {
-      const errorAlertProps = {
+      setAlertProps({
         show: true,
-        title: 'Ooops, algo ha fallado!',
+        title: 'Hubo un error!',
         message: error.message,
         icon: 'error',
+        cancelbtn: true,
         onConfirm: () => {},
-      }
-      setAlertprops(errorAlertProps)
+        onCancel: () => {},
+      })
     }
+  }
+
+  const handleDelete = (id) => {
+    setAlertProps({
+      show: true,
+      title: 'Estas Seguro?',
+      message: 'Esta acción es permanente. ¿Eliminar testimonio?',
+      icon: 'warning',
+      cancelbtn: true,
+      onConfirm: () => confirmDelete(id),
+      onCancel: () => {},
+    })
   }
 
   useEffect(() => {
     loadData()
-  }, [deletedNew])
+  }, [deletedTestimonial])
   return (
-    <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
         backgroundColor="white"
-        w={{ base: '90%', md: 600 }}
-        h="max-content"
-        m="auto"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
         p="2"
-        justifyContent="center"
-        overflow="hidden"
+        overflow="scroll"
       >
         <Heading align="center">Testimonios</Heading>
-        <Table>
+        <Table size="lg">
           <Thead>
             <Tr>
               <Th>Nombre</Th>
@@ -90,7 +112,7 @@ const ListTestimonials = () => {
             {allTestimonial.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td maxWidth="120px">
+                <Td maxWidth="120px" alignContent="left">
                   <ButtonGroup
                     display="flex"
                     flexWrap="wrap"

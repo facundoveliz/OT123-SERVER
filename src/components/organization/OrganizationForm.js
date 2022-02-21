@@ -14,21 +14,17 @@ import {
   Image,
   Box,
 } from '@chakra-ui/react'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 // eslint-disable-next-line import/no-unresolved
-import { add, getOne, update } from '../../services/newsService'
+import { getOrganizationById, updateOrganization } from '../../services/organizationsService'
 import Alert from '../alert/Alert'
 
-const NewsForm = () => {
+const OrganizationForm = () => {
   const { id } = useParams()
-  const [newsData, setNewsData] = useState({
+  const [orgData, setOrgData] = useState({
     id: null,
     name: '',
     image:
-      'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
-    content: '',
-    categoryId: '',
+    'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
   })
   const [ready, setReady] = useState(false)
   const [alerts, setAlerts] = useState({
@@ -38,17 +34,14 @@ const NewsForm = () => {
     icon: '',
     onConfirm: () => {},
   })
-  const loadNewsData = async () => {
+  const loadOrgData = async () => {
     if (id) {
       try {
-        const loadedNewsData = await getOne(id)
-        setNewsData({
-          id: loadedNewsData.data.result.id,
-          name: loadedNewsData.data.result.name,
-          image:
-            'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
-          content: loadedNewsData.data.result.content,
-          category: loadedNewsData.data.result.categoryId,
+        const loadedOrgData = await getOrganizationById(id)
+        setOrgData({
+          id: loadedOrgData.data.result.id,
+          name: loadedOrgData.data.result.name,
+          image: 'https://nypost.com/wp-content/uploads/sites/2/2021/12/nature_14.jpg?quality=80&strip=all&w=744',
         })
         setReady(true)
       } catch (error) {
@@ -64,62 +57,26 @@ const NewsForm = () => {
     }
   }
   useEffect(() => {
-    loadNewsData()
+    loadOrgData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const ckChangeHandler = (event, editor) => {
-    const editedData = editor.getData()
-    setNewsData((data) => ({ ...data, content: editedData }))
-  }
   const updateChangeHandler = async (values) => {
-    const updatedEntry = await update(id, {
+    const updatedOrg = await updateOrganization(id, {
       name: values.name,
-      content: newsData.content,
-      image: newsData.image,
-      category: newsData.categoryId,
+      image: orgData.image,
     })
     // eslint-disable-next-line no-console
-    console.log(updatedEntry)
-    if (updatedEntry) {
+    console.log(updatedOrg)
+    if (updatedOrg) {
       const successAlert = {
         show: true,
-        title: 'Novedad',
-        message: 'El novedad se ha actualizado!',
+        title: 'Organismo',
+        message: 'El organismo se ha actualizado!',
         icon: 'success',
         onConfirm: () => {},
       }
       setAlerts(successAlert)
-    }
-  }
-
-  const AddSubmitHandler = async (values) => {
-    try {
-      const newNews = await add({
-        name: values.name,
-        content: newsData.content,
-        image: values.image,
-        category: values.categoryId,
-      })
-      if (newNews) {
-        const successAlert = {
-          show: true,
-          title: 'Novedad',
-          message: 'Novedad agregada!',
-          icon: 'success',
-          onConfirm: () => {},
-        }
-        setAlerts(successAlert)
-      }
-    } catch (error) {
-      const errorAlert = {
-        show: true,
-        title: 'Hubo un error!',
-        message: error.message,
-        icon: 'error',
-        onConfirm: () => {},
-      }
-      setAlerts(errorAlert)
     }
   }
 
@@ -128,14 +85,16 @@ const NewsForm = () => {
       <Alert {...alerts} />
       {((id && ready) || !id) && (
         <Formik
-          initialValues={newsData}
+          initialValues={orgData}
           validationSchema={Yup.object({
             name: Yup.string()
-              .required('Título requerido!')
-              .min(3, 'Título muy corto!'),
+              .required('Nombre requerido!')
+              .min(3, 'Nombre muy corto!'),
           })}
-          onSubmit={(values) =>
-            (id ? updateChangeHandler(values) : AddSubmitHandler(values))}
+          onSubmit={(values, { resetForm }) => {
+            updateChangeHandler(values)
+            resetForm()
+          }}
         >
           {({ values, handleSubmit, handleChange }) => (
             <HStack
@@ -158,15 +117,9 @@ const NewsForm = () => {
                 display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Novedad</Heading>
+                <Heading align="center">Organizacion</Heading>
                 <FormControl display="flex" justifyContent="space-between">
-                  <FormLabel paddingLeft="2">Titulo</FormLabel>
-                  {id && (
-                    <FormLabel width="200px">
-                      Categoria:
-                      {newsData.categoryId}
-                    </FormLabel>
-                  )}
+                  <FormLabel paddingLeft="2">Nombre</FormLabel>
                 </FormControl>
                 <FormControl>
                   <Input
@@ -178,16 +131,7 @@ const NewsForm = () => {
                   />
                 </FormControl>
                 <Spacer />
-                <FormControl>
-                  <FormLabel paddingLeft="2">Contenido</FormLabel>
-                  <CKEditor
-                    name="content"
-                    data={values.content}
-                    editor={ClassicEditor}
-                    onChange={ckChangeHandler}
-                  />
-                </FormControl>
-                <FormLabel paddingLeft="2">Imagen</FormLabel>
+                <FormLabel paddingLeft="2">Logo</FormLabel>
                 <FormControl
                   display="flex"
                   flexWrap="wrap"
@@ -203,7 +147,7 @@ const NewsForm = () => {
                     />
                   </Box>
                   <Box paddingLeft="4" paddingRight="4">
-                    <Image objectFit="cover" src={newsData.image} />
+                    <Image objectFit="cover" src={orgData.image} />
                   </Box>
                 </FormControl>
                 <Button type="submit" w="100%">
@@ -218,4 +162,4 @@ const NewsForm = () => {
   )
 }
 
-export default NewsForm
+export default OrganizationForm

@@ -17,7 +17,7 @@ const NotFound = () => {
       <p>
         Puedes regresar a la home haciendo click
         {' '}
-        <span onClick={() => { onNavigate() }}>aqui</span>
+        <span clasName="link" onClick={() => { onNavigate() }}>aqui</span>
         {' '}
       </p>
     </div>

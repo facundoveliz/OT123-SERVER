@@ -13,7 +13,7 @@ const Slider = ({ sliderData }) => (
   >
     {sliderData.map((item) => (
       <AspectRatio key={item.id} maxH="487px" maxW="1680px" ratio={16 / 9}>
-        <Image maxW="100%" maxH="100%" key={item.id} src={item.imgUrl} alt={item.text} />
+        <Image maxW="100%" maxH="50%" key={item.id} src={item.imageUrl} alt={item.text} />
       </AspectRatio>
     ))}
   </Carousel>

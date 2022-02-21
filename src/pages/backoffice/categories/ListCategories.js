@@ -34,7 +34,7 @@ const ListTestimonials = () => {
     } catch (error) {
       const errorAlertProps = {
         show: true,
-        title: 'Ooops, algo ha fallado!',
+        title: 'Hubo un error!',
         message: error.message,
         icon: 'error',
         onConfirm: () => {},
@@ -88,22 +88,20 @@ const ListTestimonials = () => {
     loadData()
   }, [deletedCategory])
   return (
-    <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
         backgroundColor="white"
-        w={{ base: '90%', md: 600 }}
-        h="max-content"
-        m="auto"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
         p="2"
-        justifyContent="center"
-        overflow="hidden"
+        overflow="scroll"
       >
         <Heading align="center">Categorias</Heading>
-        <Table>
+        <Table size="lg">
           <Thead>
             <Tr>
               <Th>Nombre</Th>

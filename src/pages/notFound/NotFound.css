@@ -8,7 +8,7 @@
   font-size: 30px;
   color: red;
 }
-span {
+.link {
   cursor: pointer;
   color: blue;
 }

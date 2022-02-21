@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import styled from '@emotion/styled'
-import getOrganizationById from '../services/organizationsService'
+import { getOrganizationById } from '../services/organizationsService'
 
 const Text = styled.p`
   cursor: pointer;
@@ -27,7 +27,7 @@ const Footer = () => {
   }, [])
 
   return (
-    <Box position="relative" mt="20px">
+    <Box position="relative">
       <Divider borderColor="black" borderWidth="1px" />
       <Flex
         py={4}

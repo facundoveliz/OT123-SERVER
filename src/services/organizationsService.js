@@ -1,16 +1,25 @@
 import httpService from './httpService'
-
 const organizationsEndpoint = '/organizations'
 
 /**
- * ACCEPTS AN ID TO RETRIEVE ONE ORGANIZATION FROM ORGANIZATIONS ENDPOINT
+ * Accepts an id to retrieve one entry from entries endpoint
  * @async
-// eslint-disable-next-line no-undef
  * @param {int} id
- * @return PROMISE {OBJECT} THE REQUESTED ORGANIZATION
+ * @return Promise {object} the requested entry
  */
-function getOrganizationById(id) {
-  return httpService.get(`${organizationsEndpoint}/${id}/public`)
+export function getOrganizationById(id) {
+  return httpService.get(`${organizationsEndpoint}/${id}`)
 }
 
-export default getOrganizationById
+/**
+ * ACCEPTS AN ID & AND AN OBJECT TO UPDATE A CATEGORY FROM CATEGORIES ENDPOINT
+ * @async
+ * @param {int} id
+ * @param {object} organization
+ * @param {string} organization.name
+ * @param {string} organization.image
+ * @return PROMISE {OBJECT} THE CREATED CATEGORY
+ */
+export function updateOrganization(id, organization) {
+  return httpService.put(`${organizationsEndpoint}/${id}`, organization)
+}

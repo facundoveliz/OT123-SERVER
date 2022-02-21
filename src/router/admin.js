@@ -13,19 +13,10 @@ import EditHomePage from '../components/home/EditHomePage'
 import EditWelcomeText from '../components/home/editWelcomeText'
 import EditSlideForm from '../components/home/EditSlideForm'
 import CategoryForm from '../components/categories/CategoriesForm'
-/*
-import Categories from '../pages/Categories'
-import News from '../pages/backoffice/news/ListNews'
-import ListContacts from '../pages/backoffice/ListContacts'
+
+/* import ListContacts from '../pages/backoffice/ListContacts'
 import Users from '../pages/Users'
-import EditHomeForm from '../components/forms/home/EditHomeForm'
-import EditSlideForm from '../components/forms/home/EditSlideForm'
 import EditUserForm from '../components/forms/EditUserForm'
-import EditNewsForm from '../components/forms/EditNewsForm'
-import EditActivityForm from '../components/forms/EditActivityForm'
-import EditTestimonialsForm from '../components/forms/EditTestimonialsForm'
-import EditHomePage from '../pages/backoffice/home/EditHomePage'
-import ListTestimonials from '../pages/backoffice/ListTestimonials'
 */
 
 const AdminRoutes = () => (

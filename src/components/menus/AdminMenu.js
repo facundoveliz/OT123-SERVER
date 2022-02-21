@@ -24,13 +24,10 @@ const AdminMenu = () => (
       </MenuGroup>
       <MenuDivider />
       <MenuGroup title="Administración">
-        <MenuItem as={NavLink} to="/admin/actividades">Actividades</MenuItem>
-        <MenuItem as={NavLink} to="/admin/actividades/:id">Actividad (ID)</MenuItem>
-        <MenuItem as={NavLink} to="/admin/actividades/nuevo">Actividad (add)</MenuItem>
-        <MenuItem as={NavLink} to="/admin/categorias">Categorias</MenuItem>
-        <MenuItem as={NavLink} to="/admin/contactos">Contactos</MenuItem>
-        <MenuItem as={NavLink} to="/admin/testimonios">Testimonios</MenuItem>
-        <MenuItem as={NavLink} to="/admin/testimonios/nuevo">Testimonios (add)</MenuItem>
+        <MenuItem as={NavLink} to="/backoffice/actividades">Actividades</MenuItem>
+        <MenuItem as={NavLink} to="/backoffice/categorias">Categorias</MenuItem>
+        <MenuItem as={NavLink} to="/backoffice/contactos">Contactos</MenuItem>
+        <MenuItem as={NavLink} to="/backoffice/testimonios">Testimonios</MenuItem>
       </MenuGroup>
       <MenuDivider />
       <MenuItem>

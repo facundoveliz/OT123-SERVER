@@ -12,6 +12,7 @@ import Profile from '../pages/profile/Profile'
 import ContactsList from '../pages/contact/ContactsList'
 import ListCategories from '../pages/backoffice/categories/ListCategories'
 import TestimonialForm from '../components/testimonials/TestimonialForm'
+import MemberForm from '../components/members/MemberForm'
 import Entry from '../components/news/Entry'
 import News from '../components/news/News'
 import Detail from '../components/pageUtils/Detail'
@@ -30,6 +31,7 @@ const PublicRoutes = () => {
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
+        <Route path="nosotrosform" element={<MemberForm />} />
         <Route path="backoffice/contactos" element={<ContactsList />} />
         <Route path="backoffice/categorias" element={<ListCategories />} />
         <Route path="novedades">

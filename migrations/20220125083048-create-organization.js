@@ -20,7 +20,7 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      welcome_text: {
+      welcomeText: {
         type: Sequelize.TEXT
       },
       createdAt: {

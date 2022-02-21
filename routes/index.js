@@ -9,6 +9,7 @@ const organizationsRouter = require('./organizations')
 const pingRouter = require('./ping')
 const testimonialsRouter = require('./testimonials')
 const usersRouter = require('./users')
+const slidersRouter = require('./sliders')
 const sendgridRouter = require('./sendgrid')
 
 const router = new express.Router()
@@ -22,6 +23,7 @@ router.use('/organizations', organizationsRouter)
 router.use('/ping', pingRouter)
 router.use('/testimonials', testimonialsRouter)
 router.use('/users', usersRouter)
+router.use('/sliders', slidersRouter)
 router.use('/sendgrid', sendgridRouter)
 
 module.exports = router

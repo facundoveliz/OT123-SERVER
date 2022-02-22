@@ -43,7 +43,7 @@ const AdminRoutes = () => (
       <Route path="testimonios">
         <Route index element={<TestimonialList />} />
         <Route path=":id" element={<TestimonialForm />} />
-        <Route path=":nuevo" element={<TestimonialForm />} />
+        <Route path="nuevo" element={<TestimonialForm />} />
       </Route>
       <Route path="home">
         <Route index element={<EditHomePage />} />

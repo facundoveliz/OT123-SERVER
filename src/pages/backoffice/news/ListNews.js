@@ -122,7 +122,7 @@ const ListNews = () => {
             {newsData.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td>{item.image}</Td>
+                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
                 <Td>{item.createdAt}</Td>
                 <Td display="flex" justifyContent="center">
                   <ButtonGroup

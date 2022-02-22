@@ -113,6 +113,8 @@ const ListCategories = () => {
             <Tr>
               <Th>Nombre</Th>
               <Th>Descripción</Th>
+              <Th>Creado</Th>
+              <Th>Actualizado</Th>
               <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
@@ -121,6 +123,8 @@ const ListCategories = () => {
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td>{item.description}</Td>
+                <Td>{item.createdAt}</Td>
+                <Td>{item.updatedAt}</Td>
                 <Td display="flex" justifyContent="center">
                   <ButtonGroup
                     flexWrap="wrap"

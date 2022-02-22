@@ -112,6 +112,9 @@ const ListTestimonials = () => {
           <Thead>
             <Tr>
               <Th>Nombre</Th>
+              <Th>Imagen</Th>
+              <Th>Creado</Th>
+              <Th>Actualizado</Th>
               <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
@@ -119,6 +122,9 @@ const ListTestimonials = () => {
             {allTestimonial.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
+                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
+                <Td>{item.createdAt}</Td>
+                <Td>{item.updatedAt}</Td>
                 <Td display="flex" justifyContent="center">
                   <ButtonGroup
                     flexWrap="wrap"

@@ -34,21 +34,12 @@ const ListActivities = () => {
         p="2"
         overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-          <Heading align="center">
-            Actividades
-            {' '}
-          </Heading>
-          <Button
-            leftIcon={<IoAddOutline size="22" />}
-            onClick={() => navigate('./nuevo')}
-          >
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Actividades</Heading>
+          <Button leftIcon={<IoAddOutline size="22" />} onClick={() => navigate('./nuevo')}>
             Crear nuevo
-
           </Button>
-
         </Box>
-
         <Table>
           <Thead>
             <Tr>

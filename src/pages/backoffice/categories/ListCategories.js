@@ -88,6 +88,7 @@ const ListCategories = () => {
   useEffect(() => {
     loadData()
   }, [deletedCategory])
+
   return (
     <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
@@ -101,19 +102,11 @@ const ListCategories = () => {
         p="2"
         overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-          <Heading align="center">
-            Categorias
-            {' '}
-          </Heading>
-          <Button
-            leftIcon={<IoAddOutline size="22" />}
-            onClick={() => navigate('./nuevo')}
-          >
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Categorias</Heading>
+          <Button leftIcon={<IoAddOutline size="22" />} onClick={() => navigate('./nuevo')}>
             Crear nuevo
-
           </Button>
-
         </Box>
         <Table size="lg">
           <Thead>

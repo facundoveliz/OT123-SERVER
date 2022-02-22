@@ -14,7 +14,7 @@ import { getUserData } from '../../app/slices/auth'
 const Profile = () => {
   const navigate = useNavigate()
   let user = useSelector(getUserData)
-  user = user.payload.userData.dataValues
+  user = user.payload.persistedReducer.userData.dataValues
   const { id } = user
 
   return (

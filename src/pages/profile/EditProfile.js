@@ -14,7 +14,7 @@ import useUser from '../../hooks/useUser'
 const EditProfileForm = () => {
   const navigate = useNavigate()
   const userData = useSelector(getUserData)
-  const user = userData.payload.userData.dataValues
+  const user = userData.payload.persistedReducer.userData.dataValues
   const { editUser } = useUser()
   const { id } = useParams()
 

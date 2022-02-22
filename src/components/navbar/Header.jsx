@@ -11,12 +11,13 @@ import Menu from '../menus/Menu'
 
 const Header = () => {
   const userData = useSelector(getUserData)
+  const { isLoggedIn } = useUser()
   let id = 0
   let roleId = 0
-  const { isLoggedIn } = useUser()
+
   if (isLoggedIn) {
-    id = userData.payload.userData.dataValues.id
-    roleId = userData.payload.userData.dataValues.roleId
+    id = userData.payload.persistedReducer.userData.dataValues.id
+    roleId = userData.payload.persistedReducer.userData.dataValues.roleId
   }
 
   const getText = (isActive, text) => {

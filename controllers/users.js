@@ -166,8 +166,8 @@ exports.editUser = async (req, res) => {
         error: err,
       })
     })
-  
-    return null
+
+  return null
 }
 
 exports.deleteUser = async (req, res) => {

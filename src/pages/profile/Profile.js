@@ -12,7 +12,7 @@ import { getUserData } from '../../app/slices/auth'
 
 const Profile = () => {
   let user = useSelector(getUserData)
-  user = user.payload.userData.dataValues
+  user = user.payload.persistedReducer.userData.dataValues
 
   return (
     <Stack minH="100vh">

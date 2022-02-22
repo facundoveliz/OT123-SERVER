@@ -52,6 +52,9 @@ const Header = () => {
     <NavLink to="/contribuye">
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
+    <NavLink to="/backoffice">
+      {({ isActive }) => getText(isActive, 'Backoffice')}
+    </NavLink>,
   ]
 
   return (

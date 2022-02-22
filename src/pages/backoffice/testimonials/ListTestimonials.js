@@ -88,6 +88,7 @@ const ListTestimonials = () => {
   useEffect(() => {
     loadData()
   }, [deletedTestimonial])
+
   return (
     <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
@@ -99,43 +100,40 @@ const ListTestimonials = () => {
         w={{ base: '98%', md: '90%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="scroll"
+        overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-
-          <Heading align="center">Testimonios</Heading>
-          <Button
-            leftIcon={<IoAddOutline size="22" />}
-            onClick={() => navigate('./nuevo')}
-          >
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Testimonios</Heading>
+          <Button leftIcon={<IoAddOutline size="22" />} onClick={() => navigate('./nuevo')}>
             Crear nuevo
-
           </Button>
-
         </Box>
         <Table size="lg">
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Acciones</Th>
+              <Th>Imagen</Th>
+              <Th>Creado</Th>
+              <Th>Actualizado</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
             {allTestimonial.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td maxWidth="120px" alignContent="left">
+                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
+                <Td>{item.createdAt}</Td>
+                <Td>{item.updatedAt}</Td>
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Button
                       width="100px"
                       leftIcon={<IoPencil />}
-                      marginRight="6"
                       marginBottom="1"
                       size="sm"
                       onClick={() => navigate(`./${item.id}`)}

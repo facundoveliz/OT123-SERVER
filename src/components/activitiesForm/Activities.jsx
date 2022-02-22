@@ -20,9 +20,9 @@ const Activities = () => {
   return (
     <>
       <VStack my={12} display="flex" textAlign="center">
-        <Text fontSize="5xl">Testimonios</Text>
+        <Text fontSize="5xl">Actividades</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
-          Estos son las actividades en ¡Somos Más!.
+          Estas son las actividades en ¡Somos Más!.
         </Text>
       </VStack>
       <Grid templateColumns="repeat(auto-fill, 350px)" gap={8} mb={12} justifyContent="center">

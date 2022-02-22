@@ -90,29 +90,21 @@ const ListActivities = () => {
     loadData()
   }, [deletedActivity])
   return (
-    <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
         backgroundColor="white"
-        w={{ base: '90%', md: 600 }}
-        h="max-content"
-        m="auto"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
         p="2"
-        justifyContent="center"
-        overflow="hidden"
+        overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-          <Heading align="center">
-            Actividades
-            {' '}
-          </Heading>
-          <Button
-            leftIcon={<IoAddOutline size="22" />}
-            onClick={() => navigate('./nuevo')}
-          >
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Actividades</Heading>
+          <Button leftIcon={<IoAddOutline size="22" />} onClick={() => navigate('./nuevo')}>
             Crear nuevo
           </Button>
         </Box>
@@ -121,7 +113,10 @@ const ListActivities = () => {
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Acciones</Th>
+              <Th>Imagen</Th>
+              <Th>Creado</Th>
+              <Th>Actualizado</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -129,12 +124,13 @@ const ListActivities = () => {
 
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td maxWidth="120px">
+                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
+                <Td>{item.createdAt}</Td>
+                <Td>{item.updatedAt}</Td>
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Link to={`../activitiesform/${item.id}`}>
@@ -151,6 +147,7 @@ const ListActivities = () => {
                     <Button
                       width="100px"
                       leftIcon={<IoTrashBin />}
+                      marginBottom="1"
                       size="sm"
                       onClick={() => handleDelete(item.id)}
                     >

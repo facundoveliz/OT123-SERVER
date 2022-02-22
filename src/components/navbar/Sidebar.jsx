@@ -92,16 +92,21 @@ const Sidebar = () => {
             <Link as={NavLink} to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
             </Link>
-            {isLoggedIn === true
-              ? (<LogoutButton />)
-              : (
-                <>
-                  <Button colorScheme="blue" width="150px" variant="outline" as={NavLink} to="/signin">Iniciar sesión</Button>
-                  <Button colorScheme="blue" width="150px" as={NavLink} to="/signup">Registrarse</Button>
-                </>
-              )}
-          </VStack>
+            <Link as={NavLink} to="/backoffice">
+              {({ isActive }) => getItem(isActive, 'Backoffice', FaRegMoneyBillAlt)}
+            </Link>
+            <Box>
+              {isLoggedIn === true
+                ? (<LogoutButton />)
+                : (
+                  <>
+                    <Button colorScheme="blue" width="100%" variant="outline" as={NavLink} to="/signin" mb="15px">Iniciar sesión</Button>
+                    <Button colorScheme="blue" width="100%" as={NavLink} to="/signup">Registrarse</Button>
+                  </>
+                )}
 
+            </Box>
+          </VStack>
         </DrawerContent>
       </Drawer>
     </>

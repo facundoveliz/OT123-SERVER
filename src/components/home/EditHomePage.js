@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable import/named */
 /* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from 'react'
@@ -35,7 +34,6 @@ export default function EditHomePage() {
     icon: 'error',
     onConfirm: () => {},
   }
-
   useEffect(() => {
     setIsloading(true)
     Promise.all([getAllSliders(), getOrganizationById(orgId)])
@@ -79,7 +77,7 @@ export default function EditHomePage() {
       ) : (
         <Table size="sm" textAlign="center">
           <Thead bg="brand.cyan">
-            <Tr>
+            <Tr fontWeight="black">
               <Td textAlign="center">Nombre</Td>
               <Td textAlign="center">Texto de bienvenida</Td>
               <Td textAlign="center">Imagen</Td>

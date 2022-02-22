@@ -13,17 +13,85 @@ import {
   ButtonGroup,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
-import loadListData from '../allListData'
+import { Link } from 'react-router-dom'
+import { deleteActivity, getAllActivities } from '../../../services/activitiesService'
+import Alert from '../../../components/alert/Alert'
 
 const ListActivities = () => {
   const navigate = useNavigate()
-  const [activitiesData, setActivitiesData] = useState([])
-  useEffect(() => {
-    loadListData('actividades').then(({ activities }) => setActivitiesData(activities))
-  }, [])
+  const [allActivities, setAllActivities] = useState([{}])
+  const [deletedActivity, setDeletedActivity] = useState([])
+  const [alertProps, setAlertProps] = useState({
+    show: false,
+    title: '',
+    message: '',
+    icon: '',
+    onConfirm: () => {},
+  })
 
+  async function loadData() {
+    try {
+      const response = await getAllActivities()
+      setAllActivities(response.data.result.activities)
+    } catch (error) {
+      const errorAlertProps = {
+        show: true,
+        title: 'Hubo un error!',
+        message: error.message,
+        icon: 'error',
+        onConfirm: () => {},
+      }
+      setAlertProps(errorAlertProps)
+    }
+  }
+
+  const confirmDelete = async (id) => {
+    try {
+      const confirmedDelete = await deleteActivity(id)
+      if (confirmedDelete) {
+        setAlertProps({
+          show: true,
+          title: 'actividad Eliminada!',
+          message: 'Actividad eliminada de forma exitosa!',
+          icon: 'success',
+          cancelbtn: false,
+          onConfirm: () => {
+            setDeletedActivity(id)
+            window.location.reload();
+          },
+        })
+      }
+    } catch (error) {
+      setAlertProps({
+        show: true,
+        title: 'Hubo un error!',
+        message: error.message,
+        icon: 'error',
+        cancelbtn: true,
+        onConfirm: () => {},
+        onCancel: () => {},
+      })
+    }
+  }
+
+  const handleDelete = (id) => {
+    setAlertProps({
+      show: true,
+      title: 'Estas Seguro?',
+      message: 'Esta acción es permanente. ¿Eliminar actividad?',
+      icon: 'warning',
+      cancelbtn: true,
+      onConfirm: () => confirmDelete(id),
+      onCancel: () => {},
+    })
+  }
+
+  useEffect(() => {
+    loadData()
+  }, [deletedActivity])
   return (
     <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+      <Alert {...alertProps} />
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
@@ -46,11 +114,9 @@ const ListActivities = () => {
             onClick={() => navigate('./nuevo')}
           >
             Crear nuevo
-
           </Button>
-
         </Box>
-
+        <Heading align="center">Activities</Heading>
         <Table>
           <Thead>
             <Tr>
@@ -59,7 +125,8 @@ const ListActivities = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {activitiesData.map((item) => (
+            {allActivities.map((item) => (
+
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td maxWidth="120px">
@@ -70,17 +137,24 @@ const ListActivities = () => {
                     spacing="0"
                     width="fit-content"
                   >
+                    <Link to={`../activitiesform/${item.id}`}>
+                      <Button
+                        width="100px"
+                        leftIcon={<IoPencil />}
+                        marginRight="6"
+                        marginBottom="1"
+                        size="sm"
+                      >
+                        Editar
+                      </Button>
+                    </Link>
                     <Button
                       width="100px"
-                      leftIcon={<IoPencil />}
-                      marginRight="6"
-                      marginBottom="1"
+                      leftIcon={<IoTrashBin />}
                       size="sm"
-                      onClick={() => navigate(`./${item.id}`)}
+                      onClick={() => handleDelete(item.id)}
                     >
-                      Editar
-                    </Button>
-                    <Button width="100px" leftIcon={<IoTrashBin />} size="sm">
+
                       Eliminar
                     </Button>
                   </ButtonGroup>

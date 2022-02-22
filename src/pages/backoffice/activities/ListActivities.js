@@ -103,7 +103,18 @@ const ListActivities = () => {
         justifyContent="center"
         overflow="hidden"
       >
-
+        <Box display="flex" justifyContent="space-around" my="10">
+          <Heading align="center">
+            Actividades
+            {' '}
+          </Heading>
+          <Button
+            leftIcon={<IoAddOutline size="22" />}
+            onClick={() => navigate('./nuevo')}
+          >
+            Crear nuevo
+          </Button>
+        </Box>
         <Heading align="center">Activities</Heading>
         <Table>
           <Thead>

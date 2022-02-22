@@ -1,18 +1,10 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
-const nodemailer = require('nodemailer')
-const sendgridTransport = require('nodemailer-sendgrid-transport')
 const db = require('../models')
 const { generateToken } = require('../middlewares/jwt')
 const { userRole } = require('./role')
 
 const { User } = db
-
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth: {
-    api_key: `${process.env.SENDGRID_API_KEY}`,
-  },
-}))
 
 exports.getAll = async (req, res) => {
   try {
@@ -55,7 +47,6 @@ exports.userData = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
-  const { email } = req.body
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -86,12 +77,6 @@ exports.signup = async (req, res) => {
     }
     // generates token
     const token = generateToken(newUser)
-    transporter.sendMail({
-      to: email,
-      from: `${process.env.SENDGRID_EMAIL}`,
-      subject: 'Su cuenta ha sido creada!',
-      html: '<h1>Gracias por registrarse en nuestra pagina! </h1>',
-    })
     res.status(201).json({
       ok: true,
       msg: 'User created',
@@ -148,6 +133,41 @@ exports.signin = async (req, res) => {
   }
   // quick fix to 'consistent-return' eslint error
   return null
+}
+
+exports.editUser = async (req, res) => {
+  const { id } = req.params
+  const { firstName, lastName, roleId } = req.body
+
+  const user = await User.findByPk(id)
+  if (!user) {
+    return res.status(400).json({
+      ok: false,
+      msg: 'THERE IS NO USER WITH THIS ID',
+    })
+  }
+
+  const token = generateToken(user)
+  delete user.dataValues.password
+  user.firstName = firstName
+  user.lastName = lastName
+  user.roleId = roleId
+  await user
+    .save()
+    .then((updatedUser) => res.status(201).json({
+      ok: true,
+      msg: 'SUCCESS EDITING USER DATA',
+      result: { updatedUser: { ...updatedUser }, token },
+    }))
+    .catch((err) => {
+      res.status(400).json({
+        ok: false,
+        msg: 'ERROR EDITING USER DATA',
+        error: err,
+      })
+    })
+  
+    return null
 }
 
 exports.deleteUser = async (req, res) => {

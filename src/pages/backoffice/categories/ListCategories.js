@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import { deleteCategory, getAllCategories } from '../../../services/categoriesService'
 import Alert from '../../../components/alert/Alert'
 
-const ListTestimonials = () => {
+const ListCategories = () => {
   const [allCategories, setAllCategories] = useState([{}])
   const [deletedCategory, setDeletedCategory] = useState([])
   const [alertProps, setAlertProps] = useState({
@@ -152,4 +152,4 @@ const ListTestimonials = () => {
   )
 }
 
-export default ListTestimonials
+export default ListCategories

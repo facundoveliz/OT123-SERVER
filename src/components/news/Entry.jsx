@@ -32,7 +32,7 @@ const Entry = () => {
           mb={4}
           cursor="pointer"
           onClick={() => {
-            navigate('/novedades')
+            navigate(-1)
           }}
         />
         <Heading as="h1" size="2xl" textAlign="justify">{entryData.name}</Heading>

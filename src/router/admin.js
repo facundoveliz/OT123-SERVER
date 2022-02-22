@@ -10,6 +10,7 @@ import TestimonialForm from '../components/testimonials/TestimonialForm'
 import EditHomePage from '../components/home/EditHomePage'
 import EditWelcomeText from '../components/home/editWelcomeText'
 import EditSlideForm from '../components/home/EditSlideForm'
+import Backoffice from '../pages/backoffice/Index'
 
 /*
 import Categories from '../pages/Categories'
@@ -29,7 +30,8 @@ import ListTestimonials from '../pages/backoffice/ListTestimonials'
 
 const AdminRoutes = () => (
   <Routes>
-    <Route path="" element={<AdminRoute />}>
+    <Route element={<AdminRoute />}>
+      <Route path="" element={<Backoffice />} />
       <Route path="actividades">
         <Route index element={<ListActivities />} />
         <Route path=":id" element={<ActivitiesForm />} />

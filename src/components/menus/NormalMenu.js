@@ -9,6 +9,7 @@ import {
   MenuGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+import LogoutButton from '../LogoutButton'
 
 const NormalMenu = () => (
   <Menu>
@@ -16,12 +17,15 @@ const NormalMenu = () => (
       Cuenta
     </MenuButton>
     <MenuList>
-      <MenuGroup title="Perfil">
+      <MenuGroup textAlign="center" fontWeight="black" title="Perfil">
         <MenuItem as={NavLink} to="/auth/perfil">Perfil</MenuItem>
         <MenuItem as={NavLink} to="/auth/editarperfil">Editar perfil</MenuItem>
       </MenuGroup>
       <MenuDivider />
-      <MenuItem>Cerrar sesión</MenuItem>
+      <MenuItem>
+        {' '}
+        <LogoutButton />
+      </MenuItem>
     </MenuList>
   </Menu>
 )

@@ -20,7 +20,7 @@ const Activities = () => {
   return (
     <>
       <VStack my={12} display="flex" textAlign="center">
-        <Text fontSize="5xl">Testimonios</Text>
+        <Text fontSize="5xl">Actividades</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estos son las actividades en ¡Somos Más!.
         </Text>

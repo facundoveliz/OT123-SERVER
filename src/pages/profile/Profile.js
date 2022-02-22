@@ -55,10 +55,11 @@ const Profile = () => {
               _hover={{
                 bg: '#990000',
               }}
+              onClick={() => { navigate(`/auth/editarperfil/${id}`) }}
             >
               Editar perfil
             </Button>
-            <Button rounded="xl" onClick={() => { navigate(`/auth/editarperfil/${id}`) }}>
+            <Button rounded="xl">
               Eliminar cuenta
             </Button>
           </Stack>

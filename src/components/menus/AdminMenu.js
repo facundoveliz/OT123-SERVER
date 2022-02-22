@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import {
   Button,
@@ -10,30 +9,31 @@ import {
   MenuGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import { getUserData } from '../../app/slices/auth'
 import LogoutButton from '../LogoutButton'
 
-const AdminMenu = (props) => {
-  const { id } = props
+const AdminMenu = () => {
+  const userData = useSelector(getUserData)
+  const { id, firstName, lastName } = userData.payload.persistedReducer.userData.dataValues
 
   return (
     <Menu>
       <MenuButton as={Button} colorScheme="blue">
-        Cuenta
+        { `${firstName} ${lastName}` }
       </MenuButton>
       <MenuList>
-        <MenuGroup title="Perfil">
+        <MenuGroup textAlign="center" fontWeight="black" title="Perfil">
           <MenuItem as={NavLink} to="/auth/perfil">Perfil</MenuItem>
           <MenuItem as={NavLink} to={`/auth/editarperfil/${id}`}>Editar perfil</MenuItem>
         </MenuGroup>
         <MenuDivider />
-        <MenuGroup title="Administración">
-          <MenuItem as={NavLink} to="/admin/actividades">Actividades</MenuItem>
-          <MenuItem as={NavLink} to="/admin/actividades/:id">Actividad (ID)</MenuItem>
-          <MenuItem as={NavLink} to="/admin/actividades/nuevo">Actividad (add)</MenuItem>
-          <MenuItem as={NavLink} to="/admin/categorias">Categorias</MenuItem>
-          <MenuItem as={NavLink} to="/admin/contactos">Contactos</MenuItem>
-          <MenuItem as={NavLink} to="/admin/testimonios">Testimonios</MenuItem>
-          <MenuItem as={NavLink} to="/admin/testimonios/nuevo">Testimonios (add)</MenuItem>
+        <MenuGroup textAlign="center" fontWeight="black" title="Administración">
+          <MenuItem as={NavLink} to="/backoffice/actividades">Actividades</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice/categorias">Categorias</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice/contactos">Contactos</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice/testimonios">Testimonios</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice/novedades">Novedades</MenuItem>
         </MenuGroup>
         <MenuDivider />
         <MenuItem>
@@ -42,10 +42,6 @@ const AdminMenu = (props) => {
       </MenuList>
     </Menu>
   )
-}
-
-AdminMenu.propTypes = {
-  id: PropTypes.number.isRequired,
 }
 
 export default AdminMenu

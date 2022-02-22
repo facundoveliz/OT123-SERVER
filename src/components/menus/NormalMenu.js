@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import {
   Button,
@@ -10,18 +9,21 @@ import {
   MenuGroup,
   MenuDivider,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import { getUserData } from '../../app/slices/auth'
 import LogoutButton from '../LogoutButton'
 
-const NormalMenu = (props) => {
-  const { id } = props
+const NormalMenu = () => {
+  const userData = useSelector(getUserData)
+  const { id, firstName, lastName } = userData.payload.persistedReducer.userData.dataValues
 
   return (
     <Menu>
       <MenuButton as={Button} colorScheme="blue">
-        Cuenta
+        { `${firstName} ${lastName}` }
       </MenuButton>
       <MenuList>
-        <MenuGroup title="Perfil">
+        <MenuGroup textAlign="center" fontWeight="black" title="Perfil">
           <MenuItem as={NavLink} to="/auth/perfil">Perfil</MenuItem>
           <MenuItem as={NavLink} to={`/auth/editarperfil/${id}`}>Editar perfil</MenuItem>
         </MenuGroup>
@@ -32,10 +34,6 @@ const NormalMenu = (props) => {
       </MenuList>
     </Menu>
   )
-}
-
-NormalMenu.propTypes = {
-  id: PropTypes.number.isRequired,
 }
 
 export default NormalMenu

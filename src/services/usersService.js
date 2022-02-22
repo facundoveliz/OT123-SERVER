@@ -48,6 +48,20 @@ export function signIn(data) {
 }
 
 /**
+ * ACCEPTS AN ID AND AN OBJECT TO EDIT AN USER FROM USERS ENDPOINT
+ * @async
+ * @param {int} id
+ * @param {object} user
+ * @param {string} user.firstName
+ * @param {string} user.lastName
+ * @param {number} user.roleId
+ * @return PROMISE {OBJECT} THE EDITED USER
+ */
+export function edit(id, data) {
+  return httpService.put(`${usersEndpoint}/${id}`, data)
+}
+
+/**
  * ACCEPTS AN ID TO DELETE ONE USER FROM USERS ENDPOINT
  * @async
  * @param {int} id {int}

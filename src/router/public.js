@@ -8,6 +8,10 @@ import AnimatedPage from '../components/transitions/AnimatedPage'
 import Home from '../pages/Home'
 import SignUp from '../pages/signup/SignUpForm'
 import SignIn from '../pages/signin/SignInForm'
+import ContactsList from '../pages/contact/ContactsList'
+import ListCategories from '../pages/backoffice/categories/ListCategories'
+import TestimonialForm from '../components/testimonials/TestimonialForm'
+import MemberForm from '../components/members/MemberForm'
 import News from '../components/news/News'
 import Detail from '../components/pageUtils/Detail'
 import Testimonials from '../components/testimonials/Testimonials'
@@ -24,7 +28,10 @@ const PublicRoutes = () => {
         <Route path="home" element={<Home />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
-
+        <Route path="testimonioform" element={<TestimonialForm />} />
+        <Route path="nosotrosform" element={<MemberForm />} />
+        <Route path="backoffice/contactos" element={<ContactsList />} />
+        <Route path="backoffice/categorias" element={<ListCategories />} />
         <Route path="novedades">
           <Route index element={<News />} />
           <Route path=":id" element={<Detail />} />

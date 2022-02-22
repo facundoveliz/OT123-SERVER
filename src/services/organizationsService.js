@@ -3,10 +3,10 @@ import httpService from './httpService'
 const organizationsEndpoint = '/organizations'
 
 /**
- * Accepts an id to retrieve one entry from entries endpoint
+ * ACCEPTS AN ID TO RETRIVE AN ORGANIZATION FROM THE ORGANIZATIONS ENDPOINT
  * @async
  * @param {int} id
- * @return Promise {object} the requested entry
+ * @return PROMISE {OBJECT} THE REQUESTED ORGANIZATION
  */
 export function getOrganizationById(id) {
   return httpService.get(`${organizationsEndpoint}/${id}/public`)
@@ -21,6 +21,7 @@ export function getOrganizationById(id) {
  * @param {string} organization.image
  * @return PROMISE {OBJECT} THE CREATED CATEGORY
  */
+
 export function updateOrganization(id, organization) {
   return httpService.put(`${organizationsEndpoint}/${id}`, organization)
 }

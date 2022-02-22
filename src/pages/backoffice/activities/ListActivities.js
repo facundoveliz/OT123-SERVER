@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IoTrashBin, IoPencil } from 'react-icons/io5'
+import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
   Table,
@@ -12,9 +12,11 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router'
 import loadListData from '../allListData'
 
 const ListActivities = () => {
+  const navigate = useNavigate()
   const [activitiesData, setActivitiesData] = useState([])
   useEffect(() => {
     loadListData('actividades').then(({ activities }) => setActivitiesData(activities))
@@ -32,7 +34,21 @@ const ListActivities = () => {
         p="2"
         overflow="auto"
       >
-        <Heading align="center">Activities</Heading>
+        <Box display="flex" justifyContent="space-around" my="10">
+          <Heading align="center">
+            Actividades
+            {' '}
+          </Heading>
+          <Button
+            leftIcon={<IoAddOutline size="22" />}
+            onClick={() => navigate('./nuevo')}
+          >
+            Crear nuevo
+
+          </Button>
+
+        </Box>
+
         <Table>
           <Thead>
             <Tr>
@@ -55,6 +71,7 @@ const ListActivities = () => {
                       leftIcon={<IoPencil />}
                       marginBottom="1"
                       size="sm"
+                      onClick={() => navigate(`./${item.id}`)}
                     >
                       Editar
                     </Button>

@@ -59,7 +59,7 @@ const Header = () => {
 
   return (
     <HStack justify="space-between" py={2} px={3}>
-      <Sidebar />
+      <Sidebar roleId={roleId} />
       <NavLink exact to="/home">
         <Image
           src="../../logo.png"

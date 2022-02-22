@@ -25,10 +25,12 @@ import {
   FaPhone,
   FaRegMoneyBillAlt,
 } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import useUser from '../../hooks/useUser';
 import LogoutButton from '../LogoutButton';
+import Menu from '../menus/Menu';
 
-const Sidebar = () => {
+const Sidebar = ({ roleId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isLoggedIn } = useUser()
 
@@ -71,6 +73,8 @@ const Sidebar = () => {
             alignItems="flex-start"
             color="gray.600"
           >
+            {isLoggedIn === true
+          && <Menu roleId={roleId} />}
             <Link as={NavLink} exact to="/">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
             </Link>
@@ -112,5 +116,7 @@ const Sidebar = () => {
     </>
   );
 }
-
+Sidebar.propTypes = {
+  roleId: PropTypes.number.isRequired,
+}
 export default Sidebar;

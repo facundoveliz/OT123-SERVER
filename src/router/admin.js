@@ -48,7 +48,7 @@ const AdminRoutes = () => (
       <Route path="home">
         <Route index element={<EditHomePage />} />
         <Route path="editwelcometext" element={<EditWelcomeText />} />
-        <Route path="editslider/:id" element={<EditSlideForm />} />
+        <Route path="slide/:id" element={<EditSlideForm />} />
       </Route>
 
     </Route>

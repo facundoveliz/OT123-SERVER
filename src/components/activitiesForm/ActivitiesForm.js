@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Formik } from 'formik'
@@ -32,7 +33,7 @@ const ActivitiesForm = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [loadImage, setLoadImage] = useState(null)
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState(null)
   const [data, setData] = useState('')
   const [activity, setActivity] = useState({
     id: null,
@@ -100,37 +101,44 @@ const ActivitiesForm = () => {
   }
 
   const AddSubmitHandler = async (values) => {
-    try {
-      setLoading(true)
-      const newActivity = await addActivity({
-        name: values.name,
-        content: data.content,
-        image: values.image ? await UploadFile(values.image) : null,
-      })
-      if (newActivity) {
+    if (loadImage !== '') {
+      try {
+        setLoading(true)
+        const newActivity = await addActivity({
+          name: values.name,
+          content: data.content,
+          image: values.image ? await UploadFile(values.image) : null,
+        })
+        if (newActivity) {
         // eslint-disable-next-line no-console
-        console.log(newActivity);
-        const successAlert = {
+          console.log(newActivity);
+          const successAlert = {
+            show: true,
+            title: 'Actividad',
+            message: 'Actividad agregada!',
+            icon: 'success',
+            onConfirm: () => {},
+          }
+          setAlerts(successAlert)
+          navigate('/')
+          setLoading(false)
+        }
+      } catch (error) {
+        const errorAlert = {
           show: true,
-          title: 'Actividad',
-          message: 'Actividad agregada!',
-          icon: 'success',
+          title: 'hubo un error!',
+          message: error.message,
+          icon: 'error',
           onConfirm: () => {},
         }
-        setAlerts(successAlert)
-        navigate('/')
-        setLoading(false)
+        setAlerts(errorAlert)
       }
-    } catch (error) {
-      const errorAlert = {
-        show: true,
-        title: 'hubo un error!',
-        message: error.message,
-        icon: 'error',
-        onConfirm: () => {},
-      }
-      setAlerts(errorAlert)
     }
+  }
+
+  const onSave = () => {
+    if (!comment) setComment('')
+    if (!loadImage) setLoadImage('')
   }
 
   return (
@@ -226,11 +234,15 @@ const ActivitiesForm = () => {
                       value={values.file}
                     />
                   </FormControl>
-                  {loadImage === null && !id && (
+                  {loadImage === '' && !id && (
                     <small>La imagen es obligatoria</small>
                   )}
                 </Box>
-                <Button type="submit" w="100%">
+                <Button
+                  type="submit"
+                  w="100%"
+                  onClick={onSave}
+                >
                   {loading ? <Spinner /> : 'Guardar'}
                 </Button>
               </VStack>

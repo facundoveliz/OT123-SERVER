@@ -34,6 +34,7 @@ const AdminMenu = () => {
           <MenuItem as={NavLink} to="/backoffice/contactos">Contactos</MenuItem>
           <MenuItem as={NavLink} to="/backoffice/testimonios">Testimonios</MenuItem>
           <MenuItem as={NavLink} to="/backoffice/novedades">Novedades</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice/home">Home</MenuItem>
         </MenuGroup>
         <MenuDivider />
         <MenuItem>

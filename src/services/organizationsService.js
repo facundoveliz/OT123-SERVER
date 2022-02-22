@@ -1,4 +1,5 @@
 import httpService from './httpService'
+
 const organizationsEndpoint = '/organizations'
 
 /**

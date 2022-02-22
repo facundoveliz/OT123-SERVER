@@ -12,6 +12,7 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
+
 import { Link } from 'react-router-dom'
 import { deleteActivity, getAllActivities } from '../../../services/activitiesService'
 import Alert from '../../../components/alert/Alert'
@@ -102,6 +103,7 @@ const ListActivities = () => {
         justifyContent="center"
         overflow="hidden"
       >
+
         <Heading align="center">Activities</Heading>
         <Table>
           <Thead>
@@ -112,6 +114,7 @@ const ListActivities = () => {
           </Thead>
           <Tbody>
             {allActivities.map((item) => (
+
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td maxWidth="120px">
@@ -139,6 +142,7 @@ const ListActivities = () => {
                       size="sm"
                       onClick={() => handleDelete(item.id)}
                     >
+
                       Eliminar
                     </Button>
                   </ButtonGroup>
@@ -149,7 +153,6 @@ const ListActivities = () => {
         </Table>
       </Box>
     </Box>
-
   )
 }
 

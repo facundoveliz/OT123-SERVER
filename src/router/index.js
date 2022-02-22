@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {
   Routes,
@@ -22,7 +21,7 @@ const AllRoutes = () => {
           <Route path="/" element={<Layout />}>
             <Route path="*" element={<PublicRoutes />} />
             <Route path="/auth/*" element={<AuthRoutes />} />
-            <Route path="/admin/*" element={<AdminRoutes />} />
+            <Route path="/backoffice/*" element={<AdminRoutes />} />
           </Route>
 
         </Routes>

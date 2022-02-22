@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -9,32 +10,39 @@ import {
   Box,
   Center,
 } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
+import loadListData from '../backoffice/allListData';
 
-const ContactsList = ({ contactsData }) => (
-  <Center>
-    <Box
-      bg="brand.yellow"
-      color="white"
-      borderRadius="lg"
-      padding={50}
-    >
-      <Center fontSize="6xl">
-        Lista de
-        <br />
-        Contactos
-      </Center>
-      <Box paddingBottom={50}>
-        <Table color="black">
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th isNumeric>Phone</Th>
-              <Th>Email</Th>
-              <Th>Message</Th>
-            </Tr>
-          </Thead>
-          {
+const ContactsList = () => {
+  const [contactsData, setContactsData] = useState([])
+  useEffect(() => {
+    loadListData('contactos').then(({ contacts }) => setContactsData(contacts))
+  }, [])
+  console.log(contactsData)
+
+  return (
+    <Center>
+      <Box
+        bg="brand.yellow"
+        color="white"
+        borderRadius="lg"
+        padding={50}
+      >
+        <Center fontSize="6xl">
+          Lista de
+          <br />
+          Contactos
+        </Center>
+        <Box paddingBottom={50}>
+          <Table color="black">
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th isNumeric>Phone</Th>
+                <Th>Email</Th>
+                <Th>Message</Th>
+              </Tr>
+            </Thead>
+            {
             contactsData.map((item) => (
               <Tbody key={item.id}>
                 <Tr>
@@ -48,21 +56,11 @@ const ContactsList = ({ contactsData }) => (
               </Tbody>
             ))
           }
-        </Table>
+          </Table>
+        </Box>
       </Box>
-    </Box>
-  </Center>
-)
-
-ContactsList.propTypes = {
-  contactsData: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      phone: PropTypes.string,
-      email: PropTypes.string,
-      message: PropTypes.string,
-    }),
-  ).isRequired,
+    </Center>
+  )
 }
 
 export default ContactsList;

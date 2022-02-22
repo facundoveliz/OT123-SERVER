@@ -34,7 +34,7 @@ const ListCategories = () => {
     } catch (error) {
       const errorAlertProps = {
         show: true,
-        title: 'Ooops, algo ha fallado!',
+        title: 'Hubo un error!',
         message: error.message,
         icon: 'error',
         onConfirm: () => {},

@@ -50,13 +50,6 @@ const PublicRoutes = () => {
           <Route index element={<Members />} />
           <Route path=":id" element={<Detail />} />
         </Route>
-        <Route path="novedades:id" element={<Entry />} />
-        <Route path="perfil" element={<Profile />} />
-
-        <Route path="backoffice/novedades">
-          <Route index element={<News />} />
-          <Route path=":id" element={<Entry />} />
-        </Route>
 
       </Routes>
     </AnimatedPage>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IoTrashBin, IoPencil } from 'react-icons/io5'
+import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
   Table,
@@ -12,7 +12,7 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { deleteCategory, getAllCategories } from '../../../services/categoriesService'
 import Alert from '../../../components/alert/Alert'
 
@@ -27,6 +27,7 @@ const ListTestimonials = () => {
     onConfirm: () => {},
   })
 
+  const navigate = useNavigate()
   async function loadData() {
     try {
       const response = await getAllCategories()
@@ -100,7 +101,20 @@ const ListTestimonials = () => {
         p="2"
         overflow="scroll"
       >
-        <Heading align="center">Categorias</Heading>
+        <Box display="flex" justifyContent="space-around" my="10">
+          <Heading align="center">
+            Categorias
+            {' '}
+          </Heading>
+          <Button
+            leftIcon={<IoAddOutline size="22" />}
+            onClick={() => navigate('./nuevo')}
+          >
+            Crear nuevo
+
+          </Button>
+
+        </Box>
         <Table size="lg">
           <Thead>
             <Tr>
@@ -122,17 +136,16 @@ const ListTestimonials = () => {
                     spacing="0"
                     width="fit-content"
                   >
-                    <Link to={`../categoriesform/${item.id}`}>
-                      <Button
-                        width="100px"
-                        leftIcon={<IoPencil />}
-                        marginRight="6"
-                        marginBottom="1"
-                        size="sm"
-                      >
-                        Editar
-                      </Button>
-                    </Link>
+                    <Button
+                      width="100px"
+                      leftIcon={<IoPencil />}
+                      marginRight="6"
+                      marginBottom="1"
+                      size="sm"
+                      onClick={() => navigate(`./${item.id}`)}
+                    >
+                      Editar
+                    </Button>
                     <Button
                       width="100px"
                       leftIcon={<IoTrashBin />}

@@ -21,43 +21,38 @@ const ListActivities = () => {
   }, [])
 
   return (
-    <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Box
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
         backgroundColor="white"
-        w={{ base: '90%', md: 600 }}
-        h="max-content"
-        m="auto"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
         p="2"
-        justifyContent="center"
-        overflow="hidden"
+        overflow="auto"
       >
         <Heading align="center">Activities</Heading>
         <Table>
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Acciones</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
             {activitiesData.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td maxWidth="120px">
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Button
                       width="100px"
                       leftIcon={<IoPencil />}
-                      marginRight="6"
                       marginBottom="1"
                       size="sm"
                     >

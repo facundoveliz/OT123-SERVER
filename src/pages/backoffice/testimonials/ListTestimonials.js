@@ -87,6 +87,7 @@ const ListTestimonials = () => {
   useEffect(() => {
     loadData()
   }, [deletedTestimonial])
+
   return (
     <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
       <Alert {...alertProps} />
@@ -98,33 +99,30 @@ const ListTestimonials = () => {
         w={{ base: '98%', md: '90%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="scroll"
+        overflow="auto"
       >
         <Heading align="center">Testimonios</Heading>
         <Table size="lg">
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Acciones</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
             {allTestimonial.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td maxWidth="120px" alignContent="left">
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Link to={`../testimonialform/${item.id}`}>
                       <Button
                         width="100px"
                         leftIcon={<IoPencil />}
-                        marginRight="6"
                         marginBottom="1"
                         size="sm"
                       >

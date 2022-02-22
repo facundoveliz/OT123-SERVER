@@ -98,7 +98,7 @@ const ListCategories = () => {
         w={{ base: '98%', md: '90%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="scroll"
+        overflow="auto"
       >
         <Heading align="center">Categorias</Heading>
         <Table size="lg">
@@ -106,7 +106,7 @@ const ListCategories = () => {
             <Tr>
               <Th>Nombre</Th>
               <Th>Descripción</Th>
-              <Th>Acciones</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -114,19 +114,16 @@ const ListCategories = () => {
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td>{item.description}</Td>
-                <Td maxWidth="120px">
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Link to={`../categoriesform/${item.id}`}>
                       <Button
                         width="100px"
                         leftIcon={<IoPencil />}
-                        marginRight="6"
                         marginBottom="1"
                         size="sm"
                       >

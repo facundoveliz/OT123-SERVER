@@ -92,7 +92,7 @@ const Sidebar = () => {
             <Link as={NavLink} to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
             </Link>
-            <Link as={NavLink} to="/admin">
+            <Link as={NavLink} to="/backoffice">
               {({ isActive }) => getItem(isActive, 'Backoffice', FaRegMoneyBillAlt)}
             </Link>
             <Box>

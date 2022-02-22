@@ -12,12 +12,13 @@ import {
   Button,
   ButtonGroup,
 } from '@chakra-ui/react'
-
+import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import { deleteActivity, getAllActivities } from '../../../services/activitiesService'
 import Alert from '../../../components/alert/Alert'
 
 const ListActivities = () => {
+  const navigate = useNavigate()
   const [allActivities, setAllActivities] = useState([{}])
   const [deletedActivity, setDeletedActivity] = useState([])
   const [alertProps, setAlertProps] = useState({

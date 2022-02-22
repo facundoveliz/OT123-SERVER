@@ -146,7 +146,7 @@ const ListActivities = () => {
                     </Link>
                     <Button
                       width="100px"
-                      leftIcon={<IoPencil />}
+                      leftIcon={<IoTrashBin />}
                       marginBottom="1"
                       size="sm"
                       onClick={() => handleDelete(item.id)}

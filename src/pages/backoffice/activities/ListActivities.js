@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IoTrashBin, IoPencil } from 'react-icons/io5'
+import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
   Table,

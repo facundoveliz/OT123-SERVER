@@ -20,14 +20,15 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      welcome_text: {
+      welcomeText: {
         type: Sequelize.TEXT
       },
       createdAt: {
         type: Sequelize.DATE,
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       deletedAt: {
         type: Sequelize.DATE

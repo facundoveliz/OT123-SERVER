@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, userData, signup, signin, deleteUser,
+  getAll, userData, signup, signin, editUser, deleteUser,
 } = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const validate = require('../schemas/userSchema')
@@ -18,6 +18,9 @@ router.post('/signup', validate, signup)
 
 // login user
 router.post('/signin', signin)
+
+// edit user
+router.put('/:id', editUser)
 
 // delete user
 router.delete('/:id', deleteUser)

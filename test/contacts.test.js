@@ -1,4 +1,6 @@
 const request = require('supertest')
+const { generateToken } = require('../middlewares/jwt')
+const token = generateToken({ name: 'test', roleId: 1 })
 const chai = require('chai')
 const app = require('../app')
 
@@ -31,6 +33,7 @@ describe('POST /contacts', () => {
         .post('/contacts')
         .send(data)
         .set('Accept', 'application/json')
+        .set( 'x-access-token', token )
         .expect('Content-Type', /json/)
         .expect(201)
         .end((err, res) => {
@@ -51,6 +54,7 @@ describe('POST /contacts', () => {
           .post('/contacts')
           .send(data)
           .set('Accept', 'application/json')
+          .set( 'x-access-token', token )
           .expect('Content-Type', /json/)
           .expect(422)
           .end((err, res) => {

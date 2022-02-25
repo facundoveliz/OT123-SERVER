@@ -17,11 +17,15 @@ const isAdmin = (req, res, next) => {
       next(httpError)
     }
     // if (decoded.role === 'Admin') { // cant be 'role'. it's the table name
-
-    const role = await Role.findByPk(decoded.user.roleId)
-    const { name } = role.dataValues
-    if (name === 'admin') {
-      next()
+    if (decoded) {
+      const role = await Role.findByPk(decoded?.user.roleId)
+      const { name } = role.dataValues
+      if (name === 'Admin') {
+        next()
+      } else {
+        const httpError = createHttpError(401, 'Forbidden access')
+        next(httpError)
+      }
     } else {
       const httpError = createHttpError(401, 'Forbidden access')
       next(httpError)

@@ -59,7 +59,6 @@ exports.add = async (req, res) => {
   }
   try {
     const { name, content, image } = req.body
-
     const activity = await Activities.create({
       name,
       content,

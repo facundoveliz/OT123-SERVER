@@ -1,8 +1,31 @@
 const { validationResult } = require('express-validator')
+const { QueryTypes } = require('sequelize')
 const db = require('../models')
 
 const { Testimonial } = db
 
+exports.getAllTestimonials = async (req, res) => {
+  const query = `
+  SELECT t.*, u.firstName, u.lastName, u.image FROM ong.testimonials t, ong.users u
+  where t.userId = u.id
+    `
+  try {
+    const testimonials = await db.sequelize.query(query, { type: QueryTypes.SELECT })
+    if (testimonials) {
+      res.status(200).json({
+        ok: true,
+        msg: 'Testimonials retrieved successfully',
+        result: { testimonials: [...testimonials] },
+      })
+    }
+  } catch (error) {
+    res.status(404).json({
+      ok: false,
+      msg: 'No testminials founded',
+      error: { ...error },
+    })
+  }
+}
 exports.getAll = (req, res) => {
   Testimonial.findAll({})
     .then((data) => {
@@ -55,8 +78,7 @@ exports.getTestimonial = async (req, res) => {
   }
 }
 
-exports.add = async (req, res) => {
-  // validation with express-validator
+exports.addTestimonial = async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({
@@ -67,8 +89,7 @@ exports.add = async (req, res) => {
   }
 
   return Testimonial.create({
-    name: req.body.name,
-    image: req.body.image,
+    userId: req.body.userId,
     content: req.body.content,
   })
     .then((newTestimonial) => {
@@ -107,8 +128,7 @@ exports.update = async (req, res) => {
 
   await testimonial.update(
     {
-      name: req.body.name,
-      image: req.body.image,
+      userId: req.body.userId,
       content: req.body.content,
     },
   ).then((updatedTestimonial) => res.status(200).json({

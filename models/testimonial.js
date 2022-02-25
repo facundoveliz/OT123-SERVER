@@ -10,13 +10,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Testimonial.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'users'
+      })
     }
   };
   Testimonial.init({
-    name: DataTypes.STRING,
-    image: DataTypes.STRING,
     content: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+    },
     deletedAt: DataTypes.DATE
   }, {
     sequelize,

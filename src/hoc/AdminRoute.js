@@ -8,14 +8,15 @@ import NotFound from '../pages/notFound/NotFound'
 const AdminRoute = () => {
   const userData = useSelector(getUserData)
   const { isLoggedIn } = useUser()
+
   let role = 0
+
   if (isLoggedIn) {
     role = userData.payload.persistedReducer.userData?.dataValues.roleId
   }
+
   return (
-
     role === 1 ? <Outlet /> : <NotFound />
-
   )
 }
 

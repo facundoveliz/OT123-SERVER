@@ -28,12 +28,12 @@ const LogoutButton = () => {
     <Button
       display={{ base: '1', md: 'inline-flex' }}
       px={{ base: '15px', md: '25px' }}
-      fontWeight={400}
-      bg="brand.gray1"
-      onClick={handleLogout}
+      border="2px solid black"
+      backgroundColor="#ccebff"
       _hover={{
-        bg: 'brand.cyan',
+        backgroundColor: '#4db8ff',
       }}
+      onClick={handleLogout}
     >
       Salir
     </Button>

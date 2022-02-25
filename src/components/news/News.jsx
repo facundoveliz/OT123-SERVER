@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState, useCallback } from 'react'
-import { Text, VStack, Grid } from '@chakra-ui/react'
+import {
+  Text, VStack, Grid, Stack,
+} from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getAll } from '../../services/newsService'
@@ -18,7 +20,7 @@ const News = () => {
   }, [getEntrys]);
 
   return (
-    <>
+    <Stack backgroundColor="#f2f2f2">
       <VStack my={12} display="flex" textAlign="center">
         <Text fontSize="5xl">Novedades</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
@@ -31,7 +33,7 @@ const News = () => {
           array={entrysData}
         />
       </Grid>
-    </>
+    </Stack>
   )
 }
 

@@ -11,11 +11,12 @@ const Card = ({ array, direction }) => {
     <>
       {array.map((item) => (
         <GridItem
+          border="2px solid black"
+          backgroundColor="#ffffcc"
           key={item.id}
           w="350px"
           borderRadius="lg"
           boxShadow="lg"
-          borderWidth="1px"
           cursor="pointer"
           textAlign="justify"
           onClick={() => {

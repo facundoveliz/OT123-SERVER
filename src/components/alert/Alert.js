@@ -22,6 +22,7 @@ const Alert = ({
   cancelbtn,
   onConfirm,
   onCancel,
+  timer,
 }) => {
   const dispatch = useDispatch()
   const showAlert = async () =>
@@ -38,7 +39,7 @@ const Alert = ({
         showCancelButton: cancelbtn,
         allowOutsideClick: !cancelbtn, // If cancel button is displayed, do not allow outside click.
         backdrop: true,
-        timer: '3000',
+        timer: `${timer}`,
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -65,6 +66,7 @@ const Alert = ({
 Alert.defaultProps = {
   icon: '',
   cancelbtn: false,
+  timer: '3000',
   onCancel: () => {},
 }
 
@@ -76,5 +78,6 @@ Alert.propTypes = {
   cancelbtn: PropTypes.bool,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
+  timer: PropTypes.string,
 }
 export default Alert

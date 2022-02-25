@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  Box, Image, Flex, Stack, VStack, HStack, Divider, Center, Icon,
+  Box, Image, Flex, Stack, VStack, HStack, Icon,
 } from '@chakra-ui/react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import styled from '@emotion/styled'
@@ -27,8 +27,7 @@ const Footer = () => {
   }, [])
 
   return (
-    <Box position="relative" backgroundColor="#f2f2f2">
-      <Divider borderColor="black" borderWidth="1px" />
+    <Box position="relative" backgroundColor="#f2f2f2" borderTop="2px solid black">
       <Flex
         py={4}
         direction={{ base: 'column', sm: 'row' }}
@@ -47,10 +46,7 @@ const Footer = () => {
           <Text>Contacto</Text>
         </Stack>
       </Flex>
-      <Center>
-        <Divider borderColor="black" borderWidth="1px" mt={4} width="91.5%" justify="center" />
-      </Center>
-      <VStack py={24} spacing={8}>
+      <VStack py={12} spacing={8} w="80%" m="auto" borderTop="2px solid black">
         <HStack
           direction="row"
           justify="center"

@@ -28,6 +28,7 @@ const LogoutButton = () => {
     <Button
       display={{ base: '1', md: 'inline-flex' }}
       px={{ base: '15px', md: '25px' }}
+      mt="10px"
       border="2px solid black"
       backgroundColor="#ccebff"
       _hover={{

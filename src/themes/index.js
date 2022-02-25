@@ -14,6 +14,13 @@ const theme = extendTheme({
     heading: 'Mali',
     body: 'Mali',
   },
+  styles: {
+    global: {
+      body: {
+        marginTop: '100px',
+      },
+    },
+  },
 })
 
 export default theme;

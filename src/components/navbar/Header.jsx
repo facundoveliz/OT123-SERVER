@@ -23,7 +23,7 @@ const Header = () => {
   const getText = (isActive, text) => {
     const textProperties = {}
     if (isActive) {
-      textProperties.color = 'red'
+      textProperties.color = '#4db8ff'
     }
     return (
       <Text {...textProperties}>{text}</Text>
@@ -58,7 +58,7 @@ const Header = () => {
   ]
 
   return (
-    <HStack justify="space-between" py={2} px={3} fontSize="18px" backgroundColor="#f2f2f2">
+    <HStack position="fixed" w="100%" h="100px" zIndex="1000" top="0" justify="space-between" py={4} px={3} fontSize="18px" backgroundColor="#f2f2f2" borderBottom="2px solid black">
       <Sidebar roleId={roleId} />
       <NavLink exact to="/home">
         <Image

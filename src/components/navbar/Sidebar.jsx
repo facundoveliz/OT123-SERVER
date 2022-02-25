@@ -44,8 +44,8 @@ const Sidebar = ({ roleId }) => {
       as: icon,
     }
     if (isActive) {
-      textProperties.color = 'red'
-      iconProperties.color = 'red'
+      textProperties.color = '#4db8ff'
+      iconProperties.color = '#4db8ff'
     }
     return (
       <Box
@@ -61,9 +61,9 @@ const Sidebar = ({ roleId }) => {
   return (
     <>
       <Icon as={FiAlignJustify} h={8} w={8} display={{ base: 'unset', xl: 'none' }} colorScheme="teal" onClick={onOpen} cursor="pointer" />
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose} zIndex="10000">
         <DrawerOverlay />
-        <DrawerContent spacing={8} justifyContent="space-between">
+        <DrawerContent spacing={8} justifyContent="space-between" borderRight="2px solid black">
           <DrawerCloseButton />
           <VStack
             spacing={8}
@@ -73,8 +73,6 @@ const Sidebar = ({ roleId }) => {
             alignItems="flex-start"
             color="gray.600"
           >
-            {isLoggedIn === true
-          && <Menu roleId={roleId} />}
             <Link as={NavLink} exact to="/">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
             </Link>
@@ -99,16 +97,40 @@ const Sidebar = ({ roleId }) => {
             <Link as={NavLink} to="/backoffice">
               {({ isActive }) => getItem(isActive, 'Backoffice', FaRegMoneyBillAlt)}
             </Link>
-            <Box>
+            <Box display="flex" flexDirection="column" width="100%">
+              {isLoggedIn === true
+          && <Menu roleId={roleId} />}
               {isLoggedIn === true
                 ? (<LogoutButton />)
                 : (
                   <>
-                    <Button colorScheme="blue" width="100%" variant="outline" as={NavLink} to="/signin" mb="15px">Iniciar sesión</Button>
-                    <Button colorScheme="blue" width="100%" as={NavLink} to="/signup">Registrarse</Button>
+                    <Button
+                      backgroundColor="#ccebff"
+                      _hover={{
+                        backgroundColor: '#4db8ff',
+                      }}
+                      border="2px solid black"
+                      width="100%"
+                      as={NavLink}
+                      to="/signin"
+                      mb="15px"
+                    >
+                      Iniciar sesión
+                    </Button>
+                    <Button
+                      backgroundColor="#ccebff"
+                      _hover={{
+                        backgroundColor: '#4db8ff',
+                      }}
+                      border="2px solid black"
+                      width="100%"
+                      as={NavLink}
+                      to="/signup"
+                    >
+                      Registrarse
+                    </Button>
                   </>
                 )}
-
             </Box>
           </VStack>
         </DrawerContent>

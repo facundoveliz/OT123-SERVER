@@ -1,10 +1,18 @@
 const { validationResult } = require('express-validator')
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
 const bcrypt = require('bcrypt')
 const db = require('../models')
 const { generateToken } = require('../middlewares/jwt')
 const { userRole } = require('./role')
 
 const { User } = db
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth: {
+    api_key: `${process.env.SENDGRID_API_KEY}`,
+  },
+}))
 
 exports.getAll = async (req, res) => {
   try {
@@ -47,6 +55,7 @@ exports.userData = async (req, res) => {
 }
 
 exports.signup = async (req, res) => {
+  const { email } = req.body
   // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -81,6 +90,12 @@ exports.signup = async (req, res) => {
       ok: true,
       msg: 'User created',
       result: { user: { ...newUser }, token },
+    })
+    transporter.sendMail({
+      to: email,
+      from: `${process.env.SENDGRID_EMAIL}`,
+      subject: 'Su contacto ha sido recibido',
+      html: '<h1>Gracias por interesarse en nuestra ONG! </h1>',
     })
   } catch (err) {
     return res.status(400).json({

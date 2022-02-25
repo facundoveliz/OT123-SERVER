@@ -56,26 +56,35 @@ const ContactForm = () => {
         }}
       >
         {(formik) => (
-          <HStack display="flex" backgroundColor="brand.lightBlue">
+          <HStack display="flex">
             <VStack
               as="form"
               m="auto"
-              p="2"
+              p="4"
               w={{ base: 300, md: 500, sm: 400 }}
               h="auto"
               justifyContent="center"
               borderWidth="1px solid white"
               borderRadius="lg"
               boxShadow="lg"
-              backgroundColor="white"
+              border="2px solid black"
+              backgroundColor="#ffffcc"
               onSubmit={formik.handleSubmit}
               display="block"
             >
-              <Heading align="center" color="gray.500">Mensaje</Heading>
-              <TextField name="name" placeholder="Nombre" label="Nombre" />
-              <TextField name="email" placeholder="E-mail" type="email" label="Email" />
-              <TextField name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
-              <Button type="submit" w="100%" backgroundColor="brand.yellow" color="gray.500">
+              <Heading align="center">Mensaje</Heading>
+              <TextField backgroundColor="white" name="name" placeholder="Nombre" label="Nombre" />
+              <TextField backgroundColor="white" name="email" placeholder="E-mail" type="email" label="Email" />
+              <TextField backgroundColor="white" name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
+              <Button
+                type="submit"
+                w="100%"
+                border="2px solid black"
+                backgroundColor="#d6f5d6"
+                _hover={{
+                  backgroundColor: '#6fdc6f',
+                }}
+              >
                 Crear cuenta
               </Button>
             </VStack>

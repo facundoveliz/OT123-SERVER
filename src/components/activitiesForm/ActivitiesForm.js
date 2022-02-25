@@ -66,7 +66,7 @@ const ActivitiesForm = () => {
       } catch (error) {
         const errorAlert = {
           show: true,
-          title: 'Ooops, algo ha fallado!',
+          title: 'Hubo un error!',
           message: error.message,
           icon: 'error',
           onConfirm: () => {},
@@ -168,7 +168,7 @@ const ActivitiesForm = () => {
             <HStack
               display="flex"
               justifyContent="center"
-              backgroundColor="#FAFA88"
+              backgroundColor="#f2f2f2"
             >
               <VStack
                 as="form"
@@ -178,13 +178,16 @@ const ActivitiesForm = () => {
                 p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
-                backgroundColor="white"
+                borderWidth="1px solid white"
+                border="2px solid black"
+                backgroundColor="#ffffcc"
                 onSubmit={handleSubmit}
               >
                 <Heading mb="16px">Actividad</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>
                   <Input
+                    backgroundColor="white"
                     type="text"
                     id="name"
                     name="name"
@@ -240,7 +243,16 @@ const ActivitiesForm = () => {
                     loadImage={loadImage}
                   />
                 </Box>
-                <Button type="submit" colorScheme="blue" w="100%" onClick={onSave}>
+                <Button
+                  border="2px solid black"
+                  backgroundColor="#d6f5d6"
+                  _hover={{
+                    backgroundColor: '#6fdc6f',
+                  }}
+                  type="submit"
+                  w="100%"
+                  onClick={onSave}
+                >
                   {loading ? <Spinner /> : 'Guardar'}
                 </Button>
               </VStack>

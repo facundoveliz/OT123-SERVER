@@ -10,7 +10,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Link,
   Box,
 } from '@chakra-ui/react'
 import {
@@ -51,6 +50,7 @@ const Sidebar = ({ roleId }) => {
       <Box
         display="flex"
         flex-direction="row"
+        _hover={{ color: '#3db8ff' }}
       >
         <Icon {...iconProperties} />
         <Text {...textProperties}>{text}</Text>
@@ -73,30 +73,30 @@ const Sidebar = ({ roleId }) => {
             alignItems="flex-start"
             color="gray.600"
           >
-            <Link as={NavLink} exact to="/">
+            <NavLink exact to="/">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
-            </Link>
-            <Link as={NavLink} to="/nosotros">
+            </NavLink>
+            <NavLink to="/nosotros">
               {({ isActive }) => getItem(isActive, 'Nosotros', FaGlobeAmericas)}
-            </Link>
-            <Link as={NavLink} to="/actividades">
+            </NavLink>
+            <NavLink to="/actividades">
               {({ isActive }) => getItem(isActive, 'Actividades', FaRegCalendarCheck)}
-            </Link>
-            <Link as={NavLink} to="/testimonios">
+            </NavLink>
+            <NavLink to="/testimonios">
               {({ isActive }) => getItem(isActive, 'Testimonios', FaRegComments)}
-            </Link>
-            <Link as={NavLink} to="/novedades">
+            </NavLink>
+            <NavLink to="/novedades">
               {({ isActive }) => getItem(isActive, 'Novedades', FaNewspaper)}
-            </Link>
-            <Link as={NavLink} exact to="/contacto">
+            </NavLink>
+            <NavLink exact to="/contacto">
               {({ isActive }) => getItem(isActive, 'Contacto', FaPhone)}
-            </Link>
-            <Link as={NavLink} to="/contribuye">
+            </NavLink>
+            <NavLink to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
-            </Link>
-            <Link as={NavLink} to="/backoffice">
+            </NavLink>
+            <NavLink to="/backoffice">
               {({ isActive }) => getItem(isActive, 'Backoffice', FaRegMoneyBillAlt)}
-            </Link>
+            </NavLink>
             <Box display="flex" flexDirection="column" width="100%">
               {isLoggedIn === true
           && <Menu roleId={roleId} />}

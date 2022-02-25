@@ -26,7 +26,7 @@ const Header = () => {
       textProperties.color = '#4db8ff'
     }
     return (
-      <Text {...textProperties}>{text}</Text>
+      <Text {...textProperties} _hover={{ color: '#4db8ff' }}>{text}</Text>
     )
   }
 

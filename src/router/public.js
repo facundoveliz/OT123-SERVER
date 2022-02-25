@@ -14,9 +14,10 @@ import TestimonialForm from '../components/testimonials/TestimonialForm'
 import MemberForm from '../components/members/MemberForm'
 import News from '../components/news/News'
 import Detail from '../components/pageUtils/Detail'
-import Testimonials from '../components/testimonials/Testimonials'
 import Activities from '../components/activitiesForm/Activities'
 import Members from '../components/members/Members'
+import ListTestimonials from '../pages/backoffice/testimonials/ListTestimonials'
+import ContactPage from '../pages/contact/ContactPage'
 
 const PublicRoutes = () => {
   const location = useLocation()
@@ -29,6 +30,7 @@ const PublicRoutes = () => {
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="testimonioform" element={<TestimonialForm />} />
+        <Route path="contacto" element={<ContactPage />} />
         <Route path="nosotrosform" element={<MemberForm />} />
         <Route path="backoffice/contactos" element={<ContactsList />} />
         <Route path="backoffice/categorias" element={<ListCategories />} />
@@ -37,7 +39,7 @@ const PublicRoutes = () => {
           <Route path=":id" element={<Detail />} />
         </Route>
         <Route path="testimonios">
-          <Route index element={<Testimonials />} />
+          <Route index element={<ListTestimonials />} />
           <Route path=":id" element={<Detail />} />
         </Route>
         <Route path="actividades">

@@ -60,49 +60,53 @@ export default function EditHomePage() {
   }
 
   return (
-    <Box
-      mt="30px"
-      d="flex"
-      justifyContent="center"
-      alignItems="center"
-      p="5px"
-      flexDirection="column"
-      textAlign="center"
-    >
-      <Text fontSize="2xl" mb="30px">
-        Edit Home
-      </Text>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <Table size="sm" textAlign="center">
-          <Thead bg="brand.cyan">
-            <Tr fontWeight="black">
-              <Td textAlign="center">Nombre</Td>
-              <Td textAlign="center">Texto de bienvenida</Td>
-              <Td textAlign="center">Imagen</Td>
-              <Td textAlign="center">Acciones</Td>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Td textAlign="center">Welcome Text</Td>
-              <Td textAlign="center"><Box dangerouslySetInnerHTML={createMarkup()} /></Td>
-              <Td />
-              <Td textAlign="center">
-                <Button
-                  onClick={() => navigate('editwelcometext')}
-                  fontWeight={600}
-                  bg="brand.cyan"
-                  _hover={{
-                    bg: 'brand.gray1',
-                  }}
-                >
-                  Editar
-                </Button>
-              </Td>
-            </Tr>
-            {slides
+    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
+      <Box
+        border="2px solid black"
+        backgroundColor="#ffffcc"
+        borderWidth="1px solid white"
+        borderRadius="lg"
+        boxShadow="lg"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
+        p="2"
+        overflow="auto"
+      >
+        <Text paddingLeft="2" fontSize="2xl" mb="30px">
+          Edit Home
+        </Text>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <Table size="sm" textAlign="center">
+            <Thead bg="brand.cyan">
+              <Tr fontWeight="black">
+                <Td textAlign="center">Nombre</Td>
+                <Td textAlign="center">Texto de bienvenida</Td>
+                <Td textAlign="center">Imagen</Td>
+                <Td textAlign="center">Acciones</Td>
+              </Tr>
+            </Thead>
+            <Tbody>
+              <Tr>
+                <Td textAlign="center">Welcome Text</Td>
+                <Td textAlign="center"><Box dangerouslySetInnerHTML={createMarkup()} /></Td>
+                <Td />
+                <Td textAlign="center">
+                  <Button
+                    onClick={() => navigate('editwelcometext')}
+                    fontWeight={600}
+                    backgroundColor="#ccebff"
+                    border="2px solid black"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                    }}
+                  >
+                    Editar
+                  </Button>
+                </Td>
+              </Tr>
+              {slides
             && slides.map((slide) => (
               <Tr
                 key={slide.id}
@@ -128,9 +132,10 @@ export default function EditHomePage() {
                 </Td>
               </Tr>
             ))}
-          </Tbody>
-        </Table>
-      )}
+            </Tbody>
+          </Table>
+        )}
+      </Box>
     </Box>
   )
 }

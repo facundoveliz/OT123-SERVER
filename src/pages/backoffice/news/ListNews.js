@@ -90,31 +90,32 @@ const ListNews = () => {
   }, [deletedNews])
 
   return (
-    <Box display="flex" height="100vh" width="100%" backgroundColor="#FAFA88">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
       <Alert {...alertProps} />
       <Box
+        border="2px solid black"
+        backgroundColor="#ffffcc"
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        backgroundColor="white"
-        w="70%"
-        h="max-content"
-        m="auto"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
         p="2"
-        justifyContent="center"
-        overflow="hidden"
+        overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-
-          <Heading align="center">Novedades</Heading>
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Novedades</Heading>
           <Button
+            border="2px solid black"
+            backgroundColor="#d6f5d6"
+            _hover={{
+              backgroundColor: '#6fdc6f',
+            }}
             leftIcon={<IoAddOutline size="22" />}
             onClick={() => navigate('./nuevo')}
           >
             Crear nuevo
-
           </Button>
-
         </Box>
 
         <Table>
@@ -123,36 +124,44 @@ const ListNews = () => {
               <Th>Nombre</Th>
               <Th>Imagen</Th>
               <Th>Fecha de creación</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
             {newsData.map((item) => (
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
-                <Td>{item.image}</Td>
+                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
                 <Td>{item.createdAt}</Td>
-                <Td maxWidth="120px">
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoPencil />}
-                      marginRight="6"
                       marginBottom="1"
                       size="sm"
+                      backgroundColor="#ccebff"
+                      _hover={{
+                        backgroundColor: '#4db8ff',
+                      }}
                       onClick={() => navigate(`./${item.id}`)}
                     >
                       Editar
                     </Button>
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoTrashBin />}
                       size="sm"
+                      backgroundColor="#ffc2b3"
+                      _hover={{
+                        backgroundColor: '#ff4d4d',
+                      }}
                       onClick={() => handleDelete(item.id)}
                     >
                       Eliminar

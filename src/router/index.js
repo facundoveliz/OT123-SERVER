@@ -23,7 +23,6 @@ const AllRoutes = () => {
             <Route path="/auth/*" element={<AuthRoutes />} />
             <Route path="/backoffice/*" element={<AdminRoutes />} />
           </Route>
-
         </Routes>
       </AnimatedPage>
     </AnimatePresence>

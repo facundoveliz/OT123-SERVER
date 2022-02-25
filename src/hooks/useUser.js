@@ -10,6 +10,7 @@ import {
   signIn,
   signUp,
   edit,
+  deleteUser,
 } from '../services/usersService'
 
 export default function useUser() {
@@ -74,11 +75,6 @@ export default function useUser() {
     return loginSuccess
   }
 
-  const logoutUser = () => {
-    window.localStorage.removeItem('x-access-token')
-    dispatch(deleteUserData())
-  }
-
   const editUser = async (id, user) => {
     let editSuccess = false
 
@@ -102,12 +98,24 @@ export default function useUser() {
     return editSuccess
   }
 
+  const logoutUser = () => {
+    window.localStorage.removeItem('x-access-token')
+    dispatch(deleteUserData())
+  }
+
+  const delUser = async (id) => {
+    deleteUser(id)
+    window.localStorage.removeItem('x-access-token')
+    dispatch(deleteUserData())
+  }
+
   return {
     registerUser,
     loginUser,
     isLoggedIn: Boolean(jwt),
     editUser,
     logoutUser,
+    delUser,
     userData,
   }
 }

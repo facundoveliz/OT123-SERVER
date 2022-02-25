@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router'
 import { deleteCategory, getAllCategories } from '../../../services/categoriesService'
 import Alert from '../../../components/alert/Alert'
 
-const ListTestimonials = () => {
+const ListCategories = () => {
   const [allCategories, setAllCategories] = useState([{}])
   const [deletedCategory, setDeletedCategory] = useState([])
   const [alertProps, setAlertProps] = useState({
@@ -88,39 +88,43 @@ const ListTestimonials = () => {
   useEffect(() => {
     loadData()
   }, [deletedCategory])
+
   return (
-    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
       <Alert {...alertProps} />
       <Box
+        border="2px solid black"
+        backgroundColor="#ffffcc"
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        backgroundColor="white"
         w={{ base: '98%', md: '90%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="scroll"
+        overflow="auto"
       >
-        <Box display="flex" justifyContent="space-around" my="10">
-          <Heading align="center">
-            Categorias
-            {' '}
-          </Heading>
+        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+          <Heading>Categorias</Heading>
           <Button
+            border="2px solid black"
+            backgroundColor="#d6f5d6"
+            _hover={{
+              backgroundColor: '#6fdc6f',
+            }}
             leftIcon={<IoAddOutline size="22" />}
             onClick={() => navigate('./nuevo')}
           >
             Crear nuevo
-
           </Button>
-
         </Box>
         <Table size="lg">
           <Thead>
             <Tr>
               <Th>Nombre</Th>
               <Th>Descripción</Th>
-              <Th>Acciones</Th>
+              <Th>Creado</Th>
+              <Th>Actualizado</Th>
+              <Th textAlign="center">Acciones</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -128,28 +132,37 @@ const ListTestimonials = () => {
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td>{item.description}</Td>
-                <Td maxWidth="120px">
+                <Td>{item.createdAt}</Td>
+                <Td>{item.updatedAt}</Td>
+                <Td display="flex" justifyContent="center">
                   <ButtonGroup
-                    display="flex"
                     flexWrap="wrap"
                     textAlign="center"
-                    spacing="0"
                     width="fit-content"
                   >
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoPencil />}
-                      marginRight="6"
                       marginBottom="1"
                       size="sm"
+                      backgroundColor="#ccebff"
+                      _hover={{
+                        backgroundColor: '#4db8ff',
+                      }}
                       onClick={() => navigate(`./${item.id}`)}
                     >
                       Editar
                     </Button>
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoTrashBin />}
                       size="sm"
+                      backgroundColor="#ffc2b3"
+                      _hover={{
+                        backgroundColor: '#ff4d4d',
+                      }}
                       onClick={() => handleDelete(item.id)}
                     >
                       Eliminar
@@ -165,4 +178,4 @@ const ListTestimonials = () => {
   )
 }
 
-export default ListTestimonials
+export default ListCategories

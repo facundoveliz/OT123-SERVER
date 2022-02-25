@@ -20,8 +20,8 @@ const Activities = () => {
   }, [getData]);
 
   return (
-    <Stack backgroundColor="#f2f2f2">
-      <VStack my={12} display="flex" textAlign="center">
+    <Stack backgroundColor="#f2f2f2" paddingBottom="10">
+      <VStack my={6} display="flex" textAlign="center">
         <Text fontSize="5xl">Actividades</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estas son las actividades en ¡Somos Más!.

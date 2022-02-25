@@ -21,7 +21,7 @@ const Testimonials = () => {
 
   return (
     <Stack backgroundColor="#f2f2f2">
-      <VStack display="flex" my={12} textAlign="center">
+      <VStack display="flex" my={6} textAlign="center">
         <Text fontSize="5xl">Testimonios</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estos son los últimos testimonios en Somos Más.

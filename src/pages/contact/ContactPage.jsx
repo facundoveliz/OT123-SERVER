@@ -20,8 +20,8 @@ const ContactPage = () => (
   <Container maxW="full" mt={0} centerContent overflow="hidden">
     <Flex>
       <Box
-        bg="brand.lightBlue"
-        color="white"
+        border="2px solid black"
+        backgroundColor="#ccebff"
         borderRadius="lg"
         m={{ sm: 4, md: 16, lg: 10 }}
         p={{ sm: 5, md: 5, lg: 16 }}
@@ -38,7 +38,7 @@ const ContactPage = () => (
             <WrapItem>
               <Box>
                 <Heading textAlign="center">Contacto</Heading>
-                <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
+                <Text mt={{ sm: 3, md: 3, lg: 5 }}>
                   Rellene el siguiente formulario para contactar
                 </Text>
                 <Box
@@ -51,13 +51,13 @@ const ContactPage = () => (
                 >
                   <VStack pl={0} spacing={3} alignItems="center">
                     <ButtonInfo nameIcon="phone">
-                      <Text color="white"> +54-1160112988</Text>
+                      <Text color="black"> +54-1160112988</Text>
                     </ButtonInfo>
                     <ButtonInfo nameIcon="email">
-                      <Text color="white"> somosfundacionmas@gmail.com</Text>
+                      <Text color="black"> somosfundacionmas@gmail.com</Text>
                     </ButtonInfo>
                     <ButtonInfo nameIcon="location">
-                      <Text color="white"> Buenos Aires, Argentina</Text>
+                      <Text color="black"> Buenos Aires, Argentina</Text>
                     </ButtonInfo>
                   </VStack>
                 </Box>

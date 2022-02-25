@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-curly-brace-presence */
 import React, { useState } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -6,7 +5,7 @@ import { Heading, HStack, VStack } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { useNavigate } from 'react-router-dom';
 import TextField from './TextField';
-import createContact from '../../services/contactsService'
+import { createContact } from '../../services/contactsService'
 import Alert from '../../components/alert/Alert'
 
 const ContactForm = () => {
@@ -27,7 +26,6 @@ const ContactForm = () => {
     })
 
     const msg = '¡El contacto fue creado!'
-    // eslint-disable-next-line no-alert
     if (contactData) {
       const successAlert = {
         show: true,
@@ -42,7 +40,6 @@ const ContactForm = () => {
   }
 
   return (
-  // eslint-disable-next-line react/self-closing-comp
     <>
       {' '}
       <Alert {...alerts} />
@@ -59,7 +56,7 @@ const ContactForm = () => {
         }}
       >
         {(formik) => (
-          <HStack display="flex" backgroundColor={'brand.lightBlue'}>
+          <HStack display="flex" backgroundColor="brand.lightBlue">
             <VStack
               as="form"
               m="auto"
@@ -69,9 +66,8 @@ const ContactForm = () => {
               justifyContent="center"
               borderWidth="1px solid white"
               borderRadius="lg"
-            // eslint-disable-next-line jsx-quotes
-              boxShadow='lg'
-              backgroundColor={'white'}
+              boxShadow="lg"
+              backgroundColor="white"
               onSubmit={formik.handleSubmit}
               display="block"
             >
@@ -79,7 +75,7 @@ const ContactForm = () => {
               <TextField name="name" placeholder="Nombre" label="Nombre" />
               <TextField name="email" placeholder="E-mail" type="email" label="Email" />
               <TextField name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
-              <Button type="submit" w="100%" backgroundColor={'brand.yellow'} color="gray.500">
+              <Button type="submit" w="100%" backgroundColor="brand.yellow" color="gray.500">
                 Crear cuenta
               </Button>
             </VStack>

@@ -1,19 +1,18 @@
 const { checkSchema } = require('express-validator')
 
 const validate = checkSchema({
-  name: {
+  userId: {
     exists: true,
     notEmpty: true,
-    isString: true,
+    isNumeric: true,
     trim: true,
-    isLength: { options: { min: 3, max: 64 } },
   },
   content: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isLength: { options: { min: 3 } },
+    isLength: { options: { min: 19 } },
   },
 })
 

@@ -134,27 +134,23 @@ const TestimonialForm = () => {
           {({ values, handleSubmit, handleChange }) => (
             <HStack
               display="flex"
-              height="100vh"
+              justifyContent="center"
               backgroundColor="#FAFA88"
-              width="100%"
             >
               <VStack
                 as="form"
-                m="auto"
-                p="2"
-                w={{ base: '90%', md: 400, sm: 300 }}
                 h="auto"
-                justifyContent="center"
-                borderWidth="1px solid white"
+                w={{ base: '90%', md: '40%' }}
+                m="40px"
+                p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
                 backgroundColor="white"
-                display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Testimonio</Heading>
+                <Heading mb="16px">Testimonio</Heading>
                 <FormControl>
-                  <FormLabel paddingLeft="2">Titulo</FormLabel>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>
                   <Input
                     type="text"
                     id="name"
@@ -165,7 +161,7 @@ const TestimonialForm = () => {
                 </FormControl>
                 <Spacer />
                 <FormControl>
-                  <FormLabel paddingLeft="2">Contenido</FormLabel>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Contenido</FormLabel>
                   <CKEditor
                     name="content"
                     data={values.content}
@@ -173,13 +169,9 @@ const TestimonialForm = () => {
                     onChange={ckChangeHandler}
                   />
                 </FormControl>
-                <FormLabel paddingLeft="2">Imagen</FormLabel>
-                <FormControl
-                  display="flex"
-                  flexWrap="wrap"
-                  justifyContent="center"
-                >
-                  <Box paddingBottom="2" align="center">
+                <FormControl>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Imagen</FormLabel>
+                  <Box>
                     <Input
                       width="230px"
                       border-radius="5px"
@@ -188,11 +180,11 @@ const TestimonialForm = () => {
                       type="file"
                     />
                   </Box>
-                  <Box paddingLeft="4" paddingRight="4">
-                    <Image objectFit="cover" src={testimonialData.image} />
+                  <Box>
+                    <Image objectFit="cover" my="16px" src={testimonialData.image} />
                   </Box>
                 </FormControl>
-                <Button type="submit" w="100%">
+                <Button type="submit" colorScheme="blue" w="100%">
                   Guardar
                 </Button>
               </VStack>

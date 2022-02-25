@@ -126,27 +126,23 @@ const CategoriesForm = () => {
           {({ values, handleSubmit, handleChange }) => (
             <HStack
               display="flex"
-              height="100vh"
+              justifyContent="center"
               backgroundColor="#FAFA88"
-              width="100%"
             >
               <VStack
                 as="form"
-                m="auto"
-                p="2"
-                w={{ base: '90%', md: 400, sm: 300 }}
                 h="auto"
-                justifyContent="center"
-                borderWidth="1px solid white"
+                w={{ base: '90%', md: '40%' }}
+                m="40px"
+                p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
                 backgroundColor="white"
-                display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Categoria</Heading>
+                <Heading mb="16px">Categoria</Heading>
                 <FormControl>
-                  <FormLabel paddingLeft="2">Titulo</FormLabel>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>
                   <Input
                     type="text"
                     id="name"
@@ -156,8 +152,8 @@ const CategoriesForm = () => {
                   />
                 </FormControl>
                 <Spacer />
-                <FormControl>
-                  <FormLabel paddingLeft="2">Contenido</FormLabel>
+                <FormControl pb="16px">
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Contenido</FormLabel>
                   <CKEditor
                     name="description"
                     data={values.description}
@@ -165,7 +161,7 @@ const CategoriesForm = () => {
                     onChange={ckChangeHandler}
                   />
                 </FormControl>
-                <Button type="submit" w="100%">
+                <Button type="submit" colorScheme="blue" w="100%">
                   Guardar
                 </Button>
               </VStack>

@@ -167,27 +167,23 @@ const ActivitiesForm = () => {
           }) => (
             <HStack
               display="flex"
-              height="100vh"
+              justifyContent="center"
               backgroundColor="#FAFA88"
-              width="100%"
             >
               <VStack
                 as="form"
-                m="auto"
-                p="2"
-                w={{ base: '100%', md: '90%', sm: '90%' }}
                 h="auto"
-                justifyContent="center"
-                borderWidth="1px solid white"
+                w={{ base: '90%', md: '40%' }}
+                m="40px"
+                p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
                 backgroundColor="white"
-                display="block"
                 onSubmit={handleSubmit}
               >
-                <Heading align="center">Actividad</Heading>
+                <Heading mb="16px">Actividad</Heading>
                 <FormControl>
-                  <FormLabel paddingLeft="2">Titulo</FormLabel>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>
                   <Input
                     type="text"
                     id="name"
@@ -200,7 +196,7 @@ const ActivitiesForm = () => {
                 </FormControl>
                 <Spacer />
                 <FormControl id="content">
-                  <FormLabel paddingLeft="2">Contenido</FormLabel>
+                  <FormLabel paddingLeft="0.5" fontSize="lg">Contenido</FormLabel>
                   <CKEditor
                     data={values.content}
                     editor={ClassicEditor}
@@ -215,34 +211,36 @@ const ActivitiesForm = () => {
                     <small>El comentario es obligatio</small>
                   )}
                 </FormControl>
-                <GridImages
-                  id={id}
-                  name={values.name}
-                  oldImage={values.oldImage}
-                  loadImage={loadImage}
-                />
-                <Box>
+                <Box align="left" w="100%" pb="16px">
                   <FormControl>
                     <FormLabel>{activity.inputText}</FormLabel>
-                    <input
-                      type="file"
-                      onChange={(event) => {
-                        const file = event.currentTarget.files[0]
-                        setFieldValue('image', file)
-                        setLoadImage(URL.createObjectURL(file))
-                      }}
-                      value={values.file}
-                    />
+                    <Box>
+                      <Input
+                        width="230px"
+                        border-radius="5px"
+                        padding="4px 5px"
+                        cursor="pointer"
+                        type="file"
+                        onChange={(event) => {
+                          const file = event.currentTarget.files[0]
+                          setFieldValue('image', file)
+                          setLoadImage(URL.createObjectURL(file))
+                        }}
+                        value={values.file}
+                      />
+                    </Box>
                   </FormControl>
                   {loadImage === '' && !id && (
                     <small>La imagen es obligatoria</small>
                   )}
+                  <GridImages
+                    id={id}
+                    name={values.name}
+                    oldImage={values.oldImage}
+                    loadImage={loadImage}
+                  />
                 </Box>
-                <Button
-                  type="submit"
-                  w="100%"
-                  onClick={onSave}
-                >
+                <Button type="submit" colorScheme="blue" w="100%" onClick={onSave}>
                   {loading ? <Spinner /> : 'Guardar'}
                 </Button>
               </VStack>

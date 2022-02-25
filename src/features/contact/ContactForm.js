@@ -29,7 +29,7 @@ const ContactForm = () => {
     if (contactData) {
       const successAlert = {
         show: true,
-        title: 'Actividad',
+        title: 'Contacto',
         message: msg,
         icon: 'success',
         onConfirm: () => {},
@@ -85,7 +85,7 @@ const ContactForm = () => {
                   backgroundColor: '#6fdc6f',
                 }}
               >
-                Crear cuenta
+                Enviar contacto
               </Button>
             </VStack>
           </HStack>

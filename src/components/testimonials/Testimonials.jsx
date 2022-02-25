@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState, useCallback } from 'react'
-import { Text, VStack, Grid } from '@chakra-ui/react'
+import {
+  Text, VStack, Grid, Stack,
+} from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getAllTestimonials } from '../../services/testimonialsService'
@@ -18,8 +20,8 @@ const Testimonials = () => {
   }, [getData]);
 
   return (
-    <>
-      <VStack my={12} display="flex" textAlign="center">
+    <Stack backgroundColor="#f2f2f2">
+      <VStack display="flex" my={12} textAlign="center">
         <Text fontSize="5xl">Testimonios</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estos son los últimos testimonios en Somos Más.
@@ -31,7 +33,7 @@ const Testimonials = () => {
           array={loadData}
         />
       </Grid>
-    </>
+    </Stack>
   )
 }
 

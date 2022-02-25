@@ -27,8 +27,7 @@ describe('POST /testimonials', () => {
   // Test: testimonial creation
   it('respond with 201 created', (done) => {
     const data = {
-      name: 'Great testimonial',
-      image: '',
+      userId:1,
       content: 'This is really nice.',
     }
     request(app)
@@ -97,9 +96,8 @@ describe('GET /testimonials/:id', () => {
 describe('PUT /testimonials/:id', () => {
   it('respond with a json containing the updated testimonial', (done) => {
     const data = {
-      name: 'name test',
-      image: '',
-      content: 'content test',
+      userId: 1,
+      content: 'content test content test content test content test ',
     }
     request(app)
       .put(`/testimonials/${id}`)
@@ -116,8 +114,7 @@ describe('PUT /testimonials/:id', () => {
   // test validation
   it('respond with a json containing an error', (done) => {
     const data = {
-      name: 'a',
-      image: '',
+      userId: 2,
       content: 'a',
     }
     request(app)

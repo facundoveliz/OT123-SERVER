@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { Button } from '@chakra-ui/button'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { setAlertData, resetAlertData } from '../app/slices/alert'
+import { setAlertData } from '../app/slices/alert'
 import useUser from '../hooks/useUser'
 
 const LogoutButton = () => {

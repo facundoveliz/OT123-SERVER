@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import {
   Box, Center, Flex, SimpleGrid, Text,
@@ -130,7 +129,6 @@ export default function ListTestimonials() {
         })
         if (data) {
           setOnLoading(false)
-          console.log(data);
           const successAlert = {
             show: true,
             title: 'Testimonio',

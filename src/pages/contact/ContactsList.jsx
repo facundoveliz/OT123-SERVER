@@ -20,17 +20,20 @@ const ContactsList = () => {
   console.log(contactsData)
 
   return (
-    <Center>
+    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
       <Box
-        bg="brand.yellow"
-        color="white"
+        border="2px solid black"
+        backgroundColor="#ffffcc"
+        borderWidth="1px solid white"
         borderRadius="lg"
-        padding={50}
+        boxShadow="lg"
+        w={{ base: '98%', md: '90%' }}
+        m={{ base: '10px', md: '50px' }}
+        p="2"
+        overflow="auto"
       >
         <Center fontSize="6xl">
-          Lista de
-          <br />
-          Contactos
+          Lista de Contactos
         </Center>
         <Box paddingBottom={50}>
           <Table color="black">
@@ -59,7 +62,7 @@ const ContactsList = () => {
           </Table>
         </Box>
       </Box>
-    </Center>
+    </Box>
   )
 }
 

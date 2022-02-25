@@ -6,7 +6,7 @@ import {
 import Card from './Card';
 
 const Index = () => (
-  <Box backgroundColor="#FAFA88">
+  <Box backgroundColor="#f2f2f2">
     <Center display="flex" direction="row" flexWrap="wrap">
       <Card title="Novedades" icon={FaRegNewspaper} route="/backoffice/novedades" />
       <Card title="Actividades" icon={FaTasks} route="/backoffice/actividades" />

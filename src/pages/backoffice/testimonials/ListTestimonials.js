@@ -90,13 +90,14 @@ const ListTestimonials = () => {
   }, [deletedTestimonial])
 
   return (
-    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
+    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
       <Alert {...alertProps} />
       <Box
+        border="2px solid black"
+        backgroundColor="#ffffcc"
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        backgroundColor="white"
         w={{ base: '98%', md: '90%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
@@ -104,7 +105,15 @@ const ListTestimonials = () => {
       >
         <Box display="flex" justifyContent="space-between" mx="6" my="5">
           <Heading>Testimonios</Heading>
-          <Button leftIcon={<IoAddOutline size="22" />} onClick={() => navigate('./nuevo')}>
+          <Button
+            border="2px solid black"
+            backgroundColor="#d6f5d6"
+            _hover={{
+              backgroundColor: '#6fdc6f',
+            }}
+            leftIcon={<IoAddOutline size="22" />}
+            onClick={() => navigate('./nuevo')}
+          >
             Crear nuevo
           </Button>
         </Box>
@@ -132,18 +141,28 @@ const ListTestimonials = () => {
                     width="fit-content"
                   >
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoPencil />}
                       marginBottom="1"
                       size="sm"
+                      backgroundColor="#ccebff"
+                      _hover={{
+                        backgroundColor: '#4db8ff',
+                      }}
                       onClick={() => navigate(`./${item.id}`)}
                     >
                       Editar
                     </Button>
                     <Button
+                      border="2px solid black"
                       width="100px"
                       leftIcon={<IoTrashBin />}
                       size="sm"
+                      backgroundColor="#ffc2b3"
+                      _hover={{
+                        backgroundColor: '#ff4d4d',
+                      }}
                       onClick={() => handleDelete(item.id)}
                     >
                       Eliminar

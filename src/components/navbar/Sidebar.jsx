@@ -106,9 +106,7 @@ const Sidebar = ({ roleId }) => {
                   <>
                     <Button
                       backgroundColor="#ccebff"
-                      _hover={{
-                        backgroundColor: '#4db8ff',
-                      }}
+                      _hover={{ backgroundColor: '#4db8ff' }}
                       border="2px solid black"
                       width="100%"
                       as={NavLink}
@@ -118,10 +116,8 @@ const Sidebar = ({ roleId }) => {
                       Iniciar sesión
                     </Button>
                     <Button
-                      backgroundColor="#ccebff"
-                      _hover={{
-                        backgroundColor: '#4db8ff',
-                      }}
+                      backgroundColor="#d6f5d6"
+                      _hover={{ backgroundColor: '#6fdc6f' }}
                       border="2px solid black"
                       width="100%"
                       as={NavLink}

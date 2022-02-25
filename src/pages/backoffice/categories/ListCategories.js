@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import moment from 'moment';
 import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
@@ -132,8 +133,8 @@ const ListCategories = () => {
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td>{item.description}</Td>
-                <Td>{item.createdAt}</Td>
-                <Td>{item.updatedAt}</Td>
+                <Td>{moment(item.createdAt).format('DD/MM/YYYY')}</Td>
+                <Td>{moment(item.updatedAt).format('DD/MM/YYYY')}</Td>
                 <Td display="flex" justifyContent="center">
                   <ButtonGroup
                     flexWrap="wrap"

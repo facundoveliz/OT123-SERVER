@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Activities', [
       {
-        name: 'Apoyo Escolar para el nivel Primario',
+        name: 'Apoyo escolar para el nivel Primario',
         content: `Apoyo Escolar para el nivel Primario: 
         El espacio de apoyo escolar es el corazón del área educativa. Se realizan los 
         talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el 
@@ -22,7 +22,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'Apoyo Escolar Nivel Secundaria',
+        name: 'Apoyo escolar nivel secundaria',
         content: `Del mismo modo que en primaria, este taller es el corazón del área 
         secundaria. Se realizan talleres de lunes a viernes de 10 a 12 horas y de 16 a 
         18 horas en el contra turno. Actualmente se encuentran inscriptos en el taller 

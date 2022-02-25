@@ -44,8 +44,8 @@ const Sidebar = ({ roleId }) => {
       as: icon,
     }
     if (isActive) {
-      textProperties.color = 'blue'
-      iconProperties.color = 'blue'
+      textProperties.color = 'red'
+      iconProperties.color = 'red'
     }
     return (
       <Box

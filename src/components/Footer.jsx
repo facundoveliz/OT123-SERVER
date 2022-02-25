@@ -27,7 +27,7 @@ const Footer = () => {
   }, [])
 
   return (
-    <Box position="relative">
+    <Box position="relative" backgroundColor="#f2f2f2">
       <Divider borderColor="black" borderWidth="1px" />
       <Flex
         py={4}

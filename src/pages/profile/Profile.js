@@ -72,9 +72,20 @@ const Profile = () => {
   return (
     <>
       <Alert {...alerts} />
-      <Stack minH="100vh">
-        <Flex p={8} flex={1} align="center" justify="center">
-          <Stack spacing={6} w="full" maxW="lg">
+      <Stack p="8" display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
+        <Flex align="center" justify="center">
+          <Stack
+            border="2px solid black"
+            backgroundColor="#ffffcc"
+            borderWidth="1px solid white"
+            borderRadius="lg"
+            boxShadow="lg"
+            p="4"
+            m="auto"
+            w={{ base: '90%', md: 500 }}
+            h="auto"
+            overflow="auto"
+          >
             <Heading fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}>
               <Text
                 as="span"
@@ -104,16 +115,24 @@ const Profile = () => {
             <Stack direction={{ base: 'column' }} spacing={4}>
               <Button
                 rounded="xl"
-                bg="#DB5752"
-                color="white"
+                backgroundColor="#ccebff"
+                border="2px solid black"
                 _hover={{
-                  bg: '#990000',
+                  backgroundColor: '#4db8ff',
                 }}
                 onClick={() => { navigate(`/auth/editarperfil/${id}`) }}
               >
                 Editar perfil
               </Button>
-              <Button rounded="xl" onClick={() => { deleteAccount(id) }}>
+              <Button
+                border="2px solid black"
+                rounded="xl"
+                backgroundColor="#ffc2b3"
+                _hover={{
+                  backgroundColor: '#ff4d4d',
+                }}
+                onClick={() => { deleteAccount(id) }}
+              >
                 Eliminar cuenta
               </Button>
             </Stack>

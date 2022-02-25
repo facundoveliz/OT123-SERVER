@@ -58,7 +58,7 @@ const Header = () => {
   ]
 
   return (
-    <HStack justify="space-between" py={2} px={3}>
+    <HStack justify="space-between" py={2} px={3} fontSize="18px" backgroundColor="#f2f2f2">
       <Sidebar roleId={roleId} />
       <NavLink exact to="/home">
         <Image
@@ -70,16 +70,15 @@ const Header = () => {
         />
       </NavLink>
       <HStack
-        spacing={8}
+        spacing={5}
         lineHeight="30px"
         justify="center"
         display={{ base: 'none', xl: 'flex' }}
         wrap="wrap"
-        fontSize="lg"
       >
         {navItems}
       </HStack>
-      <HStack spacing={4} display={{ base: 'none', xl: 'unset' }}>
+      <HStack spacing={2} display={{ base: 'none', xl: 'unset' }}>
         {isLoggedIn === true
           && <Menu id={id} roleId={roleId} />}
         {isLoggedIn === false

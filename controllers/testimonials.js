@@ -128,8 +128,7 @@ exports.update = async (req, res) => {
 
   await testimonial.update(
     {
-      name: req.body.name,
-      image: req.body.image,
+      userId: req.body.userId,
       content: req.body.content,
     },
   ).then((updatedTestimonial) => res.status(200).json({

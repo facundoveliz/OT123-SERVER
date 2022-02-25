@@ -127,7 +127,7 @@ const CategoriesForm = () => {
             <HStack
               display="flex"
               justifyContent="center"
-              backgroundColor="#FAFA88"
+              backgroundColor="#f2f2f2"
             >
               <VStack
                 as="form"
@@ -137,13 +137,15 @@ const CategoriesForm = () => {
                 p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
-                backgroundColor="white"
+                border="2px solid black"
+                backgroundColor="#ffffcc"
                 onSubmit={handleSubmit}
               >
                 <Heading mb="16px">Categoria</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>
                   <Input
+                    backgroundColor="white"
                     type="text"
                     id="name"
                     name="name"
@@ -161,7 +163,15 @@ const CategoriesForm = () => {
                     onChange={ckChangeHandler}
                   />
                 </FormControl>
-                <Button type="submit" colorScheme="blue" w="100%">
+                <Button
+                  border="2px solid black"
+                  backgroundColor="#d6f5d6"
+                  _hover={{
+                    backgroundColor: '#6fdc6f',
+                  }}
+                  type="submit"
+                  w="100%"
+                >
                   Guardar
                 </Button>
               </VStack>

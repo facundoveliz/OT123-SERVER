@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Box, Image, Heading, HStack, VStack, Button, Select,
+  Box, Heading, HStack, VStack, Button, Select,
 } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -77,38 +77,53 @@ const EditProfileForm = () => {
         }}
       >
         {(formik) => (
-          <Box height="100vh" backgroundColor="#FAFA88">
-            <HStack display="flex" backgroundColor="#FAFA88" justifyContent="center">
-              <Image boxSize="100x" src="https://i.imgur.com/7ppUaV9.png" alt="Logo de SOMOS MÁS." align="center" />
-            </HStack>
-            <HStack display="flex" backgroundColor="#FAFA88">
-              <VStack
-                as="form"
-                m="auto"
-                p="6"
-                w={{ base: '90%', md: 500 }}
-                h="auto"
-                justifyContent="center"
-                borderWidth="1px solid white"
-                borderRadius="lg"
-                boxShadow="lg"
-                backgroundColor="white"
-                onSubmit={formik.handleSubmit}
-                display="block"
-              >
-                <Heading as="h3" size="lg" align="center">Editar perfil</Heading>
-                <TextField name="firstName" placeholder="Nombre" my="1" />
-                <TextField name="lastName" placeholder="Apellido" my="1" />
-                <TextField as={Select} name="roleId" placeholder="Rol">
-                  <option value="1">Administrador</option>
-                  <option value="2">Usuario normal</option>
-                </TextField>
-                <Button align="center" type="submit" w="100%" bg="#DB5752" color="white" my="1">
+          <HStack
+            p="8"
+            display="flex"
+            height="100%"
+            width="100%"
+            backgroundColor="#f2f2f2"
+            justifyContent="center"
+          >
+            <VStack
+              as="form"
+              m="auto"
+              p="6"
+              w={{ base: '90%', md: '40%' }}
+              h="auto"
+              justifyContent="center"
+              borderWidth="1px solid white"
+              borderRadius="lg"
+              boxShadow="lg"
+              border="2px solid black"
+              backgroundColor="#ffffcc"
+              onSubmit={formik.handleSubmit}
+              display="block"
+            >
+              <Heading as="h3" size="lg" align="center">Editar perfil</Heading>
+              <TextField backgroundColor="white" name="firstName" placeholder="Nombre" marginTop="3" />
+              <TextField backgroundColor="white" name="lastName" placeholder="Apellido" marginTop="1" />
+              <TextField backgroundColor="white" as={Select} name="roleId" placeholder="Rol" marginTop="3">
+                <option value="1">Administrador</option>
+                <option value="2">Usuario normal</option>
+              </TextField>
+              <Box paddingTop="3">
+                <Button
+                  border="2px solid black"
+                  backgroundColor="#d6f5d6"
+                  _hover={{
+                    backgroundColor: '#6fdc6f',
+                  }}
+                  align="center"
+                  type="submit"
+                  w="100%"
+                  my="1"
+                >
                   Guardar cambios
                 </Button>
-              </VStack>
-            </HStack>
-          </Box>
+              </Box>
+            </VStack>
+          </HStack>
         )}
       </Formik>
     </>

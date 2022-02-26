@@ -14,7 +14,7 @@ router.get('/', getAllTestimonials)
 router.get('/:id', getTestimonial)
 
 // post a new testimonial
-router.post('/', isAdmin, validate, addTestimonial)
+router.post('/', validate, addTestimonial)
 
 // edit a testimonial
 router.put('/:id', isAdmin, validate, update)

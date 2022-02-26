@@ -34,7 +34,6 @@ describe('POST /testimonials', () => {
     request(app)
       .post('/testimonials')
       .send(data)
-      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err, res) => {
@@ -55,7 +54,6 @@ describe('POST /testimonials', () => {
     request(app)
       .post('/testimonials')
       .send(data)
-      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(400)
       .end((err, res) => {

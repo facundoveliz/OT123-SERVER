@@ -38,7 +38,11 @@ const EditSlideForm = () => {
   }, [])
 
   const onSubmit = async (values, { setSubmitting }) => {
-    UploadFile(values.image)
+    if (values.image !== undefined) {
+      const URL = await UploadFile(values.image)
+      values.imageUrl = URL
+    }
+
     const updatedSlider = await updateSlider(slideId, values)
     if (updatedSlider) {
       const successAlert = {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import moment from 'moment';
 import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
@@ -159,14 +160,14 @@ const ListCategories = () => {
                           Creado:
                         </Text>
                         {' '}
-                        {item.createdAt}
+                        {moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}
                       </ListItem>
                       <ListItem>
                         <Text fontWeight="bold">
                           Actualizado:
                         </Text>
                         {' '}
-                        {item.updatedAt}
+                        {moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}
                       </ListItem>
                       <ListItem display="flex" justifyContent="center">
                         <ButtonGroup

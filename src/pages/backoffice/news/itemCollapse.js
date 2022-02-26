@@ -104,18 +104,22 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
               <Text fontWeight="bold">
                 Contenido:
               </Text>
-              {item.content}
+              <Text
+                fontSize="xl"
+                textAlign="justify"
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              />
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
-                Creado:
+                Creación:
               </Text>
               {' '}
               {moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
-                Actualizado:
+                Última actualización:
               </Text>
               {' '}
               {moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}

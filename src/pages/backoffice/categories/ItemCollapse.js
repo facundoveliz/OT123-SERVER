@@ -83,21 +83,22 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
               <Text fontWeight="bold">
                 Descripción:
               </Text>
-              {' '}
-              {item.description}
+              <Text
+                fontSize="xl"
+                textAlign="justify"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
-                Creado:
+                Creación:
               </Text>
-              {' '}
               {moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
-                Actualizado:
+                Última actualización:
               </Text>
-              {' '}
               {moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
           </UnorderedList>

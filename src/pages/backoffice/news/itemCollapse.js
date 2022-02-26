@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, ButtonGroup } from '@chakra-ui/button'
 import {
-  Box, ListItem, Text, UnorderedList,
+  Box, Center, ListItem, Text, UnorderedList,
 } from '@chakra-ui/layout'
-import { Collapse, useDisclosure } from '@chakra-ui/react'
-import { IoPencil, IoTrashBin } from 'react-icons/io5'
+import { Collapse, Image, useDisclosure } from '@chakra-ui/react'
+import { IoArrowDownOutline, IoPencil, IoTrashBin } from 'react-icons/io5'
 import moment from 'moment';
 import PropTypes from 'prop-types'
 import { deleteNews } from '../../../services/newsService'
@@ -14,7 +14,7 @@ import { deleteNews } from '../../../services/newsService'
 const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
   const navigate = useNavigate()
   const { isOpen, onToggle } = useDisclosure()
-
+  const [openCollapse, setopenCollapse] = useState(false)
   const confirmDelete = async (id) => {
     try {
       const confirmedDelete = await deleteNews(id)
@@ -63,11 +63,17 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
         <Button
           w="100%"
           border="2px solid black"
-          onClick={onToggle}
+          onClick={() => { onToggle(); setopenCollapse(!openCollapse) }}
         >
           {item.name}
         </Button>
       </Box>
+      {openCollapse
+      && (
+      <Center>
+        <IoArrowDownOutline size="25" />
+      </Center>
+      )}
       <Collapse startingHeight={5} in={isOpen} animateOpacity>
         <Box
           border="2px solid black"
@@ -84,8 +90,13 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
               <Text fontWeight="bold">
                 Imagen:
               </Text>
-              {' '}
-              {`${item.image.substr(0, 30)}...`}
+              <Image
+                width={60}
+                src={item.image}
+                borderRadius="2xl"
+                border="2px solid"
+                my={5}
+              />
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">

@@ -2,29 +2,68 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react'
 import {
-  Text,
+  Text, SimpleGrid, Grid,
 } from '@chakra-ui/react'
 import { getAllSliders } from '../services/slidersService'
+import { getAllTestimonials } from '../services/testimonialsService'
+import { getOrganizationById } from '../services/organizationsService'
+import { getAll } from '../services/newsService'
 import Slider from '../components/home/Slider'
+import { TestmonialCard } from './backoffice/testimonials/ListTestimonials'
+import Card from '../components/pageUtils/Card'
 
 const Home = () => {
   const [sliderData, setSliderData] = useState([])
+  const [newsData, setNewsData] = useState([])
+  const [testimonialsData, setTestimonialsData] = useState([])
+  const [organizationData, setOrganizationData] = useState({})
 
-  const loadSliders = async () => {
+  const loadData = async () => {
    const sliders = await getAllSliders()
    setSliderData(sliders.data.result.sliders)
+    const testimonials = await getAllTestimonials()
+    setTestimonialsData(testimonials.data.result.testimonials.slice(0, 4))
+    const organization = await getOrganizationById(1)
+    setOrganizationData(organization.data.result.publicData)
+    const news = await getAll()
+    setNewsData(news.data.result.news.slice(0, 3))
   }
 
   useEffect(() => {
-    loadSliders();
+    loadData();
   }, [])
 
   return (
     <>
       <Slider sliderData={sliderData} />
-      <Text textAlign="center" fontSize="3xl" my={5}>Texto de Bienvenida</Text>
-      <Text textAlign="center" fontSize="2xl" mb={2}>Últimas novedades</Text>
-      <Text textAlign="center" fontSize="2xl">Testimonios</Text>
+      <Text textAlign="center" fontSize="3xl" my={5}>{organizationData.welcomeText}</Text>
+
+      <Text
+        textAlign="center"
+        my={20}
+        fontSize="2xl"
+      >
+        ULTIMAS NOVEDADES
+
+      </Text>
+      <Grid templateColumns="repeat(auto-fill, 350px)" gap={10} mb={12} justifyContent="center">
+        <Card
+          direction="novedades"
+          array={newsData}
+        />
+      </Grid>
+      <Text textAlign="center" fontSize="2xl">TESTIMONIOS</Text>
+      <SimpleGrid
+        columns={{ base: 1, xl: 2 }}
+        spacing="20"
+        mt={16}
+        mx="auto"
+      >
+        {testimonialsData
+        && testimonialsData?.map((cardInfo, index) => (
+          <TestmonialCard {...cardInfo} index={index} />
+        ))}
+      </SimpleGrid>
     </>
 )
 }

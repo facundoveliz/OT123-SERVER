@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { GridItem, Text, Image } from '@chakra-ui/react'
+import {
+  GridItem, Text, Image, AspectRatio,
+} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -57,7 +59,10 @@ const Card = ({ array, direction }) => {
             {item.description}
 
           </Text>
-          <Image src={item.image} />
+          <AspectRatio maxW="400px" ratio={4 / 3}>
+
+            <Image src={item.image} />
+          </AspectRatio>
         </GridItem>
       ))}
     </>

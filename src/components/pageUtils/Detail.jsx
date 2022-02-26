@@ -63,7 +63,12 @@ const Detail = () => {
         />
         <Heading as="h1" size="2xl" textAlign="justify">{detail.name}</Heading>
         <Image src={detail.image} my={6} w="100%" h="400px" objectFit="cover" borderRadius="lg" boxShadow="lg" />
-        <Text fontSize="xl" textAlign="justify">{detail.content}</Text>
+        <Text
+          fontSize="xl"
+          textAlign="justify"
+          dangerouslySetInnerHTML={{ __html: detail.content }}
+        />
+
       </Box>
     </Center>
   )

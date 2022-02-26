@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import moment from 'moment';
 import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
 import {
   Box,
+  Text,
   Table,
   Heading,
-  Thead,
   Tbody,
-  Tr,
-  Th,
-  Td,
+  UnorderedList,
+  ListItem,
   Button,
   ButtonGroup,
+  Collapse,
+  useDisclosure,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
 import { deleteCategory, getAllCategories } from '../../../services/categoriesService'
 import Alert from '../../../components/alert/Alert'
 
 const ListCategories = () => {
+  const { isOpen, onToggle } = useDisclosure()
   const [allCategories, setAllCategories] = useState([{}])
   const [deletedCategory, setDeletedCategory] = useState([])
   const [alertProps, setAlertProps] = useState({
@@ -99,78 +100,114 @@ const ListCategories = () => {
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        w={{ base: '98%', md: '90%' }}
+        w={{ base: '90%', md: '70%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
         overflow="auto"
       >
-        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+        <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Categorias</Heading>
           <Button
+            borderRadius="full"
             border="2px solid black"
             backgroundColor="#d6f5d6"
             _hover={{
               backgroundColor: '#6fdc6f',
             }}
-            leftIcon={<IoAddOutline size="22" />}
             onClick={() => navigate('./nuevo')}
           >
-            Crear nuevo
+            <IoAddOutline size="22" />
           </Button>
         </Box>
         <Table size="lg">
-          <Thead>
-            <Tr>
-              <Th>Nombre</Th>
-              <Th>Descripción</Th>
-              <Th>Creado</Th>
-              <Th>Actualizado</Th>
-              <Th textAlign="center">Acciones</Th>
-            </Tr>
-          </Thead>
           <Tbody>
             {allCategories.map((item) => (
-              <Tr key={item.id}>
-                <Td>{item.name}</Td>
-                <Td>{item.description}</Td>
-                <Td>{moment(item.createdAt).format('DD/MM/YYYY')}</Td>
-                <Td>{moment(item.updatedAt).format('DD/MM/YYYY')}</Td>
-                <Td display="flex" justifyContent="center">
-                  <ButtonGroup
-                    flexWrap="wrap"
-                    textAlign="center"
-                    width="fit-content"
+              <>
+                <Box
+                  textAlign="center"
+                  padding="1"
+                >
+                  <Button
+                    w="100%"
+                    border="2px solid black"
+                    onClick={onToggle}
                   >
-                    <Button
-                      border="2px solid black"
-                      width="100px"
-                      leftIcon={<IoPencil />}
-                      marginBottom="1"
-                      size="sm"
-                      backgroundColor="#ccebff"
-                      _hover={{
-                        backgroundColor: '#4db8ff',
-                      }}
-                      onClick={() => navigate(`./${item.id}`)}
-                    >
-                      Editar
-                    </Button>
-                    <Button
-                      border="2px solid black"
-                      width="100px"
-                      leftIcon={<IoTrashBin />}
-                      size="sm"
-                      backgroundColor="#ffc2b3"
-                      _hover={{
-                        backgroundColor: '#ff4d4d',
-                      }}
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Eliminar
-                    </Button>
-                  </ButtonGroup>
-                </Td>
-              </Tr>
+                    {item.name}
+                  </Button>
+                </Box>
+                <Collapse startingHeight={5} in={isOpen} animateOpacity>
+                  <Box
+                    border="2px solid black"
+                    marginBottom="8"
+                    p="20px"
+                    color="white"
+                    mt="4"
+                    bg="#d6f5d6"
+                    rounded="md"
+                    shadow="md"
+                  >
+                    <UnorderedList key={item.id} color="black">
+                      <ListItem>
+                        <Text fontWeight="bold">
+                          Descripción:
+                        </Text>
+                        {' '}
+                        {item.description}
+                      </ListItem>
+                      <ListItem>
+                        <Text fontWeight="bold">
+                          Creado:
+                        </Text>
+                        {' '}
+                        {item.createdAt}
+                      </ListItem>
+                      <ListItem>
+                        <Text fontWeight="bold">
+                          Actualizado:
+                        </Text>
+                        {' '}
+                        {item.updatedAt}
+                      </ListItem>
+                      <ListItem display="flex" justifyContent="center">
+                        <ButtonGroup
+                          paddingTop="4"
+                          flexWrap="wrap"
+                          textAlign="center"
+                          width="fit-content"
+                        >
+                          <Button
+                            border="2px solid black"
+                            width="100px"
+                            leftIcon={<IoPencil />}
+                            marginBottom="1"
+                            size="sm"
+                            backgroundColor="#ccebff"
+                            _hover={{
+                              backgroundColor: '#4db8ff',
+                            }}
+                            onClick={() => navigate(`./${item.id}`)}
+                          >
+                            Editar
+                          </Button>
+                          <Button
+                            border="2px solid black"
+                            width="100px"
+                            leftIcon={<IoTrashBin />}
+                            size="sm"
+                            backgroundColor="#ffc2b3"
+                            _hover={{
+                              backgroundColor: '#ff4d4d',
+                            }}
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            Eliminar
+                          </Button>
+                        </ButtonGroup>
+                      </ListItem>
+                    </UnorderedList>
+                  </Box>
+                </Collapse>
+              </>
             ))}
           </Tbody>
         </Table>

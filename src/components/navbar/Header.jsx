@@ -24,9 +24,11 @@ const Header = () => {
     const textProperties = {}
     if (isActive) {
       textProperties.color = '#4db8ff'
+      textProperties.textDecoration = 'underline #4db8ff'
+      textProperties.textDecorationThickness = '3px'
     }
     return (
-      <Text {...textProperties} _hover={{ color: '#4db8ff' }}>{text}</Text>
+      <Text {...textProperties} _hover={{ color: '#4db8ff', transition: 'all 0.3s ease' }}>{text}</Text>
     )
   }
 

@@ -20,7 +20,7 @@ const News = () => {
   }, [getEntrys]);
 
   return (
-    <Stack backgroundColor="#f2f2f2" paddingBottom="10">
+    <Stack w="100%" backgroundColor="#f2f2f2" paddingBottom="10">
       <VStack my={6} display="flex" textAlign="center">
         <Text fontSize="5xl">Novedades</Text>
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>

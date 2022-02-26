@@ -20,7 +20,7 @@ const IconInfo = (props) => {
     <IconButton
       variant="ghost"
       isRound
-      _hover={{ bg: '#0D74FF' }}
+      _hover={{ bg: '#d6f5d6', border: '2px solid black' }}
       icon={icon()}
     />
   )

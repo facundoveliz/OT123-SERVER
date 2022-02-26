@@ -4,7 +4,7 @@ import './Title.css'
 import { Text } from '@chakra-ui/layout'
 
 const Title = ({ title, fontSize }) => (
-  <div className="paint-stroke">
+  <div className="paint-stroke animate__animated animate__rubberBand">
     <Text fontSize={fontSize} className="paint-text">{title}</Text>
 
   </div>

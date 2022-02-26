@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Button, ButtonGroup } from '@chakra-ui/button'
 import {
-  Box, ListItem, Text, UnorderedList,
+  Box, Center, ListItem, Text, UnorderedList,
 } from '@chakra-ui/layout'
 import { Collapse, useDisclosure } from '@chakra-ui/react'
-import { IoPencil, IoTrashBin } from 'react-icons/io5'
+import { IoArrowDownOutline, IoPencil, IoTrashBin } from 'react-icons/io5'
 import moment from 'moment';
 import PropTypes from 'prop-types'
 import { deleteCategory } from '../../../services/categoriesService'
@@ -13,7 +13,7 @@ import { deleteCategory } from '../../../services/categoriesService'
 const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
   const navigate = useNavigate()
   const { isOpen, onToggle } = useDisclosure()
-
+  const [openCollapse, setopenCollapse] = useState(false)
   const confirmDelete = async (id) => {
     try {
       const confirmedDelete = await deleteCategory(id)
@@ -62,11 +62,17 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
         <Button
           w="100%"
           border="2px solid black"
-          onClick={onToggle}
+          onClick={() => { onToggle(); setopenCollapse(!openCollapse) }}
         >
           {item.name}
         </Button>
       </Box>
+      {openCollapse
+      && (
+      <Center>
+        <IoArrowDownOutline size="25" />
+      </Center>
+      )}
       <Collapse startingHeight={5} in={isOpen} animateOpacity>
         <Box
           border="2px solid black"

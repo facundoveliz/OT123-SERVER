@@ -28,7 +28,7 @@ const ContactPage = () => {
   }, [])
   return (
 
-    <Container maxW="full" mt={0} centerContent overflow="hidden">
+    <Container padding={6} maxW="full" mt={0} centerContent overflow="hidden">
       <Flex>
         <Box
           border="2px solid black"
@@ -40,10 +40,10 @@ const ContactPage = () => {
           <Box p={4}>
             <Wrap
               spacing={{
-                base: 20,
+                base: 6,
                 sm: 3,
                 md: 5,
-                lg: 20,
+                lg: 6,
               }}
             >
               <WrapItem>
@@ -60,7 +60,7 @@ const ContactPage = () => {
                       lg: 10,
                     }}
                   >
-                    <VStack pl={0} p={0} spacing={2} alignItems="center">
+                    <VStack alignItems="center">
                       <ButtonInfo nameIcon="phone">
                         <Text color="black">{socials.phone}</Text>
                       </ButtonInfo>

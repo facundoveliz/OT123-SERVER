@@ -49,20 +49,35 @@ const Detail = () => {
   }, []);
 
   return (
-    <Center my={6}>
-      <Box w={{ base: '90%', md: '60%', xl: '40%' }}>
+    <Center backgroundColor="#f2f2f2" paddingTop={6} my={6}>
+      <Box
+        borderRadius="lg"
+        boxShadow="lg"
+        border="2px solid black"
+        backgroundColor="#ffffcc"
+        p={4}
+        w={{ base: '90%', md: '60%', xl: '40%' }}
+      >
         <Icon
           as={FiArrowLeft}
           w={8}
           h={8}
           mb={4}
+          border="2px solid black"
+          borderRadius="lg"
+          boxShadow="lg"
+          backgroundColor="#ccebff"
+          _hover={{
+            backgroundColor: '#4db8ff',
+            transition: 'all 0.3s ease',
+          }}
           cursor="pointer"
           onClick={() => {
             navigate(-1)
           }}
         />
         <Heading as="h1" size="2xl" textAlign="justify">{detail.name}</Heading>
-        <Image src={detail.image} my={6} w="100%" h="400px" objectFit="cover" borderRadius="lg" boxShadow="lg" />
+        <Image src={detail.image} border="2px solid black" my={6} w="100%" h="400px" objectFit="cover" borderRadius="lg" boxShadow="lg" />
         <Text fontSize="xl" textAlign="justify">{detail.content}</Text>
       </Box>
     </Center>

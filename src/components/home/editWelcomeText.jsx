@@ -57,6 +57,8 @@ const EditWelcomeText = () => {
 
   const updateChangeHandler = async (e, values) => {
     e.preventDefault()
+    // eslint-disable-next-line no-console
+    console.log(values);
     const updatedActivity = await updateOrganization(values)
     if (updatedActivity) {
       const successAlert = {

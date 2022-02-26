@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { IoAddOutline } from 'react-icons/io5'
-
 import {
   Box, Table, Heading, Tbody, Button,
 } from '@chakra-ui/react'

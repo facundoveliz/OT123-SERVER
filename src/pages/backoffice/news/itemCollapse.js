@@ -8,24 +8,24 @@ import { Collapse, useDisclosure } from '@chakra-ui/react'
 import { IoPencil, IoTrashBin } from 'react-icons/io5'
 import moment from 'moment';
 import PropTypes from 'prop-types'
-import { deleteCategory } from '../../../services/categoriesService'
+import { deleteNews } from '../../../services/newsService'
 
-const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
+const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
   const navigate = useNavigate()
   const { isOpen, onToggle } = useDisclosure()
 
   const confirmDelete = async (id) => {
     try {
-      const confirmedDelete = await deleteCategory(id)
+      const confirmedDelete = await deleteNews(id)
       if (confirmedDelete) {
         setAlertProps({
           show: true,
-          title: 'Categoria Eliminada!',
-          message: 'Categoria eliminada de forma exitosa!',
+          title: 'Novedad Eliminada!',
+          message: 'Novedad eliminada de forma exitosa!',
           icon: 'success',
           cancelbtn: false,
           onConfirm: () => {
-            setDeletedCategory(id)
+            setDeletedNews(id)
             window.location.reload();
           },
         })
@@ -47,7 +47,7 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
     setAlertProps({
       show: true,
       title: 'Estas Seguro?',
-      message: 'Esta acción es permanente. ¿Eliminar categoria?',
+      message: 'Esta acción es permanente. ¿Eliminar novedad?',
       icon: 'warning',
       cancelbtn: true,
       onConfirm: () => confirmDelete(id),
@@ -79,12 +79,12 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
           shadow="md"
         >
           <UnorderedList key={item.id} color="black">
-            <ListItem>
+            <ListItem onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis">
               <Text fontWeight="bold">
-                Descripción:
+                Imagen:
               </Text>
               {' '}
-              {item.description}
+              {item.image}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
@@ -109,7 +109,7 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
               >
                 <Button
                   border="2px solid black"
-                  width="100px"
+                  width="150px"
                   leftIcon={<IoPencil />}
                   marginBottom="1"
                   size="sm"
@@ -123,7 +123,7 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
                 </Button>
                 <Button
                   border="2px solid black"
-                  width="100px"
+                  width="150px"
                   leftIcon={<IoTrashBin />}
                   size="sm"
                   backgroundColor="#ffc2b3"
@@ -152,6 +152,6 @@ ItemCollapse.propTypes = {
     }),
   ).isRequired,
   setAlertProps: PropTypes.func.isRequired,
-  setDeletedCategory: PropTypes.func.isRequired,
+  setDeletedNews: PropTypes.func.isRequired,
 }
 export default ItemCollapse

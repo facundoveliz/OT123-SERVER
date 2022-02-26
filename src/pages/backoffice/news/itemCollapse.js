@@ -12,6 +12,8 @@ import PropTypes from 'prop-types'
 import { deleteNews } from '../../../services/newsService'
 
 const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
+  // eslint-disable-next-line no-console
+  console.log(item);
   const navigate = useNavigate()
   const { isOpen, onToggle } = useDisclosure()
   const [openCollapse, setopenCollapse] = useState(false)
@@ -97,6 +99,12 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
                 border="2px solid"
                 my={5}
               />
+            </ListItem>
+            <ListItem>
+              <Text fontWeight="bold">
+                Contenido:
+              </Text>
+              {item.content}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">

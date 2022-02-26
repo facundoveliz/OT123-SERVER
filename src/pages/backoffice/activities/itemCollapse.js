@@ -8,9 +8,9 @@ import { Collapse, Image, useDisclosure } from '@chakra-ui/react'
 import { IoArrowDownOutline, IoPencil, IoTrashBin } from 'react-icons/io5'
 import moment from 'moment';
 import PropTypes from 'prop-types'
-import { deleteNews } from '../../../services/newsService'
+import { deleteActivity } from '../../../services/activitiesService'
 
-const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
+const ItemCollapse = ({ item, setAlertProps, setDeletedActivity }) => {
   // eslint-disable-next-line no-console
   console.log(item);
   const navigate = useNavigate()
@@ -18,16 +18,16 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
   const [openCollapse, setopenCollapse] = useState(false)
   const confirmDelete = async (id) => {
     try {
-      const confirmedDelete = await deleteNews(id)
+      const confirmedDelete = await deleteActivity(id)
       if (confirmedDelete) {
         setAlertProps({
           show: true,
-          title: 'Novedad Eliminada!',
-          message: 'Novedad eliminada de forma exitosa!',
+          title: 'Actividad Eliminada!',
+          message: 'Actividad eliminada de forma exitosa!',
           icon: 'success',
           cancelbtn: false,
           onConfirm: () => {
-            setDeletedNews(id)
+            setDeletedActivity(id)
             window.location.reload();
           },
         })
@@ -49,7 +49,7 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
     setAlertProps({
       show: true,
       title: 'Estas Seguro?',
-      message: 'Esta acción es permanente. ¿Eliminar novedad?',
+      message: 'Esta acción es permanente. ¿Eliminar Actividad?',
       icon: 'warning',
       cancelbtn: true,
       onConfirm: () => confirmDelete(id),
@@ -113,14 +113,12 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
               <Text fontWeight="bold">
                 Creación:
               </Text>
-              {' '}
               {moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">
                 Última actualización:
               </Text>
-              {' '}
               {moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
           </UnorderedList>
@@ -176,6 +174,6 @@ ItemCollapse.propTypes = {
     }),
   ).isRequired,
   setAlertProps: PropTypes.func.isRequired,
-  setDeletedNews: PropTypes.func.isRequired,
+  setDeletedActivity: PropTypes.func.isRequired,
 }
 export default ItemCollapse

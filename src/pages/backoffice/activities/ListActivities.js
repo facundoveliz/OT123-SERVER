@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import moment from 'moment';
-import { IoTrashBin, IoPencil, IoAddOutline } from 'react-icons/io5'
+import { IoAddOutline } from 'react-icons/io5'
 import {
-  Box,
-  Table,
-  Heading,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Button,
-  ButtonGroup,
+  Box, Table, Heading, Tbody, Button,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
-import { deleteActivity, getAllActivities } from '../../../services/activitiesService'
+import { getAllActivities } from '../../../services/activitiesService'
 import Alert from '../../../components/alert/Alert'
+import ItemCollapse from './itemCollapse'
 
 const ListActivities = () => {
   const navigate = useNavigate()
-  const [allActivities, setAllActivities] = useState([{}])
+  const [activitiesData, setActivitiesData] = useState([])
   const [deletedActivity, setDeletedActivity] = useState([])
   const [alertProps, setAlertProps] = useState({
     show: false,
@@ -33,12 +23,12 @@ const ListActivities = () => {
   async function loadData() {
     try {
       const response = await getAllActivities()
-      setAllActivities(response.data.result.activities)
+      setActivitiesData(response.data.result.activities)
     } catch (error) {
       const errorAlertProps = {
         show: true,
-        title: 'Hubo un error!',
-        message: error.message,
+        title: 'Actividades:',
+        message: 'Hubo un error!',
         icon: 'error',
         onConfirm: () => {},
       }
@@ -46,136 +36,51 @@ const ListActivities = () => {
     }
   }
 
-  const confirmDelete = async (id) => {
-    try {
-      const confirmedDelete = await deleteActivity(id)
-      if (confirmedDelete) {
-        setAlertProps({
-          show: true,
-          title: 'actividad Eliminada!',
-          message: 'Actividad eliminada de forma exitosa!',
-          icon: 'success',
-          cancelbtn: false,
-          onConfirm: () => {
-            setDeletedActivity(id)
-            window.location.reload();
-          },
-        })
-      }
-    } catch (error) {
-      setAlertProps({
-        show: true,
-        title: 'Hubo un error!',
-        message: error.message,
-        icon: 'error',
-        cancelbtn: true,
-        onConfirm: () => {},
-        onCancel: () => {},
-      })
-    }
-  }
-
-  const handleDelete = (id) => {
-    setAlertProps({
-      show: true,
-      title: 'Estas Seguro?',
-      message: 'Esta acción es permanente. ¿Eliminar actividad?',
-      icon: 'warning',
-      cancelbtn: true,
-      onConfirm: () => confirmDelete(id),
-      onCancel: () => {},
-    })
-  }
-
   useEffect(() => {
     loadData()
   }, [deletedActivity])
+
   return (
-    <Box display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
+    <Box
+      display="flex"
+      height="100%"
+      width="100%"
+      backgroundColor="#f2f2f2"
+      justifyContent="center"
+    >
       <Alert {...alertProps} />
       <Box
         border="2px solid black"
+        backgroundColor="#ffffcc"
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        backgroundColor="#ffffcc"
-        w={{ base: '98%', md: '90%' }}
+        w={{ base: '90%', md: '70%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="auto"
       >
-        <Box display="flex" justifyContent="space-between" mx="6" my="5">
+        <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Actividades</Heading>
           <Button
+            borderRadius="full"
             border="2px solid black"
-            leftIcon={<IoAddOutline size="22" />}
-            onClick={() => navigate('./nuevo')}
             backgroundColor="#d6f5d6"
             _hover={{
               backgroundColor: '#6fdc6f',
             }}
+            onClick={() => navigate('./nuevo')}
           >
-            Crear nuevo
+            <IoAddOutline size="22" />
           </Button>
         </Box>
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>Nombre</Th>
-              <Th>Imagen</Th>
-              <Th>Creado</Th>
-              <Th>Actualizado</Th>
-              <Th textAlign="center">Acciones</Th>
-            </Tr>
-          </Thead>
+        <Table size="lg">
           <Tbody>
-            {allActivities.map((item) => (
-
-              <Tr key={item.id}>
-                <Td>{item.name}</Td>
-                <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
-                <Td>{moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}</Td>
-                <Td>{moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}</Td>
-                <Td display="flex" justifyContent="center">
-                  <ButtonGroup
-                    flexWrap="wrap"
-                    textAlign="center"
-                    width="fit-content"
-                  >
-                    <Link to={`../activitiesform/${item.id}`}>
-                      <Button
-                        border="2px solid black"
-                        width="100px"
-                        leftIcon={<IoPencil />}
-                        marginRight="6"
-                        marginBottom="1"
-                        size="sm"
-                        backgroundColor="#ccebff"
-                        _hover={{
-                          backgroundColor: '#4db8ff',
-                        }}
-                      >
-                        Editar
-                      </Button>
-                    </Link>
-                    <Button
-                      border="2px solid black"
-                      width="100px"
-                      leftIcon={<IoTrashBin />}
-                      marginBottom="1"
-                      size="sm"
-                      backgroundColor="#ffc2b3"
-                      _hover={{
-                        backgroundColor: '#ff4d4d',
-                      }}
-                      onClick={() => handleDelete(item.id)}
-                    >
-
-                      Eliminar
-                    </Button>
-                  </ButtonGroup>
-                </Td>
-              </Tr>
+            {activitiesData.map((item) => (
+              <ItemCollapse
+                item={item}
+                setAlertProps={setAlertProps}
+                setDeletedNews={setDeletedActivity}
+              />
             ))}
           </Tbody>
         </Table>

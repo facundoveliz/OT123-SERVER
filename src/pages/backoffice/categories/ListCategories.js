@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoAddOutline } from 'react-icons/io5'
+
 import {
   Box, Table, Heading, Tbody, Button,
 } from '@chakra-ui/react'
@@ -84,6 +85,7 @@ const ListCategories = () => {
                 setAlertProps={setAlertProps}
                 setDeletedCategory={setDeletedCategory}
               />
+
             ))}
           </Tbody>
         </Table>

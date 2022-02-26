@@ -133,7 +133,7 @@ const ListNews = () => {
               <Tr key={item.id}>
                 <Td>{item.name}</Td>
                 <Td onClick={() => window.open(item.image)} cursor="pointer" whiteSpace="nowrap" overflow="hidden" textOverflow="ellipsis" maxW="200px">{item.image}</Td>
-                <Td>{moment(item.createdAt).format('DD/MM/YYYY')}</Td>
+                <Td>{moment(item.createdAt).format('DD/MM/YYYY h:mm:ss a')}</Td>
                 <Td display="flex" justifyContent="center">
                   <ButtonGroup
                     flexWrap="wrap"

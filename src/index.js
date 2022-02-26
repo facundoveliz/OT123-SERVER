@@ -7,6 +7,7 @@ import App from './App'
 import { store, persistor } from './app/store';
 import * as serviceWorker from './serviceWorker';
 import theme from './themes'
+import 'animate.css/animate.css';
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>

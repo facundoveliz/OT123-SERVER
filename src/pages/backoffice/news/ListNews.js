@@ -58,7 +58,6 @@ const ListNews = () => {
         w={{ base: '90%', md: '70%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="auto"
       >
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Novedades</Heading>
@@ -74,7 +73,7 @@ const ListNews = () => {
             <IoAddOutline size="22" />
           </Button>
         </Box>
-        <Table>
+        <Table size="lg">
           <Tbody>
             {newsData.map((item) => (
               <ItemCollapse

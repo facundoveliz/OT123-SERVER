@@ -100,43 +100,44 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
               {' '}
               {moment(item.updatedAt).format('DD/MM/YYYY h:mm:ss a')}
             </ListItem>
-            <ListItem display="flex" justifyContent="center">
-              <ButtonGroup
-                paddingTop="4"
-                flexWrap="wrap"
-                textAlign="center"
-                width="fit-content"
-              >
-                <Button
-                  border="2px solid black"
-                  width="100px"
-                  leftIcon={<IoPencil />}
-                  marginBottom="1"
-                  size="sm"
-                  backgroundColor="#ccebff"
-                  _hover={{
-                    backgroundColor: '#4db8ff',
-                  }}
-                  onClick={() => navigate(`./${item.id}`)}
-                >
-                  Editar
-                </Button>
-                <Button
-                  border="2px solid black"
-                  width="100px"
-                  leftIcon={<IoTrashBin />}
-                  size="sm"
-                  backgroundColor="#ffc2b3"
-                  _hover={{
-                    backgroundColor: '#ff4d4d',
-                  }}
-                  onClick={() => handleDelete(item.id)}
-                >
-                  Eliminar
-                </Button>
-              </ButtonGroup>
-            </ListItem>
           </UnorderedList>
+          <Box display="flex" justifyContent="center">
+            <ButtonGroup
+              paddingTop="4"
+              flexWrap="wrap"
+              textAlign="center"
+              width="fit-content"
+              color="black"
+            >
+              <Button
+                border="2px solid black"
+                width="100px"
+                leftIcon={<IoPencil />}
+                marginBottom="1"
+                size="sm"
+                backgroundColor="#ccebff"
+                _hover={{
+                  backgroundColor: '#4db8ff',
+                }}
+                onClick={() => navigate(`./${item.id}`)}
+              >
+                Editar
+              </Button>
+              <Button
+                border="2px solid black"
+                width="100px"
+                leftIcon={<IoTrashBin />}
+                size="sm"
+                backgroundColor="#ffc2b3"
+                _hover={{
+                  backgroundColor: '#ff4d4d',
+                }}
+                onClick={() => handleDelete(item.id)}
+              >
+                Eliminar
+              </Button>
+            </ButtonGroup>
+          </Box>
         </Box>
       </Collapse>
     </>

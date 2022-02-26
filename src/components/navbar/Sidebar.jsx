@@ -61,7 +61,7 @@ const Sidebar = ({ roleId }) => {
 
   return (
     <>
-      <Icon as={FiAlignJustify} h={8} w={8} display={{ base: 'unset', xl: 'none' }} colorScheme="teal" onClick={onOpen} cursor="pointer" />
+      <Icon as={FiAlignJustify} h={8} w={8} display={{ base: 'unset', xl: 'none' }} colorscheme="teal" onClick={onOpen} cursor="pointer" />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} zIndex="10000">
         <DrawerOverlay />
         <DrawerContent spacing={8} justifyContent="space-between" borderRight="2px solid black">
@@ -74,7 +74,7 @@ const Sidebar = ({ roleId }) => {
             alignItems="flex-start"
             color="gray.600"
           >
-            <NavLink exact to="/">
+            <NavLink to="/">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
             </NavLink>
             <NavLink to="/nosotros">
@@ -89,7 +89,7 @@ const Sidebar = ({ roleId }) => {
             <NavLink to="/novedades">
               {({ isActive }) => getItem(isActive, 'Novedades', FaNewspaper)}
             </NavLink>
-            <NavLink exact to="/contacto">
+            <NavLink to="/contacto">
               {({ isActive }) => getItem(isActive, 'Contacto', FaPhone)}
             </NavLink>
             <NavLink to="/contribuye">

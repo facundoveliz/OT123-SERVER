@@ -8,6 +8,7 @@ import {
   MenuItem,
   MenuGroup,
   MenuDivider,
+  Center,
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { getUserData } from '../../app/slices/auth'
@@ -44,9 +45,9 @@ const AdminMenu = () => {
           <MenuItem as={NavLink} to="/backoffice/home">Home</MenuItem>
         </MenuGroup>
         <MenuDivider />
-        <MenuItem>
+        <Center>
           <LogoutButton />
-        </MenuItem>
+        </Center>
       </MenuList>
     </Menu>
   )

@@ -31,28 +31,28 @@ const Header = () => {
   }
 
   const navItems = [
-    <NavLink exact to="/home">
+    <NavLink key="home" to="/home">
       {({ isActive }) => getText(isActive, 'Inicio')}
     </NavLink>,
-    <NavLink to="/nosotros">
+    <NavLink key="nosotros" to="/nosotros">
       {({ isActive }) => getText(isActive, 'Nosotros')}
     </NavLink>,
-    <NavLink to="/actividades">
+    <NavLink key="actividades" to="/actividades">
       {({ isActive }) => getText(isActive, 'Actividades')}
     </NavLink>,
-    <NavLink to="/testimonios">
+    <NavLink key="testimonios" to="/testimonios">
       {({ isActive }) => getText(isActive, 'Testimonios')}
     </NavLink>,
-    <NavLink to="/novedades">
+    <NavLink key="novedades" to="/novedades">
       {({ isActive }) => getText(isActive, 'Novedades')}
     </NavLink>,
-    <NavLink exact to="/contacto">
+    <NavLink key="contacto" to="/contacto">
       {({ isActive }) => getText(isActive, 'Contacto')}
     </NavLink>,
-    <NavLink to="/contribuye">
+    <NavLink key="contribuye" to="/contribuye">
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
-    <NavLink to="/backoffice">
+    <NavLink key="backoffice" to="/backoffice">
       {({ isActive }) => getText(isActive, 'Backoffice')}
     </NavLink>,
   ]
@@ -60,7 +60,7 @@ const Header = () => {
   return (
     <HStack position="fixed" w="100%" h="100px" zIndex="1000" top="0" justify="space-between" py={4} px={3} fontSize="18px" backgroundColor="#f2f2f2" borderBottom="2px solid black">
       <Sidebar roleId={roleId} />
-      <NavLink exact to="/home">
+      <NavLink to="/home">
         <Image
           src="../../logo.png"
           alt="logo"

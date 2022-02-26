@@ -11,6 +11,7 @@ import { getAll } from '../services/newsService'
 import Slider from '../components/home/Slider'
 import { TestmonialCard } from './backoffice/testimonials/ListTestimonials'
 import Card from '../components/pageUtils/Card'
+import Title from '../components/pageUtils/Title/Title'
 
 const Home = () => {
   const [sliderData, setSliderData] = useState([])
@@ -38,21 +39,14 @@ const Home = () => {
       <Slider sliderData={sliderData} />
       <Text textAlign="center" fontSize="3xl" my={5}>{organizationData.welcomeText}</Text>
 
-      <Text
-        textAlign="center"
-        my={20}
-        fontSize="2xl"
-      >
-        ULTIMAS NOVEDADES
-
-      </Text>
+      <Title title="ULTIMAS NOVEDADES" fontSize={19} />
       <Grid templateColumns="repeat(auto-fill, 350px)" gap={10} mb={12} justifyContent="center">
         <Card
           direction="novedades"
           array={newsData}
         />
       </Grid>
-      <Text textAlign="center" fontSize="2xl">TESTIMONIOS</Text>
+      <Title title="TESTIMONIOS" fontSize={25} />
       <SimpleGrid
         columns={{ base: 1, xl: 2 }}
         spacing="20"

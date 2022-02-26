@@ -6,6 +6,7 @@ import {
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getAllActivities } from '../../services/activitiesService'
+import Title from '../pageUtils/Title/Title'
 
 const Activities = () => {
   const [loadData, setLoadData] = useState([]);
@@ -22,7 +23,7 @@ const Activities = () => {
   return (
     <Stack backgroundColor="#f2f2f2" paddingBottom="10">
       <VStack my={6} display="flex" textAlign="center">
-        <Text fontSize="5xl">Actividades</Text>
+        <Title title="ACTIVIDADES" fontSize={30} />
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estas son las actividades en ¡Somos Más!.
         </Text>

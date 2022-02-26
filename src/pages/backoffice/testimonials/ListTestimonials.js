@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { setAlertData } from '../../../app/slices/alert';
+import Title from '../../../components/pageUtils/Title/Title';
 import useUser from '../../../hooks/useUser';
 import { addTestimonial, getAllTestimonials } from '../../../services/testimonialsService';
 
@@ -159,6 +160,8 @@ export default function ListTestimonials() {
       width="full"
     >
       <Box width={{ base: 'full', sm: 'lg', lg: 'xl' }} margin="auto">
+        <Title title="TESTIMONIOS" fontSize={30} />
+
         <chakra.h3
           fontFamily="Work Sans"
           fontWeight="bold"

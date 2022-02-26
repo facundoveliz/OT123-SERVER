@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { useNavigate } from 'react-router'
 import { Button, ButtonGroup } from '@chakra-ui/button'
@@ -84,7 +85,7 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedNews }) => {
                 Imagen:
               </Text>
               {' '}
-              {item.image}
+              {`${item.image.substr(0, 30)}...`}
             </ListItem>
             <ListItem>
               <Text fontWeight="bold">

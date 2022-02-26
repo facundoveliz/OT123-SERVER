@@ -36,7 +36,8 @@ const NewsForm = () => {
     image: null,
     oldImage: '',
     content: '',
-    categoryId: '',
+    categoryId: 1,
+    type: 'news',
     textButton: 'Crear',
     inputText: 'Imagen',
   })
@@ -105,10 +106,11 @@ const NewsForm = () => {
       try {
         setLoading(true)
         const newNews = await add({
+          type: values.type,
           name: values.name,
           content: newsData.content,
           image: values.image ? await UploadFile(values.image) : null,
-          category: values.categoryId,
+          categoryId: values.categoryId,
         })
         if (newNews) {
           const successAlert = {

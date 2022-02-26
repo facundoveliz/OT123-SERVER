@@ -7,7 +7,7 @@ const { Contact } = db
 
 const transporter = nodemailer.createTransport(sendgridTransport({
   auth: {
-    api_key: process.env.SENDGRIND_API_KEY,
+    api_key: `${process.env.SENDGRID_API_KEY}`,
   },
 }))
 
@@ -72,7 +72,7 @@ exports.add = async (req, res) => {
     const newContact = await Contact.create(newContactData)
     transporter.sendMail({
       to: email,
-      from: process.env.SENDGRID_EMAIL,
+      from: `${process.env.SENDGRID_EMAIL}`,
       subject: 'Su contacto ha sido recibido',
       html: '<h1>Gracias por interesarse en nuestra ONG! </h1>',
     })

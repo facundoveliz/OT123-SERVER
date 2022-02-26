@@ -22,6 +22,6 @@ export function getOrganizationById(id) {
  * @return PROMISE {OBJECT} THE CREATED CATEGORY
  */
 
-export function updateOrganization(id, organization) {
-  return httpService.put(`${organizationsEndpoint}/${id}`, organization)
+export function updateOrganization(organization) {
+  return httpService.put(`${organizationsEndpoint}`, organization)
 }

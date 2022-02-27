@@ -76,7 +76,7 @@ const Detail = () => {
             navigate(-1)
           }}
         />
-        <Heading as="h1" size="2xl" textAlign="justify">{detail.name}</Heading>
+        <Heading as="h1" size="2xl" textAlign="center">{detail.name}</Heading>
         <Image src={detail.image} border="2px solid black" my={6} w="100%" h="400px" objectFit="cover" borderRadius="lg" boxShadow="lg" />
 
         <Text

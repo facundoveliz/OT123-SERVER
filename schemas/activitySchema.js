@@ -8,12 +8,18 @@ const validate = checkSchema({
     trim: true,
     isLength: { options: { min: 3, max: 24 } },
   },
+  image: {
+    notEmpty: true,
+    isString: true,
+    trim: true,
+    isLength: { options: { min: 3 } },
+  },
   content: {
     exists: true,
     notEmpty: true,
     isString: true,
     trim: true,
-    isLength: { options: { min: 3, max: 24 } },
+    isLength: { options: { min: 3 } },
   },
 })
 

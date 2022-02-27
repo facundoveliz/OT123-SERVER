@@ -2,7 +2,8 @@ const { expect } = require('chai')
 const chai = require('chai')
 const request = require('supertest')
 const app = require('../app')
-
+const { generateToken } = require('../middlewares/jwt')
+const token = generateToken({ name: 'test', roleId: 1 })
 chai.should()
 
 let id
@@ -64,6 +65,7 @@ describe('POST /news', () => {
     request(app)
       .post('/categories')
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err, res) => {
@@ -86,6 +88,7 @@ describe('POST /news', () => {
     request(app)
       .post('/news')
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err, res) => {
@@ -109,6 +112,7 @@ describe('POST /news', () => {
     request(app)
       .post('/news')
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(400)
       .end((err, res) => {
@@ -163,6 +167,7 @@ describe('PUT /news/:id', () => {
     request(app)
       .put(`/news/${id}`)
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -185,6 +190,7 @@ describe('PUT /news/:id', () => {
     request(app)
       .put(`/news/${id}`)
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(400)
       .end((err, res) => {
@@ -201,6 +207,7 @@ describe('DELETE /news', () => {
   it('respond with a json containing the deleted entry', (done) => {
     request(app)
       .delete(`/news/${id}`)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -215,6 +222,7 @@ describe('DELETE /news', () => {
   it('respond with a json containing an error', (done) => {
     request(app)
       .delete('/news/999')
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

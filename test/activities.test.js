@@ -2,6 +2,8 @@ const { expect } = require('chai')
 const chai = require('chai')
 const request = require('supertest')
 const app = require('../app')
+const { generateToken } = require('../middlewares/jwt')
+const token = generateToken({ name: 'test', roleId: 1 })
 
 chai.should()
 
@@ -37,6 +39,7 @@ describe('POST /activities', () => {
             .post('/activities')
             .send(data)
             .set('Accept', 'application/json')
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(201)
             .end((err, res) => {
@@ -50,13 +53,14 @@ describe('POST /activities', () => {
     // Test: Validation
     it('respond with 400 bad request', (done) => {
         const data = {
-            name: 'Marathon to study for exams',
+            name: 'aaa',
             image: '',
             content: 'Uh',
         }
         request(app)
             .post('/activities')
             .send(data)
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(422)
             .end((err, res) => {
@@ -110,6 +114,7 @@ describe('PUT /activities/:id', () => {
         request(app)
             .put(`/activities/${id}`)
             .send(data)
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(201)
             .end((err, res) => {
@@ -130,6 +135,7 @@ describe('PUT /activities/:id', () => {
         request(app)
             .put(`/activities/${500}`)
             .send(data)
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(400)
             .end((err, res) => {
@@ -145,6 +151,7 @@ describe('DELETE /activities/:id', () => {
     it('respond with a json containing the deleted activity', (done) => {
         request(app)
             .delete(`/activities/${id}`)
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(200)
             .end((err, res) => {
@@ -159,6 +166,7 @@ describe('DELETE /activities/:id', () => {
     it('respond with a json containing an error', (done) => {
         request(app)
             .delete(`/activities/${500}`)
+            .set( 'x-access-token', token )
             .expect('Content-Type', /json/)
             .expect(404)
             .end((err, res) => {

@@ -3,6 +3,7 @@ const express = require('express')
 const {
   addTestimonial, update, deleteTestimonial, getTestimonial, getAllTestimonials,
 } = require('../controllers/testimonials')
+const isAdmin = require('../middlewares/isAdmin')
 const validate = require('../schemas/testimonialSchema')
 
 const router = express.Router()
@@ -16,9 +17,9 @@ router.get('/:id', getTestimonial)
 router.post('/', validate, addTestimonial)
 
 // edit a testimonial
-router.put('/:id', validate, update)
+router.put('/:id', isAdmin, validate, update)
 
 // delete testimonial
-router.delete('/:id', deleteTestimonial)
+router.delete('/:id', isAdmin, deleteTestimonial)
 
 module.exports = router

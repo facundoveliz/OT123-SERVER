@@ -54,7 +54,7 @@ exports.add = async (req, res) => {
     res.status(422).json({
       ok: false,
       msg: 'Validation failed, entered data is incorrect.',
-      error: errors.array(),
+      error: errors,
     })
   }
   try {

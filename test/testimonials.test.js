@@ -2,7 +2,8 @@ const { expect } = require('chai')
 const chai = require('chai')
 const request = require('supertest')
 const app = require('../app')
-
+const { generateToken } = require('../middlewares/jwt')
+const token = generateToken({ name: 'test', roleId: 1 })
 chai.should()
 
 let id
@@ -102,6 +103,7 @@ describe('PUT /testimonials/:id', () => {
     request(app)
       .put(`/testimonials/${id}`)
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -120,6 +122,7 @@ describe('PUT /testimonials/:id', () => {
     request(app)
       .put(`/testimonials/${id}`)
       .send(data)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(400)
       .end((err, res) => {
@@ -136,6 +139,7 @@ describe('DELETE /testimonials', () => {
   it('respond with a json containing the deleted testimonial', (done) => {
     request(app)
       .delete(`/testimonials/${id}`)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(200)
       .end((err, res) => {
@@ -149,6 +153,7 @@ describe('DELETE /testimonials', () => {
   it('respond with a json containing an error', (done) => {
     request(app)
       .delete(`/testimonials/${id}`)
+      .set( 'x-access-token', token )
       .expect('Content-Type', /json/)
       .expect(404)
       .end((err, res) => {

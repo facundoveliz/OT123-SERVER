@@ -11,7 +11,10 @@ import {
   Spacer,
   FormControl,
   Textarea,
+  Icon,
+  Box,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import Alert from '../alert/Alert'
 import { getOrganizationById, updateOrganization } from '../../services/organizationsService'
 
@@ -107,6 +110,27 @@ const EditWelcomeText = () => {
                 backgroundColor="#ffffcc"
                 onSubmit={(e) => updateChangeHandler(e, values)}
               >
+                <Box width="100%">
+                  <Icon
+                    alignitems="left"
+                    as={FiArrowLeft}
+                    w={8}
+                    h={8}
+                    mb={4}
+                    border="2px solid black"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                    backgroundColor="#ccebff"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                      transition: 'all 0.3s ease',
+                    }}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate(-1)
+                    }}
+                  />
+                </Box>
                 <Heading align="center">Home</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="2">Edita el texto de bienvenida</FormLabel>

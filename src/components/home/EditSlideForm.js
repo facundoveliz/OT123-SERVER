@@ -10,8 +10,9 @@ import {
   Box,
   Input,
   Image,
+  Icon,
 } from '@chakra-ui/react'
-
+import { FiArrowLeft } from 'react-icons/fi';
 import { useDispatch } from 'react-redux'
 import Spinner from '../Spinner'
 import { getSliderById, updateSlider } from '../../services/slidersService'
@@ -92,6 +93,27 @@ const EditSlideForm = () => {
             backgroundColor="#ffffcc"
             onSubmit={handleSubmit}
           >
+            <Box width="100%">
+              <Icon
+                alignitems="left"
+                as={FiArrowLeft}
+                w={8}
+                h={8}
+                mb={4}
+                border="2px solid black"
+                borderRadius="lg"
+                boxShadow="lg"
+                backgroundColor="#ccebff"
+                _hover={{
+                  backgroundColor: '#4db8ff',
+                  transition: 'all 0.3s ease',
+                }}
+                cursor="pointer"
+                onClick={() => {
+                  navigate(-1)
+                }}
+              />
+            </Box>
             <FormControl>
               <FormLabel fontSize="4xl" textAlign="center">
                 Editar slide

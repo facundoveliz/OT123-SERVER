@@ -13,7 +13,9 @@ import {
   FormControl,
   Box,
   Spinner,
+  Icon,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 // eslint-disable-next-line import/no-unresolved
@@ -185,6 +187,27 @@ const NewsForm = () => {
                 display="block"
                 onSubmit={handleSubmit}
               >
+                <Box width="100%">
+                  <Icon
+                    alignitems="left"
+                    as={FiArrowLeft}
+                    w={8}
+                    h={8}
+                    mb={4}
+                    border="2px solid black"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                    backgroundColor="#ccebff"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                      transition: 'all 0.3s ease',
+                    }}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate(-1)
+                    }}
+                  />
+                </Box>
                 <Heading align="center">Novedad</Heading>
                 <FormControl display="flex" justifyContent="space-between">
                   <FormLabel paddingLeft="2">Titulo</FormLabel>

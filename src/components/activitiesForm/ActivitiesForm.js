@@ -14,7 +14,9 @@ import {
   FormControl,
   Box,
   Spinner,
+  Icon,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import Alert from '../alert/Alert'
@@ -183,6 +185,27 @@ const ActivitiesForm = () => {
                 backgroundColor="#ffffcc"
                 onSubmit={handleSubmit}
               >
+                <Box width="100%">
+                  <Icon
+                    alignitems="left"
+                    as={FiArrowLeft}
+                    w={8}
+                    h={8}
+                    mb={4}
+                    border="2px solid black"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                    backgroundColor="#ccebff"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                      transition: 'all 0.3s ease',
+                    }}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate(-1)
+                    }}
+                  />
+                </Box>
                 <Heading mb="16px">Actividad</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>

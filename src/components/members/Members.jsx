@@ -4,6 +4,7 @@ import { Text, VStack, Grid } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getAllmembers } from '../../services/membersService'
+import Title from '../pageUtils/Title/Title'
 
 const Members = () => {
   const [loadData, setLoadData] = useState([]);
@@ -20,7 +21,7 @@ const Members = () => {
   return (
     <>
       <VStack my={12} display="flex" textAlign="center">
-        <Text fontSize="5xl">Miembros</Text>
+        <Title title="MIEMBROS" fontSize={30} />
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estos son los miembros de Somos Más.
         </Text>

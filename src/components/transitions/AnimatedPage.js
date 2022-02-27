@@ -21,7 +21,7 @@ const AnimatedPage = ({ children }) => (
 )
 
 AnimatedPage.propTypes = {
-  children: PropTypes.bool.isRequired,
+  children: PropTypes.element.isRequired,
 }
 
 export default AnimatedPage;

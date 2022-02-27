@@ -6,6 +6,7 @@ import {
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getAll } from '../../services/newsService'
+import Title from '../pageUtils/Title/Title'
 
 const News = () => {
   const [entrysData, setEntrysData] = useState([]);
@@ -22,7 +23,7 @@ const News = () => {
   return (
     <Stack w="100%" backgroundColor="#f2f2f2" paddingBottom="10">
       <VStack my={6} display="flex" textAlign="center">
-        <Text fontSize="5xl">Novedades</Text>
+        <Title title="NOVEDADES" fontSize={30} />
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Enterate de las últimas novedades relacionadas con Somos Más.
         </Text>

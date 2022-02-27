@@ -13,6 +13,7 @@ const Card = ({ array, direction }) => {
     <>
       {array.map((item) => (
         <GridItem
+          className=" animate__animated animate__zoomIn"
           border="2px solid black"
           backgroundColor="#ffffcc"
           key={item.id}

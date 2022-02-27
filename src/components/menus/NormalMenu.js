@@ -19,7 +19,7 @@ const NormalMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} colorScheme="blue">
+      <MenuButton as={Button} colorscheme="blue">
         { `${firstName} ${lastName}` }
       </MenuButton>
       <MenuList>

@@ -1,0 +1,16 @@
+.paint-text {
+  padding-top: 30px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  height: 100px;
+  width: 300px;
+  background-image: url('../../../assets/png/paint-stroke.png');
+  background-repeat: no-repeat;
+  background-size: 300px 100px;
+  margin: 30px;
+}
+.paint-stroke {
+  display: flex;
+  justify-content: center;
+}

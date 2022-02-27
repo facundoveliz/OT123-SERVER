@@ -184,7 +184,7 @@ const TestimonialForm = () => {
                     <Image objectFit="cover" my="16px" src={testimonialData.image} />
                   </Box>
                 </FormControl>
-                <Button type="submit" colorScheme="blue" w="100%">
+                <Button type="submit" colorscheme="blue" w="100%">
                   Guardar
                 </Button>
               </VStack>

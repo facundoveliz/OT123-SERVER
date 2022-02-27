@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import {
@@ -11,7 +11,10 @@ import {
   Input,
   Spacer,
   FormControl,
+  Icon,
+  Box,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
@@ -19,6 +22,7 @@ import { createCategory, getCategoryById, updateCategory } from '../../services/
 import Alert from '../alert/Alert'
 
 const CategoriesForm = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const [categoriesData, setCategoriesData] = useState({
     id: null,
@@ -141,6 +145,27 @@ const CategoriesForm = () => {
                 backgroundColor="#ffffcc"
                 onSubmit={handleSubmit}
               >
+                <Box width="100%">
+                  <Icon
+                    alignitems="left"
+                    as={FiArrowLeft}
+                    w={8}
+                    h={8}
+                    mb={4}
+                    border="2px solid black"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                    backgroundColor="#ccebff"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                      transition: 'all 0.3s ease',
+                    }}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate(-1)
+                    }}
+                  />
+                </Box>
                 <Heading mb="16px">Categoria</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="0.5" fontSize="lg">Titulo</FormLabel>

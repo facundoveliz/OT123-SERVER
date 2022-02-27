@@ -11,7 +11,10 @@ import {
   Spacer,
   FormControl,
   Textarea,
+  Icon,
+  Box,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import Alert from '../alert/Alert'
 import { getOrganizationById, updateOrganization } from '../../services/organizationsService'
 
@@ -56,9 +59,6 @@ const EditWelcomeText = () => {
   }, [])
 
   const updateChangeHandler = async (e, values) => {
-    e.preventDefault()
-    // eslint-disable-next-line no-console
-    console.log(values);
     const updatedActivity = await updateOrganization(values)
     if (updatedActivity) {
       const successAlert = {
@@ -95,28 +95,47 @@ const EditWelcomeText = () => {
           }) => (
             <HStack
               display="flex"
-              height="100vh"
-              backgroundColor="#FAFA88"
-              width="100%"
+              justifyContent="center"
+              backgroundColor="#f2f2f2"
             >
               <VStack
                 as="form"
-                m="auto"
-                p="2"
-                w={{ base: '100%', md: '90%', sm: '90%' }}
                 h="auto"
-                justifyContent="center"
-                borderWidth="1px solid white"
+                w={{ base: '90%', md: '40%' }}
+                m="40px"
+                p="25px"
                 borderRadius="lg"
                 boxShadow="lg"
-                backgroundColor="white"
-                display="block"
+                border="2px solid black"
+                backgroundColor="#ffffcc"
                 onSubmit={(e) => updateChangeHandler(e, values)}
               >
+                <Box width="100%">
+                  <Icon
+                    alignitems="left"
+                    as={FiArrowLeft}
+                    w={8}
+                    h={8}
+                    mb={4}
+                    border="2px solid black"
+                    borderRadius="lg"
+                    boxShadow="lg"
+                    backgroundColor="#ccebff"
+                    _hover={{
+                      backgroundColor: '#4db8ff',
+                      transition: 'all 0.3s ease',
+                    }}
+                    cursor="pointer"
+                    onClick={() => {
+                      navigate(-1)
+                    }}
+                  />
+                </Box>
                 <Heading align="center">Home</Heading>
                 <FormControl>
                   <FormLabel paddingLeft="2">Edita el texto de bienvenida</FormLabel>
                   <Textarea
+                    backgroundColor="white"
                     type="text"
                     id="welcomeText"
                     name="welcomeText"
@@ -128,7 +147,15 @@ const EditWelcomeText = () => {
                 </FormControl>
                 <Spacer />
 
-                <Button type="submit" w="100%">
+                <Button
+                  border="2px solid black"
+                  backgroundColor="#d6f5d6"
+                  _hover={{
+                    backgroundColor: '#6fdc6f',
+                  }}
+                  type="submit"
+                  w="100%"
+                >
                   Guardar
                 </Button>
               </VStack>

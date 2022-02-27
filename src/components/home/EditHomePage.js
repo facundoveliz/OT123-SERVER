@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Button,
-  Image,
   Text,
   Table,
   Tr,
@@ -13,10 +12,10 @@ import {
   Tbody,
   Thead,
 } from '@chakra-ui/react'
-
 import { getAllSliders } from '../../services/slidersService'
 import { getOrganizationById } from '../../services/organizationsService'
 
+import ItemCollapse from './ItemCollapse'
 import Alert from '../alert/Alert'
 import Spinner from '../Spinner'
 
@@ -108,29 +107,9 @@ export default function EditHomePage() {
               </Tr>
               {slides
             && slides.map((slide) => (
-              <Tr
-                key={slide.id}
-                justifyContent="space-between"
-                flexDir={{ base: 'column', md: 'row' }}
-              >
-                <Td>{`Slide ${slide.id}`}</Td>
-                <Td flexGrow="1">{slide.text}</Td>
-                <Td textAlign="center">
-                  <Image maxW="300px" src={slide.imageUrl} />
-                </Td>
-                <Td textAlign="center">
-                  <Button
-                    onClick={() => navigate(`slide/${slide.id}`)}
-                    fontWeight={600}
-                    bg="brand.cyan"
-                    _hover={{
-                      bg: 'brand.gray1',
-                    }}
-                  >
-                    Editar
-                  </Button>
-                </Td>
-              </Tr>
+              <ItemCollapse
+                slide={slide}
+              />
             ))}
             </Tbody>
           </Table>

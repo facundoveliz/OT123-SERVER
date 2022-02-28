@@ -93,11 +93,11 @@ const ItemCollapse = ({ slide }) => {
 }
 
 ItemCollapse.propTypes = {
-  slide: PropTypes.arrayOf(
+  slide:
     PropTypes.shape({
       id: PropTypes.number,
+      imageUrl: PropTypes.string,
       text: PropTypes.string,
-    }),
-  ).isRequired,
+    }).isRequired,
 }
 export default ItemCollapse

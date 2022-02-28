@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoAddOutline } from 'react-icons/io5'
 import {
-  Box, Table, Heading, Tbody, Button,
+  Box, Heading, Button,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
 import { getAllActivities } from '../../../services/activitiesService'
@@ -11,7 +11,7 @@ import ItemCollapse from './itemCollapse'
 const ListActivities = () => {
   const navigate = useNavigate()
   const [activitiesData, setActivitiesData] = useState([])
-  const [deletedActivity, setDeletedActivity] = useState([])
+  const [deletedActivity, setDeletedActivity] = useState({})
   const [alertProps, setAlertProps] = useState({
     show: false,
     title: '',
@@ -73,17 +73,16 @@ const ListActivities = () => {
             <IoAddOutline size="22" />
           </Button>
         </Box>
-        <Table size="lg">
-          <Tbody>
-            {activitiesData.map((item) => (
-              <ItemCollapse
-                item={item}
-                setAlertProps={setAlertProps}
-                setDeletedNews={setDeletedActivity}
-              />
-            ))}
-          </Tbody>
-        </Table>
+
+        {activitiesData.map((item) => (
+          <ItemCollapse
+            key={item.id}
+            item={item}
+            setAlertProps={setAlertProps}
+            setDeletedActivity={setDeletedActivity}
+          />
+        ))}
+
       </Box>
     </Box>
   )

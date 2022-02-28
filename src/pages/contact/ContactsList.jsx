@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import {
-  Box, Table, Heading, Tbody,
+  Box, Heading,
 } from '@chakra-ui/react'
 import loadListData from '../backoffice/allListData';
 import ItemCollapse from './ItemCollapse'
@@ -33,15 +33,13 @@ const ContactsList = () => {
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Lista de Contactos</Heading>
         </Box>
-        <Table size="lg">
-          <Tbody>
-            {contactsData.map((item) => (
-              <ItemCollapse
-                item={item}
-              />
-            ))}
-          </Tbody>
-        </Table>
+
+        {contactsData.map((item) => (
+          <ItemCollapse
+            key={item.id}
+            item={item}
+          />
+        ))}
       </Box>
     </Box>
   )

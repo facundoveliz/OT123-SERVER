@@ -66,8 +66,6 @@ const OrganizationForm = () => {
       name: values.name,
       image: orgData.image,
     })
-    // eslint-disable-next-line no-console
-    console.log(updatedOrg)
     if (updatedOrg) {
       const successAlert = {
         show: true,

@@ -204,7 +204,7 @@ export default function ListTestimonials() {
       >
         {allTestimonials
         && allTestimonials?.map((cardInfo, index) => (
-          <TestmonialCard {...cardInfo} index={index} />
+          <TestmonialCard {...cardInfo} index={index} key={cardInfo.id} />
         ))}
       </SimpleGrid>
       { isLoggedIn

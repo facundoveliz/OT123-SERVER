@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-console */
 import React, { useEffect, useState, useCallback } from 'react'
 import {
   Center, Box, Heading, Text, Image, Icon,
@@ -15,7 +14,6 @@ import { getMember } from '../../services/membersService';
 const Detail = () => {
   const directory = useLocation().pathname.split('/')[1]
 
-  console.log(directory);
   const [detail, setDetail] = useState([]);
 
   const { id } = useParams()
@@ -40,7 +38,6 @@ const Detail = () => {
         break;
     }
 
-    console.log(res);
     setDetail(res.data.result)
   }, [detail])
 

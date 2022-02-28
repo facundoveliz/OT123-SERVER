@@ -18,6 +18,7 @@ import Activities from '../components/activitiesForm/Activities'
 import Members from '../components/members/Members'
 import ListTestimonials from '../pages/backoffice/testimonials/ListTestimonials'
 import ContactPage from '../pages/contact/ContactPage'
+import Donations from '../components/Donations/Donation'
 
 const PublicRoutes = () => {
   const location = useLocation()
@@ -27,6 +28,7 @@ const PublicRoutes = () => {
       <Routes key={location.pathname} location={location}>
         <Route index element={<Home />} />
         <Route path="home" element={<Home />} />
+        <Route path="/contribuye" element={<Donations />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="testimonioform" element={<TestimonialForm />} />

@@ -11,8 +11,6 @@ import PropTypes from 'prop-types'
 import { deleteActivity } from '../../../services/activitiesService'
 
 const ItemCollapse = ({ item, setAlertProps, setDeletedActivity }) => {
-  // eslint-disable-next-line no-console
-  console.log(item);
   const navigate = useNavigate()
   const { isOpen, onToggle } = useDisclosure()
   const [openCollapse, setopenCollapse] = useState(false)
@@ -165,15 +163,18 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedActivity }) => {
   )
 }
 ItemCollapse.propTypes = {
-  item: PropTypes.arrayOf(
+  item:
     PropTypes.shape({
       id: PropTypes.number,
       description: PropTypes.string,
+      name: PropTypes.string,
+      image: PropTypes.string,
+      content: PropTypes.string,
       updatedAt: PropTypes.string,
       createdAt: PropTypes.string,
-    }),
-  ).isRequired,
+    }).isRequired,
   setAlertProps: PropTypes.func.isRequired,
   setDeletedActivity: PropTypes.func.isRequired,
 }
+
 export default ItemCollapse

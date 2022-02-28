@@ -112,8 +112,6 @@ const ActivitiesForm = () => {
           image: values.image ? await UploadFile(values.image) : null,
         })
         if (newActivity) {
-        // eslint-disable-next-line no-console
-          console.log(newActivity);
           const successAlert = {
             show: true,
             title: 'Actividad',

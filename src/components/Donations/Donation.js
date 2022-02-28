@@ -59,14 +59,16 @@ const Donations = () => {
         my={20}
         p={10}
         width={500}
-        border="3px dashed red"
-        borderColor="red"
-        borderRadius={20}
+        border="2px solid black"
+        borderRadius="lg"
+        boxShadow="lg"
+        backgroundColor="#ffffcc"
       >
         <InputGroup justifyContent="center">
           {' '}
           <FormLabel fontWeight="bold" fontSize={20}>Ingresa el monto a donar</FormLabel>
           <Input
+            backgroundColor="white"
             w={200}
             type="number"
             placeholder="monto a donar"
@@ -75,7 +77,16 @@ const Donations = () => {
           />
         </InputGroup>
         <Text color="red">{error}</Text>
-        <Button onClick={onSubmit}>¡Donar!</Button>
+        <Button
+          border="2px solid black"
+          backgroundColor="#d6f5d6"
+          _hover={{
+            backgroundColor: '#6fdc6f',
+          }}
+          onClick={onSubmit}
+        >
+          ¡Donar!
+        </Button>
       </Stack>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -84,7 +95,6 @@ const Donations = () => {
           <ModalHeader>Metodo de pago</ModalHeader>
           <ModalCloseButton />
           <FormDonation amount={amount} onClose={onClose} />
-
         </ModalContent>
       </Modal>
 

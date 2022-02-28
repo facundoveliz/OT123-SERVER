@@ -98,7 +98,9 @@ const FormDonation = ({ amount, onClose }) => {
 
   return (
     <div className="card">
-      <Box mt={5}>
+      <Box
+        mt={5}
+      >
         <Cards
           number={state.number}
           name={state.name}
@@ -107,15 +109,24 @@ const FormDonation = ({ amount, onClose }) => {
           focused={state.focus}
         />
       </Box>
-      <Stack>
+      <Stack
+        h="auto"
+        m="40px"
+        p="25px"
+        borderRadius="lg"
+        boxShadow="lg"
+        borderWidth="1px solid white"
+        border="2px solid black"
+        backgroundColor="#ffffcc"
+      >
         <Table mt={10} size="sm">
           <Thead>
             <Tr>
-              <Th fontSize={20} fontWeight="bold">
+              <Th paddingBottom="4" fontSize={20} fontWeight="bold">
                 Monto:
                 {' '}
               </Th>
-              <Th textAlign="center" fontSize={30} fontWeight="bold">
+              <Th paddingBottom="4" textAlign="center" fontSize={30} fontWeight="bold">
                 $
                 {amount}
               </Th>
@@ -130,6 +141,7 @@ const FormDonation = ({ amount, onClose }) => {
               <Td>
                 {' '}
                 <Input
+                  backgroundColor="white"
                   type="number"
                   name="number"
                   id="number"
@@ -152,6 +164,7 @@ const FormDonation = ({ amount, onClose }) => {
               <Td>
                 {' '}
                 <Input
+                  backgroundColor="white"
                   type="text"
                   name="name"
                   id="name"
@@ -175,6 +188,7 @@ const FormDonation = ({ amount, onClose }) => {
                 {' '}
                 <Input
                   type="number"
+                  backgroundColor="white"
                   name="expiry"
                   id="expiry"
                   maxLength="4"
@@ -196,6 +210,7 @@ const FormDonation = ({ amount, onClose }) => {
               <Td>
                 {' '}
                 <Input
+                  backgroundColor="white"
                   type="number"
                   borderColor="gray.500"
                   name="cvc"
@@ -216,15 +231,28 @@ const FormDonation = ({ amount, onClose }) => {
       <Box display="flex" justifyContent="right">
         <Button
           onClick={onClose}
-          color="white"
+          border="2px solid black"
+          backgroundColor="#ffc2b3"
+          _hover={{
+            backgroundColor: '#ff4d4d',
+          }}
           m={2}
-          bgColor="red"
           w={20}
           type="button"
         >
           Salir
         </Button>
-        <Button onClick={processPayment} w={20} m={2} type="button">
+        <Button
+          onClick={processPayment}
+          border="2px solid black"
+          backgroundColor="#d6f5d6"
+          _hover={{
+            backgroundColor: '#6fdc6f',
+          }}
+          w={20}
+          m={2}
+          type="button"
+        >
           ¡Donar!
         </Button>
       </Box>

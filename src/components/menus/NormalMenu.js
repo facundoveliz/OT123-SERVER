@@ -19,7 +19,14 @@ const NormalMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} colorscheme="blue">
+      <MenuButton
+        as={Button}
+        border="2px solid black"
+        backgroundColor="#ccebff"
+        _hover={{
+          backgroundColor: '#4db8ff',
+        }}
+      >
         { `${firstName} ${lastName}` }
       </MenuButton>
       <MenuList>

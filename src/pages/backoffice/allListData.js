@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { getAllActivities } from '../../services/activitiesService';
 import { getAllContacts } from '../../services/contactsService';
 
@@ -15,6 +14,5 @@ export default async function loadListData(path) {
     default:
       break;
   }
-  console.log(data.data.result);
   return data.data.result
 }

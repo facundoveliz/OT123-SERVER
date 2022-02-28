@@ -26,7 +26,6 @@ const ReactS3Client = new S3(config);
 
 export default async function UploadFile(file) {
   const newFileName = fileName(file)
-  console.log(newFileName);
   try {
     if (file) {
       const respuesta = await ReactS3Client.uploadFile(file, newFileName)

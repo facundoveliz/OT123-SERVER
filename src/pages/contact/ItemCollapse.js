@@ -71,11 +71,13 @@ const ItemCollapse = ({ item }) => {
   )
 }
 ItemCollapse.propTypes = {
-  item: PropTypes.arrayOf(
+  item:
     PropTypes.shape({
       id: PropTypes.number,
+      email: PropTypes.string,
+      name: PropTypes.string,
+      phone: PropTypes.string,
       message: PropTypes.string,
-    }),
-  ).isRequired,
+    }).isRequired,
 }
 export default ItemCollapse

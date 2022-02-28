@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoAddOutline } from 'react-icons/io5'
 import {
-  Box, Table, Heading, Tbody, Button,
+  Box, Heading, Button,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
 import { getAll } from '../../../services/newsService'
@@ -73,17 +73,18 @@ const ListNews = () => {
             <IoAddOutline size="22" />
           </Button>
         </Box>
-        <Table size="lg">
-          <Tbody>
-            {newsData.map((item) => (
-              <ItemCollapse
-                item={item}
-                setAlertProps={setAlertProps}
-                setDeletedNews={setDeletedNews}
-              />
-            ))}
-          </Tbody>
-        </Table>
+        <Box>
+          {newsData.map((item) => (
+            <ItemCollapse
+              key={item.id}
+              item={item}
+              setAlertProps={setAlertProps}
+              setDeletedNews={setDeletedNews}
+            />
+          ))}
+        </Box>
+        {' '}
+
       </Box>
     </Box>
   )

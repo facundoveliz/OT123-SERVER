@@ -30,7 +30,7 @@ const Card = ({ title, icon, route }) => (
           backgroundColor: '#6fdc6f',
         }}
         border="2px solid black"
-        isDisabled="true"
+        isDisabled
       >
         Ir
       </Button>

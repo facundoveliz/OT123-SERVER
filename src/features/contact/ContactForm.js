@@ -73,7 +73,7 @@ const ContactForm = () => {
               display="block"
             >
               <Heading align="center">Mensaje</Heading>
-              <TextField backgroundColor="white" name="name" placeholder="Nombre" label="Nombre" />
+              <TextField backgroundColor="white" name="name" placeholder="Nombre" label="Nombre" type="text" />
               <TextField backgroundColor="white" name="email" placeholder="E-mail" type="email" label="Email" />
               <TextField backgroundColor="white" name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
               <Button

@@ -82,7 +82,6 @@ export default function EditHomePage() {
               <Tr fontWeight="black">
                 <Td textAlign="center">Nombre</Td>
                 <Td textAlign="center">Texto de bienvenida</Td>
-                <Td textAlign="center">Imagen</Td>
                 <Td textAlign="center">Acciones</Td>
               </Tr>
             </Thead>
@@ -90,7 +89,6 @@ export default function EditHomePage() {
               <Tr>
                 <Td textAlign="center">Welcome Text</Td>
                 <Td textAlign="center"><Box dangerouslySetInnerHTML={createMarkup()} /></Td>
-                <Td />
                 <Td textAlign="center">
                   <Button
                     onClick={() => navigate('editwelcometext')}
@@ -105,15 +103,16 @@ export default function EditHomePage() {
                   </Button>
                 </Td>
               </Tr>
-              {slides
-            && slides.map((slide) => (
-              <ItemCollapse
-                slide={slide}
-              />
-            ))}
             </Tbody>
           </Table>
         )}
+        {slides
+      && slides.map((slide) => (
+        <ItemCollapse
+          key={slide.id}
+          slide={slide}
+        />
+      ))}
       </Box>
     </Box>
   )

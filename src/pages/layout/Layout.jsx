@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/alt-text */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Image } from '@chakra-ui/react';
@@ -17,6 +17,11 @@ const Layout = () => {
   const navigate = useNavigate()
   const alert = alertData.payload.alert.alertData
   const path = useLocation().pathname.split('/')[1]
+  useEffect(() => {
+    if (path === '') navigate('/home')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div>
       <Alert {...alert} />

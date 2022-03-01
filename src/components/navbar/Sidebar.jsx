@@ -106,9 +106,7 @@ const Sidebar = ({ roleId }) => {
                 : (
                   <>
                     <Button
-                      backgroundColor="#ccebff"
-                      _hover={{ backgroundColor: '#4db8ff' }}
-                      border="2px solid black"
+                      color="#2DCC0A"
                       width="100%"
                       as={NavLink}
                       to="/signin"

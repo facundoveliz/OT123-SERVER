@@ -151,13 +151,14 @@ const ItemCollapse = ({ item, setAlertProps, setDeletedCategory }) => {
   )
 }
 ItemCollapse.propTypes = {
-  item: PropTypes.arrayOf(
-    PropTypes.shape({
+  item: PropTypes.shape(
+    {
       id: PropTypes.number,
+      name: PropTypes.string,
       description: PropTypes.string,
       updatedAt: PropTypes.string,
       createdAt: PropTypes.string,
-    }),
+    },
   ).isRequired,
   setAlertProps: PropTypes.func.isRequired,
   setDeletedCategory: PropTypes.func.isRequired,

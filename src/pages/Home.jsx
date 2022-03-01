@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable indent */
 import React, { useEffect, useState } from 'react'
 import {
-  Text, SimpleGrid, Grid,
+  Text, SimpleGrid, Grid, Box,
 } from '@chakra-ui/react'
 import { getAllSliders } from '../services/slidersService'
 import { getAllTestimonials } from '../services/testimonialsService'
@@ -20,8 +18,8 @@ const Home = () => {
   const [organizationData, setOrganizationData] = useState({})
 
   const loadData = async () => {
-   const sliders = await getAllSliders()
-   setSliderData(sliders.data.result.sliders)
+    const sliders = await getAllSliders()
+    setSliderData(sliders.data.result.sliders)
     const testimonials = await getAllTestimonials()
     setTestimonialsData(testimonials.data.result.testimonials.slice(0, 4))
     const organization = await getOrganizationById(1)
@@ -33,9 +31,8 @@ const Home = () => {
   useEffect(() => {
     loadData();
   }, [])
-
   return (
-    <>
+    <Box backgroundColor="#f2f2f2">
       <Slider sliderData={sliderData} />
       <Text textAlign="center" fontSize="3xl" my={5}>{organizationData.welcomeText}</Text>
 
@@ -55,11 +52,11 @@ const Home = () => {
       >
         {testimonialsData
         && testimonialsData?.map((cardInfo, index) => (
-          <TestmonialCard {...cardInfo} index={index} />
+          <TestmonialCard {...cardInfo} index={index} key={cardInfo.id} />
         ))}
       </SimpleGrid>
-    </>
-)
+    </Box>
+  )
 }
 
 export default Home

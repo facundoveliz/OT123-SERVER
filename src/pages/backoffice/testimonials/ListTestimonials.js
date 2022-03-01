@@ -7,6 +7,7 @@ import {
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 import { setAlertData } from '../../../app/slices/alert';
 import Title from '../../../components/pageUtils/Title/Title';
 import useUser from '../../../hooks/useUser';
@@ -86,7 +87,7 @@ export const TestmonialCard = ({
           {' '}
           -
           {' '}
-          {createdAt.substr(0, 10)}
+          {moment(createdAt).fromNow()}
         </chakra.span>
       </chakra.p>
     </Flex>

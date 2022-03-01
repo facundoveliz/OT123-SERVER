@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Center, Heading } from '@chakra-ui/react';
 import {
-  FaRegNewspaper, FaListUl, FaTasks, FaRegComments, FaUsers, FaBook, FaHome,
+  FaRegNewspaper, FaListUl, FaTasks, FaRegComments, FaUsers, FaHome,
 } from 'react-icons/fa'
 import Card from './Card';
 
@@ -13,7 +13,6 @@ const Index = () => (
       <Card title="Actividades" icon={FaTasks} route="/backoffice/actividades" />
       <Card title="Categorias" icon={FaListUl} route="/backoffice/categorias" />
       <Card title="Testimonios" icon={FaRegComments} route="/backoffice/testimonios" />
-      <Card title="Organización" icon={FaBook} route="/backoffice/organización/1" />
       <Card title="Home" icon={FaHome} route="/backoffice/home" />
       <Card title="Usuarios" icon={FaUsers} route="/backoffice/usuarios" />
       <Card title="Miembros" icon={FaUsers} route="/backoffice/miembros" />

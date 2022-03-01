@@ -33,7 +33,6 @@ const ContactsList = () => {
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Lista de Contactos</Heading>
         </Box>
-
         {contactsData.map((item) => (
           <ItemCollapse
             key={item.id}

@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import AdminRoute from '../hoc/AdminRoute'
 import ListActivities from '../pages/backoffice/activities/ListActivities'
 import ListNews from '../pages/backoffice/news/ListNews'
+import UsersList from '../pages/backoffice/users/UsersList'
+import EditProfile from '../pages/profile/EditProfile'
 import ActivitiesForm from '../components/activitiesForm/ActivitiesForm'
 import NewsForm from '../components/news/NewsForm'
 import ListCategories from '../pages/backoffice/categories/ListCategories'
@@ -45,12 +47,18 @@ const AdminRoutes = () => (
         <Route path=":id" element={<TestimonialForm />} />
         <Route path="nuevo" element={<TestimonialForm />} />
       </Route>
+      <Route path="usuarios">
+        <Route index element={<UsersList />} />
+        <Route path=":id" element={<EditProfile />} />
+      </Route>
       <Route path="home">
         <Route index element={<EditHomePage />} />
         <Route path="editwelcometext" element={<EditWelcomeText />} />
         <Route path="slide/:id" element={<EditSlideForm />} />
       </Route>
-
+      <Route path="usuarios">
+        <Route index element={<UsersList />} />
+      </Route>
     </Route>
   </Routes>
 )

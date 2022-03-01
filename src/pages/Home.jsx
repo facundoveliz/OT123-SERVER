@@ -32,12 +32,12 @@ const Home = () => {
     loadData();
   }, [])
   return (
-    <Box backgroundColor="#f2f2f2">
+    <Box>
       <Slider sliderData={sliderData} />
       <Text textAlign="center" fontSize="3xl" my={5}>{organizationData.welcomeText}</Text>
 
       <Title title="ULTIMAS NOVEDADES" fontSize={19} />
-      <Grid templateColumns="repeat(auto-fill, 350px)" gap={10} mb={12} justifyContent="center">
+      <Grid display="flex" flexWrap="wrap" gap={10} mb={12} justifyContent="space-evenly">
         <Card
           direction="novedades"
           array={newsData}
@@ -45,10 +45,14 @@ const Home = () => {
       </Grid>
       <Title title="TESTIMONIOS" fontSize={25} />
       <SimpleGrid
+        display="flex"
+        flexWrap="wrap"
         columns={{ base: 1, xl: 2 }}
         spacing="20"
+        justifyContent="space-around"
         mt={16}
         mx="auto"
+        marginBottom="75"
       >
         {testimonialsData
         && testimonialsData?.map((cardInfo, index) => (

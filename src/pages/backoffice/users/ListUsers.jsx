@@ -1,20 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { IoTrashBin, IoPencil } from 'react-icons/io5'
 import {
   Box,
-  Table,
-  Heading,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Button,
-  ButtonGroup,
+  Heading, Icon,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import { FiArrowLeft } from 'react-icons/fi';
+import ItemCollapse from './ItemCollapse'
 import { getAllUsers } from '../../../services/usersService'
 
 const ListUsers = () => {
+  const navigate = useNavigate()
   const [usersData, setUsersData] = useState([]);
 
   const getUsers = useCallback(async () => {
@@ -27,57 +22,53 @@ const ListUsers = () => {
   }, [getUsers]);
 
   return (
-    <Box display="flex" height="100%" width="100%" backgroundColor="#FAFA88" justifyContent="center">
+    <Box
+      display="flex"
+      height="100%"
+      width="100%"
+      backgroundColor="#f2f2f2"
+      justifyContent="center"
+    >
       <Box
+        border="2px solid black"
+        backgroundColor="#ffffcc"
         borderWidth="1px solid white"
         borderRadius="lg"
         boxShadow="lg"
-        backgroundColor="white"
-        w={{ base: '98%', md: '90%' }}
+        w={{ base: '90%', md: '70%' }}
         m={{ base: '10px', md: '50px' }}
         p="2"
-        overflow="auto"
       >
-        <Heading align="center">Users</Heading>
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>Nombre</Th>
-              <Th>Apellido</Th>
-              <Th>Email</Th>
-              <Th>Imagen</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {usersData.map((item) => (
-              <Tr key={item.id}>
-                <Td>{item.firstName}</Td>
-                <Td>{item.lastName}</Td>
-                <Td>{item.email}</Td>
-                <Td>{item.image}</Td>
-                <Td display="flex" justifyContent="center">
-                  <ButtonGroup
-                    flexWrap="wrap"
-                    textAlign="center"
-                    width="fit-content"
-                  >
-                    <Button
-                      width="100px"
-                      leftIcon={<IoPencil />}
-                      marginBottom="1"
-                      size="sm"
-                    >
-                      Editar
-                    </Button>
-                    <Button width="100px" leftIcon={<IoTrashBin />} size="sm">
-                      Eliminar
-                    </Button>
-                  </ButtonGroup>
-                </Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
+        <Box width="100%">
+          <Icon
+            alignitems="left"
+            as={FiArrowLeft}
+            w={8}
+            h={8}
+            mb={4}
+            border="2px solid black"
+            borderRadius="lg"
+            boxShadow="lg"
+            backgroundColor="#ccebff"
+            _hover={{
+              backgroundColor: '#4db8ff',
+              transition: 'all 0.3s ease',
+            }}
+            cursor="pointer"
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+        </Box>
+        <Box display="flex" justifyContent="space-between" mx="5" my="5">
+          <Heading>Usuarios</Heading>
+        </Box>
+        {usersData.map((item) => (
+          <ItemCollapse
+            key={item.id}
+            item={item}
+          />
+        ))}
       </Box>
     </Box>
   )

@@ -7,6 +7,7 @@ import {
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 import { setAlertData } from '../../../app/slices/alert';
 import Title from '../../../components/pageUtils/Title/Title';
 import useUser from '../../../hooks/useUser';
@@ -86,7 +87,7 @@ export const TestmonialCard = ({
           {' '}
           -
           {' '}
-          {createdAt.substr(0, 10)}
+          {moment(createdAt).fromNow()}
         </chakra.span>
       </chakra.p>
     </Flex>
@@ -156,7 +157,6 @@ export default function ListTestimonials() {
   }
   return (
     <Flex
-      backgroundColor="#f2f2f2"
       textAlign="center"
       pt={10}
       justifyContent="center"
@@ -185,7 +185,6 @@ export default function ListTestimonials() {
         <chakra.h2
           margin="auto"
           width="70%"
-          fontFamily="Inter"
           fontWeight="medium"
           color={useColorModeValue('gray.500', 'gray.400')}
         >

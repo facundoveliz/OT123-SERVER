@@ -22,7 +22,7 @@ const EditWelcomeText = () => {
   let { id } = useParams()
   id = 1
   const navigate = useNavigate()
-  const [activity, setActivity] = useState({
+  const [organization, setOrganization] = useState({
     welcomeText: '',
   })
   const [ready, setReady] = useState(false)
@@ -33,18 +33,18 @@ const EditWelcomeText = () => {
     icon: '',
     onConfirm: () => {},
   })
-  const loadactivity = async () => {
+  const loadOrganization = async () => {
     if (id) {
       try {
-        const loadedactivity = await getOrganizationById(id)
-        setActivity({
-          welcomeText: loadedactivity.data.result.publicData.welcomeText,
+        const loadedOrganization = await getOrganizationById(id)
+        setOrganization({
+          welcomeText: loadedOrganization.data.result.publicData.welcomeText,
         })
         setReady(true)
       } catch (error) {
         const errorAlert = {
           show: true,
-          title: 'Ooops, algo ha fallado!',
+          title: 'Hubo un error!',
           message: error.message,
           icon: 'error',
           onConfirm: () => {},
@@ -54,17 +54,17 @@ const EditWelcomeText = () => {
     }
   }
   useEffect(() => {
-    loadactivity()
+    loadOrganization()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const updateChangeHandler = async (e, values) => {
-    const updatedActivity = await updateOrganization(values)
-    if (updatedActivity) {
+    const updatedOrganization = await updateOrganization(values)
+    if (updatedOrganization) {
       const successAlert = {
         show: true,
-        title: 'Actividad',
-        message: 'La actividad se ha actualizado!',
+        title: 'Home',
+        message: 'Texto de bienvenida actualizado!',
         icon: 'success',
         onConfirm: () => {},
       }
@@ -78,7 +78,7 @@ const EditWelcomeText = () => {
       <Alert {...alerts} />
       {((id && ready) || !id) && (
         <Formik
-          initialValues={activity}
+          initialValues={organization}
           validationSchema={Yup.object({
             welcomeText: Yup.string()
               .required('Nombre requerido!')

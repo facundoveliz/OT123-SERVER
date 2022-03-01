@@ -53,6 +53,32 @@ exports.getOne = async (req, res) => {
   return null
 }
 
+exports.getSome = async (req, res) => {
+  try {
+    // need to parseInt the params because when
+    // passed this are strings
+    const limit = parseInt(req.params.limit, 10) // limit is the number of objects that will return
+    const offset = limit * parseInt(req.params.offset, 10) // offset is the number of the page
+
+    const news = await Entries.findAndCountAll({
+      limit,
+      offset,
+    })
+
+    res.status(200).json({
+      ok: true,
+      result: news,
+    })
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: 'error to fetch news',
+      error: err,
+    })
+  }
+  return null
+}
+
 exports.add = async (req, res) => {
   // validation with express-validator
   const errors = validationResult(req)

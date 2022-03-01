@@ -23,7 +23,10 @@ export const TestmonialCard = ({
   firstName, lastName, createdAt, content, image, index,
 }) => (
   <Flex
+    borderRadius="lg"
     boxShadow="lg"
+    borderWidth="1px solid white"
+    border="2px solid black"
     maxW="640px"
     direction={{ base: 'column-reverse', md: 'row' }}
     width="full"
@@ -31,7 +34,7 @@ export const TestmonialCard = ({
     p={10}
     justifyContent="space-between"
     position="relative"
-    bg={useColorModeValue('white', 'gray.800')}
+    backgroundColor="#ccebff"
     _after={{
       content: '""',
       position: 'absolute',
@@ -210,7 +213,7 @@ export default function ListTestimonials() {
       && (
       <Center>
         <FormControl
-          width="80%"
+          w={{ base: '90%', md: '70%' }}
           id="name"
           marginTop={20}
         >

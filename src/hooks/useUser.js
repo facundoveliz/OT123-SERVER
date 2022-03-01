@@ -86,9 +86,12 @@ export default function useUser() {
         roleId: user.roleId,
       }).then(({ data }) => {
         editSuccess = true
-        const { result } = data
-        dispatch(setUserData(result.updatedUser))
-        window.localStorage.setItem('x-access-token', result.token)
+        const currentUserId = userData.payload.persistedReducer.userData.dataValues.id.toString()
+        if (id === currentUserId) {
+          const { result } = data
+          dispatch(setUserData(result.updatedUser))
+          window.localStorage.setItem('x-access-token', result.token)
+        }
       })
     } catch (error) {
       // eslint-disable-next-line no-console

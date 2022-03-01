@@ -48,6 +48,7 @@ const ContactForm = () => {
         validationSchema={Yup.object({
           name: Yup.string().required('Nombre requerido!').min(3, 'Nombre muy corto!'),
           email: Yup.string().email('E-mail inválido!').required('E-mail requerido!'),
+          phone: Yup.string().email('Teléfono inválido!').required('Teléfono requerido!'),
           message: Yup.string().required('El mensaje es requerido!').min(6, 'Mensaje muy corto'),
         })}
         onSubmit={(values, actions) => {
@@ -74,6 +75,7 @@ const ContactForm = () => {
             >
               <Heading align="center">Mensaje</Heading>
               <TextField backgroundColor="white" name="name" placeholder="Nombre" label="Nombre" type="text" />
+              <TextField backgroundColor="white" name="phone" placeholder="Teléfono" label="Teléfono" type="number" />
               <TextField backgroundColor="white" name="email" placeholder="E-mail" type="email" label="Email" />
               <TextField backgroundColor="white" name="message" placeholder="Mensaje" type="textarea" label="Mensaje" />
               <Button

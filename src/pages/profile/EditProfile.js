@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Box, Heading, HStack, VStack, Button, Select,
+  Box, Heading, HStack, VStack, Button, Select, Icon,
 } from '@chakra-ui/react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate, useParams } from 'react-router-dom'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
@@ -123,6 +124,27 @@ const EditProfileForm = () => {
               onSubmit={formik.handleSubmit}
               display="block"
             >
+              <Box width="100%">
+                <Icon
+                  alignitems="left"
+                  as={FiArrowLeft}
+                  w={8}
+                  h={8}
+                  mb={4}
+                  border="2px solid black"
+                  borderRadius="lg"
+                  boxShadow="lg"
+                  backgroundColor="#ccebff"
+                  _hover={{
+                    backgroundColor: '#4db8ff',
+                    transition: 'all 0.3s ease',
+                  }}
+                  cursor="pointer"
+                  onClick={() => {
+                    navigate(-1)
+                  }}
+                />
+              </Box>
               <Heading as="h3" size="lg" align="center">{`Editar perfil #${id}`}</Heading>
               <TextField backgroundColor="white" name="firstName" placeholder="Nombre" marginTop="3" />
               <TextField backgroundColor="white" name="lastName" placeholder="Apellido" marginTop="1" />

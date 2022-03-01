@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -8,11 +8,38 @@ import { useNavigate, useParams } from 'react-router-dom'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
 import useUser from '../../hooks/useUser'
+import { getUserById } from '../../services/usersService'
 
 const EditProfileForm = () => {
   const navigate = useNavigate()
   const { editUser } = useUser()
   const { id } = useParams()
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    roleId: 2,
+  })
+
+  const loadUser = async () => {
+    if (id) {
+      try {
+        const userToEdit = await getUserById(id)
+        setUser({
+          firstName: userToEdit.data.result.firstName,
+          lastName: userToEdit.data.result.lastName,
+          email: userToEdit.data.result.email,
+        })
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    loadUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const [alerts, setAlerts] = useState({
     show: false,
@@ -58,9 +85,9 @@ const EditProfileForm = () => {
       <Alert {...alerts} />
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          roleId: 2,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          roleId: user.roleId,
         }}
         validationSchema={Yup.object({
           firstName: Yup.string().required('¡Nombre requerido!').min(3, '¡Nombre muy corto!'),

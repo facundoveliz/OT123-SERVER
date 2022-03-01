@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { IoAddOutline } from 'react-icons/io5'
 import {
-  Box, Table, Heading, Tbody, Button,
+  Box, Table, Heading, Tbody,
 } from '@chakra-ui/react'
-import { useNavigate } from 'react-router'
 import { getAllUsers } from '../../../services/usersService'
 import Alert from '../../../components/alert/Alert'
-import ItemCollapse from './itemCollapse'
+import ItemCollapseUsers from './ItemCollapseUsers'
 
 const UsersList = () => {
-  const navigate = useNavigate()
   const [usersData, setUsersData] = useState([])
   const [deletedUser, setDeletedUser] = useState([])
   const [alertProps, setAlertProps] = useState({
@@ -60,23 +57,12 @@ const UsersList = () => {
         p="2"
       >
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
-          <Heading>Users</Heading>
-          <Button
-            borderRadius="full"
-            border="2px solid black"
-            backgroundColor="#d6f5d6"
-            _hover={{
-              backgroundColor: '#6fdc6f',
-            }}
-            onClick={() => navigate('./nuevo')}
-          >
-            <IoAddOutline size="22" />
-          </Button>
+          <Heading>Usuarios</Heading>
         </Box>
         <Table size="lg">
           <Tbody>
             {usersData.map((item) => (
-              <ItemCollapse
+              <ItemCollapseUsers
                 item={item}
                 setAlertProps={setAlertProps}
                 setDeletedUser={setDeletedUser}

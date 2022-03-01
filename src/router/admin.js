@@ -16,7 +16,6 @@ import EditHomePage from '../components/home/EditHomePage'
 import EditWelcomeText from '../components/home/editWelcomeText'
 import EditSlideForm from '../components/home/EditSlideForm'
 import CategoryForm from '../components/categories/CategoriesForm'
-import ListUsers from '../pages/backoffice/users/ListUsers'
 
 /* import ListContacts from '../pages/backoffice/ListContacts'
 import Users from '../pages/Users'
@@ -58,7 +57,7 @@ const AdminRoutes = () => (
         <Route path="slide/:id" element={<EditSlideForm />} />
       </Route>
       <Route path="usuarios">
-        <Route index element={<ListUsers />} />
+        <Route index element={<UsersList />} />
       </Route>
     </Route>
   </Routes>

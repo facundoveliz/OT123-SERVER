@@ -48,7 +48,6 @@ const Card = ({ array, direction }) => {
             textOverflow="ellipsis"
             dangerouslySetInnerHTML={{ __html: item.content }}
           />
-          {console.log(item.image)}
           <Text
             px={6}
             pt={3}

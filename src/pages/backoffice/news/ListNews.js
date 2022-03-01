@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { IoAddOutline } from 'react-icons/io5'
 import {
-  Box, Heading, Button,
+  Box, Heading, Button, Icon,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
+import { FiArrowLeft } from 'react-icons/fi';
 import { getAll } from '../../../services/newsService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapse from './itemCollapse'
@@ -59,6 +60,27 @@ const ListNews = () => {
         m={{ base: '10px', md: '50px' }}
         p="2"
       >
+        <Box width="100%">
+          <Icon
+            alignitems="left"
+            as={FiArrowLeft}
+            w={8}
+            h={8}
+            mb={4}
+            border="2px solid black"
+            borderRadius="lg"
+            boxShadow="lg"
+            backgroundColor="#ccebff"
+            _hover={{
+              backgroundColor: '#4db8ff',
+              transition: 'all 0.3s ease',
+            }}
+            cursor="pointer"
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+        </Box>
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Novedades</Heading>
           <Button

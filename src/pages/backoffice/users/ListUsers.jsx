@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import {
   Box,
-  Heading,
+  Heading, Icon,
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import { FiArrowLeft } from 'react-icons/fi';
 import ItemCollapse from './ItemCollapse'
 import { getAllUsers } from '../../../services/usersService'
 
 const ListUsers = () => {
+  const navigate = useNavigate()
   const [usersData, setUsersData] = useState([]);
 
   const getUsers = useCallback(async () => {
@@ -36,6 +39,27 @@ const ListUsers = () => {
         m={{ base: '10px', md: '50px' }}
         p="2"
       >
+        <Box width="100%">
+          <Icon
+            alignitems="left"
+            as={FiArrowLeft}
+            w={8}
+            h={8}
+            mb={4}
+            border="2px solid black"
+            borderRadius="lg"
+            boxShadow="lg"
+            backgroundColor="#ccebff"
+            _hover={{
+              backgroundColor: '#4db8ff',
+              transition: 'all 0.3s ease',
+            }}
+            cursor="pointer"
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+        </Box>
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Usuarios</Heading>
         </Box>

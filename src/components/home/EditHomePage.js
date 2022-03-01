@@ -10,8 +10,9 @@ import {
   Tr,
   Td,
   Tbody,
-  Thead,
+  Thead, Icon,
 } from '@chakra-ui/react'
+import { FiArrowLeft } from 'react-icons/fi';
 import { getAllSliders } from '../../services/slidersService'
 import { getOrganizationById } from '../../services/organizationsService'
 
@@ -71,6 +72,27 @@ export default function EditHomePage() {
         p="2"
         overflow="auto"
       >
+        <Box width="100%">
+          <Icon
+            alignitems="left"
+            as={FiArrowLeft}
+            w={8}
+            h={8}
+            mb={4}
+            border="2px solid black"
+            borderRadius="lg"
+            boxShadow="lg"
+            backgroundColor="#ccebff"
+            _hover={{
+              backgroundColor: '#4db8ff',
+              transition: 'all 0.3s ease',
+            }}
+            cursor="pointer"
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+        </Box>
         <Text paddingLeft="2" fontSize="2xl" mb="30px">
           Edit Home
         </Text>

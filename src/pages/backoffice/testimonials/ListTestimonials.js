@@ -185,7 +185,6 @@ export default function ListTestimonials() {
         <chakra.h2
           margin="auto"
           width="70%"
-          fontFamily="Inter"
           fontWeight="medium"
           color={useColorModeValue('gray.500', 'gray.400')}
         >

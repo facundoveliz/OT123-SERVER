@@ -97,7 +97,6 @@ const NewsForm = () => {
       category: categoryID,
     })
     // eslint-disable-next-line no-console
-    console.log(updatedEntry)
     if (updatedEntry) {
       const successAlert = {
         show: true,

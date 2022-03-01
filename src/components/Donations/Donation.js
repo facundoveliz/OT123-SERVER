@@ -33,58 +33,96 @@ const Donations = () => {
     <Box justifyContent="center" textAlign="center">
 
       <Title title="DONACIÓN" fontSize={25} />
-      {/* eslint-disable-next-line */}
-      <Text backgroundColor={'purple.100'} p={10} margin='auto' width={"80%"}>
-        En Fundación Somos Mas realizamos campañas de solidaridad personalizada,
-        para llevar infancia, dignidad y autoestima a los niñas y niñas más
-        olvidados de nuestra sociedad.
-      </Text>
-      <Text fontWeight="500" paddingTop="25px" fontSize="25px">
-        {' '}
-        ES MUY FÁCIL
-      </Text>
-      <Text fontWeight="500">ELEGÍ TU FORMA DE COLABORAR</Text>
-      <Text>
-        Podés donar por única vez o mensualmente por medio de MERCADOPAGO.
-      </Text>
-      <Text>Te pedimos algunos datos para registrar tu donación.</Text>
-      <Text>
-        Podés hacer una transferencia bancaria o pagar con tarjeta de crédito.
-      </Text>
+      <Box
+        w={{ base: '90%', md: '40%' }}
+        backgroundColor="purple.100"
+        p={6}
+        margin="auto"
+        width="90%"
+        borderRadius="lg"
+        boxShadow="lg"
+        borderWidth="1px solid white"
+        border="2px solid black"
+      >
+        <Text>
+          En Fundación Somos Mas realizamos campañas de solidaridad personalizada,
+          para llevar infancia, dignidad y autoestima a los niñas y niñas más
+          olvidados de nuestra sociedad.
+        </Text>
+      </Box>
+      <Box
+        w={{ base: '90%', md: '40%' }}
+        p={6}
+        justifyContent="center"
+        margin="auto"
+        width="90%"
+        borderRadius="lg"
+        boxShadow="lg"
+        borderWidth="1px solid white"
+        border="2px solid black"
+        backgroundColor="#ffffcc"
+      >
+        <Text fontWeight="500" fontSize="25px">
+          {' '}
+          ES MUY FÁCIL
+        </Text>
+        <Text fontWeight="500">ELEGÍ TU FORMA DE COLABORAR</Text>
+        <Text padding="3">
+          Podés donar por única vez o mensualmente por medio de MERCADOPAGO.
+        </Text>
+        <Text padding="3">Te pedimos algunos datos para registrar tu donación.</Text>
+        <Text padding="3">
+          Podés hacer una transferencia bancaria o pagar con tarjeta de crédito.
+        </Text>
+      </Box>
       <Text fontWeight="500" paddingTop="25px" fontSize="25px">
         ¡Colaborá con nosotros!
       </Text>
-      <Stack
-        mx="auto"
-        my={20}
-        p={10}
-        width={500}
-        border="3px dashed red"
-        borderColor="red"
-        borderRadius={20}
+      <Box
+        display="flex"
+        justifyContent="center"
       >
-        <InputGroup justifyContent="center">
-          {' '}
-          <FormLabel fontWeight="bold" fontSize={20}>Ingresa el monto a donar</FormLabel>
-          <Input
-            w={200}
-            type="number"
-            placeholder="monto a donar"
-            borderColor="gray.500"
-            onChange={(e) => onChange(e)}
-          />
-        </InputGroup>
-        <Text color="red">{error}</Text>
-        <Button onClick={onSubmit}>¡Donar!</Button>
-      </Stack>
-
+        <Stack
+          w={{ base: '90%', md: '40%' }}
+          margin="4"
+          p="25px"
+          borderRadius="lg"
+          boxShadow="lg"
+          borderWidth="1px solid white"
+          border="2px solid black"
+          backgroundColor="#ffffcc"
+        >
+          <InputGroup justifyContent="center">
+            {' '}
+            <FormLabel fontWeight="bold" fontSize={20}>Ingresa el monto a donar</FormLabel>
+            <Input
+              backgroundColor="white"
+              w={200}
+              type="number"
+              placeholder="monto a donar"
+              borderColor="gray.500"
+              onChange={(e) => onChange(e)}
+            />
+          </InputGroup>
+          <Text color="red">{error}</Text>
+          <Button
+            border="2px solid black"
+            backgroundColor="#d6f5d6"
+            _hover={{
+              backgroundColor: '#6fdc6f',
+            }}
+            onClick={onSubmit}
+          >
+            ¡Donar!
+          </Button>
+        </Stack>
+      </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Metodo de pago</ModalHeader>
           <ModalCloseButton />
           <FormDonation amount={amount} onClose={onClose} />
-
         </ModalContent>
       </Modal>
 

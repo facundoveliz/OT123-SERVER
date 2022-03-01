@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, getEntry, add, update, deleteNews, getSome,
+  getAll, add, update, deleteNews, getSome, getOne,
 } = require('../controllers/news')
 const isAdmin = require('../middlewares/isAdmin')
 const validate = require('../schemas/entrySchema')

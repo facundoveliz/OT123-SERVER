@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, userData, signup, signin, deleteUser, getSome,
+  getAll, userData, signup, signin, deleteUser, getSome, editUser,
 } = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const validate = require('../schemas/userSchema')

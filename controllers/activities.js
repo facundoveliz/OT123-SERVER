@@ -5,7 +5,11 @@ const Activities = models.activities
 
 exports.getAll = async (req, res) => {
   try {
-    const activities = await Activities.findAll()
+    const activities = await Activities.findAll({
+      order: [
+        ['createdAt', 'DESC'],
+      ],
+    })
 
     res.status(200).json({
       ok: true,

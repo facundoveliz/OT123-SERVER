@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Heading, VStack, Button, HStack, Icon, Box,
+  Heading, VStack, Button, HStack, Icon, Box, Text,
 } from '@chakra-ui/react';
 import { FiArrowLeft } from 'react-icons/fi';
 
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
@@ -124,6 +124,11 @@ const SignInForm = () => {
               >
                 Iniciar sesión
               </Button>
+              <Text py={3}>
+                ¿No tienes una cuenta?
+                {' '}
+                <Link style={{ fontWeight: 'bold' }} to="/signup"> Regístrate</Link>
+              </Text>
             </VStack>
           </HStack>
         )}

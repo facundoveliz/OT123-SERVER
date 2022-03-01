@@ -54,9 +54,7 @@ const Header = () => {
     <NavLink key="contribuye" to="/contribuye">
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
-    <NavLink key="backoffice" to="/backoffice">
-      {({ isActive }) => getText(isActive, 'Backoffice')}
-    </NavLink>,
+
   ]
 
   return (
@@ -80,6 +78,12 @@ const Header = () => {
         alignItems="center"
       >
         {navItems}
+        {roleId === 1
+            && (
+            <NavLink key="backoffice" to="/backoffice">
+              {({ isActive }) => getText(isActive, 'Backoffice')}
+            </NavLink>
+            )}
       </HStack>
       <HStack
         paddingRight={5}

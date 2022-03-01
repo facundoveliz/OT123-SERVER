@@ -12,6 +12,7 @@ import {
   Spacer,
   FormControl,
   Box,
+  Text,
   Spinner,
   Icon,
 } from '@chakra-ui/react'
@@ -19,14 +20,19 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 // eslint-disable-next-line import/no-unresolved
+import { useSelector } from 'react-redux'
 import { add, getOne, update } from '../../services/newsService'
 import Alert from '../alert/Alert'
 import UploadFile from '../../services/imgUploadService'
 import GridImages from '../activitiesForm/GridImages'
+import MenuCategories from './MenuCategories'
+import { getCategoryData } from '../../app/slices/category'
 
 const NewsForm = () => {
   const { id } = useParams()
-
+  const Category = useSelector(getCategoryData)
+  const categoryName = Category.payload.category.categoryData.name
+  const categoryID = Category.payload.category.categoryData.id
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [loadImage, setLoadImage] = useState(null)
@@ -51,6 +57,7 @@ const NewsForm = () => {
     icon: '',
     onConfirm: () => {},
   })
+
   const loadNewsData = async () => {
     if (id) {
       try {
@@ -83,10 +90,11 @@ const NewsForm = () => {
   const updateChangeHandler = async (values) => {
     UploadFile(values.image)
     const updatedEntry = await update(id, {
+      type: categoryName,
       name: values.name,
       content: newsData.content,
       image: values.image ? await UploadFile(values.image) : entry.oldImage,
-      category: newsData.categoryId,
+      category: categoryID,
     })
     // eslint-disable-next-line no-console
     console.log(updatedEntry)
@@ -108,11 +116,11 @@ const NewsForm = () => {
       try {
         setLoading(true)
         const newNews = await add({
-          type: values.type,
+          type: categoryName,
           name: values.name,
           content: newsData.content,
           image: values.image ? await UploadFile(values.image) : null,
-          categoryId: values.categoryId,
+          categoryId: categoryID,
         })
         if (newNews) {
           const successAlert = {
@@ -242,6 +250,14 @@ const NewsForm = () => {
                   <small>El comentario es obligatio</small>
                   )}
                 </FormControl>
+                <Box display="flex" justifyContent="space-evenly">
+
+                  <MenuCategories />
+                  <Text fontWeight="bold" pt={2} fontSize={20}>
+                    {categoryName}
+                    {' '}
+                  </Text>
+                </Box>
                 <GridImages
                   id={id}
                   name={values.name}
@@ -261,10 +277,12 @@ const NewsForm = () => {
                       value={values.file}
                     />
                   </FormControl>
+
                   {loadImage === '' && !id && (
                     <small>La imagen es obligatoria</small>
                   )}
                 </Box>
+
                 <Button
                   border="2px solid black"
                   backgroundColor="#d6f5d6"

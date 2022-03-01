@@ -54,9 +54,6 @@ const Header = () => {
     <NavLink key="contribuye" to="/contribuye">
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
-    <NavLink key="backoffice" to="/backoffice">
-      {({ isActive }) => getText(isActive, 'Backoffice')}
-    </NavLink>,
   ]
 
   return (

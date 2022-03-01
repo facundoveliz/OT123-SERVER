@@ -5,16 +5,12 @@ import {
   Box, Heading, HStack, VStack, Button, Select,
 } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { getUserData } from '../../app/slices/auth'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
 import useUser from '../../hooks/useUser'
 
 const EditProfileForm = () => {
   const navigate = useNavigate()
-  const userData = useSelector(getUserData)
-  const user = userData.payload.persistedReducer.userData.dataValues
   const { editUser } = useUser()
   const { id } = useParams()
 
@@ -62,9 +58,9 @@ const EditProfileForm = () => {
       <Alert {...alerts} />
       <Formik
         initialValues={{
-          firstName: user.firstName,
-          lastName: user.lastName,
-          roleId: user.roleId,
+          firstName: '',
+          lastName: '',
+          roleId: 2,
         }}
         validationSchema={Yup.object({
           firstName: Yup.string().required('¡Nombre requerido!').min(3, '¡Nombre muy corto!'),
@@ -100,7 +96,7 @@ const EditProfileForm = () => {
               onSubmit={formik.handleSubmit}
               display="block"
             >
-              <Heading as="h3" size="lg" align="center">Editar perfil</Heading>
+              <Heading as="h3" size="lg" align="center">{`Editar perfil #${id}`}</Heading>
               <TextField backgroundColor="white" name="firstName" placeholder="Nombre" marginTop="3" />
               <TextField backgroundColor="white" name="lastName" placeholder="Apellido" marginTop="1" />
               <TextField backgroundColor="white" as={Select} name="roleId" placeholder="Rol" marginTop="3">

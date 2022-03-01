@@ -15,7 +15,6 @@ const Index = () => (
       <Card title="Testimonios" icon={FaRegComments} route="/backoffice/testimonios" />
       <Card title="Home" icon={FaHome} route="/backoffice/home" />
       <Card title="Usuarios" icon={FaUsers} route="/backoffice/usuarios" />
-      <Card title="Miembros" icon={FaUsers} route="/backoffice/miembros" />
     </Center>
 
   </Box>

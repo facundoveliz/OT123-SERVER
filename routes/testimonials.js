@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  addTestimonial, update, deleteTestimonial, getTestimonial, getAllTestimonials,
+  getAll, add, update, deleteTestimonial, getTestimonial, getSome,
 } = require('../controllers/testimonials')
 const isAdmin = require('../middlewares/isAdmin')
 const validate = require('../schemas/testimonialSchema')
@@ -12,6 +12,8 @@ const router = express.Router()
 router.get('/', getAllTestimonials)
 
 router.get('/:id', getTestimonial)
+
+router.get('/:limit/:offset', getSome)
 
 // post a new testimonial
 router.post('/', validate, addTestimonial)

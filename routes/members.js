@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, add, update, deleteMember, getMember,
+  getAll, add, update, deleteMember, getMember, getSome,
 } = require('../controllers/members')
 const isAdmin = require('../middlewares/isAdmin')
 const validate = require('../schemas/memberSchema')
@@ -13,7 +13,9 @@ router.get('/', validate, getAll)
 
 router.get('/:id', validate, getMember)
 
-router.post('/', isAdmin, validate, add)
+router.get('/:limit/:offset', validate, getSome)
+
+router.post('/', validate, add)
 
 router.put('/:id', isAdmin, update)
 

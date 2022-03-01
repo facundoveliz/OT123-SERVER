@@ -78,7 +78,34 @@ exports.getTestimonial = async (req, res) => {
   }
 }
 
-exports.addTestimonial = async (req, res) => {
+exports.getSome = async (req, res) => {
+  try {
+    // need to parseInt the params because when
+    // passed this are strings
+    const limit = parseInt(req.params.limit, 10) // limit is the number of objects that will return
+    const offset = limit * parseInt(req.params.offset, 10) // offset is the number of the page
+
+    const testimonials = await Testimonial.findAndCountAll({
+      limit,
+      offset,
+    })
+
+    res.status(200).json({
+      ok: true,
+      result: testimonials,
+    })
+  } catch (err) {
+    res.status(400).json({
+      ok: false,
+      msg: 'error to fetch testimonials',
+      error: err,
+    })
+  }
+  return null
+}
+
+exports.add = async (req, res) => {
+  // validation with express-validator
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({

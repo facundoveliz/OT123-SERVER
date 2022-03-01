@@ -1,6 +1,8 @@
 const express = require('express')
 
-const { getAll, add, getContact } = require('../controllers/contacts')
+const {
+  getAll, add, getContact, getSome,
+} = require('../controllers/contacts')
 const validate = require('../schemas/contactSchema')
 
 const router = express.Router()
@@ -9,6 +11,8 @@ const router = express.Router()
 router.get('/', getAll)
 
 router.get('/:id', getContact)
+
+router.get('/:limit/:offset', getSome)
 
 router.post('/', validate, add)
 

@@ -37,12 +37,7 @@ const AdminMenu = () => {
         </MenuGroup>
         <MenuDivider />
         <MenuGroup textAlign="center" fontWeight="black" title="Administración">
-          <MenuItem as={NavLink} to="/backoffice/actividades">Actividades</MenuItem>
-          <MenuItem as={NavLink} to="/backoffice/categorias">Categorias</MenuItem>
-          <MenuItem as={NavLink} to="/backoffice/contactos">Contactos</MenuItem>
-          <MenuItem as={NavLink} to="/backoffice/testimonios">Testimonios</MenuItem>
-          <MenuItem as={NavLink} to="/backoffice/novedades">Novedades</MenuItem>
-          <MenuItem as={NavLink} to="/backoffice/home">Home</MenuItem>
+          <MenuItem as={NavLink} to="/backoffice">Backoffice</MenuItem>
         </MenuGroup>
         <MenuDivider />
         <Center>

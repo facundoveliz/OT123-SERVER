@@ -30,14 +30,14 @@ const Donations = () => {
     if (amount < 1) { setError('Debe ingresar un valor mayor 0') } else onOpen();
   }
   return (
-    <Box justifyContent="center" textAlign="center">
-
+    <Box backgroundColor="#f2f2f2" justifyContent="center" textAlign="center">
       <Title title="DONACIÓN" fontSize={25} />
       <Box
         w={{ base: '90%', md: '40%' }}
         backgroundColor="purple.100"
         p={6}
-        margin="auto"
+        margin="0 auto"
+        marginBottom="6"
         width="90%"
         borderRadius="lg"
         boxShadow="lg"
@@ -92,14 +92,14 @@ const Donations = () => {
           border="2px solid black"
           backgroundColor="#ffffcc"
         >
-          <InputGroup justifyContent="center">
+          <InputGroup justifyContent="space-evenly">
             {' '}
-            <FormLabel fontWeight="bold" fontSize={20}>Ingresa el monto a donar</FormLabel>
+            <FormLabel className="font-size" fontWeight="bold" fontSize="15px">Ingresa el monto a donar</FormLabel>
             <Input
               backgroundColor="white"
               w={200}
               type="number"
-              placeholder="monto a donar"
+              placeholder="Monto a donar"
               borderColor="gray.500"
               onChange={(e) => onChange(e)}
             />

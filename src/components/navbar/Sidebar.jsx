@@ -23,7 +23,6 @@ import {
   FaNewspaper,
   FaPhone,
   FaRegMoneyBillAlt,
-  FaLockOpen,
 } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import useUser from '../../hooks/useUser';
@@ -74,7 +73,7 @@ const Sidebar = ({ roleId }) => {
             alignItems="flex-start"
             color="gray.600"
           >
-            <NavLink to="/">
+            <NavLink to="/home">
               {({ isActive }) => getItem(isActive, 'Inicio', FaHome)}
             </NavLink>
             <NavLink to="/nosotros">
@@ -94,9 +93,6 @@ const Sidebar = ({ roleId }) => {
             </NavLink>
             <NavLink to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
-            </NavLink>
-            <NavLink to="/backoffice">
-              {({ isActive }) => getItem(isActive, 'Backoffice', FaLockOpen)}
             </NavLink>
             <Box display="flex" flexDirection="column" width="100%">
               {isLoggedIn === true

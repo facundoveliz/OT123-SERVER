@@ -8,6 +8,7 @@ exports.getAllTestimonials = async (req, res) => {
   const query = `
   SELECT t.*, u.firstName, u.lastName, u.image FROM ong.testimonials t, ong.users u
   where t.userId = u.id
+  order by createdAt desc
     `
   try {
     const testimonials = await db.sequelize.query(query, { type: QueryTypes.SELECT })

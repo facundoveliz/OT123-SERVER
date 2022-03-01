@@ -33,6 +33,25 @@ exports.getAll = async (req, res) => {
   }
 }
 
+exports.getUserById = async (req, res) => {
+  const { id } = req.params
+  try {
+    const user = await User.findByPk(id)
+    delete user.dataValues.password
+    res.status(200).json({
+      ok: true,
+      msg: 'Successful request',
+      result: user,
+    })
+  } catch (error) {
+    res.status(403).json({
+      ok: false,
+      msg: 'You are not authorized to view this information',
+      error,
+    })
+  }
+}
+
 exports.userData = async (req, res) => {
   const { id } = req
   try {

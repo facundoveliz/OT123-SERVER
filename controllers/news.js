@@ -5,7 +5,11 @@ const Entries = models.Entry
 
 exports.getAll = async (req, res) => {
   try {
-    const news = await Entries.findAll()
+    const news = await Entries.findAll({
+      order: [
+        ['createdAt', 'DESC'],
+      ],
+    })
 
     res.status(200).json({
       ok: true,

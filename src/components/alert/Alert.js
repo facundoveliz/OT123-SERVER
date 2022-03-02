@@ -6,14 +6,6 @@ import './Alert.css'
 import { useDispatch } from 'react-redux'
 import { resetAlertData } from '../../app/slices/alert'
 
-/* props:
-show: boolean,
-title: string
-text: string,
-icon: 'error', 'success', 'warrning', 'info', 'question' or empty string ''.
-Cancel button (cancelbtn) boolean.
-if needed you can send as prop true and a cancel button will be displayed.
-onConfirm and onCancel are functions to be executed if user clicks on Accept or Cancel buttons */
 const Alert = ({
   show,
   title,

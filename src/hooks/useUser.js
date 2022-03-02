@@ -84,6 +84,7 @@ export default function useUser() {
         firstName: user.firstName,
         lastName: user.lastName,
         roleId: user.roleId,
+        image: user.image,
       }).then(({ data }) => {
         editSuccess = true
         const currentUserId = userData.payload.persistedReducer.userData.dataValues.id.toString()
@@ -112,6 +113,11 @@ export default function useUser() {
     dispatch(deleteUserData())
   }
 
+  const isAdmin = () => {
+    const { roleId } = userData.payload.persistedReducer.userData.dataValues
+    if (roleId === 1) return true
+    return false
+  }
   return {
     registerUser,
     loginUser,
@@ -120,5 +126,6 @@ export default function useUser() {
     logoutUser,
     delUser,
     userData,
+    isAdmin,
   }
 }

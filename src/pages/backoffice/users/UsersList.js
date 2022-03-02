@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
 import {
   Box, Table, Heading, Tbody,
 } from '@chakra-ui/react'
-import { getAllUsers } from '../../../services/usersService'
+import { getUserPagination } from '../../../services/usersService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapseUsers from './ItemCollapseUsers'
 
@@ -17,10 +18,12 @@ const UsersList = () => {
     onConfirm: () => {},
   })
 
+  let currentPage = 0
   async function loadData() {
     try {
-      const response = await getAllUsers()
-      setUsersData(response.data.result.user)
+      const response = await getUserPagination(20, currentPage)
+      setUsersData((prev) => [...prev, ...response.data.result.rows])
+      currentPage += 1
     } catch (error) {
       const errorAlertProps = {
         show: true,
@@ -32,9 +35,20 @@ const UsersList = () => {
       setAlertProps(errorAlertProps)
     }
   }
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      loadData();
+    }
+  };
 
   useEffect(() => {
     loadData()
+    window.addEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedUser])
 
   return (

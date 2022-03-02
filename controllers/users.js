@@ -174,7 +174,6 @@ exports.editUser = async (req, res) => {
   const {
     firstName, lastName, roleId, image,
   } = req.body
-  console.log(req.body)
 
   const user = await User.findByPk(id)
   if (!user) {

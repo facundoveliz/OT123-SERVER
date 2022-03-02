@@ -5,19 +5,33 @@ import {
 } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
-import { getAll } from '../../services/newsService'
+import { getEntryPagination } from '../../services/newsService'
 import Title from '../pageUtils/Title/Title'
 
 const News = () => {
   const [entrysData, setEntrysData] = useState([]);
   const direction = useLocation().pathname.split('/')[1]
+
+  let currentPage = 0
   const getEntrys = useCallback(async () => {
-    const res = await getAll()
-    setEntrysData(res.data.result.news)
+    const res = await getEntryPagination(20, currentPage)
+    setEntrysData((prev) => [...prev, ...res.data.result.rows])
+    currentPage += 1
   }, [setEntrysData])
+
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      getEntrys();
+    }
+  };
 
   useEffect(() => {
     getEntrys()
+    window.addEventListener('scroll', handleScroll)
   }, [getEntrys]);
 
   return (

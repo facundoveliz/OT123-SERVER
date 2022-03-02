@@ -22,6 +22,17 @@ export function getAllCategories() {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from categories endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested category
+ */
+export function getCategoryPagination(limit, offset) {
+  return httpService.get(`${categoriesEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * ACCEPTS AN OBJECT TO CREATE A CATEGORY FROM CATEGORIES ENDPOINT
  * @async
  * @param {object} category

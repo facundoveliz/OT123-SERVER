@@ -4,7 +4,7 @@ import {
   Box, Heading, Button,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
-import { getAll } from '../../../services/newsService'
+import { getEntryPagination } from '../../../services/newsService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapse from './itemCollapse'
 
@@ -20,10 +20,12 @@ const ListNews = () => {
     onConfirm: () => {},
   })
 
+  let currentPage = 0
   async function loadData() {
     try {
-      const response = await getAll()
-      setNewsData(response.data.result.news)
+      const response = await getEntryPagination(20, currentPage)
+      setNewsData((prev) => [...prev, ...response.data.result.rows])
+      currentPage += 1
     } catch (error) {
       const errorAlertProps = {
         show: true,
@@ -36,8 +38,19 @@ const ListNews = () => {
     }
   }
 
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      loadData();
+    }
+  };
+
   useEffect(() => {
     loadData()
+    window.addEventListener('scroll', handleScroll)
   }, [deletedNews])
 
   return (
@@ -83,8 +96,6 @@ const ListNews = () => {
             />
           ))}
         </Box>
-        {' '}
-
       </Box>
     </Box>
   )

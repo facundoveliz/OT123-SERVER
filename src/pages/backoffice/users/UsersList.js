@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import {
   Box, Heading, Icon,
 } from '@chakra-ui/react'
-import { getUserPagination } from '../../../services/usersService'
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom'
-import { getAllUsers } from '../../../services/usersService'
+import { getUserPagination } from '../../../services/usersService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapseUsers from './ItemCollapseUsers'
 

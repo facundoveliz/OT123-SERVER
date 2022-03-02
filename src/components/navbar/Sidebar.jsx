@@ -23,6 +23,7 @@ import {
   FaNewspaper,
   FaPhone,
   FaRegMoneyBillAlt,
+  FaLockOpen,
 } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import useUser from '../../hooks/useUser';

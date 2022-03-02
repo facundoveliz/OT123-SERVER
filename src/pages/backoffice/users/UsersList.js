@@ -1,13 +1,17 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
 import {
-  Box, Table, Heading, Tbody,
+  Box, Heading, Icon,
 } from '@chakra-ui/react'
 import { getUserPagination } from '../../../services/usersService'
+import { FiArrowLeft } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom'
+import { getAllUsers } from '../../../services/usersService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapseUsers from './ItemCollapseUsers'
 
 const UsersList = () => {
+  const navigate = useNavigate()
   const [usersData, setUsersData] = useState([])
   const [deletedUser, setDeletedUser] = useState([])
   const [alertProps, setAlertProps] = useState({
@@ -70,20 +74,37 @@ const UsersList = () => {
         m={{ base: '10px', md: '50px' }}
         p="2"
       >
+        <Box width="100%">
+          <Icon
+            alignitems="left"
+            as={FiArrowLeft}
+            w={8}
+            h={8}
+            mb={4}
+            border="2px solid black"
+            borderRadius="lg"
+            boxShadow="lg"
+            backgroundColor="#ccebff"
+            _hover={{
+              backgroundColor: '#4db8ff',
+              transition: 'all 0.3s ease',
+            }}
+            cursor="pointer"
+            onClick={() => {
+              navigate(-1)
+            }}
+          />
+        </Box>
         <Box display="flex" justifyContent="space-between" mx="5" my="5">
           <Heading>Usuarios</Heading>
         </Box>
-        <Table size="lg">
-          <Tbody>
-            {usersData.map((item) => (
-              <ItemCollapseUsers
-                item={item}
-                setAlertProps={setAlertProps}
-                setDeletedUser={setDeletedUser}
-              />
-            ))}
-          </Tbody>
-        </Table>
+        {usersData.map((item) => (
+          <ItemCollapseUsers
+            item={item}
+            setAlertProps={setAlertProps}
+            setDeletedUser={setDeletedUser}
+          />
+        ))}
       </Box>
     </Box>
   )

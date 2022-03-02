@@ -4,8 +4,8 @@ import {
   Box, Heading, Button, Icon,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
-import { getEntryPagination } from '../../../services/newsService'
 import { FiArrowLeft } from 'react-icons/fi';
+import { getEntryPagination } from '../../../services/newsService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapse from './itemCollapse'
 

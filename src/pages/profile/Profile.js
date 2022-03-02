@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
+  Box,
   Button,
   Flex,
   Heading,
+  Image,
   Stack,
   Text,
   useBreakpointValue,
@@ -12,6 +14,7 @@ import { useSelector } from 'react-redux'
 import { getUserData } from '../../app/slices/auth'
 import useUser from '../../hooks/useUser'
 import Alert from '../../components/alert/Alert'
+import ProfileImage from '../../assets/img/profile.png'
 
 const Profile = () => {
   const navigate = useNavigate()
@@ -72,7 +75,14 @@ const Profile = () => {
   return (
     <>
       <Alert {...alerts} />
-      <Stack p="8" display="flex" height="100%" width="100%" backgroundColor="#f2f2f2" justifyContent="center">
+      <Stack
+        p="8"
+        display="flex"
+        height="100%"
+        width="100%"
+        backgroundColor="#f2f2f2"
+        justifyContent="center"
+      >
         <Flex align="center" justify="center">
           <Stack
             border="2px solid black"
@@ -87,6 +97,17 @@ const Profile = () => {
             overflow="auto"
           >
             <Heading fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}>
+              <Box>
+
+                <Image
+                  border="2px solid black"
+                  my={5}
+                  src={user.image ? user.image : ProfileImage}
+                  width="200px"
+                  borderRadius="full"
+                />
+
+              </Box>
               <Text
                 as="span"
                 position="relative"
@@ -104,15 +125,24 @@ const Profile = () => {
                 {`${user.firstName} ${user.lastName}`}
               </Text>
               <br />
-              <Text color="#DB5752" as="span">
+              <Text
+                color="#DB5752"
+                as="span"
+              >
                 {`${user.email}`}
               </Text>
             </Heading>
-            <Text fontSize={{ base: 'md', lg: 'lg' }} color="gray.500">
+            <Text
+              fontSize={{ base: 'md', lg: 'lg' }}
+              color="gray.500"
+            >
               ¡Hola! Aquí podrás editar la información de tu perfil, así como eliminarlo
               junto con tu cuenta.
             </Text>
-            <Stack direction={{ base: 'column' }} spacing={4}>
+            <Stack
+              direction={{ base: 'column' }}
+              spacing={4}
+            >
               <Button
                 rounded="xl"
                 backgroundColor="#ccebff"

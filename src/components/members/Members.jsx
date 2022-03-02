@@ -1,21 +1,36 @@
 /* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback } from 'react'
 import { Text, VStack, Grid } from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
-import { getAllmembers } from '../../services/membersService'
+import { getMemberPagination } from '../../services/membersService'
 import Title from '../pageUtils/Title/Title'
 
 const Members = () => {
   const [loadData, setLoadData] = useState([]);
   const direction = useLocation().pathname.split('/')[1]
+
+  let currentPage = 0
   const getData = useCallback(async () => {
-    const res = await getAllmembers()
-    setLoadData(res.data.result.members)
+    const res = await getMemberPagination(20, currentPage)
+    setLoadData((prev) => [...prev, ...res.data.result.rows])
+    currentPage += 1
   }, [setLoadData])
+
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      getData();
+    }
+  };
 
   useEffect(() => {
     getData()
+    window.addEventListener('scroll', handleScroll)
   }, [getData]);
 
   return (

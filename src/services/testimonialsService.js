@@ -22,6 +22,17 @@ export function getTestimonial(id) {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from testimonials endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested testimonial
+ */
+export function getTestimonialPagination(limit, offset) {
+  return httpService.get(`${testimonialsEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * Accepts an object to send it to testimonials endpoint
  * @async
  * @param {object} testimonial

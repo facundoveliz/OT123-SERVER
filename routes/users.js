@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, userData, signup, signin, getUserById, editUser, deleteUser,
+  getAll, userData, signup, signin, getUserById, getSome, editUser, deleteUser,
 } = require('../controllers/users')
 const verifyToken = require('../middlewares/verifyToken')
 const validate = require('../schemas/userSchema')
@@ -14,6 +14,8 @@ router.get('/', getAll)
 router.get('/auth/me', verifyToken, userData)
 
 router.get('/:id', getUserById)
+
+router.get('/:limit/:offset', getSome)
 
 // register a new
 router.post('/signup', validate, signup)

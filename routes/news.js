@@ -1,7 +1,7 @@
 const express = require('express')
 
 const {
-  getAll, getOne, add, update, deleteNews,
+  getAll, add, update, deleteNews, getSome, getOne,
 } = require('../controllers/news')
 const isAdmin = require('../middlewares/isAdmin')
 const validate = require('../schemas/entrySchema')
@@ -13,6 +13,9 @@ router.get('/', getAll)
 
 // get news by id
 router.get('/:id', getOne)
+
+// get news by limit
+router.get('/:limit/:offset', getSome)
 
 // add news
 router.post('/', isAdmin, validate, add)

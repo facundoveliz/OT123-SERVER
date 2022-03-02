@@ -2,18 +2,20 @@
 const express = require('express')
 
 const {
-  getAll, add, update, deleteActivity, getActivity,
+  getAll, add, update, deleteActivity, getActivity, getSome,
 } = require('../controllers/activities')
 const validate = require('../schemas/activitySchema')
 const isAdmin = require('../middlewares/isAdmin')
 
 const router = express.Router()
-/* GET activities page. */
+
 router.get('/', getAll)
 
 router.get('/:id', getActivity)
 
-router.post('/', isAdmin, validate, add)
+router.get('/:limit/:offset', getSome)
+
+router.post('/', validate, add)
 
 router.put('/:id', isAdmin, validate, update)
 

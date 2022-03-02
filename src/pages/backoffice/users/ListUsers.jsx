@@ -3,9 +3,9 @@ import {
   Box,
   Heading, Icon,
 } from '@chakra-ui/react'
-import { getUserPagination } from '../../../services/usersService'
 import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
+import { getUserPagination } from '../../../services/usersService'
 import ItemCollapse from './itemCollapse'
 
 const ListUsers = () => {

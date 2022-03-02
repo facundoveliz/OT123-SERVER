@@ -1,22 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
   Box, Heading, HStack, VStack, Button, Select,
 } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { getUserData } from '../../app/slices/auth'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
 import useUser from '../../hooks/useUser'
+import { getUserById } from '../../services/usersService'
 
 const EditProfileForm = () => {
   const navigate = useNavigate()
-  const userData = useSelector(getUserData)
-  const user = userData.payload.persistedReducer.userData.dataValues
   const { editUser } = useUser()
   const { id } = useParams()
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    roleId: 2,
+  })
+
+  const loadUser = async () => {
+    if (id) {
+      try {
+        const userToEdit = await getUserById(id)
+        setUser({
+          firstName: userToEdit.data.result.firstName,
+          lastName: userToEdit.data.result.lastName,
+          email: userToEdit.data.result.email,
+        })
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    loadUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const [alerts, setAlerts] = useState({
     show: false,
@@ -100,7 +123,7 @@ const EditProfileForm = () => {
               onSubmit={formik.handleSubmit}
               display="block"
             >
-              <Heading as="h3" size="lg" align="center">Editar perfil</Heading>
+              <Heading as="h3" size="lg" align="center">{`Editar perfil #${id}`}</Heading>
               <TextField backgroundColor="white" name="firstName" placeholder="Nombre" marginTop="3" />
               <TextField backgroundColor="white" name="lastName" placeholder="Apellido" marginTop="1" />
               <TextField backgroundColor="white" as={Select} name="roleId" placeholder="Rol" marginTop="3">

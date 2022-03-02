@@ -54,9 +54,7 @@ const Header = () => {
     <NavLink key="contribuye" to="/contribuye">
       {({ isActive }) => getText(isActive, 'Contribuye')}
     </NavLink>,
-    <NavLink key="backoffice" to="/backoffice">
-      {({ isActive }) => getText(isActive, 'Backoffice')}
-    </NavLink>,
+
   ]
 
   return (
@@ -77,18 +75,28 @@ const Header = () => {
         justify="center"
         display={{ base: 'none', xl: 'flex' }}
         wrap="wrap"
+        alignItems="center"
       >
         {navItems}
+        {roleId === 1
+            && (
+            <NavLink key="backoffice" to="/backoffice">
+              {({ isActive }) => getText(isActive, 'Backoffice')}
+            </NavLink>
+            )}
       </HStack>
-      <HStack spacing={2} display={{ base: 'none', xl: 'unset' }}>
+      <HStack
+        paddingRight={5}
+        spacing={2}
+        display={{ base: 'none', xl: 'unset' }}
+        justify-content="center"
+      >
         {isLoggedIn === true
           && <Menu id={id} roleId={roleId} />}
         {isLoggedIn === false
           && (
           <Button
-            backgroundColor="#ccebff"
-            _hover={{ backgroundColor: '#4db8ff' }}
-            border="2px solid black"
+            color="#2DCC0A"
             width="150px"
             as={NavLink}
             to="/signin"

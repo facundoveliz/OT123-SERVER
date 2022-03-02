@@ -34,24 +34,24 @@ const Footer = () => {
         justify="space-around"
         align="center"
       >
-        <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
+        <Stack spacing={2} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
           <Text>Noticias</Text>
           <Text>Actividades</Text>
           <Text>Novedades</Text>
         </Stack>
-        <Image src="../../logo.png" alt="logo" p={8} px={{ base: 24, sm: 0 }} />
-        <Stack spacing={4} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
+        <Image src="../../logo.png" alt="logo" p={4} px={{ base: 24, sm: 0 }} />
+        <Stack spacing={2} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
           <Text>Testimonios</Text>
           <Text>Nosotros</Text>
           <Text>Contacto</Text>
         </Stack>
       </Flex>
-      <VStack py={12} spacing={8} w="80%" m="auto" borderTop="2px solid black">
+      <VStack py={6} spacing={4} w="80%" m="auto" borderTop="2px solid black">
         <HStack
           direction="row"
           justify="center"
           align="center"
-          spacing={8}
+          spacing={4}
         >
           <a target="_blank" rel="noreferrer" href={socials.instagram}>
             <Icon cursor="pointer" as={FaInstagram} w={8} h={8} />

@@ -12,7 +12,7 @@ const Slider = ({ sliderData }) => (
     infiniteLoop
   >
     {sliderData.map((item) => (
-      <AspectRatio key={item.id} maxH="487px" maxW="1680px" ratio={16 / 9}>
+      <AspectRatio key={item.id} maxH="487px" width="100%" ratio={30 / 9}>
         <Image maxW="100%" maxH="100%" key={item.id} src={item.imageUrl} alt={item.text} />
       </AspectRatio>
     ))}

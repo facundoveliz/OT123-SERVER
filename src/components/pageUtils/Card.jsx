@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import {
@@ -5,10 +6,10 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import imageNotFound from '../../assets/img/imageNotFound.jpg'
 
 const Card = ({ array, direction }) => {
   const navigate = useNavigate()
-
   return (
     <>
       {array.map((item) => (
@@ -45,10 +46,8 @@ const Card = ({ array, direction }) => {
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
-          >
-            {item.content}
-
-          </Text>
+            dangerouslySetInnerHTML={{ __html: item.content }}
+          />
           <Text
             px={6}
             pt={3}
@@ -56,13 +55,11 @@ const Card = ({ array, direction }) => {
             whiteSpace="nowrap"
             overflow="hidden"
             textOverflow="ellipsis"
-          >
-            {item.description}
-
-          </Text>
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
           <AspectRatio maxW="400px" ratio={4 / 3}>
 
-            <Image src={item.image} />
+            <Image src={item.image.includes('http') ? item.image : imageNotFound} />
           </AspectRatio>
         </GridItem>
       ))}

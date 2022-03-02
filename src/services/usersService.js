@@ -17,8 +17,8 @@ export function getAllUsers() {
  * @param {int} user.id
  * @return PROMISE {OBJECT} THE REQUESTED USER
  */
-export function getUserById(data) {
-  return httpService.get(`${usersEndpoint}/auth/me`, data)
+export function getUserById(id) {
+  return httpService.get(`${usersEndpoint}/${id}`)
 }
 
 /**

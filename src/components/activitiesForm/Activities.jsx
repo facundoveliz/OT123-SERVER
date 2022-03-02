@@ -22,13 +22,13 @@ const Activities = () => {
 
   return (
     <Stack backgroundColor="#f2f2f2" paddingBottom="10">
-      <VStack my={6} display="flex" textAlign="center">
+      <VStack justifyContent="space-around" my={6} display="flex" flexWrap="wrap">
         <Title title="ACTIVIDADES" fontSize={30} />
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
           Estas son las actividades en ¡Somos Más!.
         </Text>
       </VStack>
-      <Grid templateColumns="repeat(auto-fill, 350px)" gap={8} mb={12} justifyContent="center">
+      <Grid justifyContent="space-evenly" my={6} display="flex" flexWrap="wrap" gap={8} mb={12}>
         <Card
           direction={direction}
           array={loadData}

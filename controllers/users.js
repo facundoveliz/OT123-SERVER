@@ -197,7 +197,9 @@ exports.signin = async (req, res) => {
 
 exports.editUser = async (req, res) => {
   const { id } = req.params
-  const { firstName, lastName, roleId } = req.body
+  const {
+    firstName, lastName, roleId, image,
+  } = req.body
 
   const user = await User.findByPk(id)
   if (!user) {
@@ -206,12 +208,12 @@ exports.editUser = async (req, res) => {
       msg: 'THERE IS NO USER WITH THIS ID',
     })
   }
-
   const token = generateToken(user)
   delete user.dataValues.password
   user.firstName = firstName
   user.lastName = lastName
   user.roleId = roleId
+  user.image = image
   await user
     .save()
     .then((updatedUser) => res.status(201).json({

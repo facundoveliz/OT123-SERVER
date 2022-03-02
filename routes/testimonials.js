@@ -1,14 +1,14 @@
 const express = require('express')
 
 const {
-  getAll, add, update, deleteTestimonial, getTestimonial, getSome,
+  getAllTestimonials, add, update, deleteTestimonial, getTestimonial, getSome,
 } = require('../controllers/testimonials')
 const validate = require('../schemas/testimonialSchema')
 
 const router = express.Router()
 
 // get all testimonials
-router.get('/', getAll)
+router.get('/', getAllTestimonials)
 
 router.get('/:id', getTestimonial)
 

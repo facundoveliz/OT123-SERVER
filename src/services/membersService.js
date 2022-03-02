@@ -16,6 +16,17 @@ export function getMember(id) {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from members endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested member
+ */
+export function getMemberPagination(limit, offset) {
+  return httpService.get(`${membersEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * ACCEPTS AN OBJECT TO CREATE A MEMBER FROM MEMBERS ENDPOINT
  * @async
  * @param {object} member

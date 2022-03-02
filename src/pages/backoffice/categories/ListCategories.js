@@ -6,13 +6,13 @@ import {
 import { useNavigate } from 'react-router'
 import { FiArrowLeft } from 'react-icons/fi';
 import {
-  getAllCategories,
+  getCategoryPagination,
 } from '../../../services/categoriesService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapse from './ItemCollapse'
 
 const ListCategories = () => {
-  const [allCategories, setAllCategories] = useState([{}])
+  const [allCategories, setAllCategories] = useState([])
   const [deletedCategory, setDeletedCategory] = useState([])
   const [alertProps, setAlertProps] = useState({
     show: false,
@@ -23,10 +23,13 @@ const ListCategories = () => {
   })
 
   const navigate = useNavigate()
+
+  let currentPage = 0
   async function loadData() {
     try {
-      const response = await getAllCategories()
-      setAllCategories(response.data.result.categories)
+      const response = await getCategoryPagination(20, currentPage)
+      setAllCategories((prev) => [...prev, ...response.data.result.rows])
+      currentPage += 1
     } catch (error) {
       const errorAlertProps = {
         show: true,
@@ -39,8 +42,20 @@ const ListCategories = () => {
     }
   }
 
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      loadData();
+    }
+  };
+
   useEffect(() => {
     loadData()
+    window.addEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedCategory])
 
   return (

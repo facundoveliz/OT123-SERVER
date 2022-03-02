@@ -22,6 +22,17 @@ export function getUserById(id) {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from users endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested user
+ */
+export function getUserPagination(limit, offset) {
+  return httpService.get(`${usersEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * ACCEPTS AN OBJECT TO CREATE AN USER FROM USERS ENDPOINT
  * @async
  * @param {object} user

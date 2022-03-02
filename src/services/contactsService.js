@@ -23,3 +23,14 @@ export function getAllContacts() {
 export function createContact(contact) {
   return httpService.post(contactsEndpoint, contact)
 }
+
+/**
+ * Accepts a limit and an offset to retrieve an array from contacts endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested contact
+ */
+export function getContactPagination(limit, offset) {
+  return httpService.get(`${contactsEndpoint}/${limit}/${offset}`)
+}

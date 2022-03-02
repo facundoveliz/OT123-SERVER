@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router'
 import { FiArrowLeft } from 'react-icons/fi';
-import { getAllActivities } from '../../../services/activitiesService'
+import { getActivityPagination } from '../../../services/activitiesService'
 import Alert from '../../../components/alert/Alert'
 import ItemCollapse from './itemCollapse'
 
@@ -21,10 +21,12 @@ const ListActivities = () => {
     onConfirm: () => {},
   })
 
+  let currentPage = 0
   async function loadData() {
     try {
-      const response = await getAllActivities()
-      setActivitiesData(response.data.result.activities)
+      const response = await getActivityPagination(20, currentPage)
+      setActivitiesData((prev) => [...prev, ...response.data.result.rows])
+      currentPage += 1
     } catch (error) {
       const errorAlertProps = {
         show: true,
@@ -37,8 +39,20 @@ const ListActivities = () => {
     }
   }
 
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      loadData();
+    }
+  };
+
   useEffect(() => {
     loadData()
+    window.addEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedActivity])
 
   return (

@@ -23,6 +23,17 @@ export function getNewById(id) {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from entries endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested entry
+ */
+export function getEntryPagination(limit, offset) {
+  return httpService.get(`${entriesEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * Accepts an id to retrieve one entry from entries endpoint
  * @async
  * @param {int} id

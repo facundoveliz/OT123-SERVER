@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
-import ItemCollapse from './ItemCollapse'
+import ItemCollapse from './itemCollapse'
 import { getAllUsers } from '../../../services/usersService'
 
 const ListUsers = () => {

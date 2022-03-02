@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Heading, HStack, VStack, Button, Box, Icon,
+  Heading, HStack, VStack, Button, Box, Icon, Text,
 } from '@chakra-ui/react'
 import { FiArrowLeft } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import TextField from '../../components/textfield/TextField'
 import Alert from '../../components/alert/Alert'
 import useUser from '../../hooks/useUser'
@@ -127,7 +127,14 @@ const SignUpForm = () => {
               >
                 Crear cuenta
               </Button>
+              <Text py={3}>
+                ¿Tienes una cuenta?
+                {' '}
+                <Link style={{ fontWeight: 'bold' }} to="/signin">Entrar</Link>
+              </Text>
+
             </VStack>
+
           </HStack>
         )}
       </Formik>

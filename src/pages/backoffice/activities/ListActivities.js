@@ -52,6 +52,7 @@ const ListActivities = () => {
   useEffect(() => {
     loadData()
     window.addEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedActivity])
 
   return (

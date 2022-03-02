@@ -55,6 +55,7 @@ const ListCategories = () => {
   useEffect(() => {
     loadData()
     window.addEventListener('scroll', handleScroll)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletedCategory])
 
   return (

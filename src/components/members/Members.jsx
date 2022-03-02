@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback } from 'react'
 import { Text, VStack, Grid } from '@chakra-ui/react'
 import { useLocation } from 'react-router'

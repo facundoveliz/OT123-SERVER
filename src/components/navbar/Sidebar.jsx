@@ -95,12 +95,6 @@ const Sidebar = ({ roleId }) => {
             <NavLink to="/contribuye">
               {({ isActive }) => getItem(isActive, 'Contribuye', FaRegMoneyBillAlt)}
             </NavLink>
-            { roleId === 1
-            && (
-            <NavLink to="/backoffice">
-              {({ isActive }) => getItem(isActive, 'Backoffice', FaLockOpen)}
-            </NavLink>
-            )}
             <Box display="flex" flexDirection="column" width="100%">
               {isLoggedIn === true
           && <Menu roleId={roleId} />}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import {
-  Box, Heading, HStack, VStack, Button, Select, Icon, Center, Image,
+  Box, Heading, HStack, VStack, Button, Select, Image, Icon, Center,
 } from '@chakra-ui/react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate, useParams } from 'react-router-dom'

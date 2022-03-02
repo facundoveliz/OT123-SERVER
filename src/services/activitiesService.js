@@ -33,6 +33,17 @@ export function getActivityById(id) {
 }
 
 /**
+ * Accepts a limit and an offset to retrieve an array from activities endpoint
+ * @async
+ * @param {string} limit
+ * @param {string} offset
+ * @return Promise {object} of the requested activity
+ */
+export function getActivityPagination(limit, offset) {
+  return httpService.get(`${activitiesEndpoint}/${limit}/${offset}`)
+}
+
+/**
  * Retrieves an array with all the activities from activities endpoint
  * @async
  * @return Promise [{object}] of all the requested activities

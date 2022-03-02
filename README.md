@@ -28,3 +28,26 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+
+All users, all users have as password '123456789'
+email: 'test@test.com',
+email: 'mariaIrola@admin.com',
+email: 'marita@admin.com',
+email: 'miriam@admin.com',
+email: 'Cecilia@admin.com',
+email: 'Mariofuentes@admin.com',
+email: 'rodrigofuente@admin.com',
+email: 'mariagarcia@admin.com',
+email: 'marcofernandez@admin.com',
+email: 'agustinpalavecino@admin.com',
+email: 'enzofernandez@standard.com',
+email: 'enzoperez@standar.com',
+email: 'santiagosimon@standard.com',
+email: 'francoarmani@standar.com',
+email: 'jorgecarrascal@standard.com',
+email: 'ignaciofernandez@standar.com',
+email: 'marcelogallardo@standard.com',
+email: 'FranciscoOlivero@admin.com',
+email: 'federicogirotti@admin.com',
+email: 'julianalvares@standard.com',

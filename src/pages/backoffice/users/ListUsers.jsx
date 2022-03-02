@@ -5,20 +5,33 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft } from 'react-icons/fi';
+import { getUserPagination } from '../../../services/usersService'
 import ItemCollapse from './itemCollapse'
-import { getAllUsers } from '../../../services/usersService'
 
 const ListUsers = () => {
   const navigate = useNavigate()
   const [usersData, setUsersData] = useState([]);
 
+  let currentPage = 0
   const getUsers = useCallback(async () => {
-    const res = await getAllUsers()
-    setUsersData(res.data.result.user)
+    const res = await getUserPagination(20, currentPage)
+    setUsersData((prev) => [...prev, ...res.data.result.rows])
+    currentPage += 1
   }, [setUsersData])
+
+  const handleScroll = (e) => {
+    const { scrollHeight } = e.target.documentElement;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight,
+    );
+    if (currentHeight + 1 >= scrollHeight) {
+      getUsers();
+    }
+  };
 
   useEffect(() => {
     getUsers()
+    window.addEventListener('scroll', handleScroll)
   }, [getUsers]);
 
   return (

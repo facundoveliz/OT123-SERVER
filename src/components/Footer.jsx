@@ -5,6 +5,7 @@ import {
 } from '@chakra-ui/react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import styled from '@emotion/styled'
+import { Link } from 'react-router-dom';
 import { getOrganizationById } from '../services/organizationsService'
 
 const Text = styled.p`
@@ -35,15 +36,15 @@ const Footer = () => {
         align="center"
       >
         <Stack spacing={2} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
-          <Text>Noticias</Text>
-          <Text>Actividades</Text>
-          <Text>Novedades</Text>
+          <Link to="/home">Home</Link>
+          <Link to="/actividades">Actividades</Link>
+          <Link to="/novedades">Novedades</Link>
         </Stack>
         <Image src="../../logo.png" alt="logo" p={4} px={{ base: 24, sm: 0 }} />
         <Stack spacing={2} w="100%" justify="space-between" px={12} direction={{ base: 'column', lg: 'row' }}>
-          <Text>Testimonios</Text>
-          <Text>Nosotros</Text>
-          <Text>Contacto</Text>
+          <Link to="/testimonios">Testimonios</Link>
+          <Link to="/nosotros">Nosotros</Link>
+          <Link to="/contacto">Contacto</Link>
         </Stack>
       </Flex>
       <VStack py={6} spacing={4} w="80%" m="auto" borderTop="2px solid black">

@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback } from 'react'
-import { Text, VStack, Grid } from '@chakra-ui/react'
+import {
+  Text, VStack, Grid, Box,
+} from '@chakra-ui/react'
 import { useLocation } from 'react-router'
 import Card from '../pageUtils/Card'
 import { getMemberPagination } from '../../services/membersService'
@@ -34,7 +36,7 @@ const Members = () => {
   }, [getData]);
 
   return (
-    <>
+    <Box backgroundColor="#f2f2f2">
       <VStack my={12} display="flex" textAlign="center">
         <Title title="MIEMBROS" fontSize={30} />
         <Text fontSize="2xl" w={{ base: '80%', lg: '50%' }}>
@@ -47,7 +49,7 @@ const Members = () => {
           array={loadData}
         />
       </Grid>
-    </>
+    </Box>
   )
 }
 

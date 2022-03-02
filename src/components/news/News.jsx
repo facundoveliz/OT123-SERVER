@@ -43,7 +43,7 @@ const News = () => {
           Enterate de las últimas novedades relacionadas con Somos Más.
         </Text>
       </VStack>
-      <Grid templateColumns="repeat(auto-fill, 350px)" gap={8} mb={12} justifyContent="center">
+      <Grid justifyContent="space-evenly" my={6} display="flex" flexWrap="wrap" gap={8} mb={12}>
         <Card
           direction={direction}
           array={entrysData}

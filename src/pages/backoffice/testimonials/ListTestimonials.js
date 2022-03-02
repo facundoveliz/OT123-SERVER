@@ -175,6 +175,7 @@ export default function ListTestimonials() {
   }
   return (
     <Flex
+      backgroundColor="#f2f2f2"
       textAlign="center"
       pt={10}
       justifyContent="center"

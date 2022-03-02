@@ -1,0 +1,29 @@
+.contenedor {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+.texto-encima {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.centrado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 50%;
+}
+.contenedor:hover {
+  color: rgba(231, 231, 231, 0.877);
+}
+.inputHidden {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
